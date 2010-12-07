@@ -14,7 +14,7 @@ Le funzioni aiutano, ma da sole non sono sufficienti per i programmi più
 grandi. L'orientamento agli oggetti è una tecnica popolare per raggruppare
 funzioni assieme in classi dai comportamenti correlati.
 
-Il sistema ad oggetti di Perl 5 è minimale. E' molto flessibile--potete
+Il sistema ad oggetti di Perl 5 è minimale. E<Egrave> molto flessibile--potete
 realizzare praticamente qualsiasi altro sistema ad oggetti su di esso--ma dà
 molta poca assistenza per i compiti più comuni.
 

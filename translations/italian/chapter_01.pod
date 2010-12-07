@@ -2,7 +2,7 @@
 
 =encoding utf8
 
-Perl è un linguaggio per portare a casa il risultato. E' flessibile,
+Perl è un linguaggio per portare a casa il risultato. E<Egrave> flessibile,
 paziente e malleabile. Nelle mani di un programmatore capace, può
 eseguire praticamente qualsiasi compito, da calcoli e automazioni 
 a linea di comando a progetti con tanti programmatori su vari anni, oltre

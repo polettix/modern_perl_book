@@ -18,7 +18,7 @@ Inoltre, estensioni e librerie condivise valgono poco se non siete in grado
 di trovarle, o non potete migliorarle, o ancora non avete il permesso di
 utilizzarle.
 
-Fortunatamente esiste la comunità Perl. E' forte ed in ottima salute.
+Fortunatamente esiste la comunità Perl. E<Egrave> forte ed in ottima salute.
 Accoglie i volenterosi a tutti i livelli--e non solo persone che scrivono e
 condividono codice. Tenete in considerazione di potervi valere della
 conoscenza e dell'esperienza di tantissimi altri programmatori Perl e di
