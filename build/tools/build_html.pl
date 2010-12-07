@@ -84,7 +84,7 @@ sub get_output_fh
     $name       =~ s/\.pod/\.html/;
     $name       = catfile( $htmldir, $name );
 
-    open my $fh, '>:utf8', $name
+    open my $fh, '>:raw', $name
         or die "Cannot write to '$name': $!\n";
 
     return $fh;
