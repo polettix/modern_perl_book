@@ -1,18 +1,22 @@
-=head0 Objects
+=encoding utf8
 
-Writing large programs requires more discipline than writing small programs,
-due to the difficulty of managing all of the details of your program
-simultaneously.  Abstraction (finding and exploiting similarities and
-near-similarities) and encapsulation (grouping specific details together and
-accessing them where they belong) are essential to managing this complexity.
+=head0 Oggetti
 
-Functions help, but functions by themselves aren't sufficient for the largest
-programs.  Object orientation is a popular technique for grouping functions
-together into classes of related behaviors.
+Scrivere programmi molto ampi richiede maggiore disciplina che scriverne di
+piccoli, a causa della difficoltà di gestione di tutti i dettagli del
+vostro programma tutti insieme. L'astrazione (ossia la ricerca e la messa
+in evidenza delle similitudini e delle quasi similitudini) e
+l'incapsulamento (ossia raggruppare insieme dettagli specifici e accedervi
+dove essi appartengono) sono essenziali nella gestione di questa
+complessità.
 
-Perl 5's default object system is minimal.  It's very flexible--you can build
-almost any other object system you want on top of it--but it provides little
-assistance for the most common tasks.
+Le funzioni aiutano, ma da sole non sono sufficienti per i programmi più
+grandi. L'orientamento agli oggetti è una tecnica popolare per raggruppare
+funzioni assieme in classi dai comportamenti correlati.
+
+Il sistema ad oggetti di Perl 5 è minimale. E' molto flessibile--potete
+realizzare praticamente qualsiasi altro sistema ad oggetti su di esso--ma dà
+molta poca assistenza per i compiti più comuni.
 
 L<moose>
 
