@@ -1,13 +1,16 @@
-=head0 Perl Beyond Syntax
+=encoding utf8
 
-Perl 5 is a large language, like any language intended to solve problems in the
-real world.  Effective Perl programs require more than mere understanding of
-syntax; you must also begin to understand how Perl's features interact and
-common ways of solving well-understood problems in Perl.
+=head0 Perl Oltre la Sintassi
 
-Prepare for the second learning curve of Perl: Perlish thinking. The effective
-use of common patterns of behavior and builtin shortcuts allow you to write
-concise and powerful code.
+Perl5 è un linguaggio ampio, come qualsiasi linguaggio che mira a risolvere
+problemi nel mondo reale. Progammi Perl efficaci richiedono più della mera
+comprensione della sintassi; dovete anche iniziare a capire come le
+caratteristiche di Perl interagiscono ed come vengono risolti comunemente
+i problemi noti.
+
+Preparatevi per la seconda curva di apprendimento di Perl: pensare
+Perlisticamente. L'uso efficace di costrutti comuni e le scorciatoie
+proprie del linguaggio vi permettonon di scrivere codice conciso e potente.
 
 L<idioms>
 
