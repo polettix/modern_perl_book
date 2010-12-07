@@ -1,6 +1,6 @@
 =encoding utf8
 
-=head0 Regular Expressions and Matching
+=head0 Espressioni Regolari e Matching
 
 Z<regex>
 
@@ -8,19 +8,25 @@ X<regular expressions>
 X<regex>
 X<regex; engine>
 
-Perl's powerful ability to manipulate text comes in part from its inclusion of
-a computing concept known as I<regular expressions>.  A regular expression
-(often shortened to I<regex> or I<regexp>) is a I<pattern> which describes
-characteristics of a string of text.  A I<regular expression engine> interprets
-a pattern and applies it to strings of text to identify those which match.
+La potente capacità di manipolazione del testo di Perl viene in parte
+dall'inclusione di un concetto di computazione che va sotto il nome di
+I<espressioni regolari>. Un'espressione regolare (spesso abbreviata in
+I<regex> o I<regexp>) è un I<pattern>N<Nota di traduzione: si mantiene
+la terminologia inglese per i concetti principali, come appunto pattern,
+matching, ecc.> che descrive le caratteristiche di una stringa di testo.
+Un I<motore per espressioni regolari> interpreta un pattern e lo applica
+alle stringhe di testo per identificare quelle che corrispondono (nel
+qual caso si dice che si ha un I<match> o che, con linguaggio molto
+gergale, I<matcha>, N.d.T.).
 
-Perl's core documentation describes Perl regular expressions in copious detail;
-see C<perldoc perlretut>, C<perldoc perlre>, and C<perldoc perlreref> for a
-tutorial, the full documentation, and a reference guide, respectively.  Jeffrey
-Friedl's book I<Mastering Regular Expressions> explains the theory and the
-mechanics of how regular expressions work.  Even though those references may
-seem daunting, regular expressions are like Perl--you can do many things with
-only a little knowledge.
+La documentazione base di Perl descrive con copiosi dettagli le espressioni
+regolari in Perl; riferitevi a C<perldoc perlretut>, C<perldoc perlre> e
+C<perldoc perlreref> rispettivamente per un tutorial, la documentazione
+completa ed una guida di riferimento. Il libro di Jeffrey Friedl
+I<Mastering Regular Expressions> spiega la teoria ed i meccanismi su come
+funzionano le espressioni regolari. Sebbene tutta questa documentazione
+tenda ad intimidire, le espressioni regolari sono come Perl--potete farci
+tante cose anche con una conoscenza ristretta.
 
 L<regular_expressions>
 
