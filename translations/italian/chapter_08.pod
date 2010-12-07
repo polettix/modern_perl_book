@@ -1,17 +1,21 @@
-=head0 Style and Efficacy
+=encoding utf8
 
-Programming and programming I<well> are related, but distinct skills.  If we
-only wrote programs once and never had to modify or maintain them, if our
-programs never had bugs, if we never had to choose between using more memory or
-taking more time, and if we never had to work with other people, we wouldn't
-have to worry about how well we program.  To program well, you must understand
-the differences between potential solutions based on specific priorities of
-time, resources, and future plans.
+=head0 Stile ed Efficacia
 
-Writing Perl well means understanding how Perl works.  It also means developing
-a sense of good taste.  To develop that skill, you must practice writing and
-maintaining code and reading good code.  There are no shortcuts--but you can
-improve the effectiveness of your practice by following a few guidelines.
+Programmare e programmare I<bene> sono capacità correlate ma distinte. Se
+scrivessimo programmi solo una volta e non dovessimo mai modificarli o
+manutenerli, se i nostri programmi non avessero mai bug, se non dovessimo mai
+scegliere fra usare più memoria o impiegare più tempo, ed ancora se non
+dovessimo mai lavorare con altre persone, allora non dovremmo preoccuparci
+di quanto bene scriviamo i programmi. Per programmare bene, dovete comprendere
+le differenze fra le soluzioni potenziali basate su priorità specifiche di
+tempo, risorse e piani evolutivi per il futuro.
+
+Scrivere bene in Perl significa capire come funziona Perl. Significa anche
+sviluppare un senso di buon gusto. Per sviluppare questa capacità, dovete
+fare pratica nello scrivere e nel manutenere codice e nel leggere buon
+codice. Non ci sono scorciatoie--ma potete incrementare l'efficacia dei
+vostri sforzi seguendo alcune linee guida.
 
 L<style>
 
