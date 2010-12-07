@@ -1,23 +1,27 @@
-=head0 Operators
+=encoding utf8
+
+=head0 Operatori
 
 Z<operators>
 X<operators>
 X<operands>
 
-An accurate, if irreverent, description of Perl is an "operator-oriented
-language".  The interaction of operators with their operands gives Perl its
-expressivity and power.  Understanding Perl requires understanding its
-operators and how they behave.  For the sake of this discussion, a working
-definition of a Perl I<operator> is a series of one or more symbols used as
-part of the syntax of a language.  Each operator operates on zero or more
-I<operands>; this definition is circular, as an operand is a value on which an
-operator operates.
+Una descrizione accurata di Perl, sebbene irriverente, è che si tratta di
+un "linguaggio orientato agli operatori". L'interazione degli operatori con
+gli operandi dà al Perl la sua espressività e potenza. Capire Perl richiede
+la compresione dei suoi operatori e del loro comportamento. Nell'ambito di
+questa discussione, una definizione pragmatica di un I<operatore> Perl è
+una serie di uno o più simboli utilizzati come parte della sintassi di un
+linguaggio. Ciascun operatore lavora su zero o più I<operandi>; questa
+definizione è circolare, poiché un operando è un valore sul quale opera
+un operatore.
 
 =begin sidebar
 
-The most accurate definition of operators is "What's in C<perlop>", but even
-that leaves out some operators in C<perlsyn> and includes builtins.  Don't get
-too attached to a single definition.
+La definizione in assoluto più accurata di operatori è "Quel che si trova
+in C<perlop>", ma anche questa lascia fuori alcuni operatori che si trovano
+in C<perlsyn> ed include le parole proprie del linguaggio. Non vi attaccate
+troppo ad una singola definizione.
 
 =end sidebar
 
