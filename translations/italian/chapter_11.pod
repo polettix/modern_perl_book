@@ -1,10 +1,13 @@
-=head0 What to Avoid
+=encoding utf8
 
-Perl 5 isn't perfect.  Some features seemed like good ideas at the time, but
-they're difficult to use correctly.  Others don't work as anyone might expect.
-A few more are simply bad ideas.  These features will likely persist--removing
-a feature from Perl is a serious process reserved for only the most egregious
-offenses--but you can and should avoid them in almost every case.
+=head0 Cosa Evitare
+
+Perl 5 non è perfetto. Alcune caratteristiche sembravano buone idee al tempo,
+ma sono difficili da utilizzare correttamente. Altre non si comportano come
+uno si aspetterebbe. Un altro po' sono semplicemente cattive idee. Queste
+caratteristiche con buona probabilità verranno conservate--rimuoverne una
+qualsiasi è un processo serio riservato solo ai casi più gravi--ma potete
+e dovreste evitarle in quasi tutti i casi.
 
 L<barewords>
 
