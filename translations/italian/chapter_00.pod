@@ -2,34 +2,34 @@
 
 =encoding utf8
 
-Quest'anno Perl compie 23 anni. Il linguaggio si è trasformato da semplice
-strumento per amministrazione di sistema a metà fra shell e programmazione
+Quest'anno Perl compie 23 anni. Il linguaggio si Ã¨ trasformato da semplice
+strumento per amministrazione di sistema a metÃ  fra shell e programmazione
 C (Perl 1) in un linguaggio potente e di ampio respiro immerso in una ricca
 tradizione (Perl 5) ed infine in un ripensamento consistente e coerente della
 programmazione in generale che mira a durare altri 25 anni (Perl 6).
 
-Anche così, la maggior parte dei programmi al mondo scritti per Perl 5
+Anche cosÃ¬, la maggior parte dei programmi al mondo scritti per Perl 5
 utilizzano ben poco dei vantaggi messi a disposizione dal linguaggio.
 I<Potete> scrivere programmi per Perl 5 come se fossero per Perl 4 (o anche
 Perl 3, o 2 o addirittura 1), ma i programmi scritti per utilizzare tutte le
-meraviglie inventate, rodate e scoperte dalla comunità Perl 5 in tutto il mondo
-sono più brevi, rapidi, potenti e semplici da manutenere rispetto alle
+meraviglie inventate, rodate e scoperte dalla comunitÃ  Perl 5 in tutto il mondo
+sono piÃ¹ brevi, rapidi, potenti e semplici da manutenere rispetto alle
 alternative.
 
-I<Modern Perl> è una descrizione poco formale di come lavorano i programmatori
-Perl 5 dotati di esperienza e capacità. Usano gli idiomi del linguaggio. Si
+I<Modern Perl> Ã¨ una descrizione poco formale di come lavorano i programmatori
+Perl 5 dotati di esperienza e capacitÃ . Usano gli idiomi del linguaggio. Si
 avvantaggiano dei benefici messi a disposizione da CPAN. Sono decisamente
-Perlici, mostrano di avere buon gusto, buone capacità di creazione ed una
+Perlici, mostrano di avere buon gusto, buone capacitÃ  di creazione ed una
 piena comprensione di Perl.
 
-Anche voi potete imparare tutto ciò.
+Anche voi potete imparare tutto ciÃ².
 
 
 =head1 Usare Modern Perl
 
 =begin sidebar
 
-Il modulo Modern::Perl è disponibile su CPAN. Installatelo oppure rimpiazzatelo
+Il modulo Modern::Perl Ã¨ disponibile su CPAN. Installatelo oppure rimpiazzatelo
 con:
 
 =begin programlisting
@@ -42,7 +42,7 @@ con:
 
 X<C<feature>>
 
-Con queste righe in ogni programma di esempio, Perl vi avvertirà se ci
+Con queste righe in ogni programma di esempio, Perl vi avvertirÃ  se ci
 sono costrutti dubbi o errori di battitura, oltre ad abilitare le nuove
 caratteristiche introdotte con Perl 5.10 attraverso il pragma
 C<feature> (L<pragmas>). Per il momento fate conto che queste righe siano
@@ -65,7 +65,7 @@ il seguente scheletro base di programma:
 =end programlisting
 
 Altri brani di codice utilizzano funzioni di test cme C<ok()>, C<like()> e
-C<is()> (L<testing>). In questo caso il programma scheletro è:
+C<is()> (L<testing>). In questo caso il programma scheletro Ã¨:
 
 =begin programlisting
 
@@ -82,21 +82,21 @@ C<is()> (L<testing>). In questo caso il programma scheletro è:
 
 Gli esempi in questo libro funzionano al meglio con Perl 5.10.0 o successivi;
 idealmente almeno Perl 5.10.1. Molti esempi funzioneranno anche con versioni di
-Perl 5 più datate apportando solo piccole modifiche, ma incontrerete difficoltà
-maggiori con versioni più vecchie di 5.10.0. Questo libro descrive anche alcune
+Perl 5 piÃ¹ datate apportando solo piccole modifiche, ma incontrerete difficoltÃ 
+maggiori con versioni piÃ¹ vecchie di 5.10.0. Questo libro descrive anche alcune
 caratteristiche introdotte con Perl 5.12, anche se non richiede il loro
 utilizzo.
 
 Spesso sarete in grado di installare una nuova versione di Perl per vostro
 conto. Gli utenti che utilizzano Windows possono scaricare Strawberry Perl
 da U<http://www.strawberryperl.com/>. Gli utenti di altri sistemi operativi
-che hanno già Perl 5 installato (oltre ad un compilatore C ed agli altri
+che hanno giÃ  Perl 5 installato (oltre ad un compilatore C ed agli altri
 strumenti di sviluppo) possono partire installando il modulo
 C<App::perlbrew>N<Le istruzioni di installazione sono disponibili
 all'indirizzo U<http://search.cpan.org/perldoc?App::perlbrew>.> da CPAN.
 
-C<perlbrew> vi consente di installare e gestire più versioni di Perl 5; per
-default le installa nella vostra directory base. Non solo potete avere più
+C<perlbrew> vi consente di installare e gestire piÃ¹ versioni di Perl 5; per
+default le installa nella vostra directory base. Non solo potete avere piÃ¹
 versioni disponibili senza interferire con il Perl del sistema, ma potete
 anche installare qualsiasi modulo vogliate in queste directory senza bisogno
 di chiedere permessi specifici all'amministratore di sistema.
@@ -104,7 +104,7 @@ di chiedere permessi specifici all'amministratore di sistema.
 =head1 Perl 5 e Perl 6
 
 Vi conviene imparare Perl 5 o Perl 6? Condividono filosofia, sintassi,
-librerie e comunità, ma vanno a riempire nicchie differenti. Imparate
+librerie e comunitÃ , ma vanno a riempire nicchie differenti. Imparate
 Perl 5 se:
 
 =over 4
@@ -113,7 +113,7 @@ Perl 5 se:
 
 =item * volete utilizzare i moduli su CPAN
 
-=item * la vostra strategia di distribuzione ed installazione richiede una stabilità rigorosa
+=item * la vostra strategia di distribuzione ed installazione richiede una stabilitÃ  rigorosa
 
 =back
 
@@ -132,14 +132,14 @@ documentazione, sponsorizzazione o altre risorse)
 
 =back
 
-In generale, lo sviluppo con Perl 5 è conservativo rispetto al linguaggio
-base. Nel bene o nel male, i cambiamenti sono lenti. Perl 6 è più
-sperimentale, poiché è più importante avere un linguaggio progettato nel
+In generale, lo sviluppo con Perl 5 Ã¨ conservativo rispetto al linguaggio
+base. Nel bene o nel male, i cambiamenti sono lenti. Perl 6 Ã¨ piÃ¹
+sperimentale, poichÃ© Ã¨ piÃ¹ importante avere un linguaggio progettato nel
 miglior modo possibile piuttosto che garantire che il vecchio codice funzioni.
 Fortunatamente potete imparare ed utilizzare entrambi i linguaggi (e 
 man mano che si va avanti lavorano sempre meglio insieme).
 
-Questo libro si concentra su Perl 5; per imparare di più su Perl 6
+Questo libro si concentra su Perl 5; per imparare di piÃ¹ su Perl 6
 potete andare su 
 U<http://perl6.org/>, provare Rakudo (U<http://www.rakudo.org/>),
 e fare riferimento al libro I<Using Perl 6>, pubblicato anch'esso da
@@ -152,14 +152,14 @@ le domande, i commenti, i suggerimenti ed i consigli, la saggezza e
 l'incoraggiamento di tanta, tanta gente. In particolare, l'autore e
 l'editore vogliono ringraziare:
 
-John SJ Anderson, Peter Aronoff, Lee Aylward, Alex Balhatchet, Ævar Arnfjörð
+John SJ Anderson, Peter Aronoff, Lee Aylward, Alex Balhatchet, Ã†var ArnfjÃ¶rÃ°
 Bjarmason, Matthias Bloch, John Bokma, Vasily Chekalkin, Dmitry Chestnykh, E.
 Choroba, Paulo Custodio, Felipe, Shlomi Fish, Jeremiah Foster, Mark Fowler,
-John Gabriele, Andrew Grangaard, Bruce Gray, Ask Bjørn Hansen, Tim Heaney,
+John Gabriele, Andrew Grangaard, Bruce Gray, Ask BjÃ¸rn Hansen, Tim Heaney,
 Robert Hicks, Michael Hind, Mark Hindess, Yary Hluchan, Mike Huffman, Curtis
 Jewell, Mohammed Arafat Kamaal, James E Keenan, Yuval Kogman, Jan Krynicky,
 Jeff Lavallee, Moritz Lenz, Jean-Baptiste Mazon, Josh McAdams, Gareth
-McCaughan, John McNamara, Shawn M Moore, Alex Muntada, Carl Mäsak, Chris
+McCaughan, John McNamara, Shawn M Moore, Alex Muntada, Carl MÃ¤sak, Chris
 Niswander, Nelo Onyiah, Chas. Owens, ww from PerlMonks, Jess Robinson, Dave
 Rolsky, Gabrielle Roth, Andrew Savige, Lorne Schachter, Dan Scott, Alexander
 Scott-Johns, Phillip Smith, Christopher E. Stith, Mark A. Stratman, Bryan
@@ -171,5 +171,5 @@ Gli errori sono colpa della testardaggine dell'autore.
 
 =head1 Traduzione
 
-Questa traduzione è stata effettuata dall'Associazione di Promozione Sociale
+Questa traduzione Ã¨ stata effettuata dall'Associazione di Promozione Sociale
 B<Perl.it>, nelle persone di: Flavio Poletti.
