@@ -1,27 +1,31 @@
-=head0 The Perl Philosophy
+=head0 La filosofia Perl
 
-Perl is a language for getting things done.  It's flexible, forgiving, and
-malleable.  In the hands of a capable programmer, it can accomplish almost any
-task, from one-liner calculations and automations to multi-programmer,
-multi-year projects and everything in between.
+=encoding utf8
 
-Perl is powerful, and modern Perl--Perl which takes advantage of the best
-knowledge, deepest experience, and reusable idioms of the global Perl
-community--is maintainable, fast, and easy to use.  Perhaps most
-importantly, it can help you do what you need to do with little frustration
-and no ceremony.
+Perl è un linguaggio per portare a casa il risultato. E' flessibile,
+paziente e malleabile. Nelle mani di un programmatore capace, può
+eseguire praticamente qualsiasi compito, da calcoli e automazioni 
+a linea di comando a progetti con tanti programmatori su vari anni, oltre
+a tutto quel che c'è in mezzo.
 
-Perl is a pragmatic language.  You, the programmer, are in charge.  Rather than
-manipulating your mind and your problems to fit how the language designer
-thinks you should write programs, Perl allows you to solve your problems as you
-see fit.
+Perl è potente ed il Perl moderno--Perl che si avvantaggia della miglior
+conoscenza, della più profonda esperienza e degli idiomi riutilizzabili della
+comunità Perl globale--è manutenibile, veloce e semplice da utilizzare. Forse
+la caratteristica più importante è che può aiutarvi nel realizzare quello di
+cui avete bisogno con poca frustrazione e senza cerimonie.
 
-Perl is a language which can grow with you.  You can write useful programs with
-the knowledge that you can learn in an hour of reading this book.  Yet if you
-take the time to understand the philosophies behind the syntax, semantics, and
-design of the language, you can be far more productive.
+Perl è un linguaggio pragmatico. Voi, i programmatori, siete in ballo.
+Anziché manipolarvi mente e problemi per adattarli al modo in cui chi ha
+progettato il linguaggio pensa che dobbiate scrivere un programma, Perl vi
+consente di risolvere i vostri problemi come meglio credete.
 
-First, you need to know how to learn more.
+Perl è un linguaggio in grado di crescere con voi. Potete scrivere programmi
+utili anche con la conoscenza base che potete acquisire leggendo questo libro
+per un'ora. Però se vi prendete la briga di capire le filosofie dietro la
+sintassi, la semantica ed il design del linguaggio potete essere di gran lunga
+molto più produttivi.
+
+Prima di tutto, quindi, avete bisogno di sapere come imparare di più.
 
 L<perldoc>
 
