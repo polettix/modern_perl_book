@@ -77,89 +77,44 @@ X<ActivePerl>
 X<perlbrew>
 X<CPAN; C<App::perlbrew>>
 
-Spesso sarete in grado di installare una nuova versione di Perl per vostro
-conto. Gli utenti che utilizzano Windows possono scaricare Strawberry Perl
-da U<http://www.strawberryperl.com/>. Gli utenti di altri sistemi operativi
-che hanno già Perl 5 installato (oltre ad un compilatore C ed agli altri
-strumenti di sviluppo) possono partire installando il modulo
-C<App::perlbrew>N<Le istruzioni di installazione sono disponibili
-all'indirizzo U<http://search.cpan.org/perldoc?App::perlbrew>.> da CPAN.
+Se non avete un'installazione di Perl 5 (o ne avete una vecchia versione), potete installare voi stessi una nuova release.
+Gli utenti Windows possono scaricare Strawberry Perl da U<http://www.strawberryperl.com/> oppure ActivePerl da U<http://www.activestate.com/activeperl>.
+Gli utenti di altri sistemi operativi che hanno già Perl 5 installato (insieme a un compilatore C e gli altri tool di sviluppo),
+possono iniziare con l'installare il modulo CPAN C<App::perlbrew>N<Si veda U<http://search.cpan.org/perldoc?App::perlbrew> per le istruzioni di installazione.>.
 
-C<perlbrew> vi consente di installare e gestire più versioni di Perl 5; per
-default le installa nella vostra directory base. Non solo potete avere più
-versioni disponibili senza interferire con il Perl del sistema, ma potete
-anche installare qualsiasi modulo vogliate in queste directory senza bisogno
-di chiedere permessi specifici all'amministratore di sistema.
-
-=head1 Perl 5 e Perl 6
-
-Vi conviene imparare Perl 5 o Perl 6? Condividono filosofia, sintassi,
-librerie e comunità, ma vanno a riempire nicchie differenti. Imparate
-Perl 5 se:
-
-=over 4
-
-=item * dovete manutenere codice Perl 5 esistente
-
-=item * volete utilizzare i moduli su CPAN
-
-=item * la vostra strategia di distribuzione ed installazione richiede una stabilità rigorosa
-
-=back
-
-Imparate Perl 6 se:
-
-=over 4
-
-=item * vi sta bene gestire upgrade frequenti
-
-=item * vi potete permettere di sperimentare nuove sintassi e caratteristiche
-
-=item * avete bisogno di caratteristiche nuove disponibili solo in Perl 6
-
-=item * potete contribuire al suo sviluppo (con patch, segnalazioni di bug,
-documentazione, sponsorizzazione o altre risorse)
-
-=back
-
-In generale, lo sviluppo con Perl 5 è conservativo rispetto al linguaggio
-base. Nel bene o nel male, i cambiamenti sono lenti. Perl 6 è più
-sperimentale, poiché è più importante avere un linguaggio progettato nel
-miglior modo possibile piuttosto che garantire che il vecchio codice funzioni.
-Fortunatamente potete imparare ed utilizzare entrambi i linguaggi (e 
-man mano che si va avanti lavorano sempre meglio insieme).
-
-Questo libro si concentra su Perl 5; per imparare di più su Perl 6
-potete andare su 
-U<http://perl6.org/>, provare Rakudo (U<http://www.rakudo.org/>),
-e fare riferimento al libro I<Using Perl 6>, pubblicato anch'esso da
-Onyx Neon Press.
+C<perlbrew> vi consente di installare e gestire più versioni di Perl 5. 
+In questo modo, potete passare da una versione di Perl 5 all'altra e, inoltre, 
+potete installare Perl 5 e i moduli CPAN nella vostra home directory senza interferire con la versione del Perl di sistema.
+Se avete mai dovuto pregare il vostro amministratore di sistema per avere il permesso di installare del software,
+vi dovrebbe essere chiaro come questo vi possa semplificare, e di molto, la vita.
 
 =head1 Riconoscimenti
 
-Questo libro non sarebbe stato possibile nella sua forma corrente senza
-le domande, i commenti, i suggerimenti ed i consigli, la saggezza e
+Questo libro non sarebbe stato possibile senza
+le domande, i commenti, i suggerimenti, i consigli, la saggezza e
 l'incoraggiamento di tanta, tanta gente. In particolare, l'autore e
 l'editore vogliono ringraziare:
 
 John SJ Anderson, Peter Aronoff, Lee Aylward, Alex Balhatchet, Ævar Arnfjörð
 Bjarmason, Matthias Bloch, John Bokma, Vasily Chekalkin, Dmitry Chestnykh, E.
-Choroba, Paulo Custodio, Felipe, Shlomi Fish, Jeremiah Foster, Mark Fowler,
-John Gabriele, Andrew Grangaard, Bruce Gray, Ask Bjørn Hansen, Tim Heaney,
-Robert Hicks, Michael Hind, Mark Hindess, Yary Hluchan, Mike Huffman, Curtis
-Jewell, Mohammed Arafat Kamaal, James E Keenan, Yuval Kogman, Jan Krynicky,
-Jeff Lavallee, Moritz Lenz, Jean-Baptiste Mazon, Josh McAdams, Gareth
-McCaughan, John McNamara, Shawn M Moore, Alex Muntada, Carl Mäsak, Chris
-Niswander, Nelo Onyiah, Chas. Owens, ww from PerlMonks, Jess Robinson, Dave
-Rolsky, Gabrielle Roth, Andrew Savige, Lorne Schachter, Dan Scott, Alexander
-Scott-Johns, Phillip Smith, Christopher E. Stith, Mark A. Stratman, Bryan
-Summersett, Audrey Tang, Scott Thomson, Ben Tilly, Sam Vilain, Larry Wall,
-Colin Wetherbee, Frank Wiegand, Doug Wilson, Sawyer X, David Yingling, Marko
-Zagozen, harleypig, hbm, and sunnavy.
+Choroba, Anneli Cuss, Paulo Custodio, Steve Dickinson, Kurt Edmiston, Felipe,
+Shlomi Fish, Jeremiah Foster, Mark Fowler, John Gabriele, Andrew Grangaard,
+Bruce Gray, Ask Bjørn Hansen, Tim Heaney, Graeme Hewson, Robert Hicks, Michael
+Hind, Mark Hindess, Yary Hluchan, Mike Huffman, Gary H. Jones II, Curtis
+Jewell, Mohammed Arafat Kamaal, James E Keenan, Kirk Kimmel, Yuval Kogman, Jan
+Krynicky, Michael Lang, Jeff Lavallee, Moritz Lenz, Andy Lester, Jean-Baptiste
+Mazon, Josh McAdams, Gareth McCaughan, John McNamara, Shawn M Moore, Alex
+Muntada, Carl Mäsak, Chris Niswander, Nelo Onyiah, Chas. Owens, ww from
+PerlMonks, Jess Robinson, Dave Rolsky, Gabrielle Roth, Eduardo Santiago, Andrew
+Savige, Lorne Schachter, Steve Schulze, Dan Scott, Alexander Scott-Johns,
+Phillip Smith, Christopher E. Stith, Mark A. Stratman, Bryan Summersett, Audrey
+Tang, Scott Thomson, Ben Tilly, Ruud H. G. van Tol, Sam Vilain, Larry Wall,
+Lewis Wall, Colin Wetherbee, Frank Wiegand, Doug Wilson, Sawyer X, David
+Yingling, Marko Zagozen, harleypig, hbm e sunnavy.
 
-Gli errori sono colpa della testardaggine dell'autore.
+Gli errori rimanenti sono colpa esclusiva della testardaggine dell'autore.
 
 =head1 Traduzione
 
 Questa traduzione è stata effettuata dall'Associazione di Promozione Sociale
-B<Perl.it>, nelle persone di: Flavio Poletti.
+B<Perl.it>, nelle persone di: TODO.
