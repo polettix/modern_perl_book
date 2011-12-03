@@ -2,56 +2,44 @@
 
 =encoding utf8
 
-Quest'anno Perl compie 23 anni. Il linguaggio si è trasformato da semplice
-strumento per amministrazione di sistema a metà fra shell e programmazione
-C (Perl 1) in un linguaggio potente e di ampio respiro immerso in una ricca
-tradizione (Perl 5) ed infine in un ripensamento consistente e coerente della
-programmazione in generale che mira a durare altri 25 anni (Perl 6).
+I<Modern Perl> è uno dei modi per descrivere il modo in cui lavorano i migliori programmatori Perl 5. 
+Usano idiomi del linguaggio. Si avvantaggiano di CPAN. 
+Mostrano senso estetico e arte nello scrivere codice potente, manutenibile, scalabile, conciso ed efficace. 
+Anche voi potete imparare a lavorare così!
 
-Anche così, la maggior parte dei programmi al mondo scritti per Perl 5
-utilizzano ben poco dei vantaggi messi a disposizione dal linguaggio.
-I<Potete> scrivere programmi per Perl 5 come se fossero per Perl 4 (o anche
-Perl 3, o 2 o addirittura 1), ma i programmi scritti per utilizzare tutte le
-meraviglie inventate, rodate e scoperte dalla comunità Perl 5 in tutto il mondo
-sono più brevi, rapidi, potenti e semplici da manutenere rispetto alle
-alternative.
+Perl ha fatto la sua comparsa nel 1987 come semplice strumento per gli amministratori di sistema.
+Sebbene agli inizi si proponesse di occupare una nicchia tra lo scripting shell e la programmmazione C,
+col tempo è diventato un potente linguaggio general-purpose.
+Perl 5 ha una solida storia di pragmatismo e un brillante futuro di raffinamenti e migliorie
+N<Perl 6 è una reinvenzione della programmazione basata sui solidi principi base del Perl, ma è un argomento per un altro libro.>.
 
-I<Modern Perl> è una descrizione poco formale di come lavorano i programmatori
-Perl 5 dotati di esperienza e capacità. Usano gli idiomi del linguaggio. Si
-avvantaggiano dei benefici messi a disposizione da CPAN. Sono decisamente
-Perlici, mostrano di avere buon gusto, buone capacità di creazione ed una
-piena comprensione di Perl.
-
-Anche voi potete imparare tutto ciò.
-
+Durante la ormai lunga storia di Perl--specialmente i 17 anni di Perl 5--la nostra percezione di che cosa sia un programma Perl eccellente è cambiata. 
+Se da una parte potete scrivere programmi efficaci senza avvantaggiarvi di tutto ciò che il linguaggio vi offre,
+dall'altra la comunità Perl globale ha inventato, preso a prestito, migliorato, e raffinato molte idee e le ha rese disponibili a chiunque le voglia apprendere.
 
 =head1 Usare Modern Perl
 
-=begin sidebar
-
-Il modulo Modern::Perl è disponibile su CPAN. Installatelo oppure rimpiazzatelo
-con:
+Il modulo Modern::Perl, disponibile su CPAN (L<cpan>), richiede a Perl di segnalare l'uso di costrutti dubbi e errori di battitura, 
+e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. Assumete che ogni esempio in questo libro inizi con:
 
 =begin programlisting
 
-    use 5.010;
-    use strict;
-    use warnings;
+    use Modern::Perl;
 
 =end programlisting
 
-X<C<feature>>
+Se per qualche ragione non potete installare questo modulo, potete iniziare i vostri programmi con il seguente codice che è approssimativamente equivalente:
 
-Con queste righe in ogni programma di esempio, Perl vi avvertirà se ci
-sono costrutti dubbi o errori di battitura, oltre ad abilitare le nuove
-caratteristiche introdotte con Perl 5.10 attraverso il pragma
-C<feature> (L<pragmas>). Per il momento fate conto che queste righe siano
-sempre presenti, le capirete fra poco.
+=begin programlisting
 
-=end sidebar
+    use 5.012;
+    use strict;
+    use warnings;
+    use autodie;
 
-A meno di diversa indicazione, i brani di codice assumono sempre che ci sia
-il seguente scheletro base di programma:
+=end programlisting
+
+A meno di diversa indicazione, i pezzi di codice presentati assumono sempre il seguente scheletro base di programma:
 
 =begin programlisting
 
@@ -60,11 +48,10 @@ il seguente scheletro base di programma:
     use Modern::Perl;
 
     # di seguito il codice dell'esempio
-    ...
 
 =end programlisting
 
-Altri brani di codice utilizzano funzioni di test cme C<ok()>, C<like()> e
+Altri pezzi di codice utilizzano funzioni di test come C<ok()>, C<like()> e
 C<is()> (L<testing>). In questo caso il programma scheletro è:
 
 =begin programlisting
@@ -75,17 +62,20 @@ C<is()> (L<testing>). In questo caso il programma scheletro è:
     B<use Test::More;>
 
     # di seguito il codice dell'esempio
-    ...
+
     done_testing();
 
 =end programlisting
 
-Gli esempi in questo libro funzionano al meglio con Perl 5.10.0 o successivi;
-idealmente almeno Perl 5.10.1. Molti esempi funzioneranno anche con versioni di
-Perl 5 più datate apportando solo piccole modifiche, ma incontrerete difficoltà
-maggiori con versioni più vecchie di 5.10.0. Questo libro descrive anche alcune
-caratteristiche introdotte con Perl 5.12, anche se non richiede il loro
-utilizzo.
+Al momento della scrittura di questo libro, la famiglia di versioni stabili di Perl 5 è Perl 5.14.
+Gli esempi in questo libro funzionano al meglio con Perl 5.12.0 o successivi. 
+Molti esempi funzionano, con piccole modifiche, anche con versioni di Perl 5 più datate, ma incontrerete difficoltà
+maggiori con le versioni più vecchie di 5.10.0. 
+
+X<Strawberry Perl>
+X<ActivePerl>
+X<perlbrew>
+X<CPAN; C<App::perlbrew>>
 
 Spesso sarete in grado di installare una nuova versione di Perl per vostro
 conto. Gli utenti che utilizzano Windows possono scaricare Strawberry Perl
