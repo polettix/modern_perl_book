@@ -1,31 +1,17 @@
-=head0 La filosofia Perl
+=head0 La Filosofia Perl
 
-=encoding utf8
+Perl vi permette di arrivare al risultato--Ë flessibile, accomodante e malleabile. 
+Dei programmatori in gamba lo usano ogni giorno per i compiti pi˘ diversi, dai programmi di automazione ad hoc lunghi una riga
+ai progetti che coinvolgono diversi programmatori e durano anni.
 
-Perl √® un linguaggio per portare a casa il risultato. E<Egrave> flessibile,
-paziente e malleabile. Nelle mani di un programmatore capace, pu√≤
-eseguire praticamente qualsiasi compito, da calcoli e automazioni 
-a linea di comando a progetti con tanti programmatori su vari anni, oltre
-a tutto quel che c'√® in mezzo.
+Perl Ë pragmatico, e il controllo Ë in mano ai programmatori. Siete voi a scegliere il modo migliore di risolvere un problema,
+e Perl asseconder‡ le vostre intenzioni creandovi senza darvi fastidio e senza tante cerimonie.
 
-Perl √® potente ed il Perl moderno--Perl che si avvantaggia della miglior
-conoscenza, della pi√π profonda esperienza e degli idiomi riutilizzabili della
-comunit√† Perl globale--√® manutenibile, veloce e semplice da utilizzare. Forse
-la caratteristica pi√π importante √® che pu√≤ aiutarvi nel realizzare quello di
-cui avete bisogno con poca frustrazione e senza cerimonie.
+Perl Ë un linguaggio in grado di crescere con la vostra conoscenza. Nel giro di un'ora imparerete abbastanza per poter scrivere 
+dei programmi utili a risolvere problemi reali--e imparerete I<come> lavora il linguaggio e I<perchÈ>.
+A partire da questa conoscenza e dalla esperienza della comunit‡ Perl globale, Modern Perl ci iuter‡ a scrivere codice che funziona ed Ë facilmente manutenibile.
 
-Perl √® un linguaggio pragmatico. Voi, i programmatori, siete in ballo.
-Anzich√© manipolarvi mente e problemi per adattarli al modo in cui chi ha
-progettato il linguaggio pensa che dobbiate scrivere un programma, Perl vi
-consente di risolvere i vostri problemi come meglio credete.
-
-Perl √® un linguaggio in grado di crescere con voi. Potete scrivere programmi
-utili anche con la conoscenza base che potete acquisire leggendo questo libro
-per un'ora. Per√≤ se vi prendete la briga di capire le filosofie dietro la
-sintassi, la semantica ed il design del linguaggio potete essere di gran lunga
-molto pi√π produttivi.
-
-Prima di tutto, quindi, avete bisogno di sapere come imparare di pi√π.
+Prima di tutto, avete bisogno di sapere come imparare di pi˘.
 
 L<perldoc>
 
