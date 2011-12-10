@@ -1,5 +1,7 @@
 =head1 Perldoc
 
+=encoding utf-8
+
 Z<perldoc>
 
 X<perldoc>
@@ -36,24 +38,24 @@ Utilizzate C<perldoc> per leggere la documentazione di un modulo o di una parte 
 Il primo esempio mostra la documentazione inclusa nel modulo C<List::Util>. 
 Il secondo esempio mostra un file di sola documentazione, in questo caso l'indice della documentazione core.
 Il terzo esempio mostra un file di sola documentazione incluso come parte di una distribuzione su CPAN (L<moose>).
-C<perldoc> rende trasparenti questi dettagli; non c'Ë infatti differenza tra leggere la documentazione di una
+C<perldoc> rende trasparenti questi dettagli; non c'√® infatti differenza tra leggere la documentazione di una
 libreria core come C<Data::Dumper> e di una installata da CPAN.
 
 Il template standard per la documentazione include una descrizione del modulo,
 dei semplici esempi di uso, e una spiegazione dettagliata del
 modulo e della sua interfaccia. Mentre il livello di dettaglio della documentazione varia da autore ad autore,
-il suo formato presenta una notevole uniformit‡.
+il suo formato presenta una notevole uniformit√†.
 
 =begin tip Come Leggere la Documentazione
 
 C<perldoc perltoc> mostra l'indice della documentazione core,
-e C<perldoc perlfaq> mostra l'indice delle Frequently Asked Questions (domande frequenti) su Perl 5. Dare un'occhiata a questi file Ë utilissimo per farvi un'idea generale di Perl 5.
+e C<perldoc perlfaq> mostra l'indice delle Frequently Asked Questions (domande frequenti) su Perl 5. Dare un'occhiata a questi file √® utilissimo per farvi un'idea generale di Perl 5.
 
 =end tip
 
 X<perldoc; C<-q> (search perlfaq)>
 
-L'utility C<perldoc> ha molte altre funzionalit‡ (see C<perldoc perldoc>). L'opzione
+L'utility C<perldoc> ha molte altre funzionalit√† (see C<perldoc perldoc>). L'opzione
 C<-q> ricerca i termini che le vengono forniti nelle FAQ del Perl. Per esempio,
 C<perldoc -q sort> restituisce tre domande frequenti: I<How do I sort an array by
 (anything)?>, I<How do I sort a hash (optionally by value instead of key)?>,
@@ -78,7 +80,7 @@ costrutti sintattici. C<perldoc perldiag> spiega i messaggi di wawning del Perl.
 =end tip
 
 Con l'opzione C<-l>, C<perldoc> mostra il I<path> al file di documentazione
-anzichË il suo contenutoN<Tenete presente che un modulo potrebbe
+anzich√® il suo contenutoN<Tenete presente che un modulo potrebbe
 avere un file F<.pod> separato dal file F<.pm>.>.
 
 L'opzione C<-m> mostra l'intero I<contenuto> di un modulo, codice incluso,
@@ -90,9 +92,9 @@ X<POD; C<podchecker>>
 X<POD; C<Pod::Webserver>>
 X<CPAN; C<Pod::Webserver>>
 
-Il sistema di documentazione di Perl 5 Ë I<POD> (I<Plain Old Documentation>).
+Il sistema di documentazione di Perl 5 √® I<POD> (I<Plain Old Documentation>).
 C<perldoc perlpod> descrive come funziona POD. Altri tool relativi a POD sono
-C<podchecker>, che controlla la validit‡ di un POD scritto da voi, e C<Pod::Webserver>,
+C<podchecker>, che controlla la validit√† di un POD scritto da voi, e C<Pod::Webserver>,
 che mostra i POD locali in formato HTML con un web server minimale.
 
 X<CPAN; C<Pod::PseudoPod>>

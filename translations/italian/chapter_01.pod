@@ -1,17 +1,19 @@
 =head0 La Filosofia Perl
 
-Perl vi permette di arrivare al risultato--Ë flessibile, accomodante e malleabile. 
-Dei programmatori in gamba lo usano ogni giorno per i compiti pi˘ diversi, dai programmi di automazione ad hoc lunghi una riga
+=encoding utf-8
+
+Perl vi permette di arrivare al risultato--√® flessibile, accomodante e malleabile. 
+Dei programmatori in gamba lo usano ogni giorno per i compiti pi√π diversi, dai programmi di automazione ad hoc lunghi una riga
 ai progetti che coinvolgono diversi programmatori e durano anni.
 
-Perl Ë pragmatico, e il controllo Ë in mano ai programmatori. Siete voi a scegliere il modo migliore di risolvere un problema,
-e Perl asseconder‡ le vostre intenzioni creandovi senza darvi fastidio e senza tante cerimonie.
+Perl √® pragmatico, e il controllo √® in mano ai programmatori. Siete voi a scegliere il modo migliore di risolvere un problema,
+e Perl asseconder√† le vostre intenzioni creandovi senza darvi fastidio e senza tante cerimonie.
 
-Perl Ë un linguaggio in grado di crescere con la vostra conoscenza. Nel giro di un'ora imparerete abbastanza per poter scrivere 
-dei programmi utili a risolvere problemi reali--e imparerete I<come> lavora il linguaggio e I<perchÈ>.
-A partire da questa conoscenza e dalla esperienza della comunit‡ Perl globale, Modern Perl ci iuter‡ a scrivere codice che funziona ed Ë facilmente manutenibile.
+Perl √® un linguaggio in grado di crescere con la vostra conoscenza. Nel giro di un'ora imparerete abbastanza per poter scrivere 
+dei programmi utili a risolvere problemi reali--e imparerete I<come> lavora il linguaggio e I<perch√©>.
+A partire da questa conoscenza e dalla esperienza della comunit√† Perl globale, Modern Perl ci iuter√† a scrivere codice che funziona ed √® facilmente manutenibile.
 
-Prima di tutto, avete bisogno di sapere come imparare di pi˘.
+Prima di tutto, avete bisogno di sapere come imparare di pi√π.
 
 L<perldoc>
 

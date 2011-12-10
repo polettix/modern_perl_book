@@ -1,6 +1,6 @@
 =head0 *Prefazione
 
-=encoding utf8
+=encoding utf-8
 
 I<Modern Perl> è uno dei modi per descrivere il modo in cui lavorano i migliori programmatori Perl 5. 
 Usano idiomi del linguaggio. Si avvantaggiano di CPAN. 
