@@ -58,8 +58,8 @@ viene fatta nel I<contesto void>:
 X<contesto; scalare>
 X<contesto scalare>
 
-Assigning the function's return value to a single item (L<scalars>) evaluates
-the function in I<scalar context>:
+Se assegnate il valore di ritorno della funzione a un singolo elemento (L<scalars>) valuta
+la funzione in I<contesto scalare>:
 
 =begin programlisting
 
@@ -70,8 +70,8 @@ the function in I<scalar context>:
 X<list context>
 X<context; list>
 
-Assigning the results of calling the function to an array (L<arrays>) or a
-list, or using it in a list, evaluates the function in I<list context>:
+Se assegnate il resultato della chiamata alla funzione ad un array (L<arrays>) o a una
+lista, o lo utilizzate in una lista, la funzione viene valutata in I<contesto lista>:
 
 =begin programlisting
 
@@ -81,9 +81,9 @@ list, or using it in a list, evaluates the function in I<list context>:
 
 =end programlisting
 
-The parentheses in the second line of the previous example group the two
-variable declarations (L<lexical_scope>) so that assignment will behave as you
-expect. If C<@rest> were to go unused, you could also correctly write:
+Le parentesi nella seconda linea dell'esempio precedente raggruppano le due
+dichiarazioni di variabli (L<lexical_scope>), e l'assegnamento si comporta come vi aspettate.
+Se si volesse ignorare C<@rest>, potreste scrivere:
 
 =begin programlisting
 
@@ -91,10 +91,9 @@ expect. If C<@rest> were to go unused, you could also correctly write:
 
 =end programlisting
 
-.... in which case the parentheses give a hint to the Perl 5 parser that you
-intend list context for the assignment even though you assign only one element
-of a list. This is subtle, but now that you know about it, the difference of
-amount context between these two statements should be obvious:
+.... nel qual caso le parentesi suggeriscono al parser di Perl 5 che intendete
+fare l'assegnamento in contesto lista anche se vi interessa assegnare solo un elemento della lista.
+Tutto questo non è forse ovvio, ma ora che lo sapete, la differenza di contesto di numero tra queste due istruzioni dovrebbe esservi evidente:
 
 =begin programlisting
 
@@ -103,9 +102,9 @@ amount context between these two statements should be obvious:
 
 =end programlisting
 
-Evaluating a function or expression--except for assignment--in list context can
-produce confusion. Lists propagate list context to the expressions they
-contain. Both of these calls to C<find_chores()> occur in list context:
+Valutare una funzione o una espressione--eccetto negli assegnamenti--in contesto lista può
+creare qualche confusione. Le liste propagano il contesto lista alle espressioni che
+contengono, quindi entrambe queste chiamate a C<find_chores()> sono valutate in contesto lista:
 
 =begin programlisting
 
@@ -119,13 +118,13 @@ contain. Both of these calls to C<find_chores()> occur in list context:
 
 =end programlisting
 
-The latter example often surprises novice programmers who expect scalar context
-for the function call. Initializing a hash (L<hashes>) with a list of values
-imposes list context on C<find_chores>.
+Quest'ultimo esempio sorprende spesso i programmatori principianti che si aspettano un contesto scalare
+per la chiamata di funzione. Invece, inizializzare un hash (L<hashes>) con una lista di valori
+impone un contesto lista alla chiamata a C<find_chores>.
 
 X<builtins; C<scalar>>
 
-Use the C<scalar> operator to impose scalar context:
+Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 
 =begin programlisting
 
@@ -137,30 +136,30 @@ Use the C<scalar> operator to impose scalar context:
 
 =end programlisting
 
-Why does context matter? A context-aware function can examine its calling
-context and decide how much work it needs to do before returning its results.
-In void context, C<find_chores()> may legitimately do nothing. In scalar
-context, it can find only the most important task. In list context, it must
-sort and return the entire list.
+Che effetto ha il contesto di chiamata di una funzione? Una funzione context-aware può esaminare il contesto in cui è stata chiamata
+e decidere di conseguenz quanto lavoro deve fare per restituire il risultato.
+In contesto void, C<find_chores()> potrebbe non fare assolutamente nulla. In contesto scalare, deve trovare soltanto il compito più importante. 
+In contesto lista, deve ordinare e restituire l'intera lista di faccende da sbrigare.
 
-=head2 Numeric, String, and Boolean Context
+=head2 Contesti Numerico, Stringa e Booleano
 
 Z<value_contexts>
 
 X<value context>
 X<context; value>
 
-Another type of context determines how Perl understands a piece of data--not
-I<how many> pieces of data you want, but what the data means.  You've probably
-already noticed that Perl's flexible about figuring out if you have a number or
-a string and converting between the two as you want them.  This I<value
-context> helps to explain how it does so.  In exchange for not having to
-declare (or at least track) explicitly what I<type> of data a variable contains
-or a function produces, Perl offers specific type contexts that tell the
-compiler how to treat a given value during an operation.
+L'altro contesto del Perl--il I<contesto di valore>--determina come Perl interpreta un dato.
+Probabilmente avrete già notato la flessibilità del Perl nell'indovinare se un dato è un numero o una stringa,
+e nel convertire tra i due a seconda delle vostre intenzioni.
+In mancanza della dichiarazione (o del tracciamento) esplicito del I<tipo> di un dato contenuto in una
+variable o restituito da una funzione, i contesti di valore del Perl costituiscono importanti suggerimenti al compilatore su come gestire tali dati.
 
-Suppose you want to compare the contents of two strings.  The C<eq> operator
-tells you if the strings contain the same information:
+X<builtins; C<eq>>
+
+Perl farà del suo meglio per convertire i valori al tipo appropriato (L<coercion>),
+in base agli operatori che usate. Prestate attenzione ad usare il giusto operatore per il
+tipo di contesto che desiderate. Supponiamo che vogliate confrontare il cuntenuto di due stringhe.
+L'operatore C<eq> determina se le due stringhe contengono la stessa informazione I<come stringhe>:
 
 =begin programlisting
 
@@ -168,8 +167,8 @@ tells you if the strings contain the same information:
 
 =end programlisting
 
-You may have had a baffling experience where you I<know> that the strings are
-different, but they still compare the same:
+Forse vi è capitato di essere spiacevolmente sorpresi in casi in cui I<sapevate> che le stringhe erano diverse,
+ma confrontandole sono risultate uguali:
 
 =begin programlisting
 
@@ -183,26 +182,23 @@ X<numeric context>
 X<context; string>
 X<context; numeric>
 
-The C<eq> operator treats its operands as strings by enforcing I<string
-context> on them.  The C<==> operator imposes I<numeric context>.  The example
-code fails because the value of both strings when treated as numbers is C<0>
-(L<numeric_coercion>).
+X<builtins; C<==>>
+
+L'operatore C<eq> tratta i suoi operandi come stringhe forzando il I<contesto stringa> su di essi.
+Invece, l'operatore C<==> impone il I<contesto numerico>. In contesto numerico, entrambe le stringhe vengono valutate come C<0> (L<numeric_coercion>).
 
 X<boolean context>
 X<context; boolean>
 
-I<Boolean context> occurs when you use a value in a conditional statement.  In
-the previous examples, the C<if> statement evaluated the results of the C<eq>
-and C<==> operators in boolean context.
+Il I<contesto Booleano> occorre quando usate un valore in una istruzione condizionale. Negli esempi precedenti,
+C<if> valutava il risultato degli operatori C<eq> e C<==> in contesto booleano.
 
-Perl will do its best to coerce values to the proper type (L<coercion>),
-depending on the operators you use.  Be sure to use the proper operator for the
-type of context you want.
+X<context; explicit>
 
-In rare circumstances, you may need to force an explicit context where no
-appropriately typed operator exists.  To force a numeric context, add zero to a
-variable.  To force a string context, concatenate a variable with the empty
-string.  To force a boolean context, double the negation operator:
+In rare occasioni, potrebbe essere necessario forzare esplicitamente un contesto se
+non è possibile trovare un operatore tipato appropriato. Per forzare un contesto numerico, aggiungete zero ad una
+variabile. Per forzare un contesto stringa, concatenate la variable con la stringa vuota. 
+Per forzare un contesto boolean, usate due volte l'operatore di negazione:
 
 =begin programlisting
 
@@ -212,7 +208,5 @@ string.  To force a boolean context, double the negation operator:
 
 =end programlisting
 
-In general, type contexts are less difficult to understand and see than the
-amount contexts.  Once you understand that they exist and know which operators
-provide which contexts (L<operator_types>), you'll rarely make mistakes with
-them.
+I contesti di tipo sono meno difficili da identificare rispetto ai contesti di numero. Una volta che
+sapete della loro esistenza e conoscete i contesti dei vari operatori (L<operator_types>), è raro che possiate sbagliarvi.
