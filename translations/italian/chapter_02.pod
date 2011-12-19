@@ -2,28 +2,21 @@
 
 =head0 Perl e la Sua Comunità
 
-Uno degli obiettivi principali di Larry per Perl 5 è stato di incoraggiare
-lo sviluppo e l'evoluzione al di fuori della distribuzione principale.
-Perl 4 vide parecchie diramazioni, causate dal fatto che non esistevano
-modi semplici per connetterlo ad un database relazionale, ad esempio.
-Larry volle che le persone fossero in grado di creare e manutenere le proprie
-estensioni senza che questo significasse frammentare Perl in centinaia di
+Il più grande successo di Perl 5 è l'enorme quantità di librerie riusabili che sono state sviluppate per arricchirlo.
+Mentre di Perl 4 esistevano molte versioni speciali, ad esempio per connettersi a database come Oracle e Sybase,
+Perl 5 mette a disposizione un vero e proprio meccanismo per le estensioni. Con esso, Larry ha voluto 
+permettere alle persone di creare e manutenere le proprie estensioni senza che questo significasse frammentare Perl in centinaia di
 pidgin incompatibili.
 
-Avere a disposizione i meccanismi tecnici per le estensioni è un primo passo,
-ma occorre considerare anche gli aspetti legati alla comunità. Estensioni e
-miglioramenti che nessuno condivide sono estensioni e miglioramenti che
-ciascuno deve realizzare, provare, correggere e manutenere per conto proprio.
-Inoltre, estensioni e librerie condivise valgono poco se non siete in grado
-di trovarle, o non potete migliorarle, o ancora non avete il permesso di
-utilizzarle.
+La realizzazione di questo meccanismo è stata quasi importante quanto la crescita di una comunità intorno al Perl 5.
+Le I<persone> scrivono librerie. Le I<persone> utilizzano il lavoro di altre persone per svolgere meglio il proprio.
+Le I<persone> formano una comunità di cui vale la pena fare parte, e che vale la pena preservare ed espandere.
 
-Fortunatamente esiste la comunità Perl. E<Egrave> forte ed in ottima salute.
-Accoglie i volenterosi a tutti i livelli--e non solo persone che scrivono e
-condividono codice. Tenete in considerazione di potervi valere della
-conoscenza e dell'esperienza di tantissimi altri programmatori Perl e di
-condividere anche le vostre capacità.
+La comunità Perl è solida ed in ottima salute. Accoglie nuovi partecipanti a tutti i livelli, dai neofiti a chi può contribuire al core del linguaggio.
+Approfittate della conoscenza e dell'esperienza di tantissimi altri programmatori Perl per migliorare voi stessi come programmatori.
+
+L<cpan>
 
 L<perl_community>
 
-L<cpan>
+
