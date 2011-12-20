@@ -19,51 +19,42 @@ dall'altra la comunità Perl globale ha inventato, preso a prestito, migliorato,
 
 =head1 Usare Modern Perl
 
-Il modulo Modern::Perl, disponibile su CPAN (L<cpan>), richiede a Perl di segnalare l'uso di costrutti dubbi e errori di battitura, 
-e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. Assumete che ogni esempio in questo libro inizi con:
+Il modulo C<Modern::Perl>, disponibile su CPAN (L<cpan>), richiede a Perl di segnalare l'uso di costrutti dubbi e errori di battitura, 
+e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. A meno di indicazioni contrarie, i pezzi di codice presentati assumono sempre il seguente scheletro base di programma:
 
 =begin programlisting
+
+    #!/usr/bin/env perl
 
     use Modern::Perl;
 
 =end programlisting
 
-Se per qualche ragione non potete installare questo modulo, potete iniziare i vostri programmi con il seguente codice che è approssimativamente equivalente:
+...che equivale a:
 
 =begin programlisting
 
+    #!/usr/bin/env perl
+
     use 5.012;
-    use strict;
     use warnings;
     use autodie;
 
 =end programlisting
 
-A meno di diversa indicazione, i pezzi di codice presentati assumono sempre il seguente scheletro base di programma:
+Alcuni esempi utilizzano funzioni di test come C<ok()>, C<like()> e
+C<is()> (L<testing>). Lo scheletro di questi programmi è il seguente:
 
 =begin programlisting
 
-    #!/usr/bin/perl
-
-    use Modern::Perl;
-
-    # di seguito il codice dell'esempio
-
-=end programlisting
-
-Altri pezzi di codice utilizzano funzioni di test come C<ok()>, C<like()> e
-C<is()> (L<testing>). In questo caso il programma scheletro è:
-
-=begin programlisting
-
-    #!/usr/bin/perl
+    #!/usr/bin/env perl
 
     use Modern::Perl;
     B<use Test::More;>
 
     # di seguito il codice dell'esempio
 
-    done_testing();
+    B<done_testing();>
 
 =end programlisting
 
@@ -95,22 +86,7 @@ le domande, i commenti, i suggerimenti, i consigli, la saggezza e
 l'incoraggiamento di tanta, tanta gente. In particolare, l'autore e
 l'editore vogliono ringraziare:
 
-John SJ Anderson, Peter Aronoff, Lee Aylward, Alex Balhatchet, Ævar Arnfjörð
-Bjarmason, Matthias Bloch, John Bokma, Vasily Chekalkin, Dmitry Chestnykh, E.
-Choroba, Anneli Cuss, Paulo Custodio, Steve Dickinson, Kurt Edmiston, Felipe,
-Shlomi Fish, Jeremiah Foster, Mark Fowler, John Gabriele, Andrew Grangaard,
-Bruce Gray, Ask Bjørn Hansen, Tim Heaney, Graeme Hewson, Robert Hicks, Michael
-Hind, Mark Hindess, Yary Hluchan, Mike Huffman, Gary H. Jones II, Curtis
-Jewell, Mohammed Arafat Kamaal, James E Keenan, Kirk Kimmel, Yuval Kogman, Jan
-Krynicky, Michael Lang, Jeff Lavallee, Moritz Lenz, Andy Lester, Jean-Baptiste
-Mazon, Josh McAdams, Gareth McCaughan, John McNamara, Shawn M Moore, Alex
-Muntada, Carl Mäsak, Chris Niswander, Nelo Onyiah, Chas. Owens, ww from
-PerlMonks, Jess Robinson, Dave Rolsky, Gabrielle Roth, Eduardo Santiago, Andrew
-Savige, Lorne Schachter, Steve Schulze, Dan Scott, Alexander Scott-Johns,
-Phillip Smith, Christopher E. Stith, Mark A. Stratman, Bryan Summersett, Audrey
-Tang, Scott Thomson, Ben Tilly, Ruud H. G. van Tol, Sam Vilain, Larry Wall,
-Lewis Wall, Colin Wetherbee, Frank Wiegand, Doug Wilson, Sawyer X, David
-Yingling, Marko Zagozen, harleypig, hbm e sunnavy.
+L<credits>
 
 Gli errori rimanenti sono colpa esclusiva della testardaggine dell'autore.
 
