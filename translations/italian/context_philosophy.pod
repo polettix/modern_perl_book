@@ -21,7 +21,7 @@ intendete lavorare con dati numerici, testuali, oppure valori logici vero e fals
 
 Il contesto può causare confusione se tentate di scrivere o leggere del codice Perl come una sequenza
 di singole espressioni avulse da ciò che le circonda. Potrà succedervi di 
-darvi una botta in testa dopo una lunga sessione di debugging quando finalmente scoprite che l'errore era nelle vostre assunzioni
+velervi dare una botta in testa dopo una lunga sessione di debugging quando finalmente scoprite che l'errore era nelle vostre assunzioni
 sul contesto. Se invece tenete sempre a mente il contesto, il vostro codice sarà più corretto--oltre che pulito, flessibile e conciso.
 
 =head2 Contesti Void, Scalare e Lista
@@ -31,17 +31,17 @@ Z<amount_context>
 X<context; amount>
 X<amount context>
 
-Il I<Contesto di numero> determina I<quanti> elementi vi aspettate da un'operazione.
+Il I<contesto di numero> determina I<quanti> elementi vi aspettate da un'operazione.
 E<Egrave> qualcosa di simile alla consonanza di numero tra soggetto e verbo in Italiano.
 Anche senza conoscere formalmente questo principio, non avete probabilmente problemi a trovare l'errore nella frase "Il Perl sono un linguaggio divertente".
 In Perl, il numero di elementi che vi aspettate determina quanti ne otterrete.
 
-X<contesto void>
-X<contesto; void>
+X<void context>
+X<contxt; void>
 
 Supponete di avere una funzione (L<functions>) con nome C<find_chores()> che ordina
 la vostra lista di faccende di casa da sbrigare in base alla loro priorità. Il modo in cui chiamate
-questa funzione detarmina cosa essa produrrà. Potreste non avere tempo di occuparvi di nulla, e in questo caso
+questa funzione determina cosa essa produrrà. Potreste non avere tempo di occuparvi di nulla, e in questo caso
 chiamare la funzione è solo un tentativo di mostrarvi occupati.
 Potreste avere abbastanza tempo per fare un lavoro, oppure avere molte energie in
 un weekend libero e desiderare di sbrigare più faccende possibile.
@@ -55,11 +55,11 @@ viene fatta nel I<contesto void>:
 
 =end programlisting
 
-X<contesto; scalare>
-X<contesto scalare>
+X<context; scalare>
+X<scalar context>
 
-Se assegnate il valore di ritorno della funzione a un singolo elemento (L<scalars>) valuta
-la funzione in I<contesto scalare>:
+Se assegnate il valore di ritorno della funzione a un singolo elemento (L<scalars>), la funzione viene valuta
+in I<contesto scalare>:
 
 =begin programlisting
 
@@ -70,7 +70,7 @@ la funzione in I<contesto scalare>:
 X<list context>
 X<context; list>
 
-Se assegnate il resultato della chiamata alla funzione ad un array (L<arrays>) o a una
+Se assegnate il risultato della chiamata alla funzione ad un array (L<arrays>) o a una
 lista, o lo utilizzate in una lista, la funzione viene valutata in I<contesto lista>:
 
 =begin programlisting
@@ -93,7 +93,7 @@ Se si volesse ignorare C<@rest>, potreste scrivere:
 
 .... nel qual caso le parentesi suggeriscono al parser di Perl 5 che intendete
 fare l'assegnamento in contesto lista anche se vi interessa assegnare solo un elemento della lista.
-Tutto questo non è forse ovvio, ma ora che lo sapete, la differenza di contesto di numero tra queste due istruzioni dovrebbe esservi evidente:
+Tutto questo non è forse così ovvio, ma ora che lo sapete, la differenza di contesto di numero tra queste due istruzioni dovrebbe esservi evidente:
 
 =begin programlisting
 
@@ -102,7 +102,7 @@ Tutto questo non è forse ovvio, ma ora che lo sapete, la differenza di contesto
 
 =end programlisting
 
-Valutare una funzione o una espressione--eccetto negli assegnamenti--in contesto lista può
+Valutare una funzione o una espressionein contesto lista--eccetto che negli assegnamenti--può
 creare qualche confusione. Le liste propagano il contesto lista alle espressioni che
 contengono, quindi entrambe queste chiamate a C<find_chores()> sono valutate in contesto lista:
 
@@ -112,7 +112,7 @@ contengono, quindi entrambe queste chiamate a C<find_chores()> sono valutate in 
 
     my %results =
     (
-        cheap_operation     => $cheap_operation_results,
+        cheap_operation     => $cheap_results,
         expensive_operation => find_chores(), # OOPS!
     );
 
@@ -130,14 +130,14 @@ Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 
     my %results =
     (
-        cheap_operation     => $cheap_operation_results,
+        cheap_operation     => $cheap_results,
         expensive_operation => B<scalar> find_chores(),
     );
 
 =end programlisting
 
 Che effetto ha il contesto di chiamata di una funzione? Una funzione context-aware può esaminare il contesto in cui è stata chiamata
-e decidere di conseguenz quanto lavoro deve fare per restituire il risultato.
+e decidere di conseguenza quanto lavoro deve fare per restituire il risultato.
 In contesto void, C<find_chores()> potrebbe non fare assolutamente nulla. In contesto scalare, deve trovare soltanto il compito più importante. 
 In contesto lista, deve ordinare e restituire l'intera lista di faccende da sbrigare.
 
@@ -158,12 +158,12 @@ X<builtins; C<eq>>
 
 Perl farà del suo meglio per convertire i valori al tipo appropriato (L<coercion>),
 in base agli operatori che usate. Prestate attenzione ad usare il giusto operatore per il
-tipo di contesto che desiderate. Supponiamo che vogliate confrontare il cuntenuto di due stringhe.
+tipo di contesto che desiderate. Supponiamo che vogliate confrontare il contenuto di due stringhe.
 L'operatore C<eq> determina se le due stringhe contengono la stessa informazione I<come stringhe>:
 
 =begin programlisting
 
-    say "Catastrophic crypto fail!" if $alice eq $bob;
+    say "Errore catastrofico di crittografia!" if $alice eq $bob;
 
 =end programlisting
 
@@ -173,7 +173,7 @@ ma confrontandole sono risultate uguali:
 =begin programlisting
 
     my $alice = 'alice';
-    say "Catastrophic crypto fail!" if $alice == 'Bob';  # OOPS
+    say "Errore catastrofico di crittografia!" if $alice == 'Bob';
 
 =end programlisting
 
@@ -202,9 +202,9 @@ Per forzare un contesto boolean, usate due volte l'operatore di negazione:
 
 =begin programlisting
 
-    my $numeric_x =  0 + $x;  # forces numeric context
-    my $stringy_x = '' . $x;  # forces string  context
-    my $boolean_x =    !!$x;  # forces boolean context
+    my $numeric_x =  0 + $x;  # forza il contesto numerico
+    my $stringy_x = '' . $x;  # forza il contesto stringa
+    my $boolean_x =    !!$x;  # forza il contesto booleano
 
 =end programlisting
 
