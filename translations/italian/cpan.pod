@@ -3,7 +3,7 @@
 Z<cpan>
 
 Perl 5 è già di per se stesso un linguaggio pragmatico, ma la sua comunità
-ne ha notevolmente esteso le funzionalità rendendo poi disponibile al resto del mondo il proprio lavoro.
+ne ha notevolmente esteso le potenzialità, rendendo poi disponibile a tutti il proprio lavoro.
 Se avete un problema, è probabile che qualcuno abbia già scritto--e condiviso--del codice Perl che lo risolve.
 
 X<CPAN>
@@ -38,28 +38,28 @@ questo libro).
 
 X<search.cpan.org>
 
-Il sistema CPAN è semplicemente un servizio di mirroring. GLi autori fanno l'upload delle distribuzioni
+Il sistema CPAN è semplicemente un servizio di mirroring. Gli autori fanno l'upload delle distribuzioni
 e CPAN le invia ai mirror, da cui gli utenti e i programmi client possono scaricarli e
 configurarli, farne il build, testarli e installarli. Il successo di questo sistema è docuto sia alla sua
 semplicità che al contributo delle migliaia di volontari che lo hanno adottato per distribuire il proprio codice. 
-In particolare, si sono sempre più affermati nella comunità certi attributi e caratteristiche standard che una distribuzione CPAN deve avere. Questi includono:
+In particolare, si sono sempre più affermati nella comunità certi attributi e caratteristiche standard che una distribuzione CPAN deve avere. Tra questi:
 
 =over 4
 
-=item Standard per l'installazione automatica.
+=item * Standard per l'installazione automatica.
 
-=item Standard per i metadati che descrivono ciò che viene fornito da una distribuzione
+=item * Standard per i metadati che descrivono ciò che viene fornito da una distribuzione
 e i suoi prerequisiti.
 
-=item Standard per la documentazione e le licenze.
+=item * Standard per la documentazione e le licenze.
 
 =back
 
 Altri servizi di CPAN sono quelli di testing automatico e generazione dei relativi report,
 che aiutano a verificare la qualità del pacchetto contenente la distribuzione e il suo funzionamento su diverse piattaforme
 e con diverse versioni di Perl. Ogni distribuzione CPAN ha inoltre una sua coda di ticket
-U<http://rt.cpan.org/> per riportare bug e lavorare con gli autori per la loro soluzione. 
-I siti CPAN forniscono inoltre link alle versioni precedenti delle distribuzioni, valutazioni dei moduli scritte dai suoi utenti,
+U<http://rt.cpan.org/> per segnalare bug e lavorare insieme agli autori alla loro soluzione. 
+I siti CPAN forniscono inoltre link alle versioni precedenti delle distribuzioni, valutazioni dei moduli scritte dagli utenti,
 documentazione e altro ancora. Tutto questo è disponibile su U<http://search.cpan.org/>.
 
 X<CPAN; C<CPAN.pm>>
@@ -69,7 +69,7 @@ Le installazioni di Modern Perl contengono due client per connettersi a CPAN e c
 fare il build, testare e installare le distribuzioni: CPAN.pm e CPANPLUS. I due client sono essenzialmente
 equivalenti per effettuare installazioni di base. In questo libro
 vi consigliamo l'uso di CPAN.pm semplicemente per la sua onnipresenza. Se usate una versione recente
-(al momento presente, l'ultima release stabile è la 1.9800), l'installazione di moduli è ragionevolemnte facile.
+(al momento presente, l'ultima release stabile è la 1.9800), l'installazione di moduli è ragionevolmente facile.
 Lanciate il client con:
 
 =begin screen
@@ -115,7 +115,7 @@ installate XCode. Se siete utenti Unix o Unix-like dovreste già avere questi to
 =head2 Tool per la Gestione di CPAN
 
 Se il vostro sistema operativo possiede una sua installazione di Perl 5, questa potrebbe essere
-obsoleta o dipendere da specifiche versioni di alcune distribuzioni CPAN. Gli sviluppatori Perl esperti spesso frappongono delle barriere virtuali
+obsoleta o dipendere da specifiche versioni di alcune distribuzioni CPAN. Gli sviluppatori Perl esperti spesso creano delle barriere virtuali
  tra il Perl di sistema e le loro installazioni Perl di sviluppo. Ci sono diversi progetti che vi aiuteranno a raggiungere questo scopo.
 
 C<App::cpanminus> è un client CPAN relativamente recente, i cui obiettivi principali sono la velocità,
