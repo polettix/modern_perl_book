@@ -2,20 +2,20 @@
 
 =encoding utf-8
 
-I<Modern Perl> è uno dei modi per descrivere il modo in cui lavorano i migliori programmatori Perl 5. 
-Usano idiomi del linguaggio. Si avvantaggiano di CPAN. 
-Mostrano senso estetico e arte nello scrivere codice potente, manutenibile, scalabile, conciso ed efficace. 
+I<Modern Perl> è uno dei modi per descrivere come lavorano i migliori programmatori Perl 5: 
+usano gli idiomi del linguaggio; si avvantaggiano di CPAN; 
+hanno un senso estetico e un'arte che gli permettono di scrivere codice potente, manutenibile, scalabile, conciso ed efficace. 
 Anche voi potete imparare a lavorare così!
 
 Perl ha fatto la sua comparsa nel 1987 come semplice strumento per gli amministratori di sistema.
 Sebbene agli inizi si proponesse di occupare una nicchia tra lo scripting shell e la programmmazione C,
 col tempo è diventato un potente linguaggio general-purpose.
-Perl 5 ha una solida storia di pragmatismo e un brillante futuro di raffinamenti e migliorie
+Perl 5 ha una solida storia di pragmatismo e un brillante futuro di ulteriori raffinamenti e migliorie
 N<Perl 6 è una reinvenzione della programmazione basata sui solidi principi base del Perl, ma è un argomento per un altro libro.>.
 
-Durante la ormai lunga storia di Perl--specialmente i 17 anni di Perl 5--la nostra percezione di che cosa sia un programma Perl eccellente è cambiata. 
+Durante la ormai lunga storia di Perl--specialmente i 17 anni di Perl 5--la nostra percezione di che cosa sia l'eccellenza per un programma Perl è cambiata. 
 Se da una parte potete scrivere programmi efficaci senza avvantaggiarvi di tutto ciò che il linguaggio vi offre,
-dall'altra la comunità Perl globale ha inventato, preso a prestito, migliorato, e raffinato molte idee e le ha rese disponibili a chiunque le voglia apprendere.
+dall'altra la comunità Perl globale ha inventato, preso a prestito, migliorato e raffinato molte idee e le ha rese disponibili a chiunque le voglia conoscere.
 
 =head1 Usare Modern Perl
 
@@ -61,7 +61,7 @@ C<is()> (L<testing>). Lo scheletro di questi programmi è il seguente:
 Al momento della scrittura di questo libro, la famiglia di versioni stabili di Perl 5 è Perl 5.14.
 Gli esempi in questo libro funzionano al meglio con Perl 5.12.0 o successivi. 
 Molti esempi funzionano, con piccole modifiche, anche con versioni di Perl 5 più datate, ma incontrerete difficoltà
-maggiori con le versioni più vecchie di 5.10.0. 
+maggiori con le versioni precedenti alla 5.10.0. 
 
 X<Strawberry Perl>
 X<ActivePerl>
@@ -70,7 +70,7 @@ X<CPAN; C<App::perlbrew>>
 
 Se non avete un'installazione di Perl 5 (o ne avete una vecchia versione), potete installare voi stessi una nuova release.
 Gli utenti Windows possono scaricare Strawberry Perl da U<http://www.strawberryperl.com/> oppure ActivePerl da U<http://www.activestate.com/activeperl>.
-Gli utenti di altri sistemi operativi che hanno già Perl 5 installato (insieme a un compilatore C e gli altri tool di sviluppo),
+Gli utenti di altri sistemi operativi che hanno già Perl 5 installato (insieme a un compilatore C e agli altri tool di sviluppo),
 possono iniziare con l'installare il modulo CPAN C<App::perlbrew>N<Si veda U<http://search.cpan.org/perldoc?App::perlbrew> per le istruzioni di installazione.>.
 
 C<perlbrew> vi consente di installare e gestire più versioni di Perl 5. 
@@ -83,7 +83,7 @@ vi dovrebbe essere chiaro come questo vi possa semplificare, e di molto, la vita
 
 Questo libro non sarebbe stato possibile senza
 le domande, i commenti, i suggerimenti, i consigli, la saggezza e
-l'incoraggiamento di tanta, tanta gente. In particolare, l'autore e
+l'incoraggiamento di tantissime persone. In particolare, l'autore e
 l'editore vogliono ringraziare:
 
 L<credits>
