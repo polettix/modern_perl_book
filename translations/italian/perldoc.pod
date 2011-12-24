@@ -19,7 +19,7 @@ X<CPAN>
 X<metacpan>
 
 Le versioni recenti della documentazione Perl sono disponibili su U<http://perldoc.perl.org/>.
-Gli indici di CPAN U<http://search.cpan.org/> e U<http://metacpan.org/> forniscono
+Gli indici di CPAN agli URL U<http://search.cpan.org/> e U<http://metacpan.org/> forniscono
 la documentazione di tutti i moduli CPAN. Altre distribuzioni di Perl 5, come
 ActivePerl e Strawberry Perl, forniscono documentazione in formato HTML sul sistema locale.
 
@@ -42,24 +42,28 @@ C<perldoc> rende trasparenti questi dettagli; non c'è infatti differenza tra le
 libreria core come C<Data::Dumper> e di una installata da CPAN.
 
 Il template standard per la documentazione include una descrizione del modulo,
-dei semplici esempi di uso, e una spiegazione dettagliata del
+dei semplici esempi di uso e una spiegazione dettagliata del
 modulo e della sua interfaccia. Mentre il livello di dettaglio della documentazione varia da autore ad autore,
 il suo formato presenta una notevole uniformità.
 
 =begin tip Come Leggere la Documentazione
 
 C<perldoc perltoc> mostra l'indice della documentazione core,
-e C<perldoc perlfaq> mostra l'indice delle Frequently Asked Questions (domande frequenti) su Perl 5. Dare un'occhiata a questi file è utilissimo per farvi un'idea generale di Perl 5.
+e C<perldoc perlfaq> mostra l'indice delle Frequently Asked Questions (domande frequenti) su Perl 5. 
+C<perldoc perlop> e C<perldoc perlsyn> documentano gli operatori simbolici e i costrutti sintattici del Perl.
+C<perldoc perldiag> spiega il significato dei messaggi di warning del Perl.
+C<perldoc perlvar> elenca tutte le variabili simboliche del Perl.
+Dare un'occhiata a questi file è utilissimo per farvi un'idea generale di Perl 5.
 
 =end tip
 
 X<perldoc; C<-q> (search perlfaq)>
 
-L'utility C<perldoc> ha molte altre funzionalità (see C<perldoc perldoc>). L'opzione
+L'utility C<perldoc> ha molte altre funzionalità (vedete C<perldoc perldoc>). L'opzione
 C<-q> ricerca i termini che le vengono forniti nelle FAQ del Perl. Per esempio,
 C<perldoc -q sort> restituisce tre domande frequenti: I<How do I sort an array by
-(anything)?>, I<How do I sort a hash (optionally by value instead of key)?>,
-and I<How can I always keep my hash sorted?>.
+(anything)?>, I<How do I sort a hash (optionally by value instead of key)?> e
+I<How can I always keep my hash sorted?>.
 
 X<perldoc; C<-f> (search perlfunc)>
 
@@ -72,14 +76,7 @@ X<perldoc; C<-v> (search perlvar)>
 L'opzione C<-v> cerca la documentazione su una variabile predefinita. Per esempio, C<perldoc -v $PID>
 mostra la documentazione sulla variabile che contiene l'id del processo del programma in esecuzione. A seconda della shell che usate, potreste dover quotare opportunamente il nome della variabile.
 
-=begin tip Decifrare il Codice
-
-C<perldoc perlop> e C<perldoc perlsyn> documentano gli operatori del Perl e i suoi
-costrutti sintattici. C<perldoc perldiag> spiega i messaggi di wawning del Perl. C<perldoc perlvar> elenca tutte le variabili predefinite del Perl.
-
-=end tip
-
-Con l'opzione C<-l>, C<perldoc> mostra il I<path> al file di documentazione
+Con l'opzione C<-l>, C<perldoc> mostra il I<path> del file di documentazione
 anzichè il suo contenutoN<Tenete presente che un modulo potrebbe
 avere un file F<.pod> separato dal file F<.pm>.>.
 
@@ -96,6 +93,3 @@ Il sistema di documentazione di Perl 5 è I<POD> (I<Plain Old Documentation>).
 C<perldoc perlpod> descrive come funziona POD. Altri tool relativi a POD sono
 C<podchecker>, che controlla la validità di un POD scritto da voi, e C<Pod::Webserver>,
 che mostra i POD locali in formato HTML con un web server minimale.
-
-X<CPAN; C<Pod::PseudoPod>>
-Questo libro utilizza l'estensione C<Pod::PseudoPod> di POD.
