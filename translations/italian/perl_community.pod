@@ -76,7 +76,7 @@ Perl 5 e Perl 6 hanno code RT separate su U<http://rt.perl.org/>.
 X<Perl 5 Porters>
 X<p5p>
 
-La mailing list dei Perl 5 Porter (o I<p5p>) è il punto di riferimento degli sviluppatori
+La mailing list dei Perl 5 Porter (I<p5p>) è il punto di riferimento degli sviluppatori
 di Perl 5. Vedete U<http://lists.cpan.org/showlist.cgi?name=perl5-porters>.
 
 X<TPF>
@@ -93,7 +93,7 @@ X<websites; gitpan>
 
 I progetti di molti programmatori Perl sono ospitati su Github (U<http://github.com/>)N<...  inclusi i sorgenti di questo libro all'URL
 U<http://github.com/chromatic/modern_perl_book/>>. Guardate in special modo Gitpan
-(U<http://github.com/gitpan/>), che opsita i repository Git che tangono traccia della storia completa
+(U<http://github.com/gitpan/>), che ospita i repository Git che tangono traccia della storia completa
 di ogni distribuzione su CPAN.
 
 =begin tip A Local Git Mirror
@@ -101,7 +101,7 @@ di ogni distribuzione su CPAN.
 X<CPAN; C<Git::CPAN::Patch>>
 X<Champoux, Yanick>
 
-GitPAN è aggiornato poco frequentemente. Come alternativa, considerate l'uso del fantastico modulo C<Git::CPAN::Patch>
+GitPAN è aggiornato poco frequentemente. Come alternativa, considerate l'uso del formidabile modulo C<Git::CPAN::Patch>
 di Yanick Champoux.
 
 =end tip
@@ -111,7 +111,7 @@ di Yanick Champoux.
 X<YAPC>
 
 La comunità Perl tiene innumerevoli conferenze, workshop, seminari e
-incontri. In particulare, YAPC--Yet Another Perl
+incontri. In particolare, YAPC--Yet Another Perl
 Conference--è un modello di conferenze locali e a basso costo, adottato con successo in diversi continenti. Vedete U<http://yapc.org/>.
 
 Sul wiki della Perl Foundation potete trovare l'elenco degli altri eventi, all'URL
@@ -135,6 +135,6 @@ hanno il proprio canale IRC; ad esempio, I<#moose> e I<#catalyst>.
 
 Il server principale per la comunità Perl è U<irc://irc.perl.org/>. Prendete nota dei canali
  I<#perl-help>, per assistenza generica sulla programmazione Perl, e di
-I<#perl-qa>, dedicato al testing e ad altre problematiche legate alla qualità del codice. Ricordate anche che
-il canale I<#perl> è una room con uno scopo molto generale, usata dai suoi partecipanti per discutere di qualunque argomento
-gli interessi in quel momentoN<... e spesso non è amichevole verso le persone che fanno domande di base sulla programmazione.>.
+I<#perl-qa>, dedicato al testing e ad altre problematiche legate alla qualità del codice. Ricordate anche che invece
+il canale I<#perl> ha uno scopo molto generale, ed è usato dai suoi partecipanti per discutere di qualunque argomento
+gli interessi in quel momentoN<... e, come tale, non è un helpdesk.>.
