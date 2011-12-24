@@ -17,12 +17,12 @@ X<< C<$_>; default scalar variable >>
 
 La I<variabile scalare di default> (detta anche I<variabile topic>), C<$_>, si nota
 principalmente per la sua I<assenza>: molte delle operazioni native Perl lavorano sul
-contenuto di C<$_> in assenza di una variabile esplicita. Potete usare C<$_> come un'altra variabile, ma spesso è inutile.
+contenuto di C<$_> in assenza di una variabile esplicita. Potete usare C<$_> come qualunque altra variabile, ma spesso questo risulta superfluo.
 
 X<builtins; C<chomp>>
 
 Per esempio, la funzione nativa C<chomp> rimuove una sequenza finale di newline dalla
-stringa dataN<See C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
+stringa dataN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
 
 =begin programlisting
 
@@ -54,8 +54,8 @@ Analogamente, C<say> e C<print> operano su C<$_> in assenza di altri argomenti:
 
 =begin programlisting
 
-    print;  # stampa $_ sul filehandle attualmente selezionato
-    say;    # stampa $_ sul filehandle attualmente selezionato
+    print;  # stampa $_ sul filehandle corrente
+    say;    # stampa $_ sul filehandle corrente
             # con un newline finale
 
 =end programlisting
@@ -69,8 +69,8 @@ le sostituzioni e le traslitterazioni:
 
 =begin programlisting
 
-    $_ = 'My name is Paquito';
-    say if /My name is/;
+    $_ = 'Mi chiamo Paquito';
+    say if /Mi chiamo/;
 
     s/Paquito/Paquita/;
 
@@ -137,7 +137,8 @@ X<builtins; C<grep>>
 
 =begin programlisting
 
-    say 'Brunch time!' if grep { /pancake mix/ } @pantry;
+    say 'Colazione!'
+        if grep { /fette biscottate/ } @pantry;
 
 =end programlisting
 
@@ -156,10 +157,10 @@ per evitare queste interferenze:
     {
         chomp;
 
-        # BAD EXAMPLE
+        # ESEMPIO SBAGLIATO
         my $munged = calculate_value( $_ );
-        say "Original: $_";
-        say "Munged  : $munged";
+        say "Valore originale: $_";
+        say "Valore scombinato: $munged";
     }
 
 =end programlisting
@@ -194,10 +195,9 @@ Usate C<$_> come usereste il pronome "esso" in un documento formale: occasionalm
 
 X<builtins; C<...>>
 
-Perl 5.12 ha introdotto l'operatore triplo-punto (C<...>). È una istruzione completa
-di per sè, che serve come segnaposto per del codice che volete scrivere successivamente.
-In fase di parsing, Perl lo tratta come un'istruzione, ma solleva un'eccezione
-sul vostro tentativo di eseguire del codice non implementato se tentate di eseguirlo. Vedete
+Perl 5.12 ha introdotto l'operatore triplo-punto (C<...>) come segnaposto per del codice che volete scrivere successivamente.
+In fase di parsing, Perl lo tratta come un'istruzione completa, ma solleva un'eccezione
+al vostro tentativo di eseguire del codice non implementato se tentate di eseguirlo. Vedete
 C<perldoc perlop> per maggiori dettagli.
 
 =end tip
@@ -213,7 +213,7 @@ X<variables; C<@_>>
 X<C<@_>>
 
 Perl fornisce anche due variabili array implicite. Anzitutto, Perl passa gli argumenti alle
-funzioni (L<functions>) in un array named C<@_>. Le operazioni di manipolazione di array
+funzioni (L<functions>) in un array di nome C<@_>. Le operazioni di manipolazione di array
 (L<arrays>) all'interno delle funzioni per default lavorano su questo array, per cui i due seguenti
 pezzetti di codice sono equivalenti:
 
@@ -249,10 +249,24 @@ Nel codice esterno alle funzioni, la variabile array di default C<@ARGV> contien
 passati al programma da linea di comando. Al di fuori delle funzioni, le operazioni sugli array del Perl (incluse
 C<shift> e C<pop>) operano implicitamente su C<@ARGV>. Non è possibile usare C<@_> al posto di C<@ARGV>.
 
+=begin tip C<readline>
+
+X<builtins; C<readline>>
+X<builtins; C<glob>>
+
+L'operatore Perl C<< <$fh> >> è equivalente alla funzione nativa C<readline>.
+C<readline $fh> ha lo stesso effetto di C<< <$fh> >>. A partire da Perl 5.10, la chiamata
+C<readline> senza argomenti è equivalente a C<< <> >>, quindi ora potete usare C<readline>
+dappertutto. Per ragioni storiche, l'uso di C<< <> >> è ancora il più diffuso, ma siete invitati a
+prendere in considerazione l'uso di C<readline> per la sua maggiore leggibilità. Probabilmente preferite C<glob
+'*.html'> a C<< <*.html> >>, giusto? Ecco, l'idea è la stessa.
+
+=end tip
+
 X<null filehandle>
 
 C'è un caso speciale che riguarda C<ARGV>. Se leggete dal filehandle nullo C<< <> >>,
-Perl tratterà ogni elemento di C<@ARGV> come se fosse il I<nom> di un file da aprire in lettura. (Se C<@ARGV> è vuoto, Perl leggerà da standard input.) Questo
+Perl tratterà ogni elemento di C<@ARGV> come se fosse il I<nome> di un file da aprire in lettura. (Se C<@ARGV> è vuoto, Perl leggerà da standard input.) Questo
 uso implicito di C<@ARGV> è utile per scrivere programmi brevi, come questo filtro a
 linea di comando che inverte il suo input:
 
@@ -271,20 +285,6 @@ il proprio contesto ai suoi operandi, trattandoli come lista in contesto lista e
 una stringa concatenata in contesto scalare. Se il comportamento di C<reverse> vi suona
 confuso, non avete torto. Perl 5 avrebbe probabilmente dovuto separare
 l'inversione di una stringa dall'inversione di una lista.
-
-=begin tip C<readline>
-
-X<builtins; C<readline>>
-X<builtins; C<glob>>
-
-L'operatore Perl C<< <$fh> >> è equivalente alla funzione nativa C<readline>.
-C<readline $fh> ha lo stesso effetto di C<< <$fh> >>. A partire da 5.10, la chiamata
-C<readline> senza argomenti è equivalente a C<< <> >>, quindi ora potete usare C<readline>
-dappertutto. Per ragioni storiche, l'uso di C<< <> >> è ancora più diffuso, ma siete invitati a
-prendere in considerazione l'uso C<readline> per la sua maggiore leggibilità. Probabilmente preferite C<glob
-'*.html'> a C<< <*.html> >>, giusto? Ecco, l'idea è la stessa.
-
-=end tip
 
 Se eseguite il codice sopra passando una lista di file:
 
