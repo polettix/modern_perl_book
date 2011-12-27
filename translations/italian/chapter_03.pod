@@ -2,13 +2,13 @@
 
 =head0 Il Linguaggio Perl
 
-Il linguaggio Perl ha molte piccole parti che si combinano per formarne la
-sintassi. Differentemente dal linguaggio parlato, dove sfumature, tono di voce
-ed intuizione consentono alle persone di comunicare nonostante incompresioni
-e concetti poco definiti, i computer ed il codice richiedono precisione. Potete
-scrivere codice Perl efficace senza conoscere ogni dettaglio di ogni
-caratteristica del linguaggio, ma dovete comprendere come interagiscono per
-scrivere bene codice in Perl.
+Come un linguaggio parlato, il Perl è una combinazione di molte piccole parti legate l'una con l'altra.
+Al contrario del linguaggio parlato, dove sfumature, tono di voce
+ed intuizione consentono alle persone di comunicare nonostante piccole incompresioni
+e concetti fumosi, i computer ed il codice richiedono precisione. Potete
+scrivere codice Perl efficace anche senza conoscere tutti i dettagli di ogni
+caratteristica del linguaggio, ma dovete comprendere come esse interagiscono per
+scrivere bene del codice Perl.
 
 L<names>
 

@@ -1,16 +1,16 @@
-=head1 Names
+=head1 Nomi
 
 Z<names>
 
 X<names>
 X<identifiers>
 
-I<Names> (or I<identifiers>) are everywhere in Perl programs: variables,
-functions, packages, classes, and even filehandles have names.  These names all
-start with a letter or an underscore.  They may optionally include any
-combination of letters, numbers, and underscores.  When the C<utf8> pragma
-(L<unicode>) is in effect, you may use any valid UTF-8 characters in
-identifiers.  These are all valid Perl identifiers:
+I I<nomi> (o I<identificatori>) sono dappertutto nei programmi Perl: variabili,
+funzioni, package, classi e perfino filehandle. Tutti questi nomi iniziano con
+una lettera o un underscore e possono includere opzionalmente qualunque combinazione di
+lettere, numberi e underscore.  Quando la pragma C<utf8> (L<unicode>) è attivata,
+potete usare negli identificatori qualunque carattere ammesso da UTF-8 in una parola. Questi sono tutti identificatori
+validi in Perl:
 
 =begin programlisting
 
@@ -25,7 +25,7 @@ identifiers.  These are all valid Perl identifiers:
 
 =end programlisting
 
-These are invalid Perl identifiers:
+Questi invece sono identificatori non validi:
 
 =begin programlisting
 
@@ -39,20 +39,19 @@ These are invalid Perl identifiers:
 
 X<symbolic lookups>
 
-These rules only apply to names which appear in literal form in source code;
-that is, if you've typed it directly like C<sub fetch_pie> or C<my
-$waffleiron>.
+I<I nomi esistono principalmente a beneficio del programmatore>. Queste regole si applicano
+solo ai nomi che compaiono esplicitamente nel vostro codice sorgente, come C<sub
+fetch_pie> oppure C<my $waffleiron>. Infatti, è il parser del Perl a controllare che le regole sui
+nomi siano rispettate.
 
-Perl's dynamic nature makes it possible to refer to entities with names
-generated at runtime or provided as input to a program.  These are I<symbolic
-lookups>.  You get more flexibility this way at the expense of some safety.  In
-particular, invoking functions or methods indirectly or looking up symbols in a
-namespace lets you bypass Perl's parser, which is the only part of Perl that
-enforces these grammatical rules.  Be aware that doing so can produce confusing
-code; a hash (L<hashes>) or nested data structure (L<nested_data_structures>)
-is often clearer.
+La natura dinamica del Perl vi permette anche di riferirvi a delle entità attraverso nomi generati a
+runtime o dati in input al programma. Questi I<lookup simbolici> vi danno maggiore flessibilità
+al costo di una minore sicurezza. In particolare, invocando indirettamente delle funzioni e
+dei metodi o effettuando il lookup dei simboli di un namespace, potete bypassare il parser del Perl.
 
-=head2 Variable Names and Sigils
+Tutto questo può portare a del codice confuso. Come raccomanda molto efficacemente Mark Jason Dominus N<U<http://perl.plover.com/varvarname.html>>, usate piuttosto un hash (L<hashes>) oppure una struttura dati nidificata (L<nested_data_structures>).
+
+=head2 Nomi di Variabili e Sigilli
 
 X<variables; names>
 X<scalar variables>
@@ -62,12 +61,12 @@ X<arrays>
 X<variables; arrays>
 X<hashes>
 X<variables; hashes>
+X<sigil>
 
-I<Variable names> always have a leading sigil which indicates the type of the
-variable's value.  I<Scalar variables> (L<scalars>) have a leading dollar sign
-(C<$>) character.  I<Array variables> (L<arrays>) have a leading at sign (C<@>)
-character.  I<Hash variables> (L<hashes>) have a leading percent sign (C<%>)
-character:
+I I<nomi di variabile> iniziano sempre con un I<sigillo> (o simbolo) che indica
+il tipo del valore della variabile. Le I<variabili scalari> (L<scalars>) usano il simbolo
+del dollaro (C<$>). Le I<variabili array> (L<arrays>) usano il simbolo chiocciola (C<@>).
+Le I<variabili hash> (L<hashes>) usano il simbolo della percentuale (C<%>):
 
 =begin programlisting
 
@@ -77,9 +76,8 @@ character:
 
 =end programlisting
 
-In one sense, these sigils offer namespaces of the variables, where it's
-possible (though often confusing) to have variables of the same name but
-different types:
+I sigilli costituiscono una sorta di namespace visuale per i nomi di variabili. È possibile
+dichiarare più variabili con lo stesso nome e tipi diversi, ma crea confusione:
 
 =begin programlisting
 
@@ -87,13 +85,14 @@ different types:
 
 =end programlisting
 
-Perl won't get confused, but people reading the code might.
+Questo codice non confonde il Perl, ma confonde le persone che lo leggono.
 
 X<variant sigils>
 
-Perl 5 uses I<variant sigils>, where the sigil on a variable may change
-depending on what you do with it.  For example, to access an element of an
-array or a hash, the sigil changes to the scalar sigil (C<$>):
+I sigilli di Perl 5 sono I<varianti>. Così come il contesto determina quanti elementi vi
+aspettate da un'operazione o quali tipi di dati vi aspettate di ottenere, i sigilli determinano
+il modo in cui manipolate i dati in una variabile.  Per esempio, per accedere a un
+singolo elemento di un array o di un hash, dovete usare il sigillo scalare (C<$>):
 
 =begin programlisting
 
@@ -108,16 +107,16 @@ array or a hash, the sigil changes to the scalar sigil (C<$>):
 X<lvalue>
 X<rvalue>
 
-In the latter two lines, using a scalar element of an aggregate as an I<lvalue>
-(the target of an assignment, on the left side of the C<=> character) imposes
-scalar context (L<context_philosophy>) on the I<rvalue> (the value assigned, on
-the right side of the C<=> character).
+L'analogia con il contesto di numero è importante. Usare un elemento scalare di un
+aggregato come I<lvalue> (parte di un assegnmento a sinistra del carattere
+C<=>) impone un contesto scalare (L<context_philosophy>) all'I<rvalue>
+(parte a destra del carattere C<=>).
 
 X<slices>
 
-Similarly, accessing multiple elements of a hash or an array--an operation
-known as I<slicing>--uses the at symbol (C<@>) as the leading sigil and
-imposes list context:
+In modo simile, un accesso a più elementi di un hash o di un array--una operazione
+nota come I<slicing>--usa il simbolo chiocciola (C<@>) e impone un contesto listaN<...
+anche se la lista stessa ha zero o un solo elemento>:
 
 =begin programlisting
 
@@ -129,33 +128,37 @@ imposes list context:
 
 =end programlisting
 
-The most reliable way to determine the type of a variable--scalar, array, or
-hash--is to look at the operations performed on it.  Scalars support all basic
-operations, such as string, numeric, and boolean manipulations.  Arrays support
-indexed access through square brackets.  Hashes support keyed access through
-curly brackets.
+Il modo più affidabile di determinare il tipo di una variabile--scalare, array o
+hash--è di considerare le operazioni che le vengono applicate. Gli scalari supportano tutte le operazioni di base,
+come le manipolazioni di stringhe, numeriche e booleane. Gli array supportano
+accessi indicizzati che usano le parentesi quadre. Gli hash supportano accessi per chiave che usano le parentesi graffe. 
 
-=head2 Package-Qualified Names
+=head2 Namespace
 
 X<fully-qualified name>
+X<namespaces>
 
-Occasionally you may need to refer to functions or variables in a separate
-namespace.  Often you will need to refer to a class by its I<fully-qualified
-name>.  These names are collections of package names joined by double colons
-(C<::>).  That is, C<My::Fine::Package> refers to a logical collection of
-variables and functions.
+Perl fornisce un meccanismo per raggruppare funzioni e variabili correlate in un proprio
+spazio dei nomi univoco--i I<namespace> (L<packages>). Un namespace è una collezione di simboli
+con un suo nome. Perl permette di definire namespace multi-livello, i cui nomi sono composti
+con doppi due punti (C<::>); per esempio, C<Pasticceria::Gelato> si riferisce a una collezione di
+variabili e funzioni logicamente correlate, come C<cono()> e C<versa_cioccolata_calda()>.
 
-While the standard naming rules apply to package names, by convention
-user-defined packages all start with uppercase letters.  The Perl core reserves
-lowercase package names for core pragmas (L<pragmas>), such as C<strict> and
-C<warnings>.  This is a policy enforced by community guidelines instead of Perl
-itself.
+All'interno di un namespace, potete usare dei nomi abbreviati per i suoi membri. Al di fuori del
+namespace, vi riferite invece a un membro usando il suo I<fully-qualified name>. Ovvero, all'interno di
+C<Pasticceria::Gelato>, C<aggiungi_praline()> si riferisce alla stessa funzione di
+C<Pasticceria::Gelato::aggiungi_praline()> al di fuori del namespace.
 
-Namespaces do not nest in Perl 5.  The relationship between
-C<Some::Package> and C<Some::Package::Refinement> is only a storage mechanism,
-with no further implications on the relationships between parent and child or
-sibling packages.  When Perl looks up a symbol in C<Some::Package::Refinement>,
-it looks in the C<main::> symbol table for a symbol representing the C<Some::>
-namespace, then in there for the C<Package::> namespace, and so on.  It's your
-responsibility to make any I<logical> relationships between entities obvious
-when you choose names and organize your code.
+Oltre alle regole standard per i nomi, che si applicano anche ai nomi di package, per convenzione i nomi di package
+definiti dagli utenti iniziano con lettere maiuscole. Il core del Perl riserva infatti i nomi di package
+tutti minuscoli per le pragma (L<pragmas>) come C<strict> e C<warnings>.
+Questa politica è imposta essenzialmente attraverso il rispetto delle linee guida della comunità.
+
+Tutti i namespace in Perl 5 sono visibili a livello globale. Quando Perl deve fare il lookup di un simbolo in
+C<Pasticceria::Gelato::Frigo>, inizia col cercare nella symbol table C<main::> un
+simbolo che rappresenti il namespace C<Pasticceria::>, quindi cerca al suo interno il namespace
+C<IceCream::>, e così via. Il C<Frigo::> è quindi visibile dall'esterno del namespace C<IceCream::>.
+Il fatto che i due namespace siano nidificati è solo un meccanismo di memorizzazione,
+e non ha alcuna implicazione su ulteriori relazioni tra package padre e figlio o tra package fratelli.
+Sta al programmatore usare questo meccanismo per rendere evidenti le relazioni I<logiche> tra entità--attraverso una buona scelta
+e organizzazione dei nomi.
