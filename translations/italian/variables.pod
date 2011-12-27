@@ -3,15 +3,15 @@
 Z<variables>
 X<variable>
 
-A I<variable> in Perl is a storage location for a value (L<values>). While a
-trivial program can manipulate values directly, most programs work with
-variables to simplify the logic of the code. A variable represents values; it's
-easier to explain the Pythagorean theorem in terms of the variables C<a>, C<b>,
-and C<c> than by intuiting its principle by producing a long list of valid
-values. This concept may seem basic, but effective programming requires you to
-manage the art of balancing the generic and reusable with the specific.
+Una I<variable> in Perl è un'area per la memorizzazione di un valore (L<values>). Mentre
+un programma triviale può manipolare direttamente dei valori, quasi tutti i programmi usano le
+variabili per semplificare la logica del codice. Una variabile reppresenta valori; è
+più semplice spiegare il teorema di Pitagora in termini di variabili C<a>, C<b> e
+ C<c> che dover intuire il suo principio da una lunga lista di valori
+validi. Questo concetto potrà sembrarvi banale, ma per programmare in modo efficace dovete
+padroneggiare l'arte di bilanciare tra il generico e riusabile e lo specifico.
 
-=head2 Variable Scopes
+=head2 Scope delle Variabili
 
 Z<variable_scopes>
 
@@ -19,10 +19,10 @@ X<variables; scope>
 X<scope>
 X<builtins; C<package>>
 
-Variables are visible to portions of your program depending on their scope
-(L<scope>). Most of the variables you will encounter have lexical scope
-(L<lexical_scope>). I<Files> themselves provide their own lexical scopes, such
-that the C<package> declaration on its own does not create a new scope:
+Le variabili sono visibili alle diverse parti del vostro programma in base al loro scope
+(L<scope>). Molte delle variabili che incontrerete hanno uno scope lessicale
+(L<lexical_scope>). Gli stessi I<file sorgente> forniscono il proprio scope lessicale, mentre
+una dichiarazione di C<package> non crea di per sè un nuovo scope:
 
 =begin programlisting
 
@@ -32,15 +32,15 @@ that the C<package> declaration on its own does not create a new scope:
 
     package Store::Music;
 
-    # $discount still visible
-    say "Our current discount is $discount!";
+    # $discount ancora visibile
+    say "Il nostro sconto è attualmente $discount!";
 
 =end programlisting
 
 X<builtins; C<package>; BLOCK>
 
-As of Perl 5.14, you may provide a block to the C<package> declaration. This
-syntax I<does> provide a lexical scope:
+A partire da Perl 5.14, potete associare un blocco a una dichiarazione C<package>. Questa
+sintassi I<fornisce> effettivamente uno scope lessicale:
 
 =begin programlisting
 
@@ -51,62 +51,62 @@ syntax I<does> provide a lexical scope:
 
     package Store::Music
     {
-        # $discount not available
+        # $discount non disponibile
     }
 
     package Store::BoardGame;
 
-    # $discount still not available
+    # $discount sempre non disponibile
 
 =end programlisting
 
-=head2 Variable Sigils
+=head2 Sigilli delle Variabili
 
 Z<sigils>
 
 X<variables; sigils>
 X<sigils>
 
-The sigil of the variable in a declaration determines the type of the variable:
-scalar, array, or hash. The sigil used when accessing a variable varies
-depending on what you do to the variable. For example, you declare an array as
-C<@values>. Access the first element--a single value--of the array with
-C<$values[0]>. Access a list of values from the array with C<@values[ @indices
+Il sigillo della variabile in una dichiarazione determina il tipo della variabile:
+scalare, array o hash. Il sigillo usato quando si accede alla variabile varia invece
+in base a ciò che volete fare con la variabile. Per esempio, dichiarate un array con
+C<@values>. Accedete al suo primo elemento--un singolo valore--con
+C<$values[0]>. E accedete a una lista di valori dentro l'array con C<@values[ @indices
 ]>.
 
-=head2 Anonymous Variables
+=head2 Variabili Anonime
 
 X<anonymous variables>
 X<variables; anonymous>
 
-Perl variables do not I<require> names. Names exist to help you, the
-programmer, keep track of an C<$apple>, C<@barrels>, or C<%cheap_meals>.
-Variables created I<without> literal names in your source code are I<anonymous>
-variables. The only way to access anonymous variables is by reference
+In Perl non è I<richiesto> che le variabili abbiano un nome. I nomi servono ad aiutare voi, i
+programmatori, a tener traccia di una C<$mela>, dei C<@barili> o dei C<%ristoranti_economici>.
+Le variabili create I<senza> un nome dal vostro codice sorgente sono dette variabili I<anonime>.
+L'inico modo per accedere a una variabile anonima è per riferimento
 (L<references>).
 
-=head2 Variables, Types, and Coercion
+=head2 Variabili, Tipi e Coercizione
 
 X<variables; types>
 X<variables; container type>
 X<variables; value type>
 
-A variable in Perl 5 represents both a value (a dollar cost, available pizza
-toppings, guitar shops with phone numbers) and the container which stores that
-value. Perl's type system deals with I<value types> and I<container types>.
-While a variable's I<container type>--scalar, array, or hash--cannot change,
-Perl is flexible about a variable's value type. You may store a string in a
-variable in one line, append to that variable a number on the next, and
-reassign a reference to a function (L<function_references>) on the third.
+Una variabile in Perl 5 rappresenta sia un valore (un costo in euro, dei tipi di pizza
+disponibili, dei negozi di chitarre con i loro numeri di telefono) che il contenitore che memorizza tale
+valore. Il sistema dei tipi di Perl gestisce sia i I<tipi valore> che i I<tipi contenitore>.
+Mentre il I<tipo contenitore> di una variabile--scalare, array o hash--non può cambiare,
+Perl è flessibile riguardo al tipo valore. Potete memorizzare una stringa in una
+variabile in una data linea di codice, assegnare un numero alla stessa variabile nella linea successiva e
+quindi riassegnarle il riferimento a una funzione (L<function_references>).
 
-Performing an operation on a variable which imposes a specific value type may
-cause coercion (L<coercion>) from the variable's existing value type.
+Eseguire su una variabile una operazione che impone uno specifico tipo valore può
+dar luogo a una coercizione (L<coercion>) dal precedente tipo valore della variabile stessa.
 
-For example, the documented way to determine the number of entries in an array
-is to evaluate that array in scalar context (L<context_philosophy>). Because a
-scalar variable can only ever contain a scalar, assigning an array to a scalar
-imposes scalar context on the operation, and an array evaluated in scalar
-context returns the number of elements in the array:
+Per esempio, il modo ufficialmente documentato di determinare il numero di elementi in un array
+è di valutare l'array in contesto scalare (L<context_philosophy>). Dato che una
+variabile scalare può sempre e solo contenere uno scalare, assegnare un array a uno scalare
+impone il contesto scalare all'operazione, e un array valutato in contesto scalare
+restituisce il numero di elementi nell'array:
 
 =begin programlisting
 
@@ -114,4 +114,4 @@ context returns the number of elements in the array:
 
 =end programlisting
 
-This relationship between variable types, sigils, and context is essential.
+Queste relazioni tra tipi delle variabili, sigilli e contesto sono di importanza fondamentale.
