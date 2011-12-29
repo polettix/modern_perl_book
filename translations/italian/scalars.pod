@@ -1,98 +1,93 @@
-=head1 Scalars
+=head1 Scalari
 
 Z<scalars>
 
 X<scalars>
-
-Perl 5's fundamental data type is the I<scalar>, which represents a single,
-discrete value.  That value may be a string, an integer, a floating point
-value, a filehandle, or a reference--but it is always a single value.  Scalar
-values and scalar context have a deep connection; assigning to a scalar
-provides scalar context.
-
 X<C<$>; sigil>
 X<sigils; C<$>>
 
-Scalars may be lexical, package, or global (L<globals>) variables.  You may
-only declare lexical or package variables.  The names of scalar variables must
-conform to standard variable naming guidelines (L<names>).  Scalar variables
-always use the leading dollar-sign (C<$>) sigil (L<sigils>).
+Il tipo di dati fondamentale in Perl 5 è lo I<scalare>, un valore discreto singolo.
+Tale valore può essere una stringa, un intero, un numero floating point, un filehandle
+o un riferimento--ma è sempre e comunque un singolo valore. Gli scalari possono essere variabili
+lessicali, di package o globali (L<globals>). Potete dichiarare soltanto le variabili lessicali o
+di package. I nomi delle variabili scalari devono conformarsi alle linee guida standard
+per i nomi di variabile (L<names>). Le variabili scalari usano sempre, come sigillo (L<sigils>),
+il carattere del dollaro (C<$>).
 
-=begin sidebar
+=begin tip Variant Sigils and Context
 
-The converse is not I<universally> true; the scalar sigil applied to an
-operation on an aggregate variable--an array or a hash--determines the amount
-type accessed through that operation.
+I valori scalari e il contesto scalare sono fortemente legati; assegnare a uno scalare
+fornisce un contesto scalare. Usare il sigillo scalare con una variabile aggregato
+impone il contesto scalare per accedere a un singolo elemento dell'hash o dell'array.
 
-=end sidebar
+=end tip
 
-=head2 Scalars and Types
+=head2 Scalari e Tipi
 
-Perl 5 scalars do not have static typing.  A scalar variable can contain any
-type of scalar value without special conversions or casts, and the type of
-value in a variable can change.  This code is legal:
+Una variabile scalare può contenere qualunque tipo di valore scalare senza richiedere conversioni o
+cast speciali, e il tipo del valore memorizzato in una variabile può cambiare:
 
 =begin programlisting
 
     my $value;
     $value = 123.456;
     $value = 77;
-    $value = "I am Chuck's big toe.";
+    $value = "Sono l'alluce di Chuck.";
     $value = Store::IceCream->new();
 
 =end programlisting
 
-Yet even though this is I<legal>, it can be confusing.  Choose descriptive and
-unique names for your variables to avoid this confusion.
+Anche se questo codice è I<legale>, cambiare il tipo di dato memorizzato in uno scalare
+è segno di confusione.
 
-The type context of evaluation of a scalar may cause Perl to coerce the value
-of that scalar (L<coercion>).  For example, you may treat the contents of a
-scalar as a string, even if you didn't explicitly assign it a string:
+La flessibilità di tipo spesso causa una coercizione del valore (L<coercion>). Per
+esempio, potreste trattare il contenuto di uno scalare come se fosse una stringa, anche se non gli avete assegnato
+esplicitamente una stringa:
 
 =begin programlisting
 
-    my $zip_code        = 97006;
-    my $city_state_zip  = 'Beaverton, Oregon' . ' ' . $zip_code;
+    my $zip_code       = 97006;
+    my $city_state_zip = 'Beaverton, Oregon' . ' ' . $zip_code;
 
 =end programlisting
 
-You may also use mathematical operations on strings:
+Potete anche applicare operazioni matematiche a delle stringhe:
 
 =begin programlisting
 
     my $call_sign = 'KBMIU';
-    my $next_sign = $call_sign++;
 
-    # also fine as
-    $next_sign    = ++$call_sign;
+    # aggiorna sign e restituisci il nuovo valore
+    my $next_sign = ++$call_sign;
 
-    # but I<does not work> as:
-    $next_sign    = $call_sign + 1;
+    # restituisci il vecchio valore, e I<quindi> aggiorna sign
+    my $curr_sign = $call_sign++;
+
+    # così I<non funziona>:
+    my $new_sign  = $call_sign + 1;
 
 =end programlisting
 
 X<increment; string>
 
-=begin sidebar
+=begin tip One-Way Increment Magic
 
-This magical string increment behavior does not have a corresponding magical
-decrement behavior.  You can't get the previous string value by writing
-C<$call_sign-->.
+Questo magico incremento di stringa non ha un corrispondente
+decremento. Non potete ottenere il valore stringa precedente scrivendo C<$call_sign-->.
 
-=end sidebar
+=end tip
 
-This string increment operation turns C<a> into C<b> and C<z> into C<aa>,
-respecting character set and case.  While C<ZZ9> becomes C<AA0>, C<ZZ09>
-becomes C<ZZ10>--numbers wrap around while there are more significant places to
-increment, as on a vehicle odometer.
+L'operazione di incremento di stringa fa diventare la C<a> una C<b> e la C<z> una C<aa>,
+rispettando l'insieme di caratteri e la distinzione maiuscole/minuscole. Mentre C<ZZ9> diventa C<AAA0>, C<ZZ09>
+diventa C<ZZ10>--i numeri danno luogo a riporto fino a che ci sono cifre più significative da
+incrementare, come sul contachilometri di un'automobile.
 
 X<stringification>
 X<numification>
 
-Evaluating a reference (L<references>) in string context produces a string.
-Evaluating a reference in numeric context produces a number.  Neither operation
-modifies the reference in place, but you cannot recreate the reference from
-either the string or numeric result:
+Valutare un riferimento (L<references>) in contesto stringa produce una stringa.
+Valutare un riferimento in contesto numerico produce un numero. Nessuna delle due operazioni
+modifica il riferimento, ma non potete riottenerlo dai loro risultati:
 
 =begin programlisting
 
@@ -102,24 +97,20 @@ either the string or numeric result:
 
 =end programlisting
 
-C<$authors> is still useful as a reference, but C<$stringy_ref> is a string
-with no connection to the reference and C<$numeric_ref> is a number with no
-connection to the reference.
+C<$authors> è ancora un riferimento valido, ma C<$stringy_ref> è una stringa
+che non ha connessioni con il riferimento e C<$numeric_ref> è un numero che
+non ha connessioni con il riferimento.
 
 X<C<Scalar::Util>>
 X<dualvars>
 X<C<dualvar()>>
-X<C<looks_like_number()>>
 
-All of these coercions and operations are possible because Perl 5 scalars can
-contain numeric parts as well as string parts.  The internal data structure
-which represents a scalar in Perl 5 has a numeric slot and a string slot.
-Accessing a string in a numeric context eventually produces a scalar with both
-string and numeric values.  The C<dualvar()> function within the core
-C<Scalar::Util> module allows you to manipulate both values directly within a
-single scalar.  Similarly, the module's C<looks_like_number()> function returns
-true if the scalar value provided is something Perl 5 would interpret as a
-number.
+Per permettere di effettuare coercizioni senza perdere dei dati, gli scalari del Perl 5 possono contenere componenti
+sia numeriche che stringa. In Perl 5, la struttura dati interna per rappresentare uno scalare
+ha sia uno slot numerico che uno slot stringa. Accedere a una stringa in contesto numerico
+produce uno scalare con valori sia numerico che stringa. La funzione C<dualvar()>
+del modulo core C<Scalar::Util> ci permette di manipolare entrambi i
+valori direttamente in un singolo scalare.
 
 X<boolean>
 X<scalars; boolean values>
@@ -130,16 +121,20 @@ X<strings; false>
 X<numbers; true>
 X<numbers; false>
 
-Scalars do not have a separate slot for boolean values.  In boolean context,
-the empty string (C<''>) and C<'0'> are false.  All other strings are true.  In
-boolean context, numbers which evaluate to zero (C<0>, C<0.0>, and C<0e0>) are
-false.  All other numbers are true.
+Gli scalari non contengono uno slot separato per i valori booleani. In contesto booleano,
+la stringa vuota (C<''>) e la stringa C<'0'> hanno valore falso. Tutte le altre stringhe hanno valore vero. In
+contesto booleano, i numeri che hanno valore zero (C<0>, C<0.0>, and C<0e0>) rappresentano il valore booleano
+falso. Tutti gli altri numeri rappresentano il valore vero.
 
-Be careful that the I<strings> C<'0.0'> and C<'0e0'> are true; this is one
-place where Perl 5 makes a distinction between what looks like a number and
-what really is a number.
+=begin tip What is Truth?
+
+Attenzione al fatto che le I<stringhe> C<'0.0'> e C<'0e0'> hanno valore vero; questo è uno
+dei casi in cui Perl 5 fa una distinzione fra ciò che sembra un numero e
+ciò che è veramente un numero.
+
+=end tip
 
 X<C<undef>>
 
-One other value is always false: C<undef>.  This is the value of uninitialized
-variables as well as a value in its own right.
+C'è un altro valore che è sempre falso: C<undef>. È il valore delle variabili non inizializzate
+ ma è anche un valore di per sè.
