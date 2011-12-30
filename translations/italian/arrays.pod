@@ -1,17 +1,17 @@
-=head1 Arrays
+=head1 Array
 
 Z<arrays>
 X<arrays>
 
-Perl 5 I<arrays> are data structures which store zero or more scalars.  They're
-I<first-class> data structures, which means that Perl 5 provides a separate
-data type at the language level.  Arrays support indexed access; that is, you
-can access individual members of the array by integer indexes.
+Gli I<array> del Perl 5 sono una struttura dati I<first-class>--il linguaggio li supporta
+come tipo di dati nativo--che memorizza zero o più scalari. Potete accedere
+a singoli membri dell'array con defli indici interi, e potete aggiungere o rimuovere
+elementi a piacere.
 
 X<C<@> sigil>
 X<sigils; C<@>>
 
-The C<@> sigil denotes an array.  To declare an array:
+Il sigillo C<@> denota un array. Per dichiarare un array, scrivete:
 
 =begin programlisting
 
@@ -19,82 +19,76 @@ The C<@> sigil denotes an array.  To declare an array:
 
 =end programlisting
 
-=head2 Array Elements
+=head2 Elementi di un Array
 
 X<sigils; variant>
 X<C<$>; sigil>
 X<sigils; C<$>>
 
-I<Accessing> an individual element of an array in Perl 5 requires the scalar
-sigil.  Perl 5 (and you) can recognize that C<$cats[0]> refers to the C<@cats>
-array even despite the change of sigil because the square brackets (C<[]>)
-always identify indexed access to an aggregate variable.  In simpler terms,
-that means "look up one thing in a group of things by an integer".
+I<Accedere> a un singolo elemento di un array in Perl 5 richiede il sigillo
+scalare. C<$cats[0]> è un uso non ambiguo dell'array C<@cats>, dato che
+le parentesi quadre (C<[]>) postfisse (L<fixity>) indicano sempre un accesso indicizzato a un array.
 
-The first element of an array is at index zero:
+Il primo elemento di un array ha indice zero:
 
 =begin programlisting
 
-    # @cats contains a list of Cat objects
+    # @cats contiene una lista di oggetti Cat
     my $first_cat = $cats[0];
 
 =end programlisting
 
-The last index of an array depends on the number of elements in the array.  An
-array in scalar context (due to scalar assignment, string concatenation,
-addition, or boolean context) evaluates to the number of elements contained in
-the array:
+L'ultimo indice di un array dipende dal numero di elementi nell'array. In contesto
+scalare (indotto da un assegnamento scalare, una concatenzaione di stringhe,
+un'addizione o un contesto booleano), un array valuta al numero di elementi nell'array:
 
 =begin programlisting
 
-    # scalar assignment
+    # assegnamento scalare
     my $num_cats = @cats;
 
-    # string concatenation
+    # concatenazione di stringhe
     say 'I have ' . @cats . ' cats!';
 
-    # addition
+    # addizione
     my $num_animals = @cats + @dogs + @fish;
 
-    # boolean context
-    say 'Yep, a cat owner!' if @cats;
+    # contesto booleano
+    say 'Esatto, un padrone di gatti!' if @cats;
 
 =end programlisting
 
-If you need the specific index of the final element of an array, subtract one
-from the number of elements of the array (because array indexes start at 0):
+Per ottenere l'I<indice> dell'ultimo elemento di un array, sottraete uno dal
+numero di elementi dell'array (ricordate che gli indici dell'array iniziano da 0):
 
 =begin programlisting
 
     my $first_index = 0;
     my $last_index  = @cats - 1;
 
-    say   'My first cat has an index of $first_index, '
-        . 'and my last cat has an index of $last_index.'
+    say   "Il mio primo gatto ha indice $first_index, "
+        . "e il mio ultimo gatto ha indice $last_index."
 
 =end programlisting
 
 X<C<$#>; sigil>
 X<sigils; C<$#>>
 
-You can also use the special variable form of the array to find the last index;
-replace the C<@> array sigil with the slightly more unwieldy C<$#>:
+Anche la meno elegante sintassi C<$#cats> valuta all'ultimo indice dell'array:
 
 =begin programlisting
 
     my $first_index = 0;
     B<my $last_index  = $#cats;>
 
-    say   'My first cat has an index of $first_index, '
-        . 'and my last cat has an index of $last_index.'
+    say   "Il mio primo gatto ha indice $first_index, "
+        . "e il mio ultimo gatto ha indice $last_index."
 
 =end programlisting
 
-That may not read as nicely, however.  Most of the time you don't need that
-syntax, as you can use negative offsets to access an array from the end instead
-of the start.  The last element of an array is available at the index C<-1>.
-The second to last element of the array is available at index C<-2>, and so on.
-For example:
+... sebbene sia spesso ancora più chiaro usare invece degli indici di array negativi. L'ultimo
+elemento di un array è accessibile all'indice C<-1>. Il penultimo elemento
+dell'array è accessibile all'indice C<-2>, e così via:
 
 =begin programlisting
 
@@ -103,54 +97,46 @@ For example:
 
 =end programlisting
 
-You can resize an array by assigning to C<$#>.  If you shrink an array, Perl
-will discard values which do not fit in the resized array.  If you expand an
-array, Perl will fill in the expanded values with C<undef>.
+C<$#> ha un ulteriore uso: I<assegnandogli> un valore si può ridimensionare un array.
+Ricordate che gli array in Perl 5 sono mutabili. Si espandono o contraggono secondo la necessità.
+Quando restringete un array, Perl scarterà i valori per cui non c'è posto nell'array
+ridimensionato. Quando espandete un array, Perl riempirà le posizioni espanse
+di C<undef>.
 
-=head2 Array Assignment
+=head2 Assegnamento ad Array
 
-You can assign to individual positions in an array directly by index:
+Potete fare assegnamenti a singole posizioni in un array usando gli indici:
 
 =begin programlisting
 
     my @cats;
+    $cats[3] = 'Jack';
+    $cats[2] = 'Tuxedo';
     $cats[0] = 'Daisy';
     $cats[1] = 'Petunia';
-    $cats[2] = 'Tuxedo';
-    $cats[3] = 'Jack';
     $cats[4] = 'Brad';
+    $cats[5] = 'Choco';
 
 =end programlisting
 
-Perl 5 arrays are mutable.  They do not have a static size; they expand or
-contract as necessary.
+Se assegnate un valore a un indice oltre i limiti attuali dell'array, Perl estende
+l'array alla dimensione giusta e riempie tutte le posizioni intermedie
+con C<undef>. Dopo il primo assegnamento nell'esempio qui sopra, l'array conterrà
+C<undef> nelle posizioni 0, 1 e 2 e C<Jack> nella posizione 3.
 
-=begin sidebar
-
-You don't have to assign in order, either.  If you assign to an index beyond
-where you've assigned before, Perl will extend the array to account for the new
-size and will fill in all intermediary slots with C<undef>.
-
-=end sidebar
-
-Assignment in multiple lines can be tedious.  You can initialize an array from
-a list in one step:
+Come abbreviazione, potete inizializzare un arrey con una lista:
 
 =begin programlisting
 
-    my @cats = ( 'Daisy', 'Petunia', 'Tuxedo', 'Jack', 'Brad' );
+    my @cats = ( 'Daisy', 'Petunia', 'Tuxedo', ... );
 
 =end programlisting
 
-=begin sidebar
+... ma ricordate che I<non sono> le parentesi a creare una lista. Senza
+parentesi, questa istruzione assegnerebbe C<Daisy> al primo e unico elemento
+dell'array, a causa delle precedenze tra operatori (L<precedence>).
 
-Remember that the parentheses I<do not> create a list.  Without parentheses,
-this would assign C<Daisy> as the first and only element of the array, due to
-operator precedence (L<precedence>).
-
-=end sidebar
-
-Any expression which produces a list in list context can assign to an array:
+Un'espressione qualunque che produce una lista in contesto lista può essere assegnata ad un array:
 
 =begin programlisting
 
@@ -160,10 +146,10 @@ Any expression which produces a list in list context can assign to an array:
 
 =end programlisting
 
-Assigning to a scalar element of an array imposes scalar context, while
-assigning to the array as a whole imposes list context.
+Assegnare a un elemento scalare di un array impone il contesto scalare, mentre
+assegnare all'intero array impone il contesto lista.
 
-To clear an array, assign an empty list:
+Per svuotare un array, assegnategli la lista vuota:
 
 =begin programlisting
 
@@ -173,23 +159,25 @@ To clear an array, assign an empty list:
 
 =end programlisting
 
-=begin sidebar
+=begin tip Arrays Start Empty
 
-As freshly-declared arrays start out empty, C<my @items = ();> is a longer
-version of C<my @items>.  Prefer the latter.
+C<my @items = ();> è una versione più lunga e verbosa di C<my @items>, dato che
+gli array appena dichiarati sono vuoti.
 
-=end sidebar
+=end tip
 
-=head2 Array Slices
+=head2 Slice di Array
+
+Z<array_slices>
 
 X<arrays; slices>
 X<slices; array>
 X<C<@>; sigil>
 X<sigils; C<@>>
 
-You can also access elements of an array in list context with a construct known
-as an I<array slice>.  Unlike scalar access of an array element, this indexing
-operation takes a list of indices and uses the array sigil (C<@>):
+Il costrutto di I<array slice> vi permette di accedere agli elementi di un array in contesto
+lista. A differenza dell'accesso scalare a un elemento dell'array, questa operazione di indicizzazione
+riceve una lista di zero o più indici e usa il sigillo array (C<@>):
 
 =begin programlisting
 
@@ -199,7 +187,7 @@ operation takes a list of indices and uses the array sigil (C<@>):
 
 =end programlisting
 
-You can assign to an array slice as well:
+Le slice di array possono essere utili negli assegnamenti:
 
 =begin programlisting
 
@@ -207,116 +195,126 @@ You can assign to an array slice as well:
 
 =end programlisting
 
-A slice can contain zero or more elements--including one:
+Una slice può contenere zero o più elementi--o anche uno solo:
 
 =begin programlisting
 
-    # single-element array slice; function call in I<list> context
+    # array con un singolo elemento; la chiamata di funzione è in contesto I<lista>
     @cats[-1] = get_more_cats();
 
-    # single-element array access; function call in I<scalar> context
+    # array con un singolo elemento; la chiamata di funzione è in contesto I<scalare>
     $cats[-1] = get_more_cats();
 
 =end programlisting
 
-The only syntactic difference between an array slice of one element and the
-scalar access of an array element is the leading sigil.  The I<semantic>
-difference is greater: an array slice always imposes list context.  Any array
-slice evaluated in scalar context will produce a warning:
+L'unica differenza sintattica tra una slice di array con un solo elemento e
+l'accesso scalare a un elemento dell'array è il sigillo usato. La differenza I<semantica>
+è maggiore: una slice di array impone sempre il contesto lista. Una slice di array
+valutata in contesto scalare produce un warning:
 
 =begin screen
 
-    Scalar value @cats[1] better written as $cats[1] at...
+    È meglio scrivere il valore scalare @cats[1] come $cats[1]...
 
 =end screen
 
-An array slice imposes list context (L<context_philosophy>) on the expression
-used as its index:
+Una slice di array impone il contesto lista (L<context_philosophy>) anche all'espressione
+che usa come indice:
 
 =begin programlisting
 
-    # function called in list context
-    my @cats = @cats[ get_cat_indices() ];
+    # la chiamata di funzione è in contesto lista
+    my @hungry_cats = @cats[ get_cat_indices() ];
 
 =end programlisting
 
-=head2 Array Operations
+=head2 Operazioni sugli Array
 
-Managing array indices can be a hassle.  Because Perl 5 can expand or contract
-arrays as necessary, the language also provides several operations to treat
-arrays as stacks, queues, and the like.
+Qualche volta è più conveniente vedere un array come una collezione ordinata e mutabile di
+elementi piuttosto che come una mappatura tra indici e valori. Perl 5 fornisce diverse
+operazioni per manipolare gli elementi di un array senza usare gli indici.
 
 X<arrays; C<push>>
 X<arrays; C<pop>>
 X<builtins; C<push>>
 X<builtins; C<pop>>
 
-The C<push> and C<pop> operators add and remove elements from the tail of the
-array, respectively:
+Gli operatori C<push> e C<pop> aggiungono e rimuovono, rispettivamente, degli elementi dalla coda di un
+array:
 
 =begin programlisting
 
     my @meals;
 
-    # what is there to eat?
-    push @meals, qw( hamburgers pizza lasagna turnip );
+    # cosa c'è da mangiare?
+    push @meals, qw( hamburger pizza lasagne rape );
 
-    # ... but the nephew hates vegetables
+    # ... ma vostro nipote odia la verdura
     pop @meals;
 
 =end programlisting
 
-You may C<push> as many elements as you like onto an array.  Its second
-argument is a list of values.  You may only C<pop> one argument at a time.
-C<push> returns the updated number of elements in the array.  C<pop> returns
-the removed element.
+Potete fare il C<push> di una lista di valori in un array, ma potete solo fare il C<pop> di un elemento
+per volta. C<push> restituisce il nuovo numero di elementi dell'array. C<pop> restituisce
+l'elemento rimosso.
+
+Dato che C<push> opera su una lista, potete facilmente appendere gli elementi di uno o più
+ arrays tra di loro:
+
+=begin programlisting
+
+    push @meals, @breakfast, @lunch, @dinner;
+
+=end programlisting
 
 X<arrays; C<shift>>
 X<arrays; C<unshift>>
 X<builtins; C<shift>>
 X<builtins; C<unshift>>
 
-Similarly, C<unshift> and C<shift> add elements to and remove an element from
-the start of an array:
+Analogamente, C<unshift> e C<shift> aggiungono e rimuovono, rispettivamente, degli elementi dalla testa
+di un array:
 
 =begin programlisting
 
-    # expand our culinary horizons
-    unshift @meals, qw( tofu curry spanakopita taquitos );
+    # espandiamo i nostri orizzonti culinari
+    unshift @meals, qw( tofu spanakopita taquitos );
 
-    # rethink that whole soy idea
+    # ripensamento su quell'idea della soia
     shift @meals;
 
 =end programlisting
 
-C<unshift> prepends a list of zero or more elements to the start of the array
-and returns the new number of elements in the array.  C<shift> removes and
-returns the first element of the array.
+C<unshift> antepone una lista di elementi alla testa di un array e restituisce
+il nuovo numero di elementi dell'array. C<shift> rimuove e restituisce il primo
+elemento dell'array.
 
-=begin sidebar
-
-Few programs use the return values of C<push> and C<unshift>.  Writing this
-chapter led to a patch to Perl 5 to optimize the use of C<push> in void
-context.
-
-=end sidebar
+Pochi programmi usano i valori di ritorno di C<push> e C<unshift>.
 
 X<arrays; C<splice>>
 X<builtins; C<splice>>
 
-C<splice> is another important--if less frequently used--array operator.  It
-removes and replaces elements from an array given an offset, a length of a list
-slice, and replacements.  Both replacing and removing are optional; you may
-omit either behavior.  The C<perlfunc> description of C<splice> demonstrates
-its equivalences with C<push>, C<pop>, C<shift>, and C<unshift>.
+L'operatore C<splice> rimuove e sostituisce elementi di un array dato un
+offset, la lunghezza di una slice di lista e i sostituti. Sia la sostituzione che la rimozione
+sono opzionali; potete omettere sia l'uno che l'altro. La descrizione di C<splice> in
+C<perlfunc> dimostra la sua equivalenza con C<push>, C<pop>, C<shift> e
+C<unshift>. Un uso particolarmente efficace è la rimozione di due elementi da un array:
 
-Arrays often contain elements to process in a loop (L<looping_directives>).
+=begin programlisting
+
+    my ($winner, $runnerup) = splice @finalists, 0, 2;
+
+    # oppure
+    my $winner              = shift @finalists;
+    my $runnerup            = shift @finalists;
+
+=end programlisting
 
 X<arrays; C<each>>
 X<builtins; C<each>>
 
-As of Perl 5.12, you can use C<each> to iterate over an array by index and
-value:
+Prima del Perl 5.12, iterare su un array per indice richiedeva un ciclo in stile C.
+A partire da Perl 5.12, C<each> può iterare su un array per indice e valore:
 
 =begin programlisting
 
@@ -328,12 +326,12 @@ value:
 
 =end programlisting
 
-=head2 Arrays and Context
+=head2 Array e Contesto
 
 X<list context; arrays>
 
-In list context, arrays flatten into lists.  If you pass multiple arrays to a
-normal Perl 5 function, they will flatten into a single list:
+In contesto lista, gli array diventano liste.  Se passate diversi array a una
+normale funzione Perl 5, essi si appiattiscono in un'unica lista:
 
 =begin programlisting
 
@@ -344,65 +342,70 @@ normal Perl 5 function, they will flatten into a single list:
 
     sub take_pets_to_vet
     {
-        # do not use!
+        # BACATO: non usatelo!
         my (@cats, @dogs) = @_;
         ...
     }
 
 =end programlisting
 
-Within the function, C<@_> will contain seven elements, not two.  Similarly,
-list assignment to arrays is I<greedy>.  An array will consume as many elements
-from the list as possible.  After the assignment, C<@cats> will contain
-I<every> argument passed to the function.  C<@dogs> will be empty.
+Nella funzione, C<@_> conterrà sette elementi, not due, poichè l'assegnamento
+di una lista ad un array è I<greedy>. Un array consuma più elementi possibile
+dalla lista. Dopo l'assegnamento, C<@cats> conterrà I<tutti>
+gli argomenti passati alla funzione. C<@dogs> invece sarà vuoto.
 
-This flattening behavior sometimes confuses novices who attempt to create
-nested arrays in Perl 5:
+Questo appiattimento può confondere i principianti che tentano di creare
+array nidificati in Perl 5:
 
 =begin programlisting
 
-    # creates a single array, not an array of arrays
-    my @array_of_arrays = ( 1 .. 10, ( 11 .. 20, ( 21 .. 30 ) ) );
+    # crea un singolo array, non un array di array
+    my @numbers = (  1 .. 10,
+                  ( 11 .. 20,
+                  ( 21 .. 30 ) ) );
 
 =end programlisting
 
-While some people may initially expect this code to produce an array where the
-first ten elements are the numbers one through ten and the eleventh element is
-an array containing the numbers eleven through 20 and an array containing the
-numbers twenty-one through thirty, this code instead produces an array
-containing the numbers one through 30, inclusive.  Remember that parentheses do
-not I<create> lists in these circumstances--they only group expressions.
+... ma questo codice è a tutti gli effetti equivalente a questo:
 
-The solution to this flattening behavior is the same for passing arrays to
-functions and for creating nested arrays (L<array_references>).
+=begin programlisting
 
-=head2 Array Interpolation
+    # crea un singolo array, non un array di array
+    my @numbers = 1 .. 30;
+
+=end programlisting
+
+... perchè le parentesi raggruppano semplicemente le espressioni. Non I<creano>
+liste, in questo caso. Per ovviare a questo appiattimento, usate i riferimenti
+ad array (L<array_references>).
+
+=head2 Interpolazione di Array
 
 X<arrays; interpolation>
 X<interpolation; arrays>
 X<C<$">>
 X<C<$LIST_SEPARATOR>>
 
-Arrays interpolate in double quoted strings as a list of the stringification of
-each item separated by the current value of the magic global C<$">.  The
-default value of this variable is a single space.  Its F<English.pm> mnemonic
-is C<$LIST_SEPARATOR>.  Thus:
+Gli array vengono interpolati in stringhe come liste della conversione in stringa di ciascun elemento
+separate dal valore corrente della magica variabile globale C<$">. Il valore di default di tale
+variabile è lo spazio singolo. Il suo mnemonico in F<English.pm> è
+C<$LIST_SEPARATOR>. Quindi:
 
 =begin programlisting
 
     my @alphabet = 'a' .. 'z';
     say "[@alphabet]";
-    B<[a b c d e f g h i j k l m n o p q r s t u v w x y z]>
+    B<[a b c d e f g h i j k l m>
+     B<n o p q r s t u v w x y z]>
 
 =end programlisting
 
-Temporarily localizing and assigning another value to C<$"> for debugging
-purposes is very handyN<Due credit goes to Mark-Jason Dominus for demonstrating
-this example several years ago.>:
+Localizzare temporaneamente C<$"> e assegnarle un altro valore a scopo di debugging
+può essere molto comodoN<Il credito per averne dimostrato l'efficacia va a Mark Jason Dominus.>:
 
 =begin programlisting
 
-    # what's in this array again?
+    # cos'è già che c'è in questo array?
     {
         local $" = ')(';
         say "(@sweet_treats)";
@@ -410,10 +413,10 @@ this example several years ago.>:
 
 =end programlisting
 
-... which produces the result:
+... che produce il risultato:
 
 =begin screen
 
-    (pie)(cake)(doughnuts)(cookies)(raisin bread)
+    (crostata)(torta)(ciambelle)(biscotti)(pane dolce)
 
 =end screen
