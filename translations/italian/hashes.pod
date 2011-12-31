@@ -1,29 +1,28 @@
-=head1 Hashes
+=head1 Hash
 
 Z<hashes>
 
 X<hashes>
 
-A I<hash> is a first-class Perl data structure which associates string keys
-with scalar values.  You might have encountered them as I<tables>,
-I<associative arrays>, I<dictionaries>, or I<maps> in other programming
-languages.  In the same way that the name of a variable corresponds to a
-storage location, a key in a hash refers to a value.
+Un I<hash> è una struttura dati nativa del Perl che associa delle chiavi stringa a
+dei valori scalari. Allo stesso modo in cui una variabile corrisponde a un'area
+di memoria, una chiave di un hash si riferisce a un valore. Pensate a un hash come se
+fosse una guida telefonica, con cui potete usare i nomi dei vostri amici per trovare i loro numeri di telefono.
+In altri linguaggi gli hash sono detti I<tablelle>, I<array associativi>, I<dizionari>
+o I<mappe>.
 
-A well-respected, if hoary, analogy is to think of a hash like you would a
-telephone book: use your friend's name to look up her number.
+Gli hash hanno due proprietà importanti: memorizzano uno scalare per ogni chiave univoca e
+non impongono alcun ordine specifico sulle chiavi.
 
-Hashes have two important properties.  First, they store one scalar per unique
-key.  Second, they do not provide any specific ordering of keys.  A hash is a
-big container full of key/value pairs.
+=head2 Dichiarazione di Hash
 
-=head2 Declaring Hashes
+Z<declaring_hashes>
 
 X<hashes; declaring>
 X<C<%>; sigil>
 X<sigils; C<%>>
 
-A hash has the C<%> sigil.  Declare a lexical hash with:
+Gli hash usano il sigillo C<%>. Dichiarate un hash lessicale con:
 
 =begin programlisting
 
@@ -31,33 +30,30 @@ A hash has the C<%> sigil.  Declare a lexical hash with:
 
 =end programlisting
 
-A hash starts out empty, with no keys or values.  In boolean context, a hash
-returns false if it contains no keys.  Otherwise, it returns a string which
-evaluates to true.
-
-You can assign and access individual elements of a hash:
-
-=begin programlisting
-
-    my %favorite_flavors;
-    $favorite_flavors{Gabi}    = 'Raspberry chocolate';
-    $favorite_flavors{Annette} = 'French vanilla';
-
-=end programlisting
+Un hash appena dichiarato è vuoto. Potreste anche scrivere C<my %favorite_flavors = ();>, ma
+sarebbe superfluo.
 
 X<C<$>; sigil>
 X<sigils; C<$>>
 
-Hashes use the scalar sigil C<$> when accessing individual elements and curly
-braces C<{ }> for string indexing.
+Gli hash usano il sigillo C<$> quando accedete a singoli elementi e le parentesi graffe
+C<{ }> per specificare la chiave:
 
-You may assign a list of keys and values to a hash in a single expression:
+=begin programlisting
+
+    my %favorite_flavors;
+    $favorite_flavors{Gabi}    = 'Cioccolato';
+    $favorite_flavors{Annette} = 'Vaniglia';
+
+=end programlisting
+
+È possibile assegnare una lista di chiavi e valori ad un hash in un'unica espressione:
 
 =begin programlisting
 
     my %favorite_flavors = (
-        'Gabi',    'Raspberry chocolate',
-        'Annette', 'French vanilla',
+        'Gabi',    'Cioccolato',
+        'Annette', 'Vaniglia',
     );
 
 =end programlisting
@@ -65,69 +61,56 @@ You may assign a list of keys and values to a hash in a single expression:
 X<<< C<< => >>; fat comma operator >>>
 X<<< operators; C<< => >> >>>
 
-If you assign an odd number of elements to the hash, you will receive a warning
-that the results are not what you anticipated.  It's often more obvious to use
-the I<fat comma> operator (C<< => >>) to associate values with keys, as it
-makes the pairing more visible.  Compare:
+Se assegnate un numero dispari di elementi ad un hash, riceverete un warning.
+Un idioma del Perl suggerisce di usare l'operatore I<fat comma> (C<< => >>)
+per associare chiavi e valori, poichè rende più esplicite tali associazioni:
 
 =begin programlisting
 
     my %favorite_flavors = (
-        Gabi    B<< => >> 'Mint chocolate chip',
-        Annette B<< => >> 'French vanilla',
+        Gabi    B<< => >> 'Menta e cioccolato',
+        Annette B<< => >> 'Vaniglia',
     );
 
 =end programlisting
 
-... to:
+L'operatore fat comma funziona come la virgola, ma quota anche
+la bareword (L<barewords>) che lo precede. La pragma C<strict> non genererà un warning
+per la presenza di tale bareword--e se avete una funzione con lo stesso nome di una chiave
+dell'hash, l'operatore fat comma I<non> chiamerà la funzione:
 
 =begin programlisting
 
-    my %favorite_flavors = (
-        'Jacob', 'anything',
-        'Floyd', 'Pistachio',
-    );
-
-=end programlisting
-
-The fat comma operator acts like the regular comma, but it also causes the Perl
-parser to treat the previous bareword (L<barewords>) as if it were a quoted
-word.  The C<strict> pragma will not warn about the bareword, and if you have
-a function with the same name as a hash key, the fat comma will I<not> call the
-function:
-
-=begin programlisting
-
-    sub name { 'Leonardo' }
+    sub nome { 'Leonardo' }
 
     my %address =
     (
-        name => '1123 Fib Place',
+        nome => 'Via Fibonacci 1123',
     );
 
 =end programlisting
 
-The key of the hash will be C<name> and not C<Leonardo>.  If you intend to call
-the function to get the key, make the function call explicit:
+La chiave in questo hash sarà C<nome> e non C<Leonardo>. Se volete chiamare la funzione,
+dovete farlo esplicitamente:
 
 =begin programlisting
 
     my %address =
     (
-        B<name()> => '1123 Fib Place',
+        B<nome()> => 'Via Fibonacci 1123',
     );
 
 =end programlisting
 
 =begin notetip
 
-Hash assignment occurs in list context; if you call a function within this
-assignment, you may have to use C<scalar()> to disambiguate its context.
+L'assegnamento ad un hash avviene in contesto lista. Qualunque funzione chiamata durante l'assegnamento ad un
+hash userà per default il contesto lista a meno che usiate esplicitamente C<scalar()>.
 
 =end notetip
 
-To empty a hash, assign to it an empty listN<Unary C<undef> also works, but
-it's somewhat more rare.>:
+Per svuotare un hash, assegnategli la lista vuotaN<Potreste vedere occasionalmente anche C<undef
+%hash>.>:
 
 =begin programlisting
 
@@ -135,13 +118,12 @@ it's somewhat more rare.>:
 
 =end programlisting
 
-=head2 Hash Indexing
+=head2 Indicizzazione di Hash
 
 X<hashes; values>
 
-Because a hash is an aggregate, you can access individual values with an
-indexing operation.  Use a key as an index (a I<keyed access> operation) to
-retrieve a value from a hash:
+Per accedere ai singoli valori di un hash dovete eseguire un'operazione di indicizzazione. Usate una chiave (operazione di
+accesso I<per chiave>) per estrarre un valore da un hash:
 
 =begin programlisting
 
@@ -149,39 +131,42 @@ retrieve a value from a hash:
 
 =end programlisting
 
-In this example, C<$name> contains a string which is also a key of the hash.
-As with accessing an individual element of an array, the hash's sigil has
-changed from C<%> to C<$> to indicate keyed access to a scalar value.
+In questo esempio, C<$name> contiene una stringa che è anche una chiave dell'hash.
+Come per l'accesso a un singolo elemento di un array, il sigillo dell'hash
+è cambiato da C<%> a C<$> per indicare l'accesso per chiave a un valore scalare.
 
-You may also use string literals as hash keys.  Perl quotes barewords
-automatically according to the same rules as fat commas:
+Potete anche usare letterali stringa come chiavi di hash. Perl quoterà le bareword
+automaticamente seguendo le stesse regole del fat comma:
 
 =begin programlisting
 
-    # auto-quoted
+    # quotato automaticamente
     my $address = $addresses{Victor};
 
-    # needs quoting; not a valid bareword
+    # quotatura necessaria; non è una bareword valida
     my $address = $addresses{B<'>Sue-LinnB<'>};
 
-    # function call needs disambiguation
+    # una chiamata di funzione deve essere disambiguata
     my $address = $addresses{get_nameB<()>};
 
 =end programlisting
 
-You might find it clearer always to quote string literal hash keys, but the
-autoquoting behavior is so well established in Perl 5 culture that it's better
-to reserve the quotes for extraordinary circumstances, where they broadcast
-your intention to do something different.
+=begin tip Don't Quote Me
 
-Even Perl 5 builtins get the autoquoting treatment:
+I principianti tendono a quotare i letterali stringa che usano come chiavi di hash, mentre i programmatori esperti
+evitano la quotatura quando è possibile. La quotatura delle chiavi di hash viene usata
+per segnalare l'intenzione di fare qualcos'altro.
+
+=end tip
+
+Anche le funzioni native del Perl 5 sono soggette alla quotatura automatica:
 
 =begin programlisting
 
     my %addresses =
     (
-        Leonardo => '1123 Fib Place',
-        Utako    => 'Cantor Hotel, Room 1',
+        Leonardo => 'Via Fibonacci 1123',
+        Utako    => 'Hotel Cantor, Stanza 1',
     );
 
     sub get_address_from_name
@@ -191,26 +176,27 @@ Even Perl 5 builtins get the autoquoting treatment:
 
 =end programlisting
 
-The unary plus (L<unary_coercions>) turns what would be a bareword (C<shift>)
-subject to autoquoting rules into an expression.  As this implies, you can use
-an arbitrary expression--not only a function call--as the key of a hash:
+L'operatore I<più> unario (L<unary_coercions>) converte quella che sarebbe una bareword (C<shift>)
+soggetta alla quotatura automatica in un'espressione. Da questo esempio si vede che potete usare una
+espressione arbitraria--non solo una chiamata di funzione--come chiave di un hash:
 
 =begin programlisting
 
-    # don't actually I<do> this though
+    # non I<fatelo> davvero, per favore
     my $address = $addresses{reverse 'odranoeL'};
 
-    # interpolation is fine
+    # l'interpolazione funziona
     my $address = $addresses{"$first_name $last_name"};
 
-    # so are method calls
+    # e anche le chiamate di metodi
     my $address = $addresses{ $user->name() };
 
 =end programlisting
 
-Anything that evaluates to a string is an acceptable hash key.  Of course, hash
-keys can only be strings.  If you use an object as a hash key, you'll get the
-stringified version of that object instead of the object itself:
+Le chiavi di un hash possono solo essere stringhe. Qualunque cosa valuti ad una stringa è
+una chiave di hash ammissibile. Perl si spinge fino a fare la coercizione (L<coercion>) di
+altri tipi nel tipo stringa, in modo che se usate un oggetto come chiave di hash, ottenete
+la versione stringa dell'oggetto anzichè l'oggetto stesso:
 
 =begin programlisting
 
@@ -218,79 +204,79 @@ stringified version of that object instead of the object itself:
     {
         my $book = Book->fetch_by_isbn( $isbn );
 
-        # unlikely to do what you want
+        # difficile che sia quello che volevate fare
         $books{$book} = $book->price;
     }
 
 =end programlisting
 
-=head2 Hash Key Existence
+=head2 Esistenza di Chiavi di Hash
 
 X<builtins; C<exists>>
 X<hashes; C<exists>>
 
-The C<exists> operator returns a boolean value to indicate whether a hash
-contains the given key:
+L'operatore C<exists> restituisce un valore booleano che indica se un hash
+contiene una data chiave:
 
 =begin programlisting
 
     my %addresses =
     (
-        Leonardo => '1123 Fib Place',
-        Utako    => 'Cantor Hotel, Room 1',
+        Leonardo => 'Via Fibonacci 1123',
+        Utako    => 'Hotel Cantor, Stanza 1',
     );
 
-    say "Have Leonardo's address" if exists $addresses{Leonardo};
-    say "Have Warnie's address"   if exists $addresses{Warnie};
+    say "Ho l'indirizzo di Leonardo"
+        if exists $addresses{Leonardo};
+    say "Ho l'indirizzo di Warnie"
+        if exists $addresses{Warnie};
 
 =end programlisting
 
-Using C<exists> instead of accessing the hash key directly avoids two problems.
-First, it does not check the boolean nature of the hash I<value>; a hash key
-may exist with a value even if that value evaluates to a boolean false
-(including C<undef>):
+Usare C<exists> anzichè tentare di accedere direttamente a una chiave di hash evita due problemi.
+Prima di tutto, il controllo non viene effettuato sul I<valore> associato alla chiave; infatti una chiave di hash
+potrebbe esistere e avere un valore anche se tale valore corrisponde a falso in contesto booleano (per esempio C<undef>):
 
 =begin programlisting
 
     my  %false_key_value = ( 0 => '' );
     ok( %false_key_value,
-         'hash containing false key & value should evaluate to a true value' );
+         'un hash che contiene falso sia come chiave che come valore
+          dovrebbe valutare a vero' );
 
 =end programlisting
 
-Second, C<exists> avoids autovivification (L<autovivification>) within with
-nested data structures.
+Inoltre, C<exists> evita l'autovivicazione (L<autovivification>) nelle strutture dati
+nidificate (L<nested_data_structures>).
 
 X<builtins; C<defined>>
 
-The corresponding operator for hash values is C<defined>.  If a hash key
-exists, its value may be C<undef>.  Check that with C<defined>:
+Se una chiave di hash esiste, il suo valore potrebbe essere C<undef>. Potete controllarlo con C<defined>:
 
 =begin programlisting
 
     $addresses{Leibniz} = undef;
 
-    say "Gottfried lives at $addresses{Leibniz}"
+    say "Gottfried vive a $addresses{Leibniz}"
         if exists  $addresses{Leibniz}
         && defined $addresses{Leibniz};
 
 =end programlisting
 
-=head2 Accessing Hash Keys and Values
+=head2 Accedere a Chiavi e Valori degli Hash
 
 X<hashes; C<keys>>
 X<builtins; C<keys>>
 
-Hashes are aggregate variables, but they behave slightly differently from
-arrays.  In particular, you can iterate over the keys of a hash, the values of
-a hash, or pairs of keys and values.  The C<keys> operator returns a list of
-keys of the hash:
+Gli hash sono variabili aggregate, ma la loro struttura a coppie offre diverse
+possibilità di iterazione: sulle chiavi dell'hash, sui valori dell'hash o
+sulle coppie chiave/valore. L'operatore C<keys> produce una lista di chiavi di un hash:
 
 =begin programlisting
 
     for my $addressee (keys %addresses)
     {
-        say "Found an address for $addressee!";
+        say "Trovato l'indirizzo di $addressee!";
     }
 
 =end programlisting
@@ -298,13 +284,13 @@ keys of the hash:
 X<hashes; C<values>>
 X<builtins; C<values>>
 
-The C<values> operator returns a list of values of the hash:
+L'operatore C<values> produce una lista di valori di un hash:
 
 =begin programlisting
 
     for my $address (values %addresses)
     {
-        say "Someone lives at $address";
+        say "Qualcuno vive in $address";
     }
 
 =end programlisting
@@ -312,35 +298,37 @@ The C<values> operator returns a list of values of the hash:
 X<hashes; C<each>>
 X<builtins; C<each>>
 
-The C<each> operator returns a list of two-element lists of the key and the
-value:
+L'operatore C<each> produce una lista di liste di due elementi contenenti una chiave e il suo valore:
 
 =begin programlisting
 
     while (my ($addressee, $address) = each %addresses)
     {
-        say "$addressee lives at $address";
+        say "$addressee vive in $address";
     }
 
 =end programlisting
 
-Unlike arrays, there is no obvious ordering to the list of keys or values.  The
-ordering depends on the internal implementation of the hash, which can depend
-both on the particular version of Perl you are using, the size of the hash, and
-a random factor.  With that caveat in mind, the order of items in a hash is the
-same for C<keys>, C<values>, and C<each>.  Modifying the hash may change the
-order, but you can rely on that order if the hash remains the same.
+Al contrario degli array, non c'è un ordinamento ovvio per queste liste. L'ordinamento
+dipende dall'implementazione interna dell'hash, la versione di
+Perl che state usando, la dimensione dell'hash e un ulteriore fattore random. Ciò nonostante,
+l'ordine degli elementi imposto da C<keys>, C<values> e C<each> è consistente.
+Modificando l'hash l'ordine potrebbe cambiare, ma se l'hash rimane immutato potete
+fare affidamento su tale ordine.
 
-Each hash has only a I<single> iterator for the C<each> operator.  You cannot
-reliably iterate over a hash with C<each> more than once; if you begin a new
-iteration while another is in progress, the former will end prematurely and the
-latter will begin partway through the hash.
+Ogni hash ha un I<unico> iteratore per l'operatore C<each>. Non potete
+iterare su un hash con più di un C<each> senza incorrere in problemi; se iniziate una nuova
+iterazione mentre un'altra è in corso, la prima terminerà prematuramente e la seconda
+inizierà da qualche parte in mezzo all'hash. Durante una iterazione C<each>, fate attenzione
+a non chiamare funzioni che possano a loro volta tentare di iterare sull'hash con
+C<each>.
 
-Reset a hash's iterator with the use of C<keys> or C<values> in void context:
+In pratica questo succede raramente, ma quando vi dovesse servire resettate l'iteratore di un hash con C<keys> o
+C<values> in contesto void:
 
 =begin programlisting
 
-    # reset hash iterator
+    # resetta l'iteratore dell'hash
     keys %addresses;
 
     while (my ($addressee, $address) = each %addresses)
@@ -350,45 +338,40 @@ Reset a hash's iterator with the use of C<keys> or C<values> in void context:
 
 =end programlisting
 
-You should also ensure that you do not call any function which may itself try
-to iterate over the hash with C<each>.
-
-=begin sidebar
-
-The single hash iterator is a well-known caveat, but it doesn't come up as
-often as you might expect.  Be cautious, but use C<each> when you need it.
-
-=end sidebar
-
-=head2 Hash Slices
+=head2 Slice di Hash
 
 X<hashes; slicing>
 X<slices; hash>
 
-As with arrays, you may access a list of elements of a hash in one operation.
-A I<hash slice> is a list of keys or values of a hash.  The simplest
-explanation is initialization of multiple elements of a hash used as an
-unordered set:
+Una I<slice di hash> è una lista di chiavi o valori di un hash indicizzata in una singola
+operazione. Per inizializzare diversi elementi di un hash in una sola istruzione:
 
 =begin programlisting
 
-    my %cats;
+    # %cats contiene già altri elementi
     @cats{qw( Jack Brad Mars Grumpy )} = (1) x 4;
 
 =end programlisting
 
-This is equivalent to the initialization:
+Questo codice è equivalente all'inizializzazione:
 
 =begin programlisting
 
-    my %cats = map { $_ => 1 } qw( Jack Brad Mars Grumpy );
+    my %cats = map { $_ => 1 }
+               qw( Jack Brad Mars Grumpy );
 
 =end programlisting
 
-... except that the hash slice initialization does not I<replace> the existing
-contents of the hash.
+...eccetto che l'inizializzazione di uno slice di hash non I<sostituisce> i contenuti di un hash
+che esistono già.
 
-You may retrieve multiple values from a hash with a slice:
+X<C<@>; sigil>
+X<sigils; C<@>>
+
+Le slice di hash vi permettono anche di estrarre diversi valori da un hash in un'unica
+operazione. Come per le slice di array, il sigillo dell'hash cambia per indicare il contesto
+lista. L'uso delle parentesi graffe indica accesso per chiave rendendo non ambigua la 
+presenza di un hash:
 
 =begin programlisting
 
@@ -396,78 +379,90 @@ You may retrieve multiple values from a hash with a slice:
 
 =end programlisting
 
-X<C<@>; sigil>
-X<sigils; C<@>>
-
-As with array slices, the sigil of the hash changes to indicate list context.
-You can still tell that C<%addresses> is a hash by the use of the curly braces
-to indicate keyed access.
-
-Hash slices make it easy to merge two hashes:
+Le slice di hash rendono facile anche fondere due hash insieme:
 
 =begin programlisting
 
     my %addresses        = ( ... );
     my %canada_addresses = ( ... );
 
-    @addresses{ keys %canada_addresses } = values %canada_addresses;
+    @addresses{ keys   %canada_addresses }
+              = values %canada_addresses;
 
 =end programlisting
 
-This is equivalent to looping over the contents of C<%canada_addresses>
-manually, but is much shorter.
+Questo codice è equivalente a ciclare manualmente sui contenuti di C<%canada_addresses>,
+ma è molto più compatto.
 
-=begin sidebar
+Che cosa succede se la stessa chiave compare in entrambi gli hash? L'uso di uno slice di hash I<sovrascrive>
+sempre le coppie chiave/valore in C<%addresses>. Se desiderate comportamento diverso,
+è più appropriato ciclare manualmente.
 
-The choice between the two approaches depends on your merge strategy.  What if
-the same key occurs in both hashes?  The hash slice approach always overwrites
-existing key/value pairs in C<%addresses>.
+=head2 L'Hash Vuoto
 
-=end sidebar
-
-=head2 The Empty Hash
-
-An empty hash contains no keys or values.  It evaluates to false in a boolean
-context.  A hash which contains at least one key/value pair evaluates to true
-in a boolean context even if all of the keys or all of the values or both would
-themselves evaluate to false in a boolean context.
+Un hash vuoto non contiene nè chiavi nè valori. In contesto booleano ha valore
+falso. Un hash che contiene almeno una coppia chiave/valora ha invece valore vero in
+contesto booleano anche se tutte le chiavi o tutti i valori o entrambi
+avessero valore falso in contesto booleano.
 
 =begin programlisting
 
     use Test::More;
 
     my %empty;
-    ok( ! %empty, 'empty hash should evaluate to false' );
+    ok( ! %empty, 'un hash vuoto dovrebbe avere valore falso' );
 
-    my %false_key = ( 0 => 'true value' );
-    ok( %false_key, 'hash containing false key should evaluate to true' );
+    my %false_key = ( 0 => 'valore vero' );
+    ok( %false_key, 'un hash contenente falso come chiave
+                     dovrebbe avere valore vero' );
 
-    my %false_value = ( 'true key' => 0 );
-    ok( %false_value, 'hash containing false value should evaluate to true' );
-
-    ...
+    my %false_value = ( 'chiave vera' => 0 );
+    ok( %false_value, 'un hash contenente falso come valore
+                       dovrebbe avere valore vero' );
 
     done_testing();
 
 =end programlisting
 
-In scalar context, a hash evaluates to a string which represents the number of
-hash buckets used out of the number of hash buckets allocated.  This is rarely
-useful, as it represents internal details about hashes that are almost always
-meaningless to Perl programs.  You can safely ignore it.
+In contesto scalare, un hash valuta a una stringa che rappresenta la frazione di
+posizioni occupate nell'hash--ma potete tranquillamente ignorare questi dettagli
+dell'implementazione interna dell'hash.
 
-In list context, a hash evaluates to a list of key/value pairs similar to what
-you receive from the C<each> operator.  However, you I<cannot> iterate over
-this list the same way you can iterate over the list produced by C<each>, as
-the loop will loop forever, unless the hash is empty.
+In contesto lista, un hash valuta a una lista di coppie chiave/valore simile a quella
+restituita dall'operatore C<each>.  Tuttavia, non I<potete> iterare su
+tale lista allo stesso modo in cui potete iterare sulla lista prodotta da C<each>, poichè
+il ciclo non terminerebbe mai:
 
-=head2 Hash Idioms
+=begin programlisting
+
+    # ciclo infinito per hash non vuoti
+    while (my ($key, $value) = %hash)
+    {
+        ...
+    }
+
+=end programlisting
+
+È I<possibile> ciclare su questa lista di chiavi e valori con un ciclo C<for>, ma la
+variabile iteratore conterrà una chiave ad una iterazione e il suo valore in quella successiva,
+poichè Perl appiattisce l'hash in un'unica lista di chiavi e valori alternati:
+
+=begin programlisting
+
+    for (%hash)
+    {
+        ...
+    }
+
+=end programlisting
+
+=head2 Idiomi degli Hash
 
 X<hashes; finding uniques>
 
-Hashes have several uses, such as finding unique elements of lists or arrays.
-Because each key exists only once in a hash, assigning the same key to a hash
-multiple times stores only the most recent key:
+Poichè ogni chiave può comparire una sola volta in un hash, assegnare la stessa chiave ad un hash più
+di una volta memorizza solo il valore più recente. Potete sfruttare questo fatto per trovare gli elementi
+distinti di una lista:
 
 =begin programlisting
 
@@ -477,14 +472,12 @@ multiple times stores only the most recent key:
 
 =end programlisting
 
-The use of the C<undef> operator with the hash slice sets the values of the
-hash to C<undef>.  This is the cheapest way to determine if an item exists in a
-set.
+L'uso di C<undef> con uno slice di hash setta i valori dell'hash a C<undef>. Questo idioma
+rappresenta il modo più efficiente di effettuare operazioni insiemistiche con un hash.
 
 X<hashes; counting items>
 
-Hashes are also useful for counting elements, such as a list of IP addresses in
-a log file:
+Gli hash sono utili anche per contare degli elementi, come gli indirizzi IP in un file di log:
 
 =begin programlisting
 
@@ -499,18 +492,17 @@ a log file:
 
 =end programlisting
 
-The initial value of a hash value is C<undef>.  The postincrement operator
-(C<++>) treats that as zero.  This in-place modification of the value
-increments an existing value for that key.  If no value exists for that key, it
-creates a value (C<undef>) and immediately increments it to one, as the
-numification of C<undef> produces the value 0.
+Inizialmente ogni valore di un hash è C<undef>. L'operatore di postincremento
+(C<++>) lo tratta come se fosse zero. In questo esempio, se il valore della chiave esiste già viene rimpiazzato con
+il suo incremento. Se invece non esiste alcun valore per la chiave, Perl crea un
+valore (C<undef>) e lo incrementa immediatamente a uno, dato che il valore numerico di
+C<undef> è 0.
 
 X<hashes; caching>
 X<orcish maneuver>
 
-A variant of this strategy works very well for caching, where you might want to
-store the result of an expensive calculation with little overhead to store or
-fetch:
+La seguente strategia costituisce un utile meccanismo di caching per memorizzare il risultato di un'operazione
+costosa con un piccolo overhead:
 
 =begin programlisting
 
@@ -520,7 +512,7 @@ fetch:
         sub fetch_user
         {
             my $id = shift;
-            $user_cache{$id} ||= create_user($id);
+            $user_cache{$id} //= create_user($id);
             return $user_cache{$id};
         }
     }
@@ -532,31 +524,27 @@ X<C<//>; infix operator>
 X<operators; C<//>>
 X<operators; defined-or>
 
-This I<orcish maneuver>N<Or-cache, if you like puns.> returns the value from
-the hash, if it exists.  Otherwise, it calculates the value, caches it, and
-then returns it.  Beware that the boolean-or assignment operator (C<||=>)
-operates on boolean values; if your cached value evaluates to false in a
-boolean context, use the defined-or assignment operator (C<//=>) instead:
+Questa I<manovra orcish>N<Or-cache, se vi piacciono i pun.> restituisce il valore dell'hash,
+se esso esiste. Altrimenti calcola, mette in cache e restituisce il
+valore. L'operatore di assegnamento defined-or (C<//=>) valuta il suo operando di sinistra.
+Se tale operando non è definito, l'operatore gli assegna il valore del suo operando di destra.
+In altre parole, se non c'è un valore nell'hash per una data
+chiave, questa funzione chiama C<create_user()> passandole la chiave e poi aggiorna
+l'hash.
 
-=begin programlisting
+Perl 5.10 ha introdotto gli operatori di defined-or e di assegnamento defined-or. Prima
+del 5.10, gran parte del codice usava l'operatore di assegnamento boolean-or (C<||=>) per lo stesso
+scopo. Purtroppo, alcuni valori validi valutano a falso in contesto booleano, quindi valutare la I<definitezza> dei valori
+è quasi sempre più accurato.
 
-        sub fetch_user
-        {
-            my $id = shift;
-            $user_cache{$id} B<//=> create_user($id);
-            return $user_cache{$id};
-        }
-
-=end programlisting
-
-This lazy orcish maneuver tests for the definedness of the cached value, not
-its boolean truth.  The defined-or assignment operator is new in Perl 5.10.
+Essendo pigra, la manovra orcish testa la definitezza del valore in cache, non
+la sua verità.
 
 X<hashes; named parameters>
 
-Hashes can also collect named parameters passed to functions.  If your function
-takes several arguments, you can use a slurpy hash (L<parameter_slurping>) to
-gather key/value pairs into a single hash:
+Se la vostra funzione accetta diversi argomenti, sfruttate la golosità degli hash
+(L<parameter_slurping>) per raccogliere delle coppie chiave/valore in un unico hash trattandole come
+argomenti passati per nome alla funzione:
 
 =begin programlisting
 
@@ -566,26 +554,27 @@ gather key/value pairs into a single hash:
         ...
     }
 
-    make_sundae( flavor => 'Lemon Burst', topping => 'cookie bits' );
+    make_sundae( aroma  => 'Burst al Limone',
+                 glassa => 'biscotti macinati' );
 
 =end programlisting
 
-You can even set default parameters with this approach:
+Questo approccio vi permette anche di settare dei valori di default, in questo modo:
 
 =begin programlisting
 
     sub make_sundae
     {
         my %parameters             = @_;
-        B<$parameters{flavor}    //= 'Vanilla';>
-        B<$parameters{topping}   //= 'fudge';>
-        B<$parameters{sprinkles} //= 100;>
+        B<$parameters{aroma}   //= 'Vaniglia';>
+        B<$parameters{glassa}  //= 'cioccolato';>
+        B<$parameters{praline} //= 100;>
         ...
     }
 
 =end programlisting
 
-... or include them in the initial declaration and assignment itself:
+... oppure includendoli direttamente nell'assegnamento iniziale:
 
 =begin programlisting
 
@@ -593,9 +582,9 @@ You can even set default parameters with this approach:
     {
         my %parameters =
         (
-            B<< flavor    => 'Vanilla', >>
-            B<< topping   => 'fudge', >>
-            B<< sprinkles => 100, >>
+            B<< aroma    => 'Vaniglia', >>
+            B<< glassa   => 'cioccolato', >>
+            B<< praline  => 100, >>
             @_,
         );
         ...
@@ -603,31 +592,26 @@ You can even set default parameters with this approach:
 
 =end programlisting
 
-... as subsequent declarations of the same key with a different value will
-overwrite the previous values.
+... dato che le successive dichiarazioni della stessa chiave con un diverso valore
+sovrascrivono i valori precedenti.
 
-=head2 Locking Hashes
+=head2 Bloccare gli Hash
 
 Z<locked_hashes>
 
 X<hashes; locked>
 
-One drawback of hashes is that their keys are barewords which offer little typo
-protection (especially compared to the function and variable name protection
-offered by the C<strict> pragma).  The core module C<Hash::Util> provides
-mechanisms to restrict the modification of a hash or the keys allowed in the
-hash.
+Dato che le chiavi di hash sono delle bareword, offrono poca protezione contro gli errori di scrittura rispetto alla
+protezione offerta dalla pragma C<strict> sui nomi di funczione e di variabile. Il
+poco conosciuto modulo core C<Hash::Util> fornisce dei meccanismi per migliorare la situazione.
 
-To prevent someone from accidentally adding a hash key you did not intend
-(presumably with a typo or with data from untrusted input), use the
-C<lock_keys()> function to restrict the hash to its current set of keys.  Any
-attempt to add a key/value pair to the hash where the key is not in the allowed
-set of keys will raise an exception.
+Per revenire l'inserimento accidentale di una chiave di hash indesiderata
+(a causa di una svista o di input utente inaffidabile), usate la funzione C<lock_keys()>
+per congelare l'hash al suo insieme corrente di chiavi. Ogni tentativo di aggiungere una
+nuova chiave all'hash solleverà un'eccezione. Questa è ovviamente una sicurezza debole, adatta solo a
+prevenire errori accidentali; chiunque può usare la funzione C<unlock_keys()> per rimuovere
+questa protezione.
 
-Of course, anyone who needs to do so can always use the C<unlock_keys()>
-function to remove the protection, so do not rely on this as a security measure
-against misuse from other programmers.
-
-Similarly you can lock or unlock the existing value for a given key in the hash
-(C<lock_value()> and C<unlock_value()>) and make or unmake the entire hash
-read-only with C<lock_hash()> and C<unlock_hash()>.
+In modo simile potete bloccare o sbloccare il valore corrente di una data chiave dell'hash
+(C<lock_value()> e C<unlock_value()>) e impostare o rilasciare il modo read-only per l'intero hash
+con C<lock_hash()> e C<unlock_hash()>.
