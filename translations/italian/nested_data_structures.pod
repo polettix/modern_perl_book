@@ -1,64 +1,62 @@
-=head1 Nested Data Structures
+=head1 Strutture Dati Nidificate
 
 Z<nested_data_structures>
 X<data structures>
 X<nested data structures>
 
-Perl's aggregate data types--arrays and hashes--allow you to store scalars
-indexed by integers or string keys.  Perl 5's references (L<references>) allow
-you to access aggregate data types indirectly, through special scalars.  Nested
-data structures in Perl, such as an array of arrays or a hash of hashes, are
-possible through the use of references.
+I dati aggregati del Perl--array e hash--vi permettono di memorizzare scalari e
+indicizzarli per numero o per chiave. I riferimenti Perl 5 (L<references>) vi permettono
+di accedere ai tipi di dati aggregati attraverso speciali variabili scalari. Le strutture dati
+nidificate del Perl, come un array di array o un hash di hash, sono
+rese possibili dall'uso dei riferimenti.
 
-=head2 Declaring Nested Data Structures
+=head2 Dichiarazione di Strutture Dati Nidificate
 
-A simple declaration of an array of arrays might be:
+Per dichiarare una struttura dati nidificata, usate la sintassi della dichiarazione di riferimenti anonimi:
 
 =begin programlisting
 
-    my @famous_triplets = (
-        [qw( eenie miney moe )],
-        [qw( huey dewey louie )],
-        [qw( duck duck goose )],
+    my @famous_triplets =
+    (
+        [qw( eenie miney moe   )],
+        [qw( huey  dewey louie )],
+        [qw( duck  duck  goose )],
+    );
+
+    my %meals =
+    (
+        colazione => { piatto   => 'uova',
+                       contorno => 'patatine' },
+        pranzo    => { piatto   => 'panini',
+                       contorno => 'mela'         },
+        cena      => { piatto   => 'bistecca',
+                       contorno => 'insalata di avocado' },
     );
 
 =end programlisting
 
-... and a simple declaration of a hash of hashes might be:
+=begin tip Commas are Free
 
-=begin programlisting
+Perl permette, ma non richiede, la virgola finale come modo per facilitare l'aggiunta di nuovi
+elementi alla lista.
 
-    my %meals = (
-        breakfast => { entree => 'eggs',   side => 'hash browns' },
-        lunch     => { entree => 'panini', side => 'apple' },
-        dinner    => { entree => 'steak',  side => 'avocado salad' },
-    );
+=end tip
 
-=end programlisting
+=head2 Accesso a Strutture Dati Nidificate
 
-=begin sidebar
-
-Perl allows but does not require the trailing comma so as to ease adding new
-elements to the list.
-
-=end sidebar
-
-=head2 Accessing Nested Data Structures
-
-Accessing elements in nested data structures uses Perl's reference syntax.  The
-sigil denotes the amount of data to retrieve, and the dereferencing arrow
-indicates that the value of one portion of the data structure is a reference:
+Usate la sintassi dei riferimenti Perl per accedere agli elementi delle strutture dati nidificate. Il
+sigillo denota la quntità di dati da estrarre e la freccia di dereferenziazione
+indica che il valore di una porzione della struttura dati è un riferimento:
 
 =begin programlisting
 
     my $last_nephew = $famous_triplets[1]->[2];
-    my $breaky_side = $meals{breakfast}->{side};
+    my $breaky_side = $meals{colazione}->{contorno};
 
 =end programlisting
 
-In the case of a nested data structure, the only way to nest a data structure
-is through references, thus the arrow is superfluous.  This code is equivalent
-and clearer:
+L'unico modo di nidificare una struttura dati multi-livello è attraverso i riferimenti, quindi la freccia
+è superflua. Potete ometterla per chiarezza:
 
 =begin programlisting
 
@@ -67,16 +65,15 @@ and clearer:
 
 =end programlisting
 
-=begin sidebar
+=begin tip Save Your Arrows for Functions
 
-You can avoid the arrow in every case except invoking a function reference
-stored in a nested data structure, where the arrow invocation syntax is the
-clearest mechanism of invocation.
+La sintassi con la freccia è più chiara solo nel caso in cui vogliate invocare un riferimento a
+funzione memorizzato in una struttura dati nidificata.
 
-=end sidebar
+=end tip
 
-Accessing components of nested data structures as if they were first-class
-arrays or hashes requires disambiguation blocks:
+Usate dei blocchi di disambiguazione per accedere ai componenti delle strutture dati nidificate come se fossero
+array o hash di first-class:
 
 =begin programlisting
 
@@ -85,53 +82,68 @@ arrays or hashes requires disambiguation blocks:
 
 =end programlisting
 
-Similarly, slicing a nested data structure requires additional punctuation:
+... o per le slice di strutture dati nidificate:
 
 =begin programlisting
 
-    my ($entree, $side) = @{ $meals{breakfast} }{qw( entree side )};
+    my ($entree, $side) = @{ $meals{colazione} }
+                           {qw( piatto contorno )};
 
 =end programlisting
 
-The use of whitespace helps, but it does not entirely eliminate the noise of
-this construct.  Sometimes using temporary variables can clarify:
+La spaziatura può aiutare, ma non elimina completamente la difficoltà di leggere questo costrutto.
+Per essere più chiari, usate delle variabili temporanee:
 
 =begin programlisting
 
-    my $breakfast_ref   = $meals{breakfast};
-    my ($entree, $side) = @$breakfast_ref{qw( entree side )};
+    my $meal_ref        = $meals{colazione};
+    my ($entree, $side) = @$meal_ref{qw( piatto contorno )};
 
 =end programlisting
 
-C<perldoc perldsc>, the data structures cookbook, gives copious examples of how
-to use the various types of data structures available in Perl.
+X<aliasing>
 
-=head2 Autovivification
+... oppure sfruttare l'aliasing implicito a C<$_> del ciclo C<for> per evitare l'uso di un riferimento
+intermedio:
+
+=begin programlisting
+
+    my ($entree, $side) = @{ $_ }{qw( piatto contorno )}
+                          for $meals{colazione};
+
+=end programlisting
+
+... tenendo sempre a mente l'importanza di essere chiari.
+
+C<perldoc perldsc>, il cookbook sulle strutture dati, fornisce numerosi esempi di uso di varie
+strutture dati in Perl.
+
+=head2 Autovivificazione
 
 Z<autovivification>
 X<autovivification>
 
-Perl's expressivity extends to nested data structures.  When you attempt to
-write to a component of a nested data structure, Perl will create the path
-through the data structure to that piece if it does not exist:
+L'espressività del Perl si applica anche alle strutture dati nidificate. Quando tentate di scrivere
+dentro un componente di una struttura dati nidificata, Perl creerà il cammino
+necessario nella struttura dati fino alla destinazione:
 
 =begin programlisting
 
     my @aoaoaoa;
-    $aoaoaoa[0][0][0][0] = 'nested deeply';
+    $aoaoaoa[0][0][0][0] = 'profondamente nidificato';
 
 =end programlisting
 
-After the second line of code, this array of arrays of arrays of arrays
-contains an array reference in an array reference in an array reference in an
-array reference.  Each array reference contains one element.  Similarly,
-treating an undefined value as if it were a hash reference in a nested data
-structure will create intermediary hashes, keyed appropriately:
+Dopo la seconda linea di codice, questo array di array di array di array
+contiene un riferimento ad array in un riferimento ad array in un riferimento ad array in un 
+riferimento ad array. Ogni riferimento ad array contiene un elemento. Analogamente, trattare
+un valore non definito come se fosse un riferimento ad hash in una struttura dati nidificata
+creerà gli hash intermedi:
 
 =begin programlisting
 
     my %hohoh;
-    $hohoh{Robot}{Santa}{Claus} = 'mostly harmful';
+    $hohoh{Robot}{Santa}{Claus} = 'molto pericoloso';
 
 =end programlisting
 
@@ -139,49 +151,40 @@ X<autovivification>
 X<C<autovivification> pragma>
 X<pragmas; C<autovivification>>
 
-This behavior is I<autovivification>, and it's more often useful than it isn't.
-Its benefit is in reducing the initialization code of nested data structures.
-Its drawback is in its inability to distinguish between the honest intent to
-create missing elements in nested data structures and typos.
+Questo utile processo è detto I<autovivificazione>. Anche se riduce il codice
+di inizializzazione delle strutture dati nidificate, non distingue tra un
+vero intento di creare elementi mancanti e gli
+errori di battitura. La pragma C<autovivification> di CPAN (L<pragmas>) vi permette di disabilitare
+l'autovivificazione in uno scope lessicale per specifici tipi di operazioni.
 
-The C<autovivification> pragma on the CPAN (L<pragmas>) lets you disable
-autovivification in a lexical scope for specific types of operations; it's
-worth your time to consider this in large projects, or projects with multiple
-developers.
+Potreste vedere una contraddizione nell'idea di sfruttare
+l'autovivificazione attivando al contempo controlli come C<strict>. È un problema di bilanciamento.
+È più conveniente catturare gli errori che fanno cambiare il comportamento del vostro programma
+al costo di disabilitare i controlli su alcuni riferimenti simbolici ben identificati?
+È più conveniente permettere alle strutture dati di crescere piuttosto che dover
+specificare la loro dimensione e le chiavi permesse?
 
-=begin sidebar
+Le risposte dipendono dal vostro progetto. All'inizio dello sviluppo, concedetevi la libertà
+di sperimentare. Quando arrivate al test e alla distribuzione, considerate di incrementare
+le restrizioni per evitare effetti collaterali indesiderati. Grazie allo scope lessicale delle
+pragma C<strict> e C<autovivification>, potete abilitarle dove
+e quando lo ritenete necessario.
 
-You can also check for the existence of specific hash keys and the number of
-elements in arrays before dereferencing each level of a complex data structure,
-but that can produce tedious, lengthy code which many programmers prefer to
-avoid.
+Naturalmente I<potreste> verificare le vostre aspettative prima di dereferenziare ogni livello di una
+struttura dati complessa, ma il codice risultante sarebbe lungo e tedioso.
+La cosa migliore è di evitare strutture dati nidificate troppo profondamente rivedendo il
+vostro modello dei dati e migliorarne l'incapsulamento.
 
-=end sidebar
+=head2 Debugging di Strutture Dati Nidificate
 
-You may wonder at the contradiction between taking advantage of
-autovivification while enabling C<strict>ures.  The question is one of balance.
-is it more convenient to catch errors which change the behavior of your program
-at the expense of disabling those error checks for a few well-encapsulated
-symbolic references?  Is it more convenient to allow data structures to grow
-rather than specifying their size and allowed keys?
-
-The answer to the latter question depends on your specific project.  When
-initially developing, you can allow yourself the freedom to experiment.  When
-testing and deploying, you may want to increase strictness to prevent unwanted
-side effects.  Thanks to the lexical scoping of the C<strict> and
-C<autovivification> pragmas, you can enable and disable these behaviors as
-necessary.
-
-=head2 Debugging Nested Data Structures
-
-The complexity of Perl 5's dereferencing syntax combined with the potential for
-confusion with multiple levels of references can make debugging nested data
-structures difficult.  Two good options exist for visualizing them.
+La complessità della sintassi di dereferenziazione di Perl 5 combinata con la potenziale confusione
+dovuta a molti livelli di indirezione possono rendere difficile il debugging delle
+strutture dati nidificate. Fortunatamente esistono due validi strumenti di visualizzazione.
 
 X<C<Data::Dumper>>
 
-The core module C<Data::Dumper> can stringify values of arbitrary complexity
-into Perl 5 code:
+Il modulo core C<Data::Dumper> converte valori di complessità arbitraria in
+stringhe di codice Perl 5:
 
 =begin programlisting
 
@@ -191,17 +194,16 @@ into Perl 5 code:
 
 =end programlisting
 
-This is useful for identifying what a data structure contains, what you should
-access, and what you accessed instead.  C<Data::Dumper> can dump objects as
-well as function references (if you set C<$Data::Dumper::Deparse> to a true
-value).
+Può essere utile per vedere che cosa contiene una struttura dati, a che cosa volevate
+accedere e a che cosa avete invece acceduto. C<Data::Dumper> può fare il dump di oggetti e anche
+di riferimenti a funzione (se settate C<$Data::Dumper::Deparse> al valore vero).
 
-While C<Data::Dumper> is a core module and prints Perl 5 code, it also produces
-verbose output.  Some developers prefer the use of the C<YAML::XS> or C<JSON>
-modules for debugging.  You have to learn a different format to understand
-their outputs, but their outputs can be much clearer to read and to understand.
+Anche se C<Data::Dumper> è un modulo core e stampa codice Perl 5, il suo output è
+verboso. Alcuni sviluppatori preferiscono usare i moduli C<YAML::XS> o C<JSON>
+per il debugging. Questi moduli non producono codice Perl 5, ma i loro output possono essere molto
+più chiari da leggere e capire.
 
-=head2 Circular References
+=head2 Riferimenti Circolari
 
 Z<circular_references>
 
@@ -209,71 +211,64 @@ X<circular references>
 X<memory management; circular references>
 X<garbage collection>
 
-Perl 5's memory management system of reference counting (L<reference_counts>)
-has one drawback apparent to user code.  Two references which end up pointing
-to each other form a I<circular reference> that Perl cannot destroy on its own.
-Consider a biological model, where each entity has two parents and can have
+Il sistema di gestione della memoria di Perl 5 ha un problema con il reference counting (L<reference_counts>)
+che diventa visibile al livello del codice utente. Due riferimenti che finiscono indirettamente per puntare l'uno
+all'altro formano un I<riferimento circolare> che Perl non può neutralizzare automaticamente.
+Considerate un modello biologico, dove ogni entità ha due genitori e zero o più figli:
 children:
 
 =begin programlisting
 
-    my $alice  = { mother => '',     father => '',      children => [] };
-    my $robert = { mother => '',     father => '',      children => [] };
-    my $cianne = { mother => $alice, father => $robert, children => [] };
+    my $alice  = { madre => '',     padre => ''      };
+    my $robert = { madre => '',     padre => ''      };
+    my $cianne = { madre => $alice, padre => $robert };
 
-    push @{ $alice->{children}  }, $cianne;
-    push @{ $robert->{children} }, $cianne;
+    push @{ $alice->{figli}  }, $cianne;
+    push @{ $robert->{figli} }, $cianne;
 
 =end programlisting
 
-Because both C<$alice> and C<$robert> contain an array reference which contains
-C<$cianne>, and because C<$cianne> is a hash reference which contains C<$alice>
-and C<$robert>, Perl can never decrease the reference count of any of these
-three people to zero.  It doesn't recognize that these circular references
-exist, and it can't manage the lifespan of these entities.
+Sia C<$alice> che C<$robert> contengono un riferimento ad array che contiene
+C<$cianne>. Dato che C<$cianne> è un riferimento a un hash che contiene sia C<$alice> che
+C<$robert>, Perl non decrementerà mai il reference count di queste tre persone
+a zero. Non riconosce l'esistenza di questi riferimenti circolari e
+non può gestire la durata della vita di queste entità.
 
 X<references; weak>
 X<weak references>
 X<C<Scalar::Util>>
 
-You must either break the reference count manually yourself (by clearing the
-children of C<$alice> and C<$robert> or the parents of C<$cianne>), or take
-advantage of a feature called I<weak references>.  A weak reference is a
-reference which does not increase the reference count of its referent.  Weak
-references are available through the core module C<Scalar::Util>.  Export the
-C<weaken()> function and use it on a reference to prevent the reference count
-from increasing:
+Potete spezzare il circolo manualmente (resettando i figli di
+C<$alice> e C<$robert> o i genitori di C<$cianne>), oppure usare i I<riferimenti
+deboli>. Un riferimento debole è un riferimento che non incrementa il
+reference count del suo referente. I riferimenti deboli sono resi disponibili dal
+modulo core C<Scalar::Util>. La funzione C<weaken()> previene l'incremento di un reference count:
 
 =begin programlisting
 
     use Scalar::Util 'weaken';
 
-    my $alice  = { mother => '',     father => '',      children => [] };
-    my $robert = { mother => '',     father => '',      children => [] };
-    my $cianne = { mother => $alice, father => $robert, children => [] };
+    my $alice  = { madre => '',     padre => ''      };
+    my $robert = { madre => '',     padre => ''      };
+    my $cianne = { madre => $alice, padre => $robert };
 
-    push @{ $alice->{children}  }, $cianne;
-    push @{ $robert->{children} }, $cianne;
+    push @{ $alice->{figli}  }, $cianne;
+    push @{ $robert->{figli} }, $cianne;
 
-    B<< weaken( $cianne->{mother} ); >>
-    B<< weaken( $cianne->{father} ); >>
+    B<< weaken( $cianne->{madre} ); >>
+    B<< weaken( $cianne->{padre} ); >>
 
 =end programlisting
 
-With this accomplished, C<$cianne> will retain references to C<$alice> and
-C<$robert>, but those references will not by themselves prevent Perl's garbage
-collector from destroying those data structures.  You rarely have to use weak
-references if you design your data structures correctly, but they're useful in
-a few situations.
+In questo modo C<$cianne> mantiene i suoi riferimenti ad C<$alice> e C<$robert>, ma tali
+riferimenti non prevengono il garbage collector del Perl dal distruggere
+tali strutture dati. Molte strutture dati non necessitano dei riferimenti
+deboli, ma quando sono necessari hanno un valore inestimabile.
 
-=head2 Alternatives to Nested Data Structures
+=head2 Alternative alle Strutture Dati Nidificate
 
-While Perl is content to process data structures nested as deeply as you can
-imagine, the human cost of understanding these data structures as well as the
-relationship of various pieces, not to mention the syntax required to access
-various portions, can be high.  Beyond two or three levels of nesting, consider
-whether modeling various components of your system with classes and objects
-(L<moose>) will allow for a clearer representation of your data.
-
-Sometimes bundling data with behaviors appropriate to that data can clarify
-code.
+Anche se il Perl è ben contento di processare strutture dati nidificate a qualunque profondità possiate
+immaginare, il costo di comprendere queste strutture dati e le loro relazioni per un lettore
+umano è alto--per non dire nulla della complessità della sintassi. Oltre i due o
+tre livelli di nidificazione, considerate se modellare i diversi componenti del vostro sistema
+con classi e oggetti (L<moose>) non potrebbe rendere più chiaro il vostro codice.
