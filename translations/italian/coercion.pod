@@ -1,51 +1,48 @@
-=head1 Coercion
+=head1 Coercizione
 
 Z<coercion>
-X<coercion>
-
-Unlike other languages, where a variable can hold only a particular type of
-value (a string, a floating-point number, an object), Perl relies on the
-context of operators to determine how to interpret values (L<value_contexts>).
-If you treat a number as a string, Perl will do its best to convert that number
-into a string (and vice versa).  This process is I<coercion>.
 
 X<DWIM>
 X<dwimmery>
+X<coercion>
 
-By design, Perl attempts to do what you meanN<Called I<DWIM> for I<do what I
-mean> or I<dwimmery>.>, though you must be specific about your intentions.
+Una variabile Perl può contenere diversi tipi di valori in momenti diversi--stringhe,
+interi, numeri razionali, ecc.. Anzichè associare dell'informazione di tipo alle
+variabili, Perl sfrutta il contesto fornito dagli operatori (L<value_contexts>)
+per decidere come deve interpretare i loro valori. Per scelta di progetto, Perl tenta di fare quello che
+intendeteN<Abbreviato come I<DWIM>, che sta per I<do what I mean> (fai quello che intendo), o I<dwimmery>.>, quindi dovete essere
+sufficientemente specifici sulle vostre intenzioni. Se trattate una variabile che contiene
+un numero come se fosse una stringa, Perl farà del suo meglio per forzare quel numero a 
+una stringa con una I<coercizione>.
 
-=head2 Boolean Coercion
+=head2 Coercizione Booleana
 
 Z<boolean_coercion>
 X<coercion; boolean>
 X<truthiness>
 
-Boolean coercion occurs when you test the I<truthiness> of a valueN<Truthiness
-is like truthfulness if you squint and say "Yeah, that's true, but....">, such
-as in a C<if> or C<while> condition.  Numeric 0 is false.  The undefined value
-is false.  The empty string is false, and so is the string C<'0'>.  Strings
-which may be I<numerically> equal to zero (such as C<'0.0'>, C<'0e'>, and C<'0
-but true'>) but which are I<not> C<'0'> are I<true>.
+La coercizione booleana ha luogo quando testate la I<verità> di un valore, per esempio nella
+condizione di un C<if> o di un C<while>. Il numero 0, C<undef>, la stringa vuota e la stringa
+C<'0'> valutano tutti a falso. Tutti gli altri valori--incluse le stringhe
+che sarebbero I<numericamente> uguali a zero come C<'0.0'>, C<'0e'> e C<'0 ma
+vero'>--valutano a vero.
 
-All other values are true, including the idiomatic string C<'0 but true'>.  In
-the case of a scalar with both string and numeric portions (L<dualvars>), Perl
-5 prefers to check the string component for boolean truth.  C<'0 but true'>
-does evaluate to zero numerically, but is not the empty string, so it evaluates
-to true in boolean context.
+Qaundo uno scalare ha I<sia> una componente stringa che una componente numerica (L<dualvars>), Perl 5
+preferisce testare la verità booleana della componente stringa. C<'0 ma vero'>
+valuta a zero come numero, ma non è una stringa vuota, quindi in contesto booleano
+valuta a vero.
 
-=head2 String Coercion
+=head2 Coercizione a Stringa
 
 X<coercion; string>
 X<stringification>
 
-String coercion occurs when using string operators such as comparisons (C<eq>
-and C<cmp>, for example), concatenation, C<split>, C<substr>, and regular
-expressions.  It also occurs when using a value as a hash key.  The undefined
-value stringifies to an empty string, but it produces a "use of uninitialized
-value" warning.  Numbers I<stringify> to strings containing their values.  That
-is, the value C<10> stringifies to the string C<10>, such that you can C<split>
-a number into individual digits:
+La coercizione a stringa ha luogo quando usate degli operatori stringa come il confronto (C<eq>
+e C<cmp>), la concatenazione, C<split>, C<substr> e le espressioni regolari, e quando
+usate un valore come chiave di hash. Il valore C<undef> diventa la
+stringa vuota e produce un warning di "use of uninitialized value" ("uso di valore non inizializzato").
+I numberi diventano stringhe contenenti i loro valori, per esempio il valore C<10>
+diventa la stringa C<'10'>. Potete fare lo C<split> di un numero in singole cifre con:
 
 =begin programlisting
 
@@ -53,83 +50,79 @@ a number into individual digits:
 
 =end programlisting
 
-=head2 Numeric Coercion
+=head2 Coercizione Numerica
 
 Z<numeric_coercion>
 X<coercion; numeric>
 X<numification>
 
-Numeric coercion occurs when using numeric comparison operators (such as C<==>
-and C<< <=> >>), when performing mathematic operations, and when using a value
-as an array or list index.  The undefined value I<numifies> to zero, though it
-produces a "Use of uninitialized value" warning.  Strings which do not begin
-with numeric portions also numify to zero, and they produce an "Argument isn't
-numeric" warning.  Strings which begin with characters allowed in numeric
-literals numify to those values; that is, C<10 leptons leaping> numifies to
-C<10> the same way that C<6.022e23 moles marauding> numifies to C<6.022e23>.
+La coercizione numerica ha luogo quando usate operatori di confronto numerico (come C<==>
+e C<< <=> >>), quando effettuate operazioni matematiche e quando usate un valore
+come indice di un array o di una lista. Il valore C<undef> diventa il numero zero e produce
+un warning di "Use of uninitialized value". Anche le stringhe che non iniziano con una parte numerica
+diventano il numero zero e producono un warning di "Argument isn't numeric" ("L'argomento non è numerico").
+Le stringhe che iniziano con caratteri permessi nei letterali numerici diventano dei numeri
+corrispondenti a tali caratteri e non producono warning; per esempio C<10 leptoni leaping> diventa
+C<10> e C<6.022e23 talpe marauding> diventa C<6.022e23>.
 
 X<Scalar::Util>
 X<Scalar::Util; looks_like_number>
 
-The core module C<Scalar::Util> contains a C<looks_like_number()> function
-which uses the same parsing rules as the Perl 5 grammar to extract a number
-from a string.
+Il modulo core C<Scalar::Util> contiene una funzione C<looks_like_number()>
+che usa le stesse regole di parsing della grammatica del Perl 5 per estrarre un numero
+da una stringa.
 
-=begin sidebar
+=begin tip Mathematicians Rejoice
 
-The strings C<Inf> and C<Infinity> represent the infinite value and behave as
-numbers, in the sense that numifying them does not produce the "Argument isn't
-numeric" warning.  The string C<NaN> represents the concept "not a number".
-Unless you're a mathematician, you may not care.
+Le stringhe C<Inf> e C<Infinity> rappresentano il valore infinito e si comportano come
+numeri. La stringa C<NaN> rappresenta il concetto "not a number" ("non è un numero"). In contesto
+numerico non danno luogo al warning "Argument isn't numeric".
 
-=end sidebar
+=end tip
 
-=head2 Reference Coercion
+=head2 Coercizione di Riferimento
 
 X<coercion; reference>
 X<autovivification>
 
-In certain circumstances, treating a value as a reference turns that value
-I<into> a reference.  This process of autovivification (L<autovivification>)
-can be useful for nested data structures.  It occurs when you use a
-dereferencing operation on a non-reference:
+Usare un'operazione di dereferenza su un valore che non sia un riferimento trasforma quel valore I<in> un
+riferimento. Questo processo di autovivificazione (L<autovivification>) è utile quando manipolate
+strutture dati nidificate (L<nested_data_structures>):
 
 =begin programlisting
 
     my %users;
 
-    $users{Bradley}{id} = 228;
-    $users{Jack}{id}    = 229;
+    $users{Brad}{id} = 228;
+    $users{Jack}{id} = 229;
 
 =end programlisting
 
-Although the hash never contained values for C<Bradley> and C<Jack>, Perl 5
-helpfully created hash references for those values, then assigned them each a
-key/value pair keyed on C<id>.
+Anche se l'hash non conteneva valori per C<Brad> e C<Jack>, Perl
+si è preso il disturbo di creare dei riferimenti ad hash in queste chiavi e di assegnare una coppia chiave/valore
+con chiave C<id> a ciascuno di essi.
 
-=head2 Cached Coercions
+=head2 Cache di Coercizioni
 
 Z<cached_coercions>
 
 X<coercion; cached>
 
-Perl 5's internal representation of values stores both a string value and a
-numeric valueN<This is a simplification, but the gory details are truly gory.>.
-Stringifying a numeric value does not replace the numeric value with a string.
-Instead, it I<attaches> a stringified value to the value in addition to the
-numeric value.  The same sort of operation happens when numifying a string
-value.
+La rappresentazione interna dei valori in Perl 5 memorizza sia un valore stringa che un valore
+numerico. La coercizione di un valore numerico a stringa non I<rimpiazza> il valore numerico.
+Invece, I<attacca> un nuovo valore stringa, in modo che la rappresentazione
+contiene I<entrambi> i componenti. Analogamente, la coercizione di una stringa a numero popola la
+componente numerica lasciando la componente stringa inalterata.
 
-You almost never need to know that this happens--perhaps once or twice a
-decade, if anecdotal evidence is admissible.
+Certe operazioni del Perl preferiscono usare una componente di un valoro piuttosto
+che l'altra--per esempio, i test booleani preferiscono la stringa. Se un valore ha fatto il cache
+di una rappresentazione in una forma che non vi aspettate, affidarvi a una conversione implicita
+può dare delle sorprese. Non avrete quasi mai la necessità di esplicitare che cosa vi aspettate
+N<Il vostro autore ricorda di averlo dovuto fare solo due volte in oltre dieci anni di programmazione in
+Perl 5>, ma sapere che questo caching ha luogo potrebbe aiutarvi una volta o l'altra a
+fare la diagnosi di qualche strana situazione.
 
-Perl 5 may prefer one form over another.  If a value has a cached
-representation in a form you do not expect, relying on an implicit conversion
-may produce surprising results.  You almost never need to be explicit about
-what you expect, but know that caching does occur and you may be able to
-diagnose an odd situation when it occurs.
-
-=head2 Dualvars
+=head2 Dualvar
 
 Z<dualvars>
 
@@ -138,19 +131,18 @@ X<C<dualvar()>>
 X<C<Scalar::Util>>
 X<dualvars>
 
-The caching of string and numeric values allows for the use of a
-rare-but-useful feature known as a I<dualvar>, or a value that has divergent
-numeric and string values.  The core module C<Scalar::Util> provides a function
-C<dualvar()> which allows you to create a value which has specified and
-divergent numeric and string values:
+La natura multi-componente dei valori Perl è disponibile agli utenti in forma di
+I<dualvar>. Il modulo core C<Scalar::Util> fornisce una funzione C<dualvar()>
+che vi permette di bypassare la coercizione del Perl e manipolare separatamente le componenti stringa e numerica
+di un valore:
 
 =begin programlisting
 
     use Scalar::Util 'dualvar';
     my $false_name = dualvar 0, 'Sparkles & Blue';
 
-    say 'Boolean true!'  if        !! $false_name;
-    say 'Numeric false!' unless  0  + $false_name;
-    say 'String true!'   if     ''  . $false_name;
+    say 'Vero come booleano!'  if      !! $false_name;
+    say 'Falso come numero!'   unless  0  + $false_name;
+    say 'Vero come stringa!'   if     ''  . $false_name;
 
 =end programlisting
