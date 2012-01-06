@@ -26,10 +26,10 @@ stringa dataN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
 
 =begin programlisting
 
-    my $uncle = "Bob\n";
-    say "'$uncle'";
-    chomp $uncle;
-    say "'$uncle'";
+    my $zio = "Roberto\n";
+    say "'$zio'";
+    chomp $zio;
+    say "'$zio'";
 
 =end programlisting
 
@@ -126,8 +126,8 @@ X<builtins; C<map>>
 
 =begin programlisting
 
-    my @squares = map { B<$_> * B<$_> } 1 .. 10;
-    say for @squares;
+    my @quadrati = map { B<$_> * B<$_> } 1 .. 10;
+    say for @quadrati;
 
 =end programlisting
 
@@ -138,7 +138,7 @@ X<builtins; C<grep>>
 =begin programlisting
 
     say 'Colazione!'
-        if grep { /fette biscottate/ } @pantry;
+        if grep { /fette biscottate/ } @dispensa;
 
 =end programlisting
 
@@ -158,14 +158,14 @@ per evitare queste interferenze:
         chomp;
 
         # ESEMPIO SBAGLIATO
-        my $munged = calculate_value( $_ );
+        my $scombinato = calcola_valore( $_ );
         say "Valore originale: $_";
-        say "Valore scombinato: $munged";
+        say "Valore scombinato: $scombinato";
     }
 
 =end programlisting
 
-Se C<calculate_value()> o qualche altra funzione modifica C<$_>, tale modifica persiste
+Se C<calcola_valore()> o qualche altra funzione modifica C<$_>, tale modifica persiste
 per l'intera iterazione del ciclo. Aggiungendo una dichiarazione C<my> evita di
 sporcare un'altra istanza di C<$_>:
 
@@ -182,7 +182,7 @@ Naturalmente, usare un'altra variabile lessicale può essere altrettanto chiaro:
 
 =begin programlisting
 
-    while (my $line = <STDIN>)
+    while (my $linea = <STDIN>)
     {
         ...
     }
@@ -212,20 +212,20 @@ X<default variables; C<@_>>
 X<variables; C<@_>>
 X<C<@_>>
 
-Perl fornisce anche due variabili array implicite. Anzitutto, Perl passa gli argumenti alle
+Perl fornisce anche due variabili array implicite. Anzitutto, Perl passa gli argomenti alle
 funzioni (L<functions>) in un array di nome C<@_>. Le operazioni di manipolazione di array
 (L<arrays>) all'interno delle funzioni per default lavorano su questo array, per cui i due seguenti
-pezzetti di codice sono equivalenti:
+frammenti di codice sono equivalenti:
 
 =begin programlisting
 
-    sub foo
+    sub pippo
     {
         my $arg = shift;
         ...
     }
 
-    sub foo_explicit_args
+    sub pippo_con_argomenti_espliciti
     {
         my $arg = shift @_;
         ...

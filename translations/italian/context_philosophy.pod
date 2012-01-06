@@ -39,7 +39,7 @@ In Perl, il numero di elementi che vi aspettate determina quanti ne otterrete.
 X<void context>
 X<contxt; void>
 
-Supponete di avere una funzione (L<functions>) con nome C<find_chores()> che ordina
+Supponete di avere una funzione (L<functions>) con nome C<cerca_faccende()> che ordina
 la vostra lista di faccende di casa da sbrigare in base alla loro priorità. Il modo in cui chiamate
 questa funzione determina cosa essa produrrà. Potreste non avere tempo di occuparvi di nulla, e in questo caso
 chiamare la funzione è solo un tentativo di mostrarvi occupati.
@@ -51,7 +51,7 @@ viene fatta nel I<contesto void>:
 
 =begin programlisting
 
-    find_chores();
+    cerca_faccende();
 
 =end programlisting
 
@@ -63,7 +63,7 @@ in I<contesto scalare>:
 
 =begin programlisting
 
-    my $single_result = find_chores();
+    my $risultato_singolo = cerca_faccende();
 
 =end programlisting
 
@@ -75,19 +75,19 @@ lista, o lo utilizzate in una lista, la funzione viene valutata in I<contesto li
 
 =begin programlisting
 
-    my @all_results             = find_chores();
-    my ($single_element, @rest) = find_chores();
-    process_list_of_results( find_chores() );
+    my @tutti_i_risultati          = cerca_faccende();
+    my ($elemento_singolo, @altri) = cerca_faccende();
+    processa_lista_di_risultati( cerca_faccende() );
 
 =end programlisting
 
 Le parentesi nella seconda linea dell'esempio precedente raggruppano le due
 dichiarazioni di variabli (L<lexical_scope>), e l'assegnamento si comporta come vi aspettate.
-Se si volesse ignorare C<@rest>, potreste scrivere:
+Se si volesse ignorare C<@altri>, potreste scrivere:
 
 =begin programlisting
 
-    my B<(>$single_elementB<)>   = find_chores();
+    my B<(>$elemento_singoloB<)>   = cerca_faccende();
 
 =end programlisting
 
@@ -97,30 +97,30 @@ Tutto questo non è forse così ovvio, ma ora che lo sapete, la differenza di co
 
 =begin programlisting
 
-    my $scalar_context = find_chores();
-    my B<(>$list_contextB<)> = find_chores();
+    my $contesto_scalare = cerca_faccende();
+    my B<(>$contesto_listaB<)> = cerca_faccende();
 
 =end programlisting
 
 Valutare una funzione o una espressionein contesto lista--eccetto che negli assegnamenti--può
 creare qualche confusione. Le liste propagano il contesto lista alle espressioni che
-contengono, quindi entrambe queste chiamate a C<find_chores()> sono valutate in contesto lista:
+contengono, quindi entrambe queste chiamate a C<cerca_faccende()> sono valutate in contesto lista:
 
 =begin programlisting
 
-    process_list_of_results( find_chores() );
+    processa_lista_di_risultati( cerca_faccende() );
 
-    my %results =
+    my %risultati =
     (
-        cheap_operation     => $cheap_results,
-        expensive_operation => find_chores(), # OOPS!
+        operazione_poco_costosa => $risultati_poco_costosi,
+        oprazione_costosa       => cerca_faccende(), # OPS!
     );
 
 =end programlisting
 
 Quest'ultimo esempio sorprende spesso i programmatori principianti che si aspettano un contesto scalare
 per la chiamata di funzione. Invece, inizializzare un hash (L<hashes>) con una lista di valori
-impone un contesto lista alla chiamata a C<find_chores>.
+impone un contesto lista alla chiamata a C<cerca_faccende>.
 
 X<builtins; C<scalar>>
 
@@ -128,17 +128,17 @@ Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 
 =begin programlisting
 
-    my %results =
+    my %risultati =
     (
-        cheap_operation     => $cheap_results,
-        expensive_operation => B<scalar> find_chores(),
+        operazione_poco_costosa => $risultati_poco_costosi,
+        operazione_costosa      => B<scalar> cerca_faccende(),
     );
 
 =end programlisting
 
 Che effetto ha il contesto di chiamata di una funzione? Una funzione context-aware può esaminare il contesto in cui è stata chiamata
 e decidere di conseguenza quanto lavoro deve fare per restituire il risultato.
-In contesto void, C<find_chores()> potrebbe non fare assolutamente nulla. In contesto scalare, deve trovare soltanto il compito più importante. 
+In contesto void, C<cerca_faccende()> potrebbe non fare assolutamente nulla. In contesto scalare, deve trovare soltanto il compito più importante. 
 In contesto lista, deve ordinare e restituire l'intera lista di faccende da sbrigare.
 
 =head2 Contesti Numerico, Stringa e Booleano
@@ -163,7 +163,7 @@ L'operatore C<eq> determina se le due stringhe contengono la stessa informazione
 
 =begin programlisting
 
-    say "Errore catastrofico di crittografia!" if $alice eq $bob;
+    say "Errore catastrofico di crittografia!" if $alice eq $roberto;
 
 =end programlisting
 
@@ -173,7 +173,7 @@ ma confrontandole sono risultate uguali:
 =begin programlisting
 
     my $alice = 'alice';
-    say "Errore catastrofico di crittografia!" if $alice == 'Bob';
+    say "Errore catastrofico di crittografia!" if $alice == 'Roberto';
 
 =end programlisting
 
@@ -202,9 +202,9 @@ Per forzare un contesto boolean, usate due volte l'operatore di negazione:
 
 =begin programlisting
 
-    my $numeric_x =  0 + $x;  # forza il contesto numerico
-    my $stringy_x = '' . $x;  # forza il contesto stringa
-    my $boolean_x =    !!$x;  # forza il contesto booleano
+    my $x_numerico =  0 + $x;  # forza il contesto numerico
+    my $x_stringa  = '' . $x;  # forza il contesto stringa
+    my $x_booleano =    !!$x;  # forza il contesto booleano
 
 =end programlisting
 

@@ -64,7 +64,7 @@ Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di
 
 =begin programlisting
 
-    my @tripled = map { $_ * 3 } @numbers;
+    my @triplicati = map { $_ * 3 } @numeri;
 
 =end programlisting
 
@@ -72,11 +72,11 @@ Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di
 
 =begin programlisting
 
-    my @tripled;
+    my @triplicati;
 
-    for my $num (@numbers)
+    for my $num (@numeri)
     {
-        push @tripled, $num * 3;
+        push @triplicati, $num * 3;
     }
 
 =end programlisting
@@ -85,12 +85,12 @@ Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di
 
 =begin programlisting
 
-    my @tripled;
-    my $count = @numbers;
+    my @triplicati;
+    my $cont = @numeri;
 
-    for (my $i = 0; $i < $count; $i++)
+    for (my $i = 0; $i < $cont; $i++)
     {
-        $tripled[$i] = $numbers[$i] * 3;
+        $triplicati[$i] = $numeri[$i] * 3;
     }
 
 =end programlisting
