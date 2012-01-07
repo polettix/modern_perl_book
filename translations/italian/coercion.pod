@@ -46,7 +46,7 @@ diventa la stringa C<'10'>. Potete fare lo C<split> di un numero in singole cifr
 
 =begin programlisting
 
-    my @digits = split '', 1234567890;
+    my @cifre = split '', 1234567890;
 
 =end programlisting
 
@@ -62,8 +62,8 @@ come indice di un array o di una lista. Il valore C<undef> diventa il numero zer
 un warning di "Use of uninitialized value". Anche le stringhe che non iniziano con una parte numerica
 diventano il numero zero e producono un warning di "Argument isn't numeric" ("L'argomento non è numerico").
 Le stringhe che iniziano con caratteri permessi nei letterali numerici diventano dei numeri
-corrispondenti a tali caratteri e non producono warning; per esempio C<10 leptoni leaping> diventa
-C<10> e C<6.022e23 talpe marauding> diventa C<6.022e23>.
+corrispondenti a tali caratteri e non producono warning; per esempio C<10 salti di leptoni> diventa
+C<10> e C<6.022e23 scorrerie di talpe> diventa C<6.022e23>.
 
 X<Scalar::Util>
 X<Scalar::Util; looks_like_number>
@@ -91,14 +91,14 @@ strutture dati nidificate (L<nested_data_structures>):
 
 =begin programlisting
 
-    my %users;
+    my %utenti;
 
-    $users{Brad}{id} = 228;
-    $users{Jack}{id} = 229;
+    $utenti{Paolo}{id} = 228;
+    $utenti{Giacomo}{id} = 229;
 
 =end programlisting
 
-Anche se l'hash non conteneva valori per C<Brad> e C<Jack>, Perl
+Anche se l'hash non conteneva valori per C<Paolo> e C<Giacomo>, Perl
 si è preso il disturbo di creare dei riferimenti ad hash in queste chiavi e di assegnare una coppia chiave/valore
 con chiave C<id> a ciascuno di essi.
 
@@ -139,10 +139,10 @@ di un valore:
 =begin programlisting
 
     use Scalar::Util 'dualvar';
-    my $false_name = dualvar 0, 'Sparkles & Blue';
+    my $nome_falso = dualvar 0, 'Gioie & Dolori';
 
-    say 'Vero come booleano!'  if      !! $false_name;
-    say 'Falso come numero!'   unless  0  + $false_name;
-    say 'Vero come stringa!'   if     ''  . $false_name;
+    say 'Vero come booleano!'  if      !! $nome_falso;
+    say 'Falso come numero!'   unless  0  + $nome_falso;
+    say 'Vero come stringa!'   if      ''  . $nome_falso;
 
 =end programlisting

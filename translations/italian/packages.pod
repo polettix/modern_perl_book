@@ -19,22 +19,22 @@ La funzione nativa C<package> dichiara un package e un namespace:
 
 =begin programlisting
 
-    package MyCode;
+    package MioCodice;
 
-    our @boxes;
+    our @scatole;
 
-    sub add_box { ... }
+    sub aggiungi_scatola { ... }
 
 =end programlisting
 
 X<namespaces; fully qualified>
 
 Tutte le variabili e funzioni globali che dichiarate o a cui fate riferimento dopo la dichiarazione del package
-si riferiscono a simboli del namespace C<MyCode>. Potete riferirvi
-alla variabile C<@boxes> dal namespace C<main> solo col suo nome I<fully
-qualified> C<@MyCode::boxes>. Un nome fully qualified include un
-nome completo di package, quindi potete chiamare la funzione C<add_box()> soltanto con
-C<MyCode::add_box()>.
+si riferiscono a simboli del namespace C<MioCodice>. Potete riferirvi
+alla variabile C<@scatole> dal namespace C<main> solo col suo nome I<fully
+qualified> C<@MioCodice::scatole>. Un nome fully qualified include un
+nome completo di package, quindi potete chiamare la funzione C<aggiungi_scatola()> soltanto con
+C<MioCodice::aggiungi_scatola()>.
 
 X<scope; packages>
 
@@ -45,7 +45,7 @@ dichiarazione:
 
 =begin programlisting
 
-    package Pinball::Wizard
+    package Giochi::Flipper
     {
         our $VERSION = 1969;
     }
@@ -76,7 +76,7 @@ da punti:
 
 =begin programlisting
 
-    package MyCode v1.2.1;
+    package MioCodice v1.2.1;
 
 =end programlisting
 
@@ -84,7 +84,7 @@ In Perl 5.14, la forma opzionale a blocco di una dichiarazione di C<package> è:
 
 =begin programlisting
 
-    package Pinball::Wizard v1969.3.7
+    package Giochi::Flipper v1969.3.7
     {
         ...
     }
@@ -95,7 +95,7 @@ Nella versione 5.10 e precedenti, il modo più semplice per dichiarare la versio
 
 =begin programlisting
 
-    package MyCode;
+    package MioCodice;
 
     our $VERSION = 1.21;
 
@@ -110,7 +110,7 @@ metodo restituisce il valore di C<$VERSION>:
 
 =begin programlisting
 
-    my $version = Some::Plugin->VERSION();
+    my $versione = Qualche::Plugin->VERSION();
 
 =end programlisting
 
@@ -120,7 +120,7 @@ un'eccezione a meno che la versione del modulo sia uguale o successiva all'argom
 =begin programlisting
 
     # richiesta almeno versione 2.1
-    Some::Plugin->VERSION( 2.1 );
+    Qualche::Plugin->VERSION( 2.1 );
 
     die "Il tuo plugin $version è troppo vecchio"
         unless $version > 2;
@@ -143,19 +143,19 @@ in qualunque punto, sia con una dichiarazione di package:
 
 =begin programlisting
 
-    package Pack
+    package Pacco
     {
-        sub first_sub { ... }
+        sub prima_sub { ... }
     }
 
-    Pack::first_sub();
+    Pacco::prima_sub();
 
-    package Pack
+    package Pacco
     {
-        sub second_sub { ... }
+        sub seconda_sub { ... }
     }
 
-    Pack::second_sub();
+    Pacco::seconda_sub();
 
 =end programlisting
 
@@ -167,7 +167,7 @@ in qualunque punto, sia con una dichiarazione di package:
     # implicito
     package main;
 
-    sub Pack::third_sub { ... }
+    sub Pacco::terza_sub { ... }
 
 =end programlisting
 
@@ -185,13 +185,13 @@ viene semplificata l'organizzazione del codice su disco. Per esempio:
 
 =over 4
 
-=item * C<StrangeMonkey> è il nome di un progetto
+=item * C<StranaBestia> è il nome di un progetto
 
-=item * C<StrangeMonkey::UI> contiene codice top-level dell'interfaccia utente
+=item * C<StranaBestia::UI> contiene codice top-level dell'interfaccia utente
 
-=item * C<StrangeMonkey::Persistence> contiene codice top-level del codice di gestione dei dati
+=item * C<StranaBestia::Persistenza> contiene codice top-level del codice di gestione dei dati
 
-=item * C<StrangeMonkey::Test> contiene codice top-level per il testing del progetto
+=item * C<StranaBestia::Test> contiene codice top-level per il testing del progetto
 
 =back
 

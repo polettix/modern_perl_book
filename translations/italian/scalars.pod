@@ -29,11 +29,11 @@ cast speciali, e il tipo del valore memorizzato in una variabile può cambiare:
 
 =begin programlisting
 
-    my $value;
-    $value = 123.456;
-    $value = 77;
-    $value = "Sono l'alluce di Chuck.";
-    $value = Store::IceCream->new();
+    my $valore;
+    $valore = 123.456;
+    $valore = 77;
+    $valore = "Sono l'alluce di Max.";
+    $valore = Negozio::Gelato->new();
 
 =end programlisting
 
@@ -46,8 +46,8 @@ esplicitamente una stringa:
 
 =begin programlisting
 
-    my $zip_code       = 97006;
-    my $city_state_zip = 'Beaverton, Oregon' . ' ' . $zip_code;
+    my $codice_postale = 10100;
+    my $citta_regione_cap = 'Torino, Piemonte' . ' ' . $codice_postale;
 
 =end programlisting
 
@@ -55,16 +55,16 @@ Potete anche applicare operazioni matematiche a delle stringhe:
 
 =begin programlisting
 
-    my $call_sign = 'KBMIU';
+    my $codice_radio = 'KBMIU';
 
-    # aggiorna sign e restituisci il nuovo valore
-    my $next_sign = ++$call_sign;
+    # aggiorna codice e restituisci il nuovo valore
+    my $prossimo_codice = ++$codice_radio;
 
-    # restituisci il vecchio valore, e I<quindi> aggiorna sign
-    my $curr_sign = $call_sign++;
+    # restituisci il vecchio valore, e I<quindi> aggiorna il codice
+    my $codice_attuale = $codice_radio++;
 
     # così I<non funziona>:
-    my $new_sign  = $call_sign + 1;
+    my $nuovo_codice  = $codice_radio + 1;
 
 =end programlisting
 
@@ -73,7 +73,7 @@ X<increment; string>
 =begin tip One-Way Increment Magic
 
 Questo magico incremento di stringa non ha un corrispondente
-decremento. Non potete ottenere il valore stringa precedente scrivendo C<$call_sign-->.
+decremento. Non potete ottenere il valore stringa precedente scrivendo C<$codice_radio-->.
 
 =end tip
 
@@ -91,14 +91,14 @@ modifica il riferimento, ma non potete riottenerlo dai loro risultati:
 
 =begin programlisting
 
-    my $authors     = [qw( Pratchett Vinge Conway )];
-    my $stringy_ref = '' . $authors;
-    my $numeric_ref =  0 + $authors;
+    my $autori                   = [qw( Pratchett Vinge Conway )];
+    my $riferimento_come_stringa = '' . $autori;
+    my $riferimento_come_numero  =  0 + $autori;
 
 =end programlisting
 
-C<$authors> è ancora un riferimento valido, ma C<$stringy_ref> è una stringa
-che non ha connessioni con il riferimento e C<$numeric_ref> è un numero che
+C<$autori> è ancora un riferimento valido, ma C<$riferimento_come_stringa> è una stringa
+che non ha connessioni con il riferimento e C<$riferimento_come_numero> è un numero che
 non ha connessioni con il riferimento.
 
 X<C<Scalar::Util>>

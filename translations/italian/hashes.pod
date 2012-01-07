@@ -26,11 +26,11 @@ Gli hash usano il sigillo C<%>. Dichiarate un hash lessicale con:
 
 =begin programlisting
 
-    my %favorite_flavors;
+    my %gusti_preferiti;
 
 =end programlisting
 
-Un hash appena dichiarato è vuoto. Potreste anche scrivere C<my %favorite_flavors = ();>, ma
+Un hash appena dichiarato è vuoto. Potreste anche scrivere C<my %gusti_preferiti = ();>, ma
 sarebbe superfluo.
 
 X<C<$>; sigil>
@@ -41,9 +41,9 @@ C<{ }> per specificare la chiave:
 
 =begin programlisting
 
-    my %favorite_flavors;
-    $favorite_flavors{Gabi}    = 'Cioccolato';
-    $favorite_flavors{Annette} = 'Vaniglia';
+    my %gusti_preferiti;
+    $gusti_preferiti{Gabri} = 'Cioccolato';
+    $gusti_preferiti{Anna}  = 'Vaniglia';
 
 =end programlisting
 
@@ -51,9 +51,9 @@ C<{ }> per specificare la chiave:
 
 =begin programlisting
 
-    my %favorite_flavors = (
-        'Gabi',    'Cioccolato',
-        'Annette', 'Vaniglia',
+    my %gusti_preferiti = (
+        'Gabri', 'Cioccolato',
+        'Anna',  'Vaniglia',
     );
 
 =end programlisting
@@ -67,9 +67,9 @@ per associare chiavi e valori, poichè rende più esplicite tali associazioni:
 
 =begin programlisting
 
-    my %favorite_flavors = (
-        Gabi    B<< => >> 'Menta e cioccolato',
-        Annette B<< => >> 'Vaniglia',
+    my %gusti_preferiti = (
+        Gabri B<< => >> 'Menta e cioccolato',
+        Anna  B<< => >> 'Vaniglia',
     );
 
 =end programlisting
@@ -83,7 +83,7 @@ dell'hash, l'operatore fat comma I<non> chiamerà la funzione:
 
     sub nome { 'Leonardo' }
 
-    my %address =
+    my %indirizzo =
     (
         nome => 'Via Fibonacci 1123',
     );
@@ -95,7 +95,7 @@ dovete farlo esplicitamente:
 
 =begin programlisting
 
-    my %address =
+    my %indirizzo =
     (
         B<nome()> => 'Via Fibonacci 1123',
     );
@@ -114,7 +114,7 @@ Per svuotare un hash, assegnategli la lista vuotaN<Potreste vedere occasionalmen
 
 =begin programlisting
 
-    %favorite_flavors = ();
+    %gusti_preferiti = ();
 
 =end programlisting
 
@@ -127,11 +127,11 @@ accesso I<per chiave>) per estrarre un valore da un hash:
 
 =begin programlisting
 
-    my $address = $addresses{$name};
+    my $indirizzo = $indirizzi{$nome};
 
 =end programlisting
 
-In questo esempio, C<$name> contiene una stringa che è anche una chiave dell'hash.
+In questo esempio, C<$nome> contiene una stringa che è anche una chiave dell'hash.
 Come per l'accesso a un singolo elemento di un array, il sigillo dell'hash
 è cambiato da C<%> a C<$> per indicare l'accesso per chiave a un valore scalare.
 
@@ -141,13 +141,13 @@ automaticamente seguendo le stesse regole del fat comma:
 =begin programlisting
 
     # quotato automaticamente
-    my $address = $addresses{Victor};
+    my $indirizzo = $indirizzi{Vittorio};
 
     # quotatura necessaria; non è una bareword valida
-    my $address = $addresses{B<'>Sue-LinnB<'>};
+    my $indirizzo = $indirizzi{B<'>Maria LuisaB<'>};
 
     # una chiamata di funzione deve essere disambiguata
-    my $address = $addresses{get_nameB<()>};
+    my $indirizzo = $indirizzi{dammi_un_nomeB<()>};
 
 =end programlisting
 
@@ -163,15 +163,15 @@ Anche le funzioni native del Perl 5 sono soggette alla quotatura automatica:
 
 =begin programlisting
 
-    my %addresses =
+    my %indirizzi =
     (
         Leonardo => 'Via Fibonacci 1123',
         Utako    => 'Hotel Cantor, Stanza 1',
     );
 
-    sub get_address_from_name
+    sub da_nome_a_indirizzo
     {
-        return $addresses{B<+>shift};
+        return $indirizzi{B<+>shift};
     }
 
 =end programlisting
@@ -183,13 +183,13 @@ espressione arbitraria--non solo una chiamata di funzione--come chiave di un has
 =begin programlisting
 
     # non I<fatelo> davvero, per favore
-    my $address = $addresses{reverse 'odranoeL'};
+    my $indirizzo = $indirizzi{reverse 'odranoeL'};
 
     # l'interpolazione funziona
-    my $address = $addresses{"$first_name $last_name"};
+    my $indirizzo = $indirizzi{"$nome $cognome"};
 
     # e anche le chiamate di metodi
-    my $address = $addresses{ $user->name() };
+    my $indirizzo = $indirizzi{ $utente->nome() };
 
 =end programlisting
 
@@ -200,12 +200,12 @@ la versione stringa dell'oggetto anzichè l'oggetto stesso:
 
 =begin programlisting
 
-    for my $isbn (@isbns)
+    for my $isbn (@lista_isbn)
     {
-        my $book = Book->fetch_by_isbn( $isbn );
+        my $libro = Libro->per_isbn( $isbn );
 
         # difficile che sia quello che volevate fare
-        $books{$book} = $book->price;
+        $libri{$libro} = $libro->prezzo;
     }
 
 =end programlisting
@@ -220,16 +220,16 @@ contiene una data chiave:
 
 =begin programlisting
 
-    my %addresses =
+    my %indirizzi =
     (
         Leonardo => 'Via Fibonacci 1123',
         Utako    => 'Hotel Cantor, Stanza 1',
     );
 
     say "Ho l'indirizzo di Leonardo"
-        if exists $addresses{Leonardo};
-    say "Ho l'indirizzo di Warnie"
-        if exists $addresses{Warnie};
+        if exists $indirizzi{Leonardo};
+    say "Ho l'indirizzo di Galileo"
+        if exists $indirizzi{Galileo};
 
 =end programlisting
 
@@ -239,8 +239,8 @@ potrebbe esistere e avere un valore anche se tale valore corrisponde a falso in 
 
 =begin programlisting
 
-    my  %false_key_value = ( 0 => '' );
-    ok( %false_key_value,
+    my  %valore_chiave_falso = ( 0 => '' );
+    ok( %valore_chiave_falso,
          'un hash che contiene falso sia come chiave che come valore
           dovrebbe valutare a vero' );
 
@@ -255,11 +255,11 @@ Se una chiave di hash esiste, il suo valore potrebbe essere C<undef>. Potete con
 
 =begin programlisting
 
-    $addresses{Leibniz} = undef;
+    $indirizzi{Leibniz} = undef;
 
-    say "Gottfried vive a $addresses{Leibniz}"
-        if exists  $addresses{Leibniz}
-        && defined $addresses{Leibniz};
+    say "Gottfried vive a $indirizzi{Leibniz}"
+        if exists  $indirizzi{Leibniz}
+        && defined $indirizzi{Leibniz};
 
 =end programlisting
 
@@ -274,9 +274,9 @@ sulle coppie chiave/valore. L'operatore C<keys> produce una lista di chiavi di u
 
 =begin programlisting
 
-    for my $addressee (keys %addresses)
+    for my $destinatario (keys %indirizzi)
     {
-        say "Trovato l'indirizzo di $addressee!";
+        say "Trovato l'indirizzo di $destinatario!";
     }
 
 =end programlisting
@@ -288,9 +288,9 @@ L'operatore C<values> produce una lista di valori di un hash:
 
 =begin programlisting
 
-    for my $address (values %addresses)
+    for my $indirizzo (values %indirizzi)
     {
-        say "Qualcuno vive in $address";
+        say "Qualcuno vive in $indirizzo";
     }
 
 =end programlisting
@@ -302,9 +302,9 @@ L'operatore C<each> produce una lista di liste di due elementi contenenti una ch
 
 =begin programlisting
 
-    while (my ($addressee, $address) = each %addresses)
+    while (my ($destinatario, $indirizzo) = each %indirizzi)
     {
-        say "$addressee vive in $address";
+        say "$destinatario vive in $indirizzo";
     }
 
 =end programlisting
@@ -329,9 +329,9 @@ C<values> in contesto void:
 =begin programlisting
 
     # resetta l'iteratore dell'hash
-    keys %addresses;
+    keys %indirizzo;
 
-    while (my ($addressee, $address) = each %addresses)
+    while (my ($destinatario, $indirizzo) = each %indirizzi)
     {
         ...
     }
@@ -348,8 +348,8 @@ operazione. Per inizializzare diversi elementi di un hash in una sola istruzione
 
 =begin programlisting
 
-    # %cats contiene già altri elementi
-    @cats{qw( Jack Brad Mars Grumpy )} = (1) x 4;
+    # %gatti contiene già altri elementi
+    @gatti{qw( Jack Brad Mars Grumpy )} = (1) x 4;
 
 =end programlisting
 
@@ -357,8 +357,8 @@ Questo codice è equivalente all'inizializzazione:
 
 =begin programlisting
 
-    my %cats = map { $_ => 1 }
-               qw( Jack Brad Mars Grumpy );
+    my %gatti = map { $_ => 1 }
+                qw( Jack Brad Mars Grumpy );
 
 =end programlisting
 
@@ -375,7 +375,7 @@ presenza di un hash:
 
 =begin programlisting
 
-    my @buyer_addresses = @addresses{ @buyers };
+    my @indirizzi_compratori = @indirizzi{ @compratori };
 
 =end programlisting
 
@@ -383,15 +383,15 @@ Le slice di hash rendono facile anche fondere due hash insieme:
 
 =begin programlisting
 
-    my %addresses        = ( ... );
-    my %canada_addresses = ( ... );
+    my %indirizzi          = ( ... );
+    my %indirizzi_canadesi = ( ... );
 
-    @addresses{ keys   %canada_addresses }
-              = values %canada_addresses;
+    @indirizzi{ keys   %indirizzi_canadesi }
+              = values %indirizzi_canadesi;
 
 =end programlisting
 
-Questo codice è equivalente a ciclare manualmente sui contenuti di C<%canada_addresses>,
+Questo codice è equivalente a ciclare manualmente sui contenuti di C<%indirizzi_canadesi>,
 ma è molto più compatto.
 
 Che cosa succede se la stessa chiave compare in entrambi gli hash? L'uso di uno slice di hash I<sovrascrive>
@@ -409,16 +409,16 @@ avessero valore falso in contesto booleano.
 
     use Test::More;
 
-    my %empty;
-    ok( ! %empty, 'un hash vuoto dovrebbe avere valore falso' );
+    my %vuoto;
+    ok( ! %vuoto, 'un hash vuoto dovrebbe avere valore falso' );
 
-    my %false_key = ( 0 => 'valore vero' );
-    ok( %false_key, 'un hash contenente falso come chiave
-                     dovrebbe avere valore vero' );
+    my %chiave_falsa = ( 0 => 'valore vero' );
+    ok( %chiave_falsa, 'un hash contenente falso come chiave
+                        dovrebbe avere valore vero' );
 
-    my %false_value = ( 'chiave vera' => 0 );
-    ok( %false_value, 'un hash contenente falso come valore
-                       dovrebbe avere valore vero' );
+    my %valore_falso = ( 'chiave vera' => 0 );
+    ok( %valore_falso, 'un hash contenente falso come valore
+                        dovrebbe avere valore vero' );
 
     done_testing();
 
@@ -436,7 +436,7 @@ il ciclo non terminerebbe mai:
 =begin programlisting
 
     # ciclo infinito per hash non vuoti
-    while (my ($key, $value) = %hash)
+    while (my ($chiave, $valore) = %hash)
     {
         ...
     }
@@ -466,9 +466,9 @@ distinti di una lista:
 
 =begin programlisting
 
-    my %uniq;
-    undef @uniq{ @items };
-    my @uniques = keys %uniq;
+    my %unic;
+    undef @unic{ @elementi };
+    my @unici = keys %unic;
 
 =end programlisting
 
@@ -481,12 +481,12 @@ Gli hash sono utili anche per contare degli elementi, come gli indirizzi IP in u
 
 =begin programlisting
 
-    my %ip_addresses;
+    my %indirizzi_ip;
 
-    while (my $line = <$logfile>)
+    while (my $linea = <$file_di_log>)
     {
-        my ($ip, $resource) = analyze_line( $line );
-        $ip_addresses{$ip}++;
+        my ($ip, $risorsa) = analizza_linea( $linea );
+        $indirizzi_ip{$ip}++;
         ...
     }
 
@@ -507,13 +507,13 @@ costosa con un piccolo overhead:
 =begin programlisting
 
     {
-        my %user_cache;
+        my %cache_utenti;
 
-        sub fetch_user
+        sub restituisci_utente
         {
             my $id = shift;
-            $user_cache{$id} //= create_user($id);
-            return $user_cache{$id};
+            $cache_utenti{$id} //= crea_utente($id);
+            return $cache_utenti{$id};
         }
     }
 
@@ -524,12 +524,12 @@ X<C<//>; infix operator>
 X<operators; C<//>>
 X<operators; defined-or>
 
-Questa I<manovra orcish>N<Or-cache, se vi piacciono i pun.> restituisce il valore dell'hash,
+Questa I<manovra orcish>N<NdT: manovra da orchi; in Inglese è un gioco di parole con Or-cache.> restituisce il valore dell'hash,
 se esso esiste. Altrimenti calcola, mette in cache e restituisce il
 valore. L'operatore di assegnamento defined-or (C<//=>) valuta il suo operando di sinistra.
 Se tale operando non è definito, l'operatore gli assegna il valore del suo operando di destra.
 In altre parole, se non c'è un valore nell'hash per una data
-chiave, questa funzione chiama C<create_user()> passandole la chiave e poi aggiorna
+chiave, questa funzione chiama C<crea_utente()> passandole la chiave e poi aggiorna
 l'hash.
 
 Perl 5.10 ha introdotto gli operatori di defined-or e di assegnamento defined-or. Prima
@@ -548,14 +548,14 @@ argomenti passati per nome alla funzione:
 
 =begin programlisting
 
-    sub make_sundae
+    sub prepara_coppa
     {
-        my %parameters = @_;
+        my %parametri = @_;
         ...
     }
 
-    make_sundae( aroma  => 'Burst al Limone',
-                 glassa => 'biscotti macinati' );
+    prepara_coppa( gusto  => 'Limone',
+                   glassa => 'biscotti macinati' );
 
 =end programlisting
 
@@ -563,12 +563,12 @@ Questo approccio vi permette anche di settare dei valori di default, in questo m
 
 =begin programlisting
 
-    sub make_sundae
+    sub prepara_coppa
     {
-        my %parameters             = @_;
-        B<$parameters{aroma}   //= 'Vaniglia';>
-        B<$parameters{glassa}  //= 'cioccolato';>
-        B<$parameters{praline} //= 100;>
+        my %parametri           = @_;
+        B<$parametri{gusto}   //= 'Vaniglia';>
+        B<$parametri{glassa}  //= 'cioccolato';>
+        B<$parametri{praline} //= 100;>
         ...
     }
 
@@ -578,11 +578,11 @@ Questo approccio vi permette anche di settare dei valori di default, in questo m
 
 =begin programlisting
 
-    sub make_sundae
+    sub prepara_coppa
     {
-        my %parameters =
+        my %parametri =
         (
-            B<< aroma    => 'Vaniglia', >>
+            B<< gusto    => 'Vaniglia', >>
             B<< glassa   => 'cioccolato', >>
             B<< praline  => 100, >>
             @_,

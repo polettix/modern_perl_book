@@ -14,13 +14,13 @@ validi in Perl:
 
 =begin programlisting
 
-    my $name;
-    my @_private_names;
-    my %Names_to_Addresses;
+    my $nome;
+    my @_nomi_privati;
+    my %Da_Nomi_a_Indirizzi;
 
-    sub anAwkwardName3;
+    sub unNomeBuffo3;
 
-    # with use utf8; enabled
+    # con use utf8; attivata
     package Ingy::DE<ouml>t::Net;
 
 =end programlisting
@@ -29,11 +29,11 @@ Questi invece sono identificatori non validi:
 
 =begin programlisting
 
-    my $invalid name;
+    my $nome scorretto;
     my @3;
-    my %~flags;
+    my %~flag;
 
-    package a-lisp-style-name;
+    package un-nome-in-stile-lisp;
 
 =end programlisting
 
@@ -41,7 +41,7 @@ X<symbolic lookups>
 
 I<I nomi esistono principalmente a beneficio del programmatore>. Queste regole si applicano
 solo ai nomi che compaiono esplicitamente nel vostro codice sorgente, come C<sub
-fetch_pie> oppure C<my $waffleiron>. Infatti, è il parser del Perl a controllare che le regole sui
+prendi_torta> oppure C<my $tostapane>. Infatti, è il parser del Perl a controllare che le regole sui
 nomi siano rispettate.
 
 La natura dinamica del Perl vi permette anche di riferirvi a delle entità attraverso nomi generati a
@@ -70,7 +70,7 @@ Le I<variabili hash> (L<hashes>) usano il simbolo della percentuale (C<%>):
 
 =begin programlisting
 
-    my $scalar;
+    my $scalare;
     my @array;
     my %hash;
 
@@ -81,7 +81,7 @@ dichiarare più variabili con lo stesso nome e tipi diversi, ma crea confusione:
 
 =begin programlisting
 
-    my ($bad_name, @bad_name, %bad_name);
+    my ($cattiva_scelta, @cattiva_scelta, %cattiva_scelta);
 
 =end programlisting
 
@@ -96,11 +96,11 @@ singolo elemento di un array o di un hash, dovete usare il sigillo scalare (C<$>
 
 =begin programlisting
 
-    my $hash_element  = $hash{ $key };
-    my $array_element = $array[ $index ]
+    my $elemento_di_hash  = $hash{ $chiave };
+    my $elemento_di_array = $array[ $indice ]
 
-    $hash{ $key }     = 'value';
-    $array[ $index ]  = 'item';
+    $hash{ $chiave }   = 'valore';
+    $array[ $indice ]  = 'altro valore';
 
 =end programlisting
 
@@ -120,11 +120,11 @@ anche se la lista stessa ha zero o un solo elemento>:
 
 =begin programlisting
 
-    my @hash_elements  = @hash{ @keys };
-    my @array_elements = @array[ @indexes ];
+    my @elementi_di_hash  = @hash{ @chiavi };
+    my @elementi_di_array = @array[ @indici ];
 
     my %hash;
-    @hash{ @keys }     = @values;
+    @hash{ @chiavi }     = @valori;
 
 =end programlisting
 
@@ -141,13 +141,13 @@ X<namespaces>
 Perl fornisce un meccanismo per raggruppare funzioni e variabili correlate in un proprio
 spazio dei nomi univoco--i I<namespace> (L<packages>). Un namespace è una collezione di simboli
 con un suo nome. Perl permette di definire namespace multi-livello, i cui nomi sono composti
-con doppi due punti (C<::>); per esempio, C<Pasticceria::Gelato> si riferisce a una collezione di
+con doppi due punti (C<::>); per esempio, C<Dolci::Gelato> si riferisce a una collezione di
 variabili e funzioni logicamente correlate, come C<cono()> e C<versa_cioccolata_calda()>.
 
 All'interno di un namespace, potete usare dei nomi abbreviati per i suoi membri. Al di fuori del
 namespace, vi riferite invece a un membro usando il suo I<fully-qualified name>. Ovvero, all'interno di
-C<Pasticceria::Gelato>, C<aggiungi_praline()> si riferisce alla stessa funzione di
-C<Pasticceria::Gelato::aggiungi_praline()> al di fuori del namespace.
+C<Dolci::Gelato>, C<aggiungi_praline()> si riferisce alla stessa funzione di
+C<Dolci::Gelato::aggiungi_praline()> al di fuori del namespace.
 
 Oltre alle regole standard per i nomi, che si applicano anche ai nomi di package, per convenzione i nomi di package
 definiti dagli utenti iniziano con lettere maiuscole. Il core del Perl riserva infatti i nomi di package
@@ -155,9 +155,9 @@ tutti minuscoli per le pragma (L<pragmas>) come C<strict> e C<warnings>.
 Questa politica è imposta essenzialmente attraverso il rispetto delle linee guida della comunità.
 
 Tutti i namespace in Perl 5 sono visibili a livello globale. Quando Perl deve fare il lookup di un simbolo in
-C<Pasticceria::Gelato::Frigo>, inizia col cercare nella symbol table C<main::> un
-simbolo che rappresenti il namespace C<Pasticceria::>, quindi cerca al suo interno il namespace
-C<IceCream::>, e così via. Il C<Frigo::> è quindi visibile dall'esterno del namespace C<IceCream::>.
+C<Dolci::Gelato::Frigo>, inizia col cercare nella symbol table C<main::> un
+simbolo che rappresenti il namespace C<Dolci::>, quindi cerca al suo interno il namespace
+C<Gelato::>, e così via. Il C<Frigo::> è quindi visibile dall'esterno del namespace C<Gelato::>.
 Il fatto che i due namespace siano nidificati è solo un meccanismo di memorizzazione,
 e non ha alcuna implicazione su ulteriori relazioni tra package padre e figlio o tra package fratelli.
 Sta al programmatore usare questo meccanismo per rendere evidenti le relazioni I<logiche> tra entità--attraverso una buona scelta

@@ -16,14 +16,14 @@ Per dichiarare una struttura dati nidificata, usate la sintassi della dichiarazi
 
 =begin programlisting
 
-    my @famous_triplets =
+    my @terzetti_famosi =
     (
-        [qw( eenie miney moe   )],
-        [qw( huey  dewey louie )],
-        [qw( duck  duck  goose )],
+        [qw( emy ely evy   )],
+        [qw( qui quo qua )],
+        [qw( aldo giovanni giacomo )],
     );
 
-    my %meals =
+    my %pasti =
     (
         colazione => { piatto   => 'uova',
                        contorno => 'patatine' },
@@ -50,8 +50,8 @@ indica che il valore di una porzione della struttura dati è un riferimento:
 
 =begin programlisting
 
-    my $last_nephew = $famous_triplets[1]->[2];
-    my $breaky_side = $meals{colazione}->{contorno};
+    my $ultimo_nipote        = $terzetti_famosi[1]->[2];
+    my $parte_del_risveglio  = $pasti{colazione}->{contorno};
 
 =end programlisting
 
@@ -60,8 +60,8 @@ L'unico modo di nidificare una struttura dati multi-livello è attraverso i rife
 
 =begin programlisting
 
-    my $last_nephew = $famous_triplets[1][2];
-    my $breaky_side = $meals{breakfast}{side};
+    my $ultimo_nipote       = $terzetti_famosi[1][2];
+    my $parte_del_risveglio = $piatti{colezione}{contorno};
 
 =end programlisting
 
@@ -77,8 +77,8 @@ array o hash di first-class:
 
 =begin programlisting
 
-    my $nephew_count   = @{ $famous_triplets[1] };
-    my $dinner_courses = keys %{ $meals{dinner} };
+    my $conteggio_nipoti = @{ $terzetti_famosi[1] };
+    my $per_la_cena      = keys %{ $piatti{cena} };
 
 =end programlisting
 
@@ -86,8 +86,8 @@ array o hash di first-class:
 
 =begin programlisting
 
-    my ($entree, $side) = @{ $meals{colazione} }
-                           {qw( piatto contorno )};
+    my ($piatto, $contorno) = @{ $piatti{colazione} }
+                               {qw( piatto contorno )};
 
 =end programlisting
 
@@ -96,8 +96,8 @@ Per essere più chiari, usate delle variabili temporanee:
 
 =begin programlisting
 
-    my $meal_ref        = $meals{colazione};
-    my ($entree, $side) = @$meal_ref{qw( piatto contorno )};
+    my $rif_a_pasto         = $piatti{colazione};
+    my ($piatto, $contorno) = @$rif_a_pasto{qw( piatto contorno )};
 
 =end programlisting
 
@@ -108,8 +108,8 @@ intermedio:
 
 =begin programlisting
 
-    my ($entree, $side) = @{ $_ }{qw( piatto contorno )}
-                          for $meals{colazione};
+    my ($piatto, $contorno) = @{ $_ }{qw( piatto contorno )}
+                              for $pasti{colazione};
 
 =end programlisting
 
@@ -129,8 +129,8 @@ necessario nella struttura dati fino alla destinazione:
 
 =begin programlisting
 
-    my @aoaoaoa;
-    $aoaoaoa[0][0][0][0] = 'profondamente nidificato';
+    my @adadada;
+    $adadada[0][0][0][0] = 'profondamente nidificato';
 
 =end programlisting
 
@@ -142,8 +142,8 @@ creerà gli hash intermedi:
 
 =begin programlisting
 
-    my %hohoh;
-    $hohoh{Robot}{Santa}{Claus} = 'molto pericoloso';
+    my %hdhdh;
+    $hdhdh{Computer}{Disco}{Rigido} = 'molto pericoloso';
 
 =end programlisting
 
@@ -190,7 +190,7 @@ stringhe di codice Perl 5:
 
     use Data::Dumper;
 
-    print Dumper( $my_complex_structure );
+    print Dumper( $struttura_complessa );
 
 =end programlisting
 
@@ -219,18 +219,18 @@ children:
 
 =begin programlisting
 
-    my $alice  = { madre => '',     padre => ''      };
-    my $robert = { madre => '',     padre => ''      };
-    my $cianne = { madre => $alice, padre => $robert };
+    my $alice   = { madre => '',     padre => ''      };
+    my $roberto = { madre => '',     padre => ''      };
+    my $carla   = { madre => $alice, padre => $roberto };
 
-    push @{ $alice->{figli}  }, $cianne;
-    push @{ $robert->{figli} }, $cianne;
+    push @{ $alice->{figli}  }, $carla;
+    push @{ $roberto->{figli} }, $carla;
 
 =end programlisting
 
-Sia C<$alice> che C<$robert> contengono un riferimento ad array che contiene
-C<$cianne>. Dato che C<$cianne> è un riferimento a un hash che contiene sia C<$alice> che
-C<$robert>, Perl non decrementerà mai il reference count di queste tre persone
+Sia C<$alice> che C<$roberto> contengono un riferimento ad array che contiene
+C<$carla>. Dato che C<$carla> è un riferimento a un hash che contiene sia C<$alice> che
+C<$roberto>, Perl non decrementerà mai il reference count di queste tre persone
 a zero. Non riconosce l'esistenza di questi riferimenti circolari e
 non può gestire la durata della vita di queste entità.
 
@@ -239,7 +239,7 @@ X<weak references>
 X<C<Scalar::Util>>
 
 Potete spezzare il circolo manualmente (resettando i figli di
-C<$alice> e C<$robert> o i genitori di C<$cianne>), oppure usare i I<riferimenti
+C<$alice> e C<$roberto> o i genitori di C<$carla>), oppure usare i I<riferimenti
 deboli>. Un riferimento debole è un riferimento che non incrementa il
 reference count del suo referente. I riferimenti deboli sono resi disponibili dal
 modulo core C<Scalar::Util>. La funzione C<weaken()> previene l'incremento di un reference count:
@@ -248,21 +248,21 @@ modulo core C<Scalar::Util>. La funzione C<weaken()> previene l'incremento di un
 
     use Scalar::Util 'weaken';
 
-    my $alice  = { madre => '',     padre => ''      };
-    my $robert = { madre => '',     padre => ''      };
-    my $cianne = { madre => $alice, padre => $robert };
+    my $alice   = { madre => '',     padre => ''      };
+    my $roberto = { madre => '',     padre => ''      };
+    my $carla   = { madre => $alice, padre => $roberto };
 
-    push @{ $alice->{figli}  }, $cianne;
-    push @{ $robert->{figli} }, $cianne;
+    push @{ $alice->{figli}  }, $carla;
+    push @{ $roberto->{figli} }, $carla;
 
-    B<< weaken( $cianne->{madre} ); >>
-    B<< weaken( $cianne->{padre} ); >>
+    B<< weaken( $carla->{madre} ); >>
+    B<< weaken( $carla->{padre} ); >>
 
 =end programlisting
 
-In questo modo C<$cianne> mantiene i suoi riferimenti ad C<$alice> e C<$robert>, ma tali
+In questo modo C<$carla> mantiene i suoi riferimenti ad C<$alice> e C<$roberto>, ma tali
 riferimenti non prevengono il garbage collector del Perl dal distruggere
-tali strutture dati. Molte strutture dati non necessitano dei riferimenti
+le relative strutture dati. Molte strutture dati non necessitano dei riferimenti
 deboli, ma quando sono necessari hanno un valore inestimabile.
 
 =head2 Alternative alle Strutture Dati Nidificate

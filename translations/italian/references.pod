@@ -7,21 +7,21 @@ ciò che accade quando passate dei valori a una funzione:
 
 =begin programlisting
 
-    sub reverse_greeting
+    sub saluto_rovesciato
     {
-        my $name = reverse shift;
-        return "Ciao, $name!";
+        my $nome = reverse shift;
+        return "Ciao, $nome!";
     }
 
-    my $name = 'Chuck';
-    say reverse_greeting( $name );
-    say $name;
+    my $nome = 'Max';
+    say saluto_rovesciato( $nome );
+    say $nome;
 
 =end programlisting
 
-Al di fuori della funzione, C<$name> contiene C<Chuck>, anche se il valore
-passato alla funzione viene invertito in C<kcuhC>. Probabilmente è quello che vi
-aspettavate. Il valore di C<$name> al di fuori della funzione è separato dal C<$name>
+Al di fuori della funzione, C<$nome> contiene C<Max>, anche se il valore
+passato alla funzione viene invertito in C<xaM>. Probabilmente è quello che vi
+aspettavate. Il valore di C<$nome> al di fuori della funzione è separato dal C<$nome>
 dentro alla funzione. Modificarne uno non ha effetti sull'altro.
 
 Considerate l'alternativa. Se doveste fare delle copie di ogni valore prima che
@@ -55,8 +55,8 @@ riferimenti. Per ottenere un riferimento a C<$name>:
 
 =begin programlisting
 
-    my $name     = 'Larry';
-    my $name_ref = B<\>$name;
+    my $nome       = 'Larry';
+    my $rif_a_nome = B<\>$nome;
 
 =end programlisting
 
@@ -69,15 +69,15 @@ indirezione:
 
 =begin programlisting
 
-    sub reverse_in_place
+    sub inverti_sul_posto
     {
-        my $name_ref = shift;
-        B<$$name_ref>   = reverse B<$$name_ref>;
+        my $rif_a_nome = shift;
+        B<$$rif_a_nome>   = reverse B<$$rif_a_nome>;
     }
 
-    my $name = 'Blabby';
-    reverse_in_place( B<\>$name );
-    say $name;
+    my $nome = 'Chiacchierone';
+    reverse_in_place( B<\>$nome );
+    say $nome;
 
 =end programlisting
 
@@ -90,18 +90,18 @@ Nell'array C<@_>, i parametri si comportano come I<alias> alle variabili del chi
 
 =begin programlisting
 
-    sub reverse_value_in_place
+    sub inverti_sul_posto
     {
         $_[0] = reverse $_[0];
     }
 
-    my $name = 'allizocohC';
-    reverse_value_in_place( $name );
+    my $nome = 'ollirdoccoC';
+    inverti_sul_posto( $name );
     say $name;
 
 =end programlisting
 
-Normalmente, non desidarete modificare dei valori in questo modo--e i chiamanti raramente se lo aspettano.
+Normalmente, non desiderate modificare dei valori in questo modo--e i chiamanti raramente se lo aspettano.
 Assegnando i parametri a dei lessicali nelle vostre funzioni evita questo rischio.
 
 =begin tip Saving Memory with References
@@ -118,10 +118,10 @@ dell'espressione. Potete sempre usare questa sintassi, anche se non sempre rende
 
 =begin programlisting
 
-    sub reverse_in_place
+    sub inverti_sul_posto
     {
-        my $name_ref   = shift;
-        B<${ $name_ref }> = reverse B<${ $name_ref }>;
+        my $rif_a_nome   = shift;
+        B<${ $rif_a_nome }> = reverse B<${ $rif_a_nome }>;
     }
 
 =end programlisting
@@ -166,19 +166,19 @@ Usate l'operatore di riferimento per creare un riferimento ad un array dichiarat
 
 =begin programlisting
 
-    my @cards     = qw( K Q J 10 9 8 7 6 5 4 3 2 A );
-    my $cards_ref = B<\>@cards;
+    my @carte       = qw( K Q J 10 9 8 7 6 5 4 3 2 A );
+    my $rif_a_carte = B<\>@carte;
 
 =end programlisting
 
-Ogni modifica fatta attraverso C<$cards_ref> modificherà C<@cards> e viceversa.
+Ogni modifica fatta attraverso C<$rif_a_carte> modificherà C<@carte> e viceversa.
 Potete accedere all'intero array con il sigillo C<@>, sia per
 appiattirlo in una lista che per contarne gli elementi:
 
 =begin programlisting
 
-    my $card_count = B<@$cards_ref>;
-    my @card_copy  = B<@$cards_ref>;
+    my $conteggio_carte = B<@$rif_a_carte>;
+    my @copia_carte     = B<@$rif_a_carte>;
 
 =end programlisting
 
@@ -189,19 +189,19 @@ Accedete a singoli elementi dell'array usando una freccia di dereferenziazione (
 
 =begin programlisting
 
-    my $first_card = B<< $cards_ref->[0]  >>;
-    my $last_card  = B<< $cards_ref->[-1] >>;
+    my $prima_carta  = B<< $rif_a_carte->[0]  >>;
+    my $ultima_carta = B<< $rif_a_carte->[-1] >>;
 
 =end programlisting
 
-La freccia è necessaria per distinguere tra uno scalare di nome C<$cards_ref> e
-un array di nome C<@cards_ref>. Notate l'uso del sigillo scalare (L<sigils>) per
+La freccia è necessaria per distinguere tra uno scalare di nome C<$rif_a_carte> e
+un array di nome C<@rif_a_carte>. Notate l'uso del sigillo scalare (L<sigils>) per
 accedere a un singolo elemento.
 
 =begin tip Doubling Sigils
 
 Una sintassi alternativa antepone il sigillo scalare al riferimento ad array. Anche
-se meno elegante, è più breve da scrivere C<< my $first_card = B<$$cards_ref[0]>; >>.
+se meno elegante, C<< my $prima_carta = B<$$rif_a_carte[0]>; >> è più breve da scrivere.
 
 =end tip
 
@@ -210,7 +210,7 @@ ad array:
 
 =begin programlisting
 
-    my @high_cards = B<@{ $cards_ref }>[0 .. 2, -1];
+    my @carte_alte = B<@{ $rif_a_carte }>[0 .. 2, -1];
 
 =end programlisting
 
@@ -225,7 +225,7 @@ di valori tra parentesi quadre:
 
 =begin programlisting
 
-    my $suits_ref = [qw( Scimmie Robot Dinosauri Formaggi )];
+    my $rif_a_cose_varie = [qw( Scimmie Robot Dinosauri Formaggi )];
 
 =end programlisting
 
@@ -236,29 +236,29 @@ scope. Per esempio, se scrivete:
 
 =begin programlisting
 
-    my @meals      = qw( zuppa panini pizza );
-    my $sunday_ref = \@meals;
-    my $monday_ref = \@meals;
+    my @piatti           = qw( zuppa panini pizza );
+    my $rif_per_domenica = \@piatti;
+    my $rif_per_lunedi   = \@piatti;
 
-    push @meals, 'coppa di gelato';
+    push @piatti, 'coppa di gelato';
 
 =end programlisting
 
-...alla fine sia C<$sunday_ref> che C<$monday_ref> conterranno un dessert, mentre se scrivete:
+...alla fine sia C<$rif_per_domenica> che C<$rif_per_lunedi> conterranno un dessert, mentre se scrivete:
 
 =begin programlisting
 
-    my @meals      = qw( zuppa panini pizza );
-    my $sunday_ref = [ @meals ];
-    my $monday_ref = [ @meals ];
+    my @piatti           = qw( zuppa panini pizza );
+    my $rif_per_domenica = [ @piatti ];
+    my $rif_per_lunedi   = [ @piatti ];
 
-    push @meals, 'crostata di bacche';
+    push @piatti, 'crostata di mirtilli';
 
 =end programlisting
 
-...nè C<$sunday_ref> nè C<$monday_ref> conterranno un dessert. All'interno delle
+...nè C<$rif_per_domenica> nè C<$rif_per_lunedì> conterranno un dessert. All'interno delle
 parentesi quadre usate per creare l'array anonimo, il contesto lista appiattisce l'array
-C<@meals> in una lista separata da C<@meals>.
+C<@piatti> in una lista separata da C<@piatti>.
 
 =head2 Riferimenti a Hash
 
@@ -271,7 +271,7 @@ Usate l'operatore di riferimento su un hash per creare un I<riferimento a hash>:
 
 =begin programlisting
 
-    my %colors = (
+    my %colori = (
         nero    => 'negro',
         blu     => 'azul',
         oro     => 'dorado',
@@ -280,7 +280,7 @@ Usate l'operatore di riferimento su un hash per creare un I<riferimento a hash>:
         porpora => 'morado',
     );
 
-    my $colors_ref = B<\%>colors;
+    my $rif_a_colori = B<\%>colori;
 
 =end programlisting
 
@@ -289,8 +289,8 @@ al riferimento:
 
 =begin programlisting
 
-    my @english_colors = keys   B<%$colors_ref>;
-    my @spanish_colors = values B<%$colors_ref>;
+    my @colori_italiani = keys   B<%$rif_a_colori>;
+    my @colori_spagnoli = values B<%$rif_a_colori>;
 
 =end programlisting
 
@@ -299,10 +299,10 @@ estrarli) usate la freccia di dereferenziazione:
 
 =begin programlisting
 
-    sub translate_to_spanish
+    sub traduci_in_spagnolo
     {
-        my $color = shift;
-        return B<< $colors_ref->{$color} >>;
+        my $colore = shift;
+        return B<< $rif_a_colori->{$colore} >>;
     }
 
 =end programlisting
@@ -310,7 +310,7 @@ estrarli) usate la freccia di dereferenziazione:
 =begin tip Doubling Sigils Redux
 
 Analogamente ai riferimenti ad array, potete sostituire la freccia di dereferenziazione con un altro
-sigillo scalare, ad esempio C<$$colors_ref{$color}>.
+sigillo scalare, ad esempio C<$$rif_a_colori{$colore}>.
 
 =end tip
 
@@ -318,8 +318,8 @@ Per le slice di riferimenti ad hash usate il sigillo array (C<@>) e le parentesi
 
 =begin programlisting
 
-    my @colors  = qw( rosso blu verde );
-    my @colores = B<@{ $colors_ref }{@colors}>;
+    my @colori  = qw( rosso blu verde );
+    my @colores = B<@{ $rif_a_colori }{@colori}>;
 
 =end programlisting
 
@@ -327,7 +327,7 @@ Per creare hash anonimi usate le parentesi graffe:
 
 =begin programlisting
 
-    my $food_ref = B<{>
+    my $rif_a_cibo = B<{>
         'torta di compleanno' => 'la torta de cumpleaE<ntilde>os',
         dolci                 => 'dulces',
         biscotto              => 'bizcochito',
@@ -353,11 +353,11 @@ Z<automatic_dereferencing>
 X<builtins; C<push>>
 
 A partire dalla versione 5.14, il Perl può dereferenziare automaticamente alcuni riferimenti al posto
-vostro. Dato un riferimento ad array in C<$arrayref>, potete scrivere:
+vostro. Dato un riferimento ad array in C<$rif_a_array>, potete scrivere:
 
 =begin programlisting
 
-    push $arrayref, qw( lista di valori );
+    push $rif_a_array, qw( lista di valori );
 
 =end programlisting
 
@@ -365,7 +365,7 @@ Potete fare la stessa cosa con un'espressione che restituisce un riferimento ad 
 
 =begin programlisting
 
-    push $houses{$location}[$closets], \@new_shoes;
+    push $case{$luogo}[$armadi], \@scarpe_nuove;
 
 =end programlisting
 
@@ -388,13 +388,13 @@ dereferenziare esplicitamente i riferimenti, ma è invece la stessa cosa:
 
 =begin programlisting
 
-    my $ref = sub { ... };
+    my $rif = sub { ... };
 
     # lancia un'eccezione
-    push  $ref, qw( lista di valori );
+    push  $rif, qw( lista di valori );
 
     # anche questo lancia un'eccezione
-    push @$ref, qw( lista di valori );
+    push @$rif, qw( lista di valori );
 
 =end programlisting
 
@@ -413,9 +413,9 @@ usate l'operatore di riferimento sul nome della funzione:
 
 =begin programlisting
 
-    sub bake_cake { say 'Sto cuocendo un\'ottima torta!' };
+    sub cuoci_torta { say 'Sto cuocendo un\'ottima torta!' };
 
-    my $cake_ref = B<\&>bake_cake;
+    my $rif_a_torta = B<\&>cuoci_torta;
 
 =end programlisting
 
@@ -430,7 +430,7 @@ Per creare delle funzioni anonime usate la keyword C<sub> senza nome:
 
 =begin programlisting
 
-    my $pie_ref = B<sub { say 'Sto facendo una torta deliziosa!' }>;
+    my $rif_a_dolce = B<sub { say 'Sto facendo una torta deliziosa!' }>;
 
 =end programlisting
 
@@ -443,8 +443,8 @@ riferimento a funzione con la freccia di dereferenziazione:
 
 =begin programlisting
 
-    $cake_ref->();
-    $pie_ref->();
+    $rif_a_torta->();
+    $rif_a_dolce->();
 
 =end programlisting
 
@@ -463,7 +463,7 @@ parentesi:
 
 =begin programlisting
 
-    $bake_something_ref->( 'biscotti' );
+    $rif_a_cuoci_qualcosa->( 'biscotti' );
 
 =end programlisting
 
@@ -472,8 +472,8 @@ può essere utile quando avete dovute fare il lookup del metodo stesso (L<reflec
 
 =begin programlisting
 
-    my $clean = $robot_maid->can( 'clean' );
-    $robot_maid->$clean( $kitchen );
+    my $pulisci = $colf_robotica->can( 'pulisci' );
+    $colf_robotica->$pulisci( $cucina );
 
 =end programlisting
 
@@ -493,7 +493,7 @@ scrivendo:
 
 =begin programlisting
 
-    open my $out_fh, '>', 'output_file.txt';
+    open my $out_fh, '>', 'file_di_output.txt';
     $out_fh->say( 'Ecco un p\'o di testo!' );
 
 =end programlisting
@@ -542,12 +542,12 @@ fa il Perl a sapere quando è sicuro chiudere il file aperto nello scope più in
 
 =begin programlisting
 
-    sub show_off_scope
+    sub mostra_scope
     {
         say 'file non aperto';
 
         {
-            open my $fh, '>', 'inner_scope.txt';
+            open my $fh, '>', 'scope_interno.txt';
             $fh->say( 'qui il file è aperto' );
         }
 
@@ -578,8 +578,8 @@ stesso, copiate i suoi valori in una nuova variabile:
 
 =begin programlisting
 
-    my @new_array = @{ $array_ref };
-    my %new_hash  = %{ $hash_ref  };
+    my @nuovo_array = @{ $array_ref };
+    my %nuovo_hash  = %{ $hash_ref  };
 
 =end programlisting
 

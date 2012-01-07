@@ -29,7 +29,7 @@ ha valore I<vero>:
 
 =begin programlisting
 
-    say 'Ciao, Bob!' if $name eq 'Bob';
+    say 'Ciao, Roberto!' if $nome eq 'Roberto';
 
 =end programlisting
 
@@ -38,10 +38,10 @@ diverse espressioni in una singola unità:
 
 =begin programlisting
 
-    if ($name eq 'Bob')
+    if ($nome eq 'Roberto')
     {
-        say 'Ciao, Bob!';
-        found_bob();
+        say 'Ciao, Roberto!';
+        trovato_roberto();
     }
 
 =end programlisting
@@ -54,10 +54,10 @@ esse compongano un'unica espressione principale:
 
 =begin programlisting
 
-    if ($name eq 'Bob' && not greeted_bob())
+    if ($nome eq 'Roberto' && not salutato_roberto())
     {
-        say 'Ciao, Bob!';
-        found_bob();
+        say 'Ciao, Roberto!';
+        trovato_roberto();
     }
 
 =end programlisting
@@ -67,7 +67,7 @@ costo di una minor eleganza visiva:
 
 =begin programlisting
 
-    greet_bob() if ($name eq 'Bob' && not greeted_bob());
+    saluta_roberto() if ($nome eq 'Roberto' && not salutato_roberto());
 
 =end programlisting
 
@@ -78,7 +78,7 @@ quando l'espressione condizionale è I<falsa>:
 
 =begin programlisting
 
-    say "Tu non sei Bob!" unless $name eq 'Bob';
+    say "Tu non sei Roberto!" unless $nome eq 'Roberto';
 
 =end programlisting
 
@@ -87,10 +87,10 @@ poichè diventa rapidamente difficile da leggere in presenza di condizionali com
 
 =begin programlisting
 
-    unless (is_leap_year() and is_full_moon())
+    unless (anno_bisestile() and luna_piena())
     {
-        frolic();
-        gambol();
+        spassatela();
+        fai_capriole();
     }
 
 =end programlisting
@@ -100,11 +100,11 @@ dei parametri delle funzioni (L<postfix_parameter_validation>):
 
 =begin programlisting
 
-    sub frolic
+    sub spassatela
     {
         return unless @_;
 
-        for my $chant (@_)
+        for my $canzone (@_)
         {
             ...
         }
@@ -120,15 +120,15 @@ vero (per C<if>) o falso (per C<unless>):
 
 =begin programlisting
 
-    if ($name eq 'Bob')
+    if ($nome eq 'Roberto')
     {
-        say 'Ciao, Bob!';
-        greet_user();
+        say 'Ciao, Roberto!';
+        accogli_utente();
     }
     else
     {
         say "Non ti conosco.";
-        shun_user();
+        ignora_utente();
     }
 
 =end programlisting
@@ -138,15 +138,15 @@ l'uno nei termini dell'altro:
 
 =begin programlisting
 
-    unless ($name eq 'Bob')
+    unless ($nome eq 'Roberto')
     {
         say "Non ti conosco.";
-        shun_user();
+        ignora_utente();
     }
     else
     {
-        say 'Ciao, Bob!';
-        greet_user();
+        say 'Ciao, Roberto!';
+        accogli_utente();
     }
 
 =end programlisting
@@ -160,15 +160,15 @@ positivi e negativi:
 
 =begin programlisting
 
-    if ($name B<ne> 'Bob')
+    if ($nome B<ne> 'Roberto')
     {
         say "Non ti conosco.";
-        shun_user();
+        ignora_utente();
     }
     else
     {
-        say 'Ciao, Bob!';
-        greet_user();
+        say 'Ciao, Roberto!';
+        accogli_utente();
     }
 
 =end programlisting
@@ -183,20 +183,20 @@ un singolo C<else>:
 
 =begin programlisting
 
-    if ($name eq 'Bob')
+    if ($nome eq 'Roberto')
     {
-        say 'Ciao, Bob!';
-        greet_user();
+        say 'Ciao, Roberto!';
+        accogli_utente();
     }
-    elsif ($name eq 'Jim')
+    elsif ($nome eq 'Giacomo')
     {
-        say 'Ciao, Jim!';
-        greet_user();
+        say 'Ciao, Giacomo!';
+        accogli_utente();
     }
     else
     {
         say "Non sei mio zio.";
-        shun_user();
+        ignora_utente();
     }
 
 =end programlisting
@@ -209,13 +209,13 @@ estetiche, come nell'antica arte del linguaggio Ada.>:
 
 =begin programlisting
 
-    if ($name eq 'Rick')
+    if ($nome eq 'Riccardo')
     {
         say 'Ciao, cugino!';
     }
 
     # attenzione; errore di sintassi
-    else if ($name eq 'Kristen')
+    else if ($nome eq 'Cristina')
     {
         say 'Ciao, cugina!';
     }
@@ -232,9 +232,9 @@ sceglie tra due alternative:
 
 =begin programlisting
 
-    my $time_suffix = after_noon($time)
-                    ? 'pomeriggio'
-                    : 'mattino';
+    my $suffisso_temporale = dopo_pranzo($tempo)
+                           ? 'pomeriggio'
+                           : 'mattino';
 
 =end programlisting
 
@@ -250,8 +250,8 @@ tra I<variabili> alternative, anzichè valori:
 
 =begin programlisting
 
-    push @{ rand() > 0.5 ? \@red_team : \@blue_team },
-        Player->new;
+    push @{ rand() > 0.5 ? \@squadra_rossa : \@squadra_blu },
+        Giocatore->new;
 
 =end programlisting
 
@@ -341,8 +341,8 @@ l'uso di un valore non definito potrebbe causare un warning:
 
 =begin programlisting
 
-    my $bbq;
-    if (defined $bbq and $bbq eq 'salsiccia') { ... }
+    my $barbecue;
+    if (defined $barbecue and $barbecue eq 'salsiccia') { ... }
 
 =end programlisting
 
@@ -485,16 +485,16 @@ in modo che ogni modifica al valore dell'iteratore modifica anche il valore corr
 
 =begin programlisting
 
-    my @nums = 1 .. 10;
+    my @numeri = 1 .. 10;
 
-    $_ **= 2 for @nums;
+    $_ **= 2 for @numeri;
 
-    is( $nums[0], 1, '1 * 1 vale 1' );
-    is( $nums[1], 4, '2 * 2 vale 4' );
+    is( $numeri[0], 1, '1 * 1 vale 1' );
+    is( $numeri[1], 4, '2 * 2 vale 4' );
 
     ...
 
-    is( $nums[9], 100, '10 * 10 vale 100' );
+    is( $numeri[9], 100, '10 * 10 vale 100' );
 
 =end programlisting
 
@@ -502,7 +502,7 @@ L'aliasing funziona anche con la forma a blocco del ciclo C<for>:
 
 =begin programlisting
 
-    for my $num (@nums)
+    for my $num (@numeri)
     {
         $num **= 2;
     }
@@ -513,7 +513,7 @@ L'aliasing funziona anche con la forma a blocco del ciclo C<for>:
 
 =begin programlisting
 
-    for (@nums)
+    for (@numeri)
     {
         $_ **= 2;
     }
@@ -524,7 +524,7 @@ Tuttavia, non potete usare l'aliasing per modificare valori I<costanti>:
 
 =begin programlisting
 
-    for (qw( Huex Dewex Louid ))
+    for (qw( Qui Quo Qua ))
     {
         $_++;
         say;
@@ -539,7 +539,7 @@ effettuare un aliasing di C<$_> a tale variabile:
 
 =begin programlisting
 
-    for ($user_input)
+    for ($input_utente)
     {
         s/\A\s+/;       # scarta spaziatura iniziale
         s/\s+\z/;       # scarta spaziatura finale
@@ -557,20 +557,20 @@ X<C<my $_>>
 X<C<$_>; lexical>
 
 Lo scope della variabile topic usata come iteratore è una causa comune di
-confusione. Considerate una funzione C<topic_mangler()> il cui scopo è di
-modificare C<$_>. Se il codice che itera su una lista chiama C<topic_mangler()> senza
+confusione. Considerate una funzione C<scombina_topic()> il cui scopo è di
+modificare C<$_>. Se il codice che itera su una lista chiama C<scombina_topic()> senza
 proteggere C<$_>, ci sarà poi da divertirsi col debugging:
 
 =begin programlisting
 
-    for (@values)
+    for (@valori)
     {
-        topic_mangler();
+        scombina_topic();
     }
 
-    sub topic_mangler
+    sub scombina_topic
     {
-        s/foo/bar/;
+        s/pippo/pluto/;
     }
 
 =end programlisting
@@ -580,13 +580,13 @@ lessicale con C<my $_>:
 
 =begin programlisting
 
-    sub topic_mangler
+    sub scombina_topic
     {
         # era $_ = shift;
         B<my> $_ = shift;
 
-        s/foo/bar/;
-        s/baz/quux/;
+        s/pippo/pluto/;
+        s/paperino/topolino/;
 
         return $_;
     }
@@ -681,14 +681,14 @@ booleano falso. Un modo idiomatico di scrivere un ciclo infinito è:
 =end programlisting
 
 Al contrario dell'iterazione con cicli in stile C<foreach>, la condizione di ciclo del C<while>
-non ha di per sè alcun side effect. Ovvero, se C<@values> contiene uno o più elementi,
+non ha di per sè alcun side effect. Ovvero, se C<@valori> contiene uno o più elementi,
 anche questo codice è un ciclo infinito:
 
 =begin programlisting
 
-    while (@values)
+    while (@valori)
     {
-        say $values[0];
+        say $valori[0];
     }
 
 =end programlisting
@@ -696,26 +696,26 @@ anche questo codice è un ciclo infinito:
 X<destructive update>
 
 Per prevenire i cicli C<while> infiniti, fate un I<aggiornamento distruttivo> dell'array
-C<@values> modificandolo ad ogni iterazione del ciclo:
+C<@valori> modificandolo ad ogni iterazione del ciclo:
 
 =begin programlisting
 
-    while (@values)
+    while (@valori)
     {
-        my $value = shift @values;
-        say $value;
+        my $valore = shift @valori;
+        say $valore;
     }
 
 =end programlisting
 
-È anche possibile modificare C<@values> all'interno della condizione del C<while>,
+È anche possibile modificare C<@valori> all'interno della condizione del C<while>,
 ma ci sono alcune sottigliezze legate al valore di verità di ciascun elemento.
 
 =begin programlisting
 
-    while (my $value = shift @values)
+    while (my $valore = shift @valori)
     {
-        say $value;
+        say $valore;
     }
 
 =end programlisting
@@ -731,7 +731,7 @@ L'iterazione continua finchè l'espressione condizionale del ciclo valuta a fals
 
 =begin programlisting
 
-    until ($finished_running)
+    until ($fine_corsa)
     {
         ...
     }
@@ -794,7 +794,7 @@ programmi con GUI, per gli interpreti di programmi o per i server di rete:
 
 =begin programlisting
 
-    $server->dispatch_results() until $should_shutdown;
+    $server->invia_risultati() until $esegui_shutdown;
 
 =end programlisting
 
@@ -807,9 +807,9 @@ Usate un blocco C<do> per raggruppare diverse espressioni in una singola unità:
     do
     {
         say 'Come ti chiami?';
-        my $name = <>;
-        chomp $name;
-        say "Ciao, $name!" if $name;
+        my $nome = <>;
+        chomp $nome;
+        say "Ciao, $nome!" if $nome;
     } until (eof);
 
 =end programlisting
@@ -827,9 +827,9 @@ Potete nidificare i cicli dentro altri cicli:
 
 =begin programlisting
 
-    for my $suit (@suits)
+    for my $colore (@colori)
     {
-        for my $values (@card_values)
+        for my $valore (@valori_delle_carte)
         {
             ...
         }
@@ -847,14 +847,14 @@ esaurire un filehandle con un ciclo C<while>:
 
     use autodie;
 
-    open my $fh, '<', $some_file;
+    open my $fh, '<', $un_file;
 
-    for my $prefix (@prefixes)
+    for my $prefisso (@prefissi)
     {
-        # NON USARE; probabilmente contiene bug
+        # NON USARE; probabilmente contiene un bug
         while (<$fh>)
         {
-            say $prefix, $_;
+            say $prefisso, $_;
         }
     }
 
@@ -872,13 +872,13 @@ all'inizio del file ad ogni iterazione con un C<seek> (un'opzione spesso trascur
 
     use autodie;
 
-    open my $fh, '<', $some_file;
+    open my $fh, '<', $un_file;
 
-    for my $prefix (@prefixes)
+    for my $prefisso (@prefissi)
     {
         while (<$fh>)
         {
-            say $prefix, $_;
+            say $prefisso, $_;
         }
 
         seek $fh, 0, 0;
@@ -945,15 +945,15 @@ parser di file che unisce tra loro le linee che terminano con un backslash:
 
 =begin programlisting
 
-    while (my $line = <$fh>)
+    while (my $linea = <$fh>)
     {
-        chomp $line;
+        chomp $linea;
 
         # fai il match di backslash alla fine della linea
-        if ($line =~ s{\\$}{})
+        if ($linea =~ s{\\$}{})
         {
-            $line .= <$fh>;
-            chomp $line;
+            $linea .= <$fh>;
+            chomp $linea;
             redo;
         }
 
@@ -970,17 +970,17 @@ I<etichetta di ciclo> per essere più chiari:
 
 =begin programlisting
 
-    LINE:
+    LINEA:
     while (<$fh>)
     {
         chomp;
 
-        PREFIX:
-        for my $prefix (@prefixes)
+        PREFISSO:
+        for my $prefisso (@prefissi)
         {
-            next LINE unless $prefix;
-            say "$prefix: $_";
-            # qui c'è un next PREFIX implicito
+            next LINEA unless $prefisso;
+            say "$prefisso: $_";
+            # qui c'è un next PREFISSO implicito
         }
     }
 
@@ -1027,7 +1027,7 @@ un'espressione alla variabile topic ed è seguito da un blocco:
 
 =begin programlisting
 
-    given ($name) { ... }
+    given ($nome) { ... }
 
 =end programlisting
 
@@ -1036,9 +1036,9 @@ espressione in contesto scalare, e assegna sempre alla variabile topic:
 
 =begin programlisting
 
-    given (my $username = find_user())
+    given (my $nome_utente = trova_utente())
     {
-        is( $username, $_, 'assegnamento automatico a variabile topic' );
+        is( $nome_utente, $_, 'assegnamento automatico a variabile topic' );
     }
 
 =end programlisting
@@ -1050,11 +1050,11 @@ C<given> lessicalizza la variabile topic:
     given ('topo')
     {
         say;
-        mouse_to_man( $_ );
+        da_topo_a_uomo( $_ );
         say;
     }
 
-    sub mouse_to_man { s/topo/uomo/ }
+    sub da_topo_a_uomo { s/topo/uomo/ }
 
 =end programlisting
 
@@ -1068,15 +1068,15 @@ implementa il gioco di Sasso, Carta e Forbici:
 
 =begin programlisting
 
-    my @options  = ( \&sasso, \&carta, \&forbici );
-    my $confused = "Non capisco la tua mossa.";
+    my @opzioni  = ( \&sasso, \&carta, \&forbici );
+    my $confuso  = "Non capisco la tua mossa.";
 
     do
     {
         say "Sasso, Carta e Forbici!  Scegline uno: ";
-        chomp( my $user = <STDIN> );
-        my $computer_match = $options[ rand @options ];
-        $computer_match->( lc( $user ) );
+        chomp( my $mossa_utente = <STDIN> );
+        my $mossa_computer = $opzioni[ rand @opzioni ];
+        $mossa_computer->( lc( $mossa_utente ) );
     } until (eof);
 
     sub sasso
@@ -1088,7 +1088,7 @@ implementa il gioco di Sasso, Carta e Forbici:
             when (/carta/)    { say 'Vinci tu!' };
             when (/sasso/)    { say 'Pareggio!'  };
             when (/forbici/)  { say 'Vinco io!'   };
-            default           { say $confused  };
+            default           { say $confuso  };
         }
     }
 
@@ -1101,7 +1101,7 @@ implementa il gioco di Sasso, Carta e Forbici:
             when (/carta/)    { say 'Pareggio!'  };
             when (/sasso/)    { say 'Vinco io!'   };
             when (/forbici/)  { say 'Vinci tu!' };
-            default           { say $confused  };
+            default           { say $confuso  };
         }
     }
 
@@ -1114,7 +1114,7 @@ implementa il gioco di Sasso, Carta e Forbici:
             when (/carta/)    { say 'Vinco io!'   };
             when (/sasso/)    { say 'Vinci tu!' };
             when (/forbici/)  { say 'Pareggio!'  };
-            default           { say $confused  };
+            default           { say $confuso  };
         }
     }
 
@@ -1146,21 +1146,21 @@ di ritorno della funzione chiamata:
 
 =begin programlisting
 
-    sub log_and_greet_person
+    sub traccia_e_saluta_persona
     {
-        my $name = shift;
-        log( "Sto salutando $name" );
+        my $nome = shift;
+        log( "Sto salutando $nome" );
 
-        return greet_person( $name );
+        return saluta_persona( $nome );
     }
 
 =end programlisting
 
-In questo codice, ritornare da C<greet_person()> direttamente al chiamante di
-C<log_and_greet_person()> è più efficiente che ritornare a
-C<log_and_greet_person()> e poi ritornare immediatamente I<da>
-C<log_and_greet_person()>. Ritornare direttamente da C<greet_person()> al
-chiamante di C<log_and_greet_person()> è una I<ottimizzazione di chiamata di coda>.
+In questo codice, ritornare da C<saluta_persona()> direttamente al chiamante di
+C<traccia_e_saluta_persona()> è più efficiente che ritornare a
+C<traccia_e_saluta_persona()> e poi ritornare immediatamente I<da>
+C<traccia_e_saluta_persona()>. Ritornare direttamente da C<saluta_persona()> al
+chiamante di C<traccia_e_saluta_persona()> è una I<ottimizzazione di chiamata di coda>.
 
 Il codice fortemente ricorsivo (L<recursion>), specialmente quando ha luogo una mutua ricorsione, può
 consumare molta memoria. Le chiamate di coda riducono la quantità di memoria necessaria per il tracciamento
@@ -1178,18 +1178,18 @@ C<goto>", ma funziona:
 
 =begin programlisting
 
-    sub log_and_greet_person
+    sub traccia_e_saluta_persona
     {
-        B<my ($name) = @_;>
-        log( "Sto salutando $name" );
+        B<my ($nome) = @_;>
+        log( "Sto salutando $nome" );
 
-        B<goto &greet_person>;
+        B<goto &saluta_persona>;
     }
 
 =end programlisting
 
-Questo esempio mostra due aspetti importanti. Prima di tutto, C<goto &function_name> o
-C<goto &$function_reference> richiede di usare il sigillo di funzione (C<&>) in
+Questo esempio mostra due aspetti importanti. Prima di tutto, C<goto &nome_funzione> e
+C<goto &$riferimento_a_funzione> richiedono di usare il sigillo di funzione (C<&>) in
 modo che il parser sappia che deve effettuare una chiamata di coda anzichè saltare semplicemente a un'etichetta.
 In secondo luogo, questa forma di chiamata di funzione passa implicitamente il contenuto di C<@_>
 alla funzione chiamata. Potete modificare C<@_> per cambiare gli argomenti passati.

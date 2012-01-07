@@ -32,8 +32,8 @@ quotatura. I I<delimitatori di stringa> più comuni sono i singoli e doppi apici
 
 =begin programlisting
 
-    my $name    = B<'Donner Odinson, Bringer of Despair'>;
-    my $address = B<"Room 539, Bilskirnir, Valhalla">;
+    my $nome      = B<'Donner Odinson, Portatore di Disperazione'>;
+    my $indirizzo = B<"Stanza 539, Bilskirnir, Valhalla">;
 
 =end programlisting
 
@@ -44,8 +44,8 @@ eccezioni. Per inserire un apice singolo in una stringa a singola quotatura fate
 
 =begin programlisting
 
-    my $reminder = 'LB<\'>apice va preceduto '
-                 . 'da un carattere di escape!';
+    my $ricorda = 'LB<\'>apice va preceduto '
+                . 'da un carattere di escape!';
 
 =end programlisting
 
@@ -54,7 +54,7 @@ producendo un errore di sintassi:
 
 =begin programlisting
 
-    my $exception = 'Questa stringa termina con un '
+    my $eccezione = 'Questa stringa termina con un '
                   . 'escape, non con un apice: B<\\>';
 
 =end programlisting
@@ -94,10 +94,10 @@ equivalenti:
 
 =begin programlisting
 
-    my $escaped = "due\nlinee";
-    my $literal = "due
+    my $con_escape = "due\nlinee";
+    my $letterale  = "due
     linee";
-    is $escaped, $literal, 'equivalenza \n e newline';
+    is $con_escape, $letterale, 'equivalenza \n e newline';
 
 =end programlisting
 
@@ -113,7 +113,7 @@ stringhe in una stringa più grande con l'operatore C<.> di I<concatenazione>:
 
 =begin programlisting
 
-    my $kitten = 'Micio' . ' ' . 'Miao';
+    my $gattino = 'Micio' . ' ' . 'Miao';
 
 =end programlisting
 
@@ -128,10 +128,10 @@ diventi parte della stringa come se le aveste concatenate:
 
 =begin programlisting
 
-    my $factoid = "B<$name> vive a B<$address>!";
+    my $fatto = "B<$nome> vive a B<$indirizzo>!";
 
     # equivalente a
-    my $factoid = $name . ' vive a ' . $address . '!';
+    my $fatto = $nome . ' vive a ' . $indirizzo . '!';
 
 =end programlisting
 
@@ -142,7 +142,7 @@ Per inserire un doppio apice in una stringa a doppia quotatura fatelo precedere 
 
 =begin programlisting
 
-    my $quote = "\"Ahia,\", gridò.  \"Fa I<male>!\"";
+    my $citazione = "\"Ahia,\", gridò.  \"Fa I<male>!\"";
 
 =end programlisting
 
@@ -163,9 +163,9 @@ sia di inizio che di fine stringa.
 
 =begin programlisting
 
-    my $quote     = B<qq{>"Ahia", disse.  "Fa I<male>!"B<}>;
-    my $reminder  =  B<q^>L'apice singolo non va quotato!B<^>;
-    my $complaint =  B<q{>È un po' troppo presto per svegliarsi.B<}>;
+    my $citazione = B<qq{>"Ahia", disse.  "Fa I<male>!"B<}>;
+    my $ricorda   =  B<q^>L'apice singolo non va quotato!B<^>;
+    my $reclamo   =  B<q{>È un po' troppo presto per svegliarsi.B<}>;
 
 =end programlisting
 
@@ -177,7 +177,7 @@ usate la sintassi I<heredoc> per assegnare una o più linee a una stringa:
 
 =begin programlisting
 
-    my $blurb =<<'END_BLURB';
+    my $estratto =<<'FINE_ESTRATTO';
 
     Egli alzò lo sguardo. "Il tempo non è mai dalla nostra parte, figlio mio.
     Non ne vedi l'ironia? Tutto ciò che essi conoscono è il cambiamento.
@@ -187,14 +187,14 @@ usate la sintassi I<heredoc> per assegnare una o più linee a una stringa:
     quando noi stessi lo perseguiamo. È contro la nostra natura: ci ribelliamo
     contro il cambiamento. Dobbiamo forse considerarli
     superiori per questo?"
-    END_BLURB
+    FINE_ESTRATTO
 
 =end programlisting
 
-La sintassi di C<< <<'END_BLURB' >> ha tre parti. Le doppie parentesi angolari
+La sintassi di C<< <<'FINE_ESTRATTO' >> ha tre parti. Le doppie parentesi angolari
 introducono l'heredoc. Gli apici determinamo se l'heredoc si comporta come una stringa a singola
 o doppia quotatura. Il comportamento di default è quello della doppia quotatura con la relativa interpolazione.
-C<END_BLURB> è un identificatore arbitrario che il parser Perl 5 usa come
+C<FINE_ESTRATTO> è un identificatore arbitrario che il parser Perl 5 usa come
 delimitatore finale.
 
 Fate attenzione; indipendentemente dall'indentazione della dichiarazione dell'heredoc,
@@ -202,8 +202,8 @@ il delimitatore finale I<deve> essere all'inizio della linea:
 
 =begin programlisting
 
-    sub some_function {
-        my $ingredients =<<'END_INGREDIENTS';
+    sub una_funzione {
+        my $ingredienti =<<'FINE_INGREDIENTI';
         Due uova
         Una tazza di farina
         Due etti di burro
@@ -211,7 +211,7 @@ il delimitatore finale I<deve> essere all'inizio della linea:
         Una tazza di latte
         Un pizzico di vaniglia
         Condimento a piacere
-    END_INGREDIENTS
+    FINE_INGREDIENTI
     }
 
 =end programlisting
@@ -317,9 +317,9 @@ decodifica dei dati UTF-8:
 
     use autodie;
 
-    open my $fh, '<:utf8', $textfile;
+    open my $fh, '<:utf8', $file_di_testo;
 
-    my $unicode_string = <$fh>;
+    my $stringa_unicode = <$fh>;
 
 =end programlisting
 
@@ -332,10 +332,10 @@ che per l'output:
 =begin programlisting
 
     binmode $fh, ':utf8';
-    my $unicode_string = <$fh>;
+    my $stringa_unicode = <$fh>;
 
     binmode STDOUT, ':utf8';
-    say $unicode_string;
+    say $stringa_unicode;
 
 =end programlisting
 
@@ -355,8 +355,8 @@ converte dalla codifica interna del Perl alla codifica di output desiderata:
 
 =begin programlisting
 
-    my $from_utf8 = decode('utf8', $data);
-    my $to_latin1 = encode('iso-8859-1', $string);
+    my $da_utf8  = decode('utf8', $dati);
+    my $a_latin1 = encode('iso-8859-1', $stringa);
 
 =end programlisting
 
@@ -375,9 +375,9 @@ di usare caratteri Unicode nelle stringhe e negli identificatori:
 
     use utf8;
 
-    sub E<pound>_to_E<yen> { ... }
+    sub da_E<pound>_a_E<yen> { ... }
 
-    my $yen = E<pound>_to_E<yen>('1000E<pound>');
+    my $yen = da_E<pound>_a_E<yen>('1000E<pound>');
 
 =end programlisting
 
@@ -394,7 +394,7 @@ parentesi graffe:
 
 =begin programlisting
 
-    my $escaped_thorn = "\x{00FE}";
+    my $thorn_con_escape = "\x{00FE}";
 
 =end programlisting
 
@@ -412,10 +412,10 @@ C<\N{}> per riferirvi ad essi:
     use charnames ':full';
     use Test::More tests => 1;
 
-    my $escaped_thorn = "\x{00FE}";
-    my $named_thorn   = "\N{LATIN SMALL LETTER THORN}";
+    my $thorn_con_escape = "\x{00FE}";
+    my $thorn_per_nome   = "\N{LATIN SMALL LETTER THORN}";
 
-    is $escaped_thorn, $named_thorn,
+    is $thorn_con_escape, $thorn_per_nome,
         'controllo di equivalenza carattere thorn';
 
 =end programlisting
@@ -446,12 +446,12 @@ carattere.
 
 =begin programlisting
 
-    my $hello    = "Hello, ";
-    my $greeting = $hello . $name;
+    my $ciao     = "Ciao, ";
+    my $saluto   = $ciao . $nome;
 
 =end programlisting
 
-Se C<$name> contiene un nome Inglese come I<Alice> non si riscontra nessun problema,
+Se C<$nome> contiene un nome in alfabeto Inglese come I<Alice> non si riscontra nessun problema,
 dato che la rappresentazione Latin-1 è uguale alla rappresentazione UTF-8.
 Se invece C<$name> contiene un nome come I<JosE<eacute>>, ci sono diverse possibilità:
 
@@ -459,19 +459,19 @@ Se invece C<$name> contiene un nome come I<JosE<eacute>>, ci sono diverse possib
 
 =item *
 
-C<$name> contiene quattro caratteri Unicode.
+C<$nome> contiene quattro caratteri Unicode.
 
 =item *
 
-C<$name> contiene quattro ottetti Latin-1 che rappresentano quattro caratteri Unicode.
+C<$nome> contiene quattro ottetti Latin-1 che rappresentano quattro caratteri Unicode.
 
 =item *
 
-C<$name> contiene cinque ottetti UTF-8 che rappresentano quattro caratteri Unicode.
+C<$nome> contiene cinque ottetti UTF-8 che rappresentano quattro caratteri Unicode.
 
 =back
 
-Ci sono diversi scenari anche per la costante stringa:
+Ci sono diversi scenari anche per il letterale stringa:
 
 =over 4
 
@@ -479,7 +479,7 @@ Ci sono diversi scenari anche per la costante stringa:
 
 =begin programlisting
 
-    my $hello = "Hello, ";
+    my $ciao = "Ciao, ";
 
 =end programlisting
 
@@ -487,7 +487,7 @@ Ci sono diversi scenari anche per la costante stringa:
 
 =begin programlisting
 
-    my $hello = "E<iexcl>Hola, ";
+    my $ciao = "E<iexcl>Hola, ";
 
 =end programlisting
 
@@ -497,13 +497,13 @@ perchè è attiva la pragma C<utf8> o C<encoding>.
 =begin programlisting
 
     use utf8;
-    my $hello = "KuirabE<aacute>, ";
+    my $ciao = "KuirabE<aacute>, ";
 
 =end programlisting
 
 =back
 
-Se sia C<$hello> che C<$name> sono stringhe Unicode, la loro concatenazione produce
+Se sia C<$ciao> che C<$nome> sono stringhe Unicode, la loro concatenazione produce
 un'altra stringa Unicode.
 
 Se entrambe le stringhe sono sequanze di ottetti, Perl le concatenerà in una nuova sequenza
@@ -551,12 +551,12 @@ esadecimale:
 
 =begin programlisting
 
-    my $integer   = 42;
-    my $float     = 0.007;
-    my $sci_float = 1.02e14;
-    my $binary    = B<0b>101010;
-    my $octal     = B<0>52;
-    my $hex       = B<0x>20;
+    my $intero      = 42;
+    my $float       = 0.007;
+    my $float_sci   = 1.02e14;
+    my $binario     = B<0b>101010;
+    my $ottale      = B<0>52;
+    my $esadecimale = B<0x>20;
 
 =end programlisting
 
@@ -588,13 +588,13 @@ invece non lo sono. Queste istruzioni sono equivalenti:
 
 =begin programlisting
 
-    my $billion = 1000000000;
-    my $billion = 1_000_000_000;
-    my $billion = 10_0_00_00_0_0_0;
+    my $miliardo = 1000000000;
+    my $miliardo = 1_000_000_000;
+    my $miliardo = 10_0_00_00_0_0_0;
 
 =end programlisting
 
-Considerate l'alternativa più leggibile.
+Considerate qual è l'alternativa più leggibile.
 
 X<C<Scalar::Util>>
 X<C<looks_like_number()>>
@@ -622,21 +622,20 @@ Le variabili scalari dichiarate ma non definite contengono C<undef>:
 
 =begin programlisting
 
-    my $name = undef;   # assegnamento superfluo
-    my $rank;           # contiene anche undef
+    my $nome = undef;   # assegnamento superfluo
+    my $rango;          # contiene anche undef
 
 =end programlisting
 
 X<C<undef>; coercions>
 
 In contesto booleano, C<undef> viene valutato come falso. Valutare C<undef> in contesto stringa
---ad esempio interpolarlo in uno stringa--causa un warning di C<uninitialized
-value>:
+--ad esempio interpolarlo in uno stringa--causa un warning di C<uninitialized value>:
 
 =begin programlisting
 
-    my $undefined;
-    my $defined = $undefined . '... e così via';
+    my $non_definito;
+    my $definito = $non_definito . '... e così via';
 
 =end programlisting
 
@@ -644,7 +643,7 @@ value>:
 
 =begin screen
 
-    Use of uninitialized value $undefined in
+    Use of uninitialized value $non_definito in
     concatenation (.) or string...
 
 =end screen
@@ -656,10 +655,10 @@ definito (ovvero qualunque cosa tranne C<undef>):
 
 =begin programlisting
 
-    my $status = 'ho il raffreddore';
+    my $stato = 'ho il raffreddore';
 
-    say B<defined> $status;  # 1, che rappresenta il valore vero
-    say B<defined> undef;    # stringa vuota; un valore falso
+    say B<defined> $stato;  # 1, che rappresenta il valore vero
+    say B<defined> undef;   # stringa vuota; un valore falso
 
 =end programlisting
 
@@ -677,18 +676,18 @@ temporanea, usate l'idioma (L<idioms>):
 
 =begin programlisting
 
-    my $count = B<()> = get_all_clown_hats();
+    my $conteggio = B<()> = tutti_i_miei_cappelli();
 
 =end programlisting
 
 Dato che l'operatore di assegnamento è associativo a destra (L<associativity>),
 Perl valuta per primo il secondo assegnamento chiamando
-C<get_all_clown_hats()> in contesto lista. Questa chiamata restituisce una lista.
+C<tutti_i_miei_cappelli()> in contesto lista. Questa chiamata restituisce una lista.
 
 L'assegnamento alla lista vuota fa perdere tutti i valori della lista, ma
 tale assegnmento ha luogo in contesto scalare, che valuta il numero di
-elementi nella parte destra dell'assegnamento. Di conseguenza, C<$count> contiene
-il numero di elementi nella lista restituita da C<get_all_clown_hats()>.
+elementi nella parte destra dell'assegnamento. Di conseguenza, C<$conteggio> contiene
+il numero di elementi nella lista restituita da C<tutti_i_miei_cappelli()>.
 
 Se per il momento trovate questo concetto un po' confuso, non preoccupatevi. Man mano che capirete come
 le funzionalità di progetto fondamentali del Perl si incastrano tra loro nella practica, tutto diventerà
@@ -703,7 +702,7 @@ letteralmente nel codice sorgente come valori:
 
 =begin programlisting
 
-    my @first_fibs = (1, 1, 2, 3, 5, 8, 13, 21);
+    my @primi_fib = (1, 1, 2, 3, 5, 8, 13, 21);
 
 =end programlisting
 
@@ -711,7 +710,7 @@ letteralmente nel codice sorgente come valori:
 
 =begin programlisting
 
-    my ($package, $filename, $line) = caller();
+    my ($package, $nomefile, $linea) = chiamante();
 
 =end programlisting
 
@@ -719,7 +718,7 @@ letteralmente nel codice sorgente come valori:
 
 =begin programlisting
 
-    say name(), ' => ', age();
+    say nome(), ' => ', anni();
 
 =end programlisting
 
@@ -735,8 +734,8 @@ Usate l'operatore di range per creare liste di letterali in forma compatta:
 
 =begin programlisting
 
-    my @chars = 'a' .. 'z';
-    my @count = 13 .. 27;
+    my @caratteri = 'a' .. 'z';
+    my @contatore = 13 .. 27;
 
 =end programlisting
 
@@ -772,26 +771,26 @@ un singolo elemento) che in contesto lista (per una slice):
 =begin programlisting
 
     # non preoccupatevi dei dettagli per ora
-    sub context
+    sub contesto
     {
-        my $context = wantarray();
+        my $contesto = wantarray();
 
-        say defined $context
-             ? $context
-                 ? 'list'
-                 : 'scalar'
+        say defined $contesto
+             ? $contesto
+                 ? 'lista'
+                 : 'scalare'
              : 'void';
         return 0;
     }
 
-    my @list_slice  = (1, 2, 3)[context()];
-    my @array_slice = @list_slice[context()];
-    my $array_index = $array_slice[context()];
+    my @slice_di_lista  = (1, 2, 3)[contesto()];
+    my @slice_di_array  = @slice_di_lista[contesto()];
+    my $indice_di_array = $slice_di_array[contesto()];
 
     # say impone contesto lista
-    say context();
+    say contesto();
 
     # il contesto void è triviale
-    context();
+    contesto();
 
 =end programlisting

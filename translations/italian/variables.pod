@@ -21,19 +21,19 @@ X<builtins; C<package>>
 
 Le variabili sono visibili alle diverse parti del vostro programma in base al loro scope
 (L<scope>). Molte delle variabili che incontrerete hanno uno scope lessicale
-(L<lexical_scope>). Gli stessi I<file sorgente> forniscono il proprio scope lessicale, mentre
+(L<lexical_scope>). I I<file sorgente> forniscono uno scope lessicale, mentre
 una dichiarazione di C<package> non crea di per sè un nuovo scope:
 
 =begin programlisting
 
-    package Store::Toy;
+    package Negozio::Giocattoli;
 
-    my $discount = 0.10;
+    my $sconto = 0.10;
 
-    package Store::Music;
+    package Negozio::Musica;
 
-    # $discount ancora visibile
-    say "Il nostro sconto è attualmente $discount!";
+    # $sconto ancora visibile
+    say "Il nostro sconto è attualmente $sconto!";
 
 =end programlisting
 
@@ -44,19 +44,19 @@ sintassi I<fornisce> effettivamente uno scope lessicale:
 
 =begin programlisting
 
-    package Store::Toy
+    package Negozio::Giocattoli
     {
-        my $discount = 0.10;
+        my $sconto = 0.10;
     }
 
-    package Store::Music
+    package Negozio::Musica
     {
-        # $discount non disponibile
+        # $sconto non disponibile
     }
 
-    package Store::BoardGame;
+    package Negozio::GiochiDaTavolo;
 
-    # $discount sempre non disponibile
+    # $sconto sempre non disponibile
 
 =end programlisting
 
@@ -70,9 +70,8 @@ X<sigils>
 Il sigillo della variabile in una dichiarazione determina il tipo della variabile:
 scalare, array o hash. Il sigillo usato quando si accede alla variabile varia invece
 in base a ciò che volete fare con la variabile. Per esempio, dichiarate un array con
-C<@values>. Accedete al suo primo elemento--un singolo valore--con
-C<$values[0]>. E accedete a una lista di valori dentro l'array con C<@values[ @indices
-]>.
+C<@valori>. Accedete al suo primo elemento--un singolo valore--con
+C<$valori[0]>. E accedete a una lista di valori dentro l'array con C<@valori[ @indici ]>.
 
 =head2 Variabili Anonime
 
@@ -80,9 +79,9 @@ X<anonymous variables>
 X<variables; anonymous>
 
 In Perl non è I<richiesto> che le variabili abbiano un nome. I nomi servono ad aiutare voi, i
-programmatori, a tener traccia di una C<$mela>, dei C<@barili> o dei C<%ristoranti_economici>.
+programmatori, a tener traccia di una C<$mela>, delle C<@scatole> o dei C<%ristoranti_economici>.
 Le variabili create I<senza> un nome dal vostro codice sorgente sono dette variabili I<anonime>.
-L'inico modo per accedere a una variabile anonima è per riferimento
+L'unico modo per accedere a una variabile anonima è per riferimento
 (L<references>).
 
 =head2 Variabili, Tipi e Coercizione
@@ -110,7 +109,7 @@ restituisce il numero di elementi nell'array:
 
 =begin programlisting
 
-    my $count = @items;
+    my $conteggio = @elementi;
 
 =end programlisting
 

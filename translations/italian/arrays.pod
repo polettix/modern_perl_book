@@ -15,7 +15,7 @@ Il sigillo C<@> denota un array. Per dichiarare un array, scrivete:
 
 =begin programlisting
 
-    my @items;
+    my @elementi;
 
 =end programlisting
 
@@ -26,15 +26,15 @@ X<C<$>; sigil>
 X<sigils; C<$>>
 
 I<Accedere> a un singolo elemento di un array in Perl 5 richiede il sigillo
-scalare. C<$cats[0]> è un uso non ambiguo dell'array C<@cats>, dato che
+scalare. C<$gatti[0]> è un uso non ambiguo dell'array C<@gatti>, dato che
 le parentesi quadre (C<[]>) postfisse (L<fixity>) indicano sempre un accesso indicizzato a un array.
 
 Il primo elemento di un array ha indice zero:
 
 =begin programlisting
 
-    # @cats contiene una lista di oggetti Cat
-    my $first_cat = $cats[0];
+    # @gatti contiene una lista di oggetti Gatto
+    my $primo_gatto = $gatti[0];
 
 =end programlisting
 
@@ -45,16 +45,16 @@ un'addizione o un contesto booleano), un array valuta al numero di elementi nell
 =begin programlisting
 
     # assegnamento scalare
-    my $num_cats = @cats;
+    my $numero_gatti = @gatti;
 
     # concatenazione di stringhe
-    say 'I have ' . @cats . ' cats!';
+    say 'Ho ' . @gatti . ' gatti!';
 
     # addizione
-    my $num_animals = @cats + @dogs + @fish;
+    my $num_animali = @gatti + @cani + @pesci;
 
     # contesto booleano
-    say 'Esatto, un padrone di gatti!' if @cats;
+    say 'Esatto, sono un padrone di gatti!' if @gatti;
 
 =end programlisting
 
@@ -63,11 +63,11 @@ numero di elementi dell'array (ricordate che gli indici dell'array iniziano da 0
 
 =begin programlisting
 
-    my $first_index = 0;
-    my $last_index  = @cats - 1;
+    my $primo_indice  = 0;
+    my $ultimo_indice = @gatti - 1;
 
-    say   "Il mio primo gatto ha indice $first_index, "
-        . "e il mio ultimo gatto ha indice $last_index."
+    say   "Il mio primo gatto ha indice $primo_indice, "
+        . "e il mio ultimo gatto ha indice $ultimo_indice."
 
 =end programlisting
 
@@ -78,11 +78,11 @@ Anche la meno elegante sintassi C<$#cats> valuta all'ultimo indice dell'array:
 
 =begin programlisting
 
-    my $first_index = 0;
-    B<my $last_index  = $#cats;>
+    my $primo_indice = 0;
+    B<my $ultimo_indice  = $#gatti;>
 
-    say   "Il mio primo gatto ha indice $first_index, "
-        . "e il mio ultimo gatto ha indice $last_index."
+    say   "Il mio primo gatto ha indice $primo_indice, "
+        . "e il mio ultimo gatto ha indice $ultimo_indice."
 
 =end programlisting
 
@@ -92,8 +92,8 @@ dell'array è accessibile all'indice C<-2>, e così via:
 
 =begin programlisting
 
-    my $last_cat           = $cats[-1];
-    my $second_to_last_cat = $cats[-2];
+    my $ultimo_gatto    = $gatti[-1];
+    my $penultimo_gatto = $gatti[-2];
 
 =end programlisting
 
@@ -109,13 +109,13 @@ Potete fare assegnamenti a singole posizioni in un array usando gli indici:
 
 =begin programlisting
 
-    my @cats;
-    $cats[3] = 'Jack';
-    $cats[2] = 'Tuxedo';
-    $cats[0] = 'Daisy';
-    $cats[1] = 'Petunia';
-    $cats[4] = 'Brad';
-    $cats[5] = 'Choco';
+    my @gatti;
+    $gatti[3] = 'Jack';
+    $gatti[2] = 'Tuxedo';
+    $gatti[0] = 'Daisy';
+    $gatti[1] = 'Petunia';
+    $gatti[4] = 'Brad';
+    $gatti[5] = 'Choco';
 
 =end programlisting
 
@@ -128,7 +128,7 @@ Come abbreviazione, potete inizializzare un arrey con una lista:
 
 =begin programlisting
 
-    my @cats = ( 'Daisy', 'Petunia', 'Tuxedo', ... );
+    my @gatti = ( 'Daisy', 'Petunia', 'Tuxedo', ... );
 
 =end programlisting
 
@@ -140,9 +140,9 @@ Un'espressione qualunque che produce una lista in contesto lista può essere ass
 
 =begin programlisting
 
-    my @cats     = get_cat_list();
-    my @timeinfo = localtime();
-    my @nums     = 1 .. 10;
+    my @gatti      = elenca_i_gatti();
+    my @info_tempo = localtime();
+    my @numeri     = 1 .. 10;
 
 =end programlisting
 
@@ -153,15 +153,15 @@ Per svuotare un array, assegnategli la lista vuota:
 
 =begin programlisting
 
-    my @dates = ( 1969, 2001, 2010, 2051, 1787 );
+    my @date = ( 1969, 2001, 2010, 2051, 1787 );
     ...
-    @dates    = ();
+    @date    = ();
 
 =end programlisting
 
 =begin tip Arrays Start Empty
 
-C<my @items = ();> è una versione più lunga e verbosa di C<my @items>, dato che
+C<my @elementi = ();> è una versione più lunga e verbosa di C<my @elementi>, dato che
 gli array appena dichiarati sono vuoti.
 
 =end tip
@@ -181,9 +181,9 @@ riceve una lista di zero o più indici e usa il sigillo array (C<@>):
 
 =begin programlisting
 
-    my @youngest_cats = @cats[-1, -2];
-    my @oldest_cats   = @cats[0 .. 2];
-    my @selected_cats = @cats[ @indexes ];
+    my @gatti_giovani      = @gatti[-1, -2];
+    my @gatti_anziani      = @gatti[0 .. 2];
+    my @selezione_di_gatti = @gatti[ @indici ];
 
 =end programlisting
 
@@ -191,7 +191,7 @@ Le slice di array possono essere utili negli assegnamenti:
 
 =begin programlisting
 
-    @users[ @replace_indices ] = @replace_users;
+    @utenti[ @indici_sostituzioni ] = @sostituisci_utenti;
 
 =end programlisting
 
@@ -200,10 +200,10 @@ Una slice può contenere zero o più elementi--o anche uno solo:
 =begin programlisting
 
     # array con un singolo elemento; la chiamata di funzione è in contesto I<lista>
-    @cats[-1] = get_more_cats();
+    @gatti[-1] = dammi_altri_gatti();
 
     # array con un singolo elemento; la chiamata di funzione è in contesto I<scalare>
-    $cats[-1] = get_more_cats();
+    $gatti[-1] = dammi_altri_gatti();
 
 =end programlisting
 
@@ -214,7 +214,7 @@ valutata in contesto scalare produce un warning:
 
 =begin screen
 
-    È meglio scrivere il valore scalare @cats[1] come $cats[1]...
+    È meglio scrivere il valore scalare @gatti[1] come $gatti[1]...
 
 =end screen
 
@@ -224,7 +224,7 @@ che usa come indice:
 =begin programlisting
 
     # la chiamata di funzione è in contesto lista
-    my @hungry_cats = @cats[ get_cat_indices() ];
+    my @gatti_affamati = @gatti[ indici_di_gatti() ];
 
 =end programlisting
 
@@ -244,13 +244,13 @@ array:
 
 =begin programlisting
 
-    my @meals;
+    my @piatti;
 
     # cosa c'è da mangiare?
-    push @meals, qw( hamburger pizza lasagne rape );
+    push @piatti, qw( hamburger pizza lasagne rape );
 
     # ... ma vostro nipote odia la verdura
-    pop @meals;
+    pop @piatti;
 
 =end programlisting
 
@@ -263,7 +263,7 @@ Dato che C<push> opera su una lista, potete facilmente appendere gli elementi di
 
 =begin programlisting
 
-    push @meals, @breakfast, @lunch, @dinner;
+    push @piatti, @colazione, @pranzo, @cena;
 
 =end programlisting
 
@@ -278,10 +278,10 @@ di un array:
 =begin programlisting
 
     # espandiamo i nostri orizzonti culinari
-    unshift @meals, qw( tofu spanakopita taquitos );
+    unshift @piatti, qw( tofu spanakopita taquitos );
 
-    # ripensamento su quell'idea della soia
-    shift @meals;
+    # un ripensamento su quell'idea della soia
+    shift @piatti;
 
 =end programlisting
 
@@ -302,11 +302,11 @@ C<unshift>. Un uso particolarmente efficace è la rimozione di due elementi da u
 
 =begin programlisting
 
-    my ($winner, $runnerup) = splice @finalists, 0, 2;
+    my ($vincitore, $secondo) = splice @finalisti, 0, 2;
 
     # oppure
-    my $winner              = shift @finalists;
-    my $runnerup            = shift @finalists;
+    my $vincitore             = shift @finalisti;
+    my $secondo               = shift @finalisti;
 
 =end programlisting
 
@@ -318,9 +318,9 @@ A partire da Perl 5.12, C<each> può iterare su un array per indice e valore:
 
 =begin programlisting
 
-    while (my ($index, $value) = each @bookshelf)
+    while (my ($indice, $valore) = each @libri)
     {
-        say "#$index: $value";
+        say "#$indice: $valore";
         ...
     }
 
@@ -335,15 +335,15 @@ normale funzione Perl 5, essi si appiattiscono in un'unica lista:
 
 =begin programlisting
 
-    my @cats = qw( Daisy Petunia Tuxedo Brad Jack );
-    my @dogs = qw( Rodney Lucky );
+    my @gatti = qw( Daisy Petunia Tuxedo Brad Jack );
+    my @cani = qw( Rodney Lucky );
 
-    take_pets_to_vet( @cats, @dogs );
+    porta_dal_veterinario( @gatti, @cani );
 
-    sub take_pets_to_vet
+    sub porta_dal_veterinario
     {
         # BACATO: non usatelo!
-        my (@cats, @dogs) = @_;
+        my (@gatti, @cani) = @_;
         ...
     }
 
@@ -351,8 +351,8 @@ normale funzione Perl 5, essi si appiattiscono in un'unica lista:
 
 Nella funzione, C<@_> conterrà sette elementi, not due, poichè l'assegnamento
 di una lista ad un array è I<greedy>. Un array consuma più elementi possibile
-dalla lista. Dopo l'assegnamento, C<@cats> conterrà I<tutti>
-gli argomenti passati alla funzione. C<@dogs> invece sarà vuoto.
+dalla lista. Dopo l'assegnamento, C<@gatti> conterrà I<tutti>
+gli argomenti passati alla funzione. C<@cani> invece sarà vuoto.
 
 Questo appiattimento può confondere i principianti che tentano di creare
 array nidificati in Perl 5:
@@ -360,9 +360,9 @@ array nidificati in Perl 5:
 =begin programlisting
 
     # crea un singolo array, non un array di array
-    my @numbers = (  1 .. 10,
-                  ( 11 .. 20,
-                  ( 21 .. 30 ) ) );
+    my @numeri = (  1 .. 10,
+                 ( 11 .. 20,
+                 ( 21 .. 30 ) ) );
 
 =end programlisting
 
@@ -371,7 +371,7 @@ array nidificati in Perl 5:
 =begin programlisting
 
     # crea un singolo array, non un array di array
-    my @numbers = 1 .. 30;
+    my @numeri = 1 .. 30;
 
 =end programlisting
 
@@ -393,8 +393,8 @@ C<$LIST_SEPARATOR>. Quindi:
 
 =begin programlisting
 
-    my @alphabet = 'a' .. 'z';
-    say "[@alphabet]";
+    my @alfabeto = 'a' .. 'z';
+    say "[@alfabeto]";
     B<[a b c d e f g h i j k l m>
      B<n o p q r s t u v w x y z]>
 
@@ -408,7 +408,7 @@ può essere molto comodoN<Il credito per averne dimostrato l'efficacia va a Mark
     # cos'è già che c'è in questo array?
     {
         local $" = ')(';
-        say "(@sweet_treats)";
+        say "(@dolciumi)";
     }
 
 =end programlisting
