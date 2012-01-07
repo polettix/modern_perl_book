@@ -151,8 +151,8 @@ X<C<//=>; infix operator>
 =over 4
 
 =item * Gli operatori I<infissi> compaiono tra i loro operandi. Molti operatori
-matematici sono operatori infissi, per esempio l'operatore di moltiplicazione in C<$length
-* $width>.
+matematici sono operatori infissi, per esempio l'operatore di moltiplicazione in C<$lunghezza
+* $larghezza>.
 
 X<C<\>; prefix operator>
 X<C<~>; prefix operator>
