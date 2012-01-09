@@ -1,15 +1,12 @@
-=head1 Operator Types
+=head1 Tipi di Operatori
 
 Z<operator_types>
 
-Perl's pervasive contexts--especially value contexts
-(L<value_contexts>)--extend to the behavior of its operators.  Perl operators
-provide value contexts to their operands.  Choosing the most appropriate
-operator for a given situation requires you to understand what type of value
-you expect to receive as well as the type of values on which you wish to
-operate.
+Gli operatori del Perl forniscono contesti di valore (L<value_contexts>) ai propri operandi.
+Per scegliere l'operatore appropriato, dovete tenere conto dei valori degli operandi che gli
+passate e del valore che vi aspettate di ricevere.
 
-=head2 Numeric Operators
+=head2 Operatori Numerici
 
 Z<numeric_operators>
 
@@ -42,14 +39,14 @@ X<C<%=>; numeric operator>
 X<operators; C<-->>
 X<C<-->; numeric operator>
 
-The numeric operators impose numeric contexts on their operands.  They consist
-of the standard arithmetic operators such as addition (C<+>), subtraction
-(C<->), multiplication (C<*>), division (C</>), exponentiation (C<**>), modulo
-(C<%>), their in-place variants (C<+=>, C<-=>, C<*=>, C</=>, C<**=>, and
-C<%=>), and auto-decrement (C<-->), whether postfix or prefix.
+Gli operatori numerici impngono il contesto numerico ai loro operandi. Questi operatori
+sono: gli operatori aritmetici standard come addizione (C<+>), sottrazione
+(C<->), moltiplicazione (C<*>), divisione (C</>), elevamento a potenza (C<**>) e modulo
+(C<%>); le loro varianti di assegnamento composto (C<+=>, C<-=>, C<*=>, C</=>, C<**=> e
+C<%=>); e l'auto-decremento (C<-->) sia postfisso che prefisso.
 
-While the auto-increment operator may seem like a numeric operator, it has
-special string behavior (L<auto_increment_operator>).
+L'operatore di auto-incremento ha uno speciale comportamento in contesto stringa
+(L<auto_increment_operator>).
 
 X<operators; C<==>>
 X<operators; C<!=>>
@@ -67,13 +64,13 @@ X<<< C<< E<gt>= >>; numeric comparison operator >>>
 X<<< C<< E<lt>= >>; numeric comparison operator >>>
 X<<< C<< E<lt>=E<gt> >>; numeric comparison operator >>>
 
-Several comparison operators impose numeric contexts upon their operands.
-These are numeric equality (C<==>), numeric inequality (C<!=>), greater than
-(C<< E<gt> >>), less than (C<< E<lt> >>), greater than or equal to (C<< E<gt>=
->>), less than or equal to (C<< E<lt>= >>), and the sort comparison operator
+Diversi operatori di confronto impongono il contesto numerico ai loro operandi.
+Questi operatori sono: uguaglianza numerica (C<==>), disuguaglianza numerica (C<!=>), maggiore di
+(C<< E<gt> >>), minore di (C<< E<lt> >>), maggiore o uguale (C<< E<gt>=
+>>), minore o uguale (C<< E<lt>= >>) e l'operatore di confronto per il sort
 (C<< E<lt>=E<gt> >>).
 
-=head2 String Operators
+=head2 Operatori Stringa
 
 X<operators; string>
 X<strings; operators>
@@ -84,9 +81,9 @@ X<C<!~>; string operator>
 X<operators; C<.>>
 X<C<.>; string operator>
 
-The string operators impose string contexts on their operands.  They consist
-of the positive and negative regular expression binding operators (C<=~> and
-C<!~>, respectively), and the concatenation operator (C<.>).
+Gli operatori stringa impongono il contesto stringa ai loro operandi. Questi operatori sono
+il binding positivo e negativo a un'espressione regolare (C<=~> and C<!~>,
+respectively) e la concatenazione (C<.>).
 
 X<operators; C<eq>>
 X<operators; C<ne>>
@@ -103,12 +100,12 @@ X<C<ge>; string comparison operator>
 X<C<le>; string comparison operator>
 X<C<cmp>; string comparison operator>
 
-Several comparison operators impose string contexts upon their operands.
-These are string equality (C<eq>), string inequality (C<ne>), greater than
-(C<gt>), less than (C<lt>), greater than or equal to (C<ge>), less than or
-equal to (C<le>), and the string sort comparison operator (C<cmp>).
+Diversi operatori di confronto impongono il contesto numerico ai loro operandi.
+Questi operatori sono: uguaglianza di stringhe (C<eq>), disuguaglianza di stringhe (C<ne>), maggiore di (C<gt>),
+minore di (C<lt>), maggiore o uguale (C<ge>), minore o uguale
+(C<le>) e l'operatore di confronto tra stringhe per il sort (C<cmp>).
 
-=head2 Logical Operators
+=head2 Operatori Logici
 
 X<operators; logical>
 X<operators; C<&&>>
@@ -133,22 +130,21 @@ X<operators; defined-or>
 X<defined-or; logical operator>
 X<short-circuiting>
 
-The logical operators treat their operands in a boolean context.  The C<&&> and
-C<and> operators test that both expressions are logically true, while the C<||>
-and C<or> operators test that either expression is true.  All four are infix
-operators.  All four exhibit I<short-circuiting> behavior
-(L<short_circuiting>).
+Gli operatori logici impngono il contesto booleano ai loro operandi. Questi operatori
+sono C<&&>, C<and>, C<||> e C<or>. Sono tutti infssi e tutti possono dar luogo a
+I<cortocircuiti> (L<short_circuiting>). Le varianti C<and> e C<or> hanno
+precedenza più bassa delle corrispondenti forme simboliche.
 
-The defined-or operator, C<//>, tests the I<definedness> of its operand.
-Unlike C<||> which tests the truth value of its operand, C<//> evaluates to a
-true value if its operand evaluates to a numeric zero or the empty string.
-This is especially useful for setting default parameter values:
+L'operatore defined-or, C<//>, controlla se il proprio operando è I<definito>. Contrariamente a
+C<||> che testa la I<verità> del proprio operando, C<//> valuata a vero
+anche se il suo operando valuta al numero zero o alla stringa vuota. Questo risulta
+particolarmente utile per impostare i valori di default dei parametri:
 
 =begin programlisting
 
-    sub name_pet
+    sub chiama_il_cane
     {
-        my $name = shift // 'Fluffy';
+        my $nome = shift // 'Fuffy';
         ...
     }
 
@@ -156,24 +152,23 @@ This is especially useful for setting default parameter values:
 
 X<C<?:>; ternary conditional operator>
 
-The ternary conditional operator (C<?:>) takes three operands.  It evaluates
-the first in boolean context and evaluates to the second if the first is true
-and the third otherwise:
+L'operatore condizionale ternario (C<?:>) riceve tre operandi. Valuta il
+primo in contesto booleano e continua con la valutazione del secondo se il primo è vero e
+del terzo in caso contrario:
 
 =begin programlisting
 
-    my $truthiness = $value ? 'true' : 'false';
+    my $verità = $valore ? 'vero' : 'falso';
 
 =end programlisting
 
-The C<!> and C<not> operators return the logical opposite of the boolean value
-of their operands.  C<not> has a lower precedence than C<!>.  These are prefix
-operators.
+Gli operatori prefissi C<!> e C<not> restituiscono l'opposto del valore booleano
+dei loro operandi. C<not> è la versione di C<!> con precedenza più bassa.
 
-The C<xor> operator is an infix operator which evaluates to the exclusive-or of
-its operands.
+L'operatore C<xor> è un operatore infisso che valuta all' or-esclusivo dei
+suoi operandi.
 
-=head2 Bitwise Operators
+=head2 Operatori bit-a-bit
 
 X<operators; bitwise>
 X<<< operators; C<< E<lt>E<lt> >> >>>
@@ -199,13 +194,13 @@ X<C<^=>; bitwise operator>
 X<<< C<< E<lt>E<lt>= >>; bitwise operator >>>
 X<<< C<< E<gt>E<gt>= >>; bitwise operator >>>
 
-The bitwise operators treat their operands numerically at the bit level.  These
-are uncommon in most Perl 5 programs.  They consist of left shift (C<< << >>),
-right shift (C<< >> >>), bitwise and (C<&>), bitwise or (C<|>), and bitwise xor
-(C<^>), as well as their in-place variants (C<< <<= >>, C<< >>= >>, C<&=>,
-C<|=>, and C<^=>).
+Gli operatori bit-a-bit trattano a livello di bit i numeri rappresentati dai propri operandi. Queste
+operazioni, piuttosto rare, sono: shift a sinistra (C<< << >>), shift a destra
+(C<< >> >>), and bit-a-bit (C<&>), or bit-a-bit (C<|>) e xor bit-a-bit (C<^>);
+e le loro varianti di assegnamento composto (C<< <<= >>, C<< >>= >>, C<&=>, C<|=> e
+C<^=>).
 
-=head2 Special Operators
+=head2 Operatori Speciali
 
 Z<auto_increment_operator>
 
@@ -214,11 +209,11 @@ X<auto-increment>
 X<operators; C<++>>
 X<C<++>; auto-increment operator>
 
-The auto-increment operator has a special case.  If anything has ever used a
-variable in a numeric context (L<cached_coercions>), it increments the numeric
-value of that variable.  If the variable is obviously a string (and has never
-been evaluated in a numeric context), the string value increments with a carry,
-such that C<a> increments to C<b>, C<zz> to C<aaa>, and C<a9> to C<b0>.
+L'operatore di auto-incremento ha un comportamento speciale. Quando è usato su un valore che ha
+una componente numerica (L<cached_coercions>), l'operatore incrementa tale componente
+numerica. Se invece il valore è solamente una stringa (e non ha una componente numerica),
+l'operatore incrementa tale valore stringa in modo che C<a> diventa C<b>, C<zz>
+diventa C<aaa> e C<a9> diventa C<b0>.
 
 =begin programlisting
 
@@ -227,15 +222,15 @@ such that C<a> increments to C<b>, C<zz> to C<aaa>, and C<a9> to C<b0>.
 
     $num++;
     $str++;
-    is( $num,   2, 'numeric autoincrement should stay numeric' );
-    is( $str, 'b', 'string autoincrement should stay string'   );
+    is( $num,   2, 'autoincremento numerico' );
+    is( $str, 'b', 'autoincremento stringa'  );
 
     no warnings 'numeric';
     $num += $str;
     $str++;
 
-    is( $num, 2, 'adding $str to $num should add numeric value of $str'   );
-    is( $str, 1, '... but $str should now autoincrement its numeric part' );
+    is( $num, 2, 'un'addizione numerica con $str'    );
+    is( $str, 1, '...genera una componente numerica per $str' );
 
 =end programlisting
 
@@ -243,29 +238,31 @@ X<operators; repetition>
 X<operators; C<x>>
 X<C<x>; repetition operator>
 
-The repetition operator (C<x>) is an infix operator.  In list context, its
-behavior changes based on its first operand.  When given a list, it evaluates
-to that list repeated the number of times specified by its second operand.
-When given a scalar, it produces a string consisting of the string value of
-its first operand concatenated to itself the number of times specified by its
-second operand.  In scalar context, the operator always produces a concatenated
-string repeated appropriately.
+L'operatore di ripetizione (C<x>) è un operatore infisso con un comportamento complesso. In
+contesto lista, se riceve una lista valuta a quella lista ripetuta un numero di volte
+pari al suo secondo operando. In contesto lista, se riceve uno scalare
+produce una stringa che consiste nel valore stringa del suo primo operando
+concatenata con se stessa un numero di volte pari al suo secondo operando.
 
-For example:
+In contesto scalare, l'operatore produce sempre una stringa ottenuta con il numero appropriato di
+concatenazioni. Per esempio:
 
 =begin programlisting
 
-    my @scheherazade = ('nights') x 1001;
-    my $calendar     =  'nights'  x 1001;
+    my @sherazad   = ('notti') x 1001;
+    my $calendario =  'notti'  x 1001;
+    my $lung_cal   =  length $calendario;
 
-    is( @scheherazade,                      1001, 'list repeated' );
-    is( length $calendar, 1001 * length 'nights', 'word repeated' );
+    is( @sherazad,   1001, 'lista ripetuta' );
+    is( $lung_cal,   1001 * length 'notti',
+                     'parola ripetuta' );
 
-    my @schenolist   =  'nights'  x 1001;
-    my $calscalar    = ('nights') x 1001;
+    my @shestringa =  'notti'  x 1001;
+    my $calscalare = ('notti') x 1001;
 
-    is( @schenolist,                            1, 'no lvalue list'      );
-    is( length $calscalar, 1001 * length 'nights', 'word still repeated' );
+    is( @shestringa, 1, 'contiene una sola stringa' );
+    is( length $calscalare,
+        1001 * length 'notti', 'sempre parola ripetuta' );
 
 =end programlisting
 
@@ -274,27 +271,26 @@ X<range>
 X<operators; C<..>>
 X<C<..>; range operator>
 
-The I<range> operator (C<..>) is an infix operator which produces a list of
-items in list context:
+L'operatore infisso di I<range> (C<..>) produce una lista di elementi in contesto lista:
 
 =begin programlisting
 
-    my @cards = ( 2 .. 10, 'J', 'Q', 'K', 'A' );
+    my @carte = ( 2 .. 10, 'J', 'Q', 'K', 'A' );
 
 =end programlisting
 
-It can produce simple, incrementing ranges (whether integers or
-autoincrementing strings), but it cannot intuit patterns or more complex
-ranges.
+Può produrre dei semplici range incrementali (sia di interi che di stringhe), ma
+non è capace di intuire pattern di range più complessi.
 
 X<operators; flip-flop>
 X<flip-flop>
 X<C<..>; flip-flop operator>
 
-In boolean context, the range operator becomes the I<flip-flop> operator.  This
-operator returns a false value if its left operand is false, then it returns a
-true value while its right operand is true.  Thus you could quote the body of a
-pedantically formatted email with:
+In contesto booleano, l'operatore di range diventa l'operatore I<flip-flop>. Questo
+operatore produce un valore falso fino a quando il suo operando sinistro non diventa vero. Tale valore
+rimane vero fino a quando l'operando destro non diventa vero, dopo di che il valore prodotto è di nuovo falso
+fino a quando l'operatore sinistro non diventa di nuovo vero. Immaginate di parsificare il testo di una lettera
+formale con:
 
 =begin programlisting
 
@@ -311,10 +307,9 @@ X<C<,>; operator>
 X<<< operators; C<< =E<gt> >> >>>
 X<<< C<< =E<gt> >>; fat comma operator >>>
 
-The I<comma> operator (C<,>) is an infix operator.  In scalar context it
-evaluates its left operand then returns the value produced by evaluating its
-right operand.  In list context, it evaluates both operands in left-to-right
-order.
+L'operatore I<virgola> (C<,>) è un operatore infisso. In contesto scalare
+valuta il suo operando sinistro e quindi restituisce il valore prodotto dalla valutazione del suo
+operando destro. In contesto lista, valuta entrambi gli operatori da destra a sinistra.
 
-The fat comma operator (C<< => >>) behaves the same way, except that it
-automatically quotes any bareword used as its left operand (L<hashes>).
+L'operatore fat comma (C<< => >>) effettua anche la quotatura di una bareword che compaia
+come suo operando sinistro (L<hashes>).
