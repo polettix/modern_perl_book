@@ -5,14 +5,14 @@
 X<function>
 X<subroutine>
 
-Una I<funzione> (o I<subroutine>) in Perl è una unità di comportamento
-discreta ed incapsulata. Può avere o meno un nome. Può consumare le informazioni
-in input oppure no. Può produrre informazione in output oppure no. Rappresenta
-una tipologia di controllo del flusso, dove l'esecuzione del programma procede
-verso un altro punto nel codice sorgente.
+In Perl, una I<funzione> (o I<subroutine>) è una unità di codice
+discreta ed incapsulata. Un programma è una collezione di queste piccole black box
+le cui interazioni governano il controllo di flusso del programma stesso.
+Una funzione può avere o meno un nome. Può consumare informazioni
+in input oppure no. Può produrre informazione in output oppure no. 
 
 Le funzioni sono un meccanismo primario per l'astrazione, l'incapsulamento
-ed il riuso in Perl 5; molti altri meccanismi si basano sull'idea di funzione.
+ed il riuso in Perl 5.
 
 L<functions>
 
