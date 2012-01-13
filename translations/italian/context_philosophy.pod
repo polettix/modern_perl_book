@@ -10,43 +10,43 @@ del nome è in disaccordo con la quantità.> suona subito sbagliato, proprio com
 l'errore di genere in "la gatto"N<L'articolo è femminile, mentre il nome è maschile.>. 
 Considerate anche il pronome "che" o il nome "città" che possono essere singolari o plurali a seconda del contesto.
 
-Il contesto in Perl è qualcosa di simile. Esso determina quanti e quali dati possono essere usati. 
+Il contesto in Perl è qualcosa di simile. Esso determina quanti e quali dati usare. 
 Perl fa del suo meglio per darvi esattamente quello che chiedete--a patto che
 lo chiediate utilizzando il contesto appropriato.
 
-Alcune operazioni del Perl hanno un diverso comportamento a seconda che vogliate ottenere da loro zero, uno o
+Alcune operazioni in Perl hanno un diverso comportamento a seconda che vogliate ottenere da loro zero, uno o
 più di un risultato. Un costrutto Perl può fare due cose diverse se scrivete "Fai questo, ma non mi importa del risultato" 
-piuttosto che "Fai questo, e mi aspetto più di un risultato." Altre operazioni vi permettono di specificare se
+piuttosto che "Fai questo, e mi aspetto più di un risultato". Altre operazioni vi permettono di specificare se
 intendete lavorare con dati numerici, testuali, oppure valori logici vero e falso.
 
 Il contesto può causare confusione se tentate di scrivere o leggere del codice Perl come una sequenza
 di singole espressioni avulse da ciò che le circonda. Potrà succedervi di 
-velervi dare una botta in testa dopo una lunga sessione di debugging quando finalmente scoprite che l'errore era nelle vostre assunzioni
+volervi dare una botta in testa dopo una lunga sessione di debugging quando finalmente scoprite che l'errore era nelle vostre assunzioni
 sul contesto. Se invece tenete sempre a mente il contesto, il vostro codice sarà più corretto--oltre che pulito, flessibile e conciso.
 
 =head2 Contesti Void, Scalare e Lista
 
 Z<amount_context>
 
-X<context; amount>
-X<amount context>
+X<quantità; contesto>
+X<contesto di quantità>
 
-Il I<contesto di numero> determina I<quanti> elementi vi aspettate da un'operazione.
-E<Egrave> qualcosa di simile alla consonanza di numero tra soggetto e verbo in Italiano.
-Anche senza conoscere formalmente questo principio, non avete probabilmente problemi a trovare l'errore nella frase "Il Perl sono un linguaggio divertente".
+Il I<contesto di quantità> determina I<quanti> elementi vi aspettate da un'operazione.
+È qualcosa di simile alla concordanza di numero tra soggetto e verbo in Italiano.
+Anche senza conoscere formalmente questo principio, non avete probabilmente problemi a trovare l'errore nella frase "Perl sono un linguaggio divertente".
 In Perl, il numero di elementi che vi aspettate determina quanti ne otterrete.
 
-X<void context>
-X<contxt; void>
+X<contest void>
+X<void; contesto>
 
 Supponete di avere una funzione (L<functions>) con nome C<cerca_faccende()> che ordina
 la vostra lista di faccende di casa da sbrigare in base alla loro priorità. Il modo in cui chiamate
 questa funzione determina cosa essa produrrà. Potreste non avere tempo di occuparvi di nulla, e in questo caso
-chiamare la funzione è solo un tentativo di mostrarvi occupati.
+chiamare la funzione serve solo a far finta di lavorare.
 Potreste avere abbastanza tempo per fare un lavoro, oppure avere molte energie in
 un weekend libero e desiderare di sbrigare più faccende possibile.
 
-Se chiamate la funzione senza attenderne un valore di ritorno, la chiamata
+Se chiamate la funzione senza chiedere un valore di ritorno, la chiamata
 viene fatta nel I<contesto void>:
 
 =begin programlisting
@@ -55,10 +55,10 @@ viene fatta nel I<contesto void>:
 
 =end programlisting
 
-X<context; scalare>
-X<scalar context>
+X<contesto scalare>
+X<scalare; contesto>
 
-Se assegnate il valore di ritorno della funzione a un singolo elemento (L<scalars>), la funzione viene valuta
+Se assegnate il valore restituito della funzione a un singolo elemento (L<scalars>), la funzione viene valutata
 in I<contesto scalare>:
 
 =begin programlisting
@@ -67,17 +67,17 @@ in I<contesto scalare>:
 
 =end programlisting
 
-X<list context>
-X<context; list>
+X<lista; contesto>
+X<contesto lista>
 
-Se assegnate il risultato della chiamata alla funzione ad un array (L<arrays>) o a una
+Se assegnate il risultato della chiamata ad un array (L<arrays>) o a una
 lista, o lo utilizzate in una lista, la funzione viene valutata in I<contesto lista>:
 
 =begin programlisting
 
     my @tutti_i_risultati          = cerca_faccende();
     my ($elemento_singolo, @altri) = cerca_faccende();
-    processa_lista_di_risultati( cerca_faccende() );
+    elabora_lista_di_risultati( cerca_faccende() );
 
 =end programlisting
 
@@ -92,8 +92,8 @@ Se si volesse ignorare C<@altri>, potreste scrivere:
 =end programlisting
 
 .... nel qual caso le parentesi suggeriscono al parser di Perl 5 che intendete
-fare l'assegnamento in contesto lista anche se vi interessa assegnare solo un elemento della lista.
-Tutto questo non è forse così ovvio, ma ora che lo sapete, la differenza di contesto di numero tra queste due istruzioni dovrebbe esservi evidente:
+fare l'assegnamento in contesto lista anche se vi interessa assegnarne solo un elemento.
+Tutto questo non è forse così ovvio, ma ora che lo sapete, la differenza di quantità tra queste due istruzioni dovrebbe esservi evidente:
 
 =begin programlisting
 
@@ -102,13 +102,13 @@ Tutto questo non è forse così ovvio, ma ora che lo sapete, la differenza di co
 
 =end programlisting
 
-Valutare una funzione o una espressionein contesto lista--eccetto che negli assegnamenti--può
-creare qualche confusione. Le liste propagano il contesto lista alle espressioni che
-contengono, quindi entrambe queste chiamate a C<cerca_faccende()> sono valutate in contesto lista:
+Valutare una funzione o un'espressione in contesto lista--tranne che negli assegnamenti--può
+creare qualche confusione. Le liste propagano il contesto lista alle espressioni al loro
+interno, quindi entrambe queste chiamate a C<cerca_faccende()> sono valutate in contesto lista:
 
 =begin programlisting
 
-    processa_lista_di_risultati( cerca_faccende() );
+    elabora_lista_di_risultati( cerca_faccende() );
 
     my %risultati =
     (
@@ -119,10 +119,11 @@ contengono, quindi entrambe queste chiamate a C<cerca_faccende()> sono valutate 
 =end programlisting
 
 Quest'ultimo esempio sorprende spesso i programmatori principianti che si aspettano un contesto scalare
-per la chiamata di funzione. Invece, inizializzare un hash (L<hashes>) con una lista di valori
+per quella chiamata di funzione. Invece, inizializzare un hash (L<hashes>) con una lista di valori
 impone un contesto lista alla chiamata a C<cerca_faccende>.
 
-X<builtins; C<scalar>>
+X<funzioni predefinite; C<scalar>>
+X<predefiniti; funzioni; C<scalar>>
 
 Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 
@@ -136,8 +137,8 @@ Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 
 =end programlisting
 
-Che effetto ha il contesto di chiamata di una funzione? Una funzione context-aware può esaminare il contesto in cui è stata chiamata
-e decidere di conseguenza quanto lavoro deve fare per restituire il risultato.
+Perché è importante il contesto? Una funzione può esaminare il contesto in cui è stata chiamata
+e decidere di conseguenza quanto lavoro fare per restituire il risultato.
 In contesto void, C<cerca_faccende()> potrebbe non fare assolutamente nulla. In contesto scalare, deve trovare soltanto il compito più importante. 
 In contesto lista, deve ordinare e restituire l'intera lista di faccende da sbrigare.
 
@@ -145,60 +146,63 @@ In contesto lista, deve ordinare e restituire l'intera lista di faccende da sbri
 
 Z<value_contexts>
 
-X<value context>
-X<context; value>
+X<valore; contesto>
+X<contesto di valore>
 
-L'altro contesto del Perl--il I<contesto di valore>--determina come Perl interpreta un dato.
+L'altro contesto di Perl--il I<contesto di valore>--determina come Perl interpreta un dato.
 Probabilmente avrete già notato la flessibilità del Perl nell'indovinare se un dato è un numero o una stringa,
 e nel convertire tra i due a seconda delle vostre intenzioni.
-In mancanza della dichiarazione (o del tracciamento) esplicito del I<tipo> di un dato contenuto in una
-variable o restituito da una funzione, i contesti di valore del Perl costituiscono importanti suggerimenti al compilatore su come gestire tali dati.
+In cambio della possibilità di non dover dichiarare (o quanto meno tener traccia) esplicitamente del I<tipo> di un dato contenuto in una
+variable o restituito da una funzione, i contesti di valore di Perl forniscono importanti suggerimenti al compilatore su come gestire tali dati.
 
-X<builtins; C<eq>>
+X<operatori predefiniti; C<eq>>
+X<predefiniti; operatori; C<eq>>
 
-Perl farà del suo meglio per convertire i valori al tipo appropriato (L<coercion>),
+Perl fa del suo meglio per convertire i valori al tipo appropriato (L<coercion>),
 in base agli operatori che usate. Prestate attenzione ad usare il giusto operatore per il
 tipo di contesto che desiderate. Supponiamo che vogliate confrontare il contenuto di due stringhe.
 L'operatore C<eq> determina se le due stringhe contengono la stessa informazione I<come stringhe>:
 
 =begin programlisting
 
-    say "Errore catastrofico di crittografia!" if $alice eq $roberto;
+    say "Errore catastrofico di crittografia!" if $alice eq $bob;
 
 =end programlisting
 
-Forse vi è capitato di essere spiacevolmente sorpresi in casi in cui I<sapevate> che le stringhe erano diverse,
-ma confrontandole sono risultate uguali:
+Forse vi è capitato di essere spiacevolmente sorpresi in casi in cui siete I<sicuri> che le stringhe siano diverse,
+ma confrontandole risultano uguali:
 
 =begin programlisting
 
     my $alice = 'alice';
-    say "Errore catastrofico di crittografia!" if $alice == 'Roberto';
+    say "Errore catastrofico di crittografia!" if $alice == 'Bob';
 
 =end programlisting
 
-X<string context>
-X<numeric context>
-X<context; string>
-X<context; numeric>
+X<stringa; contesto>
+X<numerico; contesto>
+X<contesto stringa>
+X<contesto numerico>
 
-X<builtins; C<==>>
+X<operatori predefiniti; C<==>>
+X<predefiniti; operatori; C<==>>
 
 L'operatore C<eq> tratta i suoi operandi come stringhe forzando il I<contesto stringa> su di essi.
 Invece, l'operatore C<==> impone il I<contesto numerico>. In contesto numerico, entrambe le stringhe vengono valutate come C<0> (L<numeric_coercion>).
 
-X<boolean context>
-X<context; boolean>
+X<booleano; contesto>
+X<contesto booleano>
 
-Il I<contesto Booleano> occorre quando usate un valore in una istruzione condizionale. Negli esempi precedenti,
+Il I<contesto Booleano> si ha quando usate un valore in una istruzione condizionale. Negli esempi precedenti,
 C<if> valutava il risultato degli operatori C<eq> e C<==> in contesto booleano.
 
-X<context; explicit>
+X<contesto esplicito>
+X<esplicito; contesto>
 
 In rare occasioni, potrebbe essere necessario forzare esplicitamente un contesto se
-non è possibile trovare un operatore tipato appropriato. Per forzare un contesto numerico, aggiungete zero ad una
+non è possibile trovare un operatore del tipo appropriato. Per forzare un contesto numerico, aggiungete zero ad una
 variabile. Per forzare un contesto stringa, concatenate la variable con la stringa vuota. 
-Per forzare un contesto boolean, usate due volte l'operatore di negazione:
+Per forzare un contesto booleano, usate due volte l'operatore di negazione:
 
 =begin programlisting
 
@@ -208,5 +212,5 @@ Per forzare un contesto boolean, usate due volte l'operatore di negazione:
 
 =end programlisting
 
-I contesti di tipo sono meno difficili da identificare rispetto ai contesti di numero. Una volta che
-sapete della loro esistenza e conoscete i contesti dei vari operatori (L<operator_types>), è raro che possiate sbagliarvi.
+I contesti di tipo sono meno difficili da identificare rispetto ai contesti di quantità. Una volta che
+sapete della loro esistenza e conoscete i contesti forniti dai vari operatori (L<operator_types>), è raro che possiate sbagliarvi.

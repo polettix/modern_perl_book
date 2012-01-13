@@ -4,25 +4,26 @@ Z<implicit_ideas>
 
 Il contesto è solo una delle abbreviazioni linguistiche in Perl. I programmatori che padroneggiano queste
 abbreviazioni, dando appena un'occhiata al codice, possono capire immediatamente le sue caratteristiche più importanti.
-Un'altra di tali importanti funzionalità linguistiche è l'equivalente Perl dei pronomi.
+Un'altra importante caratteristica linguistiche è l'equivalente Perl dei pronomi.
 
 =head2 La Variabile Scalare di Default
 
 Z<default_scalar_variable>
 
-X<default variables; scalar>
-X<default variables; C<$_>>
-X<< variables; C<$_> >>
-X<< C<$_>; default scalar variable >>
+X<default; variabili; scalare>
+X<default; variabili; C<$_>>
+X<< variabili; C<$_> >>
+X<< C<$_>; variabile scalare di default >>
 
-La I<variabile scalare di default> (detta anche I<variabile topic>), C<$_>, si nota
-principalmente per la sua I<assenza>: molte delle operazioni native Perl lavorano sul
+La I<variabile scalare di default> (detta anche I<variabile argomento> o I<topic>), C<$_>, si nota
+principalmente per la sua I<assenza>: molte delle operazioni predefinite di Perl lavorano sul
 contenuto di C<$_> in assenza di una variabile esplicita. Potete usare C<$_> come qualunque altra variabile, ma spesso questo risulta superfluo.
 
-X<builtins; C<chomp>>
+X<funzioni predefinite; C<chomp>>
+X<predefiniti; funzioni; C<chomp>>
 
-Per esempio, la funzione nativa C<chomp> rimuove una sequenza finale di newline dalla
-stringa dataN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
+Per esempio, la funzione predefinita C<chomp> rimuove una sequenza di "a capo" dalla
+fine della stringa dataN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
 
 =begin programlisting
 
@@ -33,7 +34,7 @@ stringa dataN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
 
 =end programlisting
 
-Se non riceve esplicitamente una variabile, C<chomp> rimuove la sequenza finale di newline da C<$_>.
+Se non passate esplicitamente una variabile, C<chomp> rimuove la sequenza di "a capo" dalla fine di C<$_>.
 Queste due linee di codice sono equivalenti:
 
 =begin programlisting
@@ -43,12 +44,14 @@ Queste due linee di codice sono equivalenti:
 
 =end programlisting
 
-C<$_> ha lo stesso ruolo in Perl del pronome I<it> (esso) in Inglese. Leggete la prima linea
-come se dicesse "C<chomp> I<it>" e la seconda come "C<chomp>". Perl capisce a che cosa vi riferite
-quando dite "C<chomp>", lo interpreta come chomp I<it>.
+C<$_> ha lo stesso ruolo in Perl dei pronomi I<ciò>, I<quello> o del suffisso I<-lo> in Italiano. Leggete la prima linea
+come se dicesse "C<chomp>-alo" e la seconda come "C<chomp>". Perl capisce a che cosa vi riferite
+quando dite "C<chomp>", e farà sempre "chomp" su "quel" valore.
 
-X<builtins; C<say>>
-X<builtins; C<print>>
+X<funzioni predefinite; C<say>>
+X<predefiniti; funzioni; C<say>>
+X<funzioni predefinite; C<print>>
+X<predefiniti; funzioni; C<print>>
 
 Analogamente, C<say> e C<print> operano su C<$_> in assenza di altri argomenti:
 
@@ -56,13 +59,13 @@ Analogamente, C<say> e C<print> operano su C<$_> in assenza di altri argomenti:
 
     print;  # stampa $_ sul filehandle corrente
     say;    # stampa $_ sul filehandle corrente
-            # con un newline finale
+            # con un a capo finale
 
 =end programlisting
 
-X<C<s///>; substitution operator>
-X<C<m//>; match operator>
-X<C<tr//>; transliteration operator>
+X<C<s///>; operatore di sostituzione>
+X<C<m//>; operatore di match>
+X<C<tr//>; operatore di translitterazione>
 
 Le funzionalità Perl per le espressioni regolari (L<regex>) per default usano C<$_> per i match,
 le sostituzioni e le traslitterazioni:
@@ -79,18 +82,25 @@ le sostituzioni e le traslitterazioni:
 
 =end programlisting
 
-X<builtins; C<chr>>
-X<builtins; C<ord>>
-X<builtins; C<lc>>
-X<builtins; C<length>>
-X<builtins; C<reverse>>
-X<builtins; C<uc>>
+X<funzioni predefinite; C<chr>>
+X<predefiniti; funzioni; C<chr>>
+X<funzioni predefinite; C<ord>>
+X<predefiniti; funzioni; C<ord>>
+X<funzioni predefinite; C<lc>>
+X<predefiniti; funzioni; C<lc>>
+X<funzioni predefinite; C<length>>
+X<predefiniti; funzioni; C<length>>
+X<funzioni predefinite; C<reverse>>
+X<predefiniti; funzioni; C<reverse>>
+X<funzioni predefinite; C<uc>>
+X<predefiniti; funzioni; C<uc>>
 
-Molti degli operatori scalari del Perl (inclusi C<chr>, C<ord>, C<lc>, C<length>,
+Molti degli operatori scalari di Perl (inclusi C<chr>, C<ord>, C<lc>, C<length>,
 C<reverse> e C<uc>) lavorano sulla variabile scalare di default se non gli fornite
 un'alternativa.
 
-X<builtins; C<for>>
+X<direttive predefinite; C<for>>
+X<predefiniti; direttive; C<for>>
 
 Le direttive di ciclo del Perl (L<looping_directives>) per default usano C<$_> come variabile
 su cui iterare. Considerate un ciclo C<for> che itera su una lista:
@@ -106,7 +116,8 @@ su cui iterare. Considerate un ciclo C<for> che itera su una lista:
 
 =end programlisting
 
-X<builtins; C<while>>
+X<predefiniti; direttive; C<while>>
+X<direttive predefinite; C<while>>
 
 ... oppure il C<while>:
 
@@ -120,7 +131,8 @@ X<builtins; C<while>>
 
 =end programlisting
 
-X<builtins; C<map>>
+X<funzioni predefinite; C<map>>
+X<predefiniti; funzioni; C<map>>
 
 ... oppure la trasformazione di una lista con C<map>:
 
@@ -131,7 +143,8 @@ X<builtins; C<map>>
 
 =end programlisting
 
-X<builtins; C<grep>>
+X<funzioni predefinite; C<grep>>
+X<predefiniti; funzioni; C<grep>>
 
 ... o il filtraggio di una lista con C<grep>:
 
@@ -158,15 +171,15 @@ per evitare queste interferenze:
         chomp;
 
         # ESEMPIO SBAGLIATO
-        my $scombinato = calcola_valore( $_ );
+        my $modificato = calcola_valore( $_ );
         say "Valore originale: $_";
-        say "Valore scombinato: $scombinato";
+        say "Valore modificato: $modificato";
     }
 
 =end programlisting
 
 Se C<calcola_valore()> o qualche altra funzione modifica C<$_>, tale modifica persiste
-per l'intera iterazione del ciclo. Aggiungendo una dichiarazione C<my> evita di
+per l'intera iterazione del ciclo. Aggiungendo una dichiarazione C<my> si evita di
 sporcare un'altra istanza di C<$_>:
 
 =begin programlisting
@@ -178,7 +191,7 @@ sporcare un'altra istanza di C<$_>:
 
 =end programlisting
 
-Naturalmente, usare un'altra variabile lessicale può essere altrettanto chiaro:
+Naturalmente, usare una variabile lessicale con un nome appropriato può essere altrettanto chiaro, se non di più:
 
 =begin programlisting
 
@@ -189,11 +202,12 @@ Naturalmente, usare un'altra variabile lessicale può essere altrettanto chiaro:
 
 =end programlisting
 
-Usate C<$_> come usereste il pronome "esso" in un documento formale: occasionalmente, in un contesto limitato e ben definito.
+Usate C<$_> come usereste "ciò" o "quello" in un documento formale: occasionalmente, in contesti limitati e ben definiti.
 
-=begin tip The C<...> Operator
+=begin tip L'operatore C<...>
 
-X<builtins; C<...>>
+X<predefiniti; operatori; C<...>>
+X<operatori predefiniti; C<...>>
 
 Perl 5.12 ha introdotto l'operatore triplo-punto (C<...>) come segnaposto per del codice che volete scrivere successivamente.
 In fase di parsing, Perl lo tratta come un'istruzione completa, ma solleva un'eccezione
@@ -202,14 +216,13 @@ C<perldoc perlop> per maggiori dettagli.
 
 =end tip
 
-
 =head2 Le Variabili Array di Default
 
 Z<default_array_variables>
 
-X<default variables; array>
-X<default variables; C<@_>>
-X<variables; C<@_>>
+X<default; variabili; array>
+X<default; variabili; C<@_>>
+X<variabili; C<@_>>
 X<C<@_>>
 
 Perl fornisce anche due variabili array implicite. Anzitutto, Perl passa gli argomenti alle
@@ -233,28 +246,32 @@ frammenti di codice sono equivalenti:
 
 =end programlisting
 
-X<builtins; C<shift>>
-X<builtins; C<pop>>
+X<funzioni predefinite; C<shift>>
+X<predefiniti; funzioni; C<shift>>
+X<funzioni predefinite; C<pop>>
+X<predefiniti; funzioni; C<pop>>
 
-Come C<$_> corrisponde al pronome I<esso>, C<@_> corrisponde al pronome I<essi>.
+Come C<$_> corrisponde al pronome I<quello>, C<@_> corrisponde al pronome I<quelli>.
 I<Contrariamente> a C<$_>, Perl gestisce automaticamente diverse versioni locali di
 C<@_> quando chiamate altre funzioni. Gli operatori nativi C<shift> e C<pop>
 operano su C<@_> se non fornite altri operandi.
 
-X<default variables; C<@ARGV>>
-X<variables; C<@ARGV>>
+X<default; variabili; C<@ARGV>>
+X<variabili di default; C<@ARGV>>
 X<C<@ARGV>>
 
 Nel codice esterno alle funzioni, la variabile array di default C<@ARGV> contiene gli argomenti
-passati al programma da linea di comando. Al di fuori delle funzioni, le operazioni sugli array del Perl (incluse
-C<shift> e C<pop>) operano implicitamente su C<@ARGV>. Non è possibile usare C<@_> al posto di C<@ARGV>.
+passati al programma dalla linea di comando. Esternamente alle funzioni, le operazioni sugli array (incluse
+C<shift> e C<pop>) operano implicitamente su C<@ARGV>. Non potete usare C<@_> se vi serve C<@ARGV>.
 
 =begin tip C<readline>
 
-X<builtins; C<readline>>
-X<builtins; C<glob>>
+X<funzioni predefinite; C<readline>>
+X<predefiniti; funzioni; C<readline>>
+X<funzioni predefinite; C<glob>>
+X<predefiniti; funzioni; C<glob>>
 
-L'operatore Perl C<< <$fh> >> è equivalente alla funzione nativa C<readline>.
+L'operatore Perl C<< <$fh> >> è equivalente alla funzione predefinita C<readline>.
 C<readline $fh> ha lo stesso effetto di C<< <$fh> >>. A partire da Perl 5.10, la chiamata
 C<readline> senza argomenti è equivalente a C<< <> >>, quindi ora potete usare C<readline>
 dappertutto. Per ragioni storiche, l'uso di C<< <> >> è ancora il più diffuso, ma siete invitati a
@@ -263,12 +280,12 @@ prendere in considerazione l'uso di C<readline> per la sua maggiore leggibilità
 
 =end tip
 
-X<null filehandle>
+X<filehandle nullo>
 
 C'è un caso speciale che riguarda C<ARGV>. Se leggete dal filehandle nullo C<< <> >>,
-Perl tratterà ogni elemento di C<@ARGV> come se fosse il I<nome> di un file da aprire in lettura. (Se C<@ARGV> è vuoto, Perl leggerà da standard input.) Questo
+Perl tratterà ciascun elemento di C<@ARGV> come se fosse il I<nome> di un file da aprire in lettura. (Se C<@ARGV> è vuoto, Perl leggerà da standard input). Questo
 uso implicito di C<@ARGV> è utile per scrivere programmi brevi, come questo filtro a
-linea di comando che inverte il suo input:
+linea di comando che rovescia il suo input:
 
 =begin programlisting
 
@@ -280,7 +297,7 @@ linea di comando che inverte il suo input:
 
 =end programlisting
 
-Perchè si usa C<scalar>? C<say> impone un contesto lista ai suoi operandi. C<reverse> propaga
+Perché quello C<scalar>? C<say> impone un contesto lista ai suoi operandi. C<reverse> propaga
 il proprio contesto ai suoi operandi, trattandoli come lista in contesto lista e come
 una stringa concatenata in contesto scalare. Se il comportamento di C<reverse> vi suona
 confuso, non avete torto. Perl 5 avrebbe probabilmente dovuto separare
@@ -290,10 +307,10 @@ Se eseguite il codice sopra passando una lista di file:
 
 =begin screen
 
-    $ B<perl reverse_lines.pl encrypted/*.txt>
+    $ B<perl rovescia_linee.pl cifrato/*.txt>
 
 =end screen
 
 ... il risultato sarà un lungo testo in output.  Se non passate argomenti, potete
 fornire il vostro standard input con una pipe da un altro programma o scrivendo direttamente sulla tastiera.
-Ricordatevi comunque che il Perl è una buona scelta per fare molto di più che scrivere piccoli programmi a linea di comando....
+Ricordatevi comunque che Perl può fare molto di più che scrivere piccoli programmi a linea di comando....

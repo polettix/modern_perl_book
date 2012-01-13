@@ -6,13 +6,13 @@ Il più grande successo di Perl 5 è l'enorme quantità di librerie riusabili ch
 Mentre di Perl 4 esistevano molte versioni speciali, ad esempio per connettersi a database come Oracle e Sybase,
 Perl 5 mette a disposizione un vero e proprio meccanismo per le estensioni. Con esso, Larry ha voluto 
 permettere alle persone di creare e manutenere le proprie estensioni senza che questo significasse frammentare Perl in centinaia di
-pidgin incompatibili.
+dialetti incompatibili.
 
 La realizzazione di questo meccanismo è stata quasi importante quanto la crescita di una comunità intorno al Perl 5.
 Le I<persone> scrivono librerie. Le I<persone> utilizzano il lavoro di altre persone per svolgere meglio il proprio.
 Le I<persone> formano una comunità di cui vale la pena fare parte, e che vale la pena preservare ed espandere.
 
-La comunità Perl è solida ed in ottima salute. Accoglie nuovi partecipanti a tutti i livelli, dai neofiti a chi può contribuire al core del linguaggio.
+La comunità Perl è solida ed in ottima salute. Accoglie nuovi partecipanti a tutti i livelli, dai neofiti a chi può contribuire allo sviluppo del linguaggio stesso.
 Approfittate della conoscenza e dell'esperienza di tantissimi altri programmatori Perl per migliorare voi stessi come programmatori.
 
 L<cpan>

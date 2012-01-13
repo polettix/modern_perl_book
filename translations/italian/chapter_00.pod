@@ -2,8 +2,8 @@
 
 =encoding utf-8
 
-I<Modern Perl> è uno dei modi per descrivere come lavorano i migliori programmatori Perl 5: 
-usano gli idiomi del linguaggio; si avvantaggiano di CPAN; 
+I<Perl Moderno> è uno dei modi per descrivere come lavorano i migliori programmatori Perl 5: 
+usano gli idiomi del linguaggio; sfruttano CPAN; 
 hanno un senso estetico e un'arte che gli permettono di scrivere codice potente, manutenibile, scalabile, conciso ed efficace. 
 Anche voi potete imparare a lavorare così!
 
@@ -14,13 +14,13 @@ Perl 5 ha una solida storia di pragmatismo e un brillante futuro di ulteriori ra
 N<Perl 6 è una reinvenzione della programmazione basata sui solidi principi base del Perl, ma è un argomento per un altro libro.>.
 
 Durante la ormai lunga storia di Perl--specialmente i 17 anni di Perl 5--la nostra percezione di che cosa sia l'eccellenza per un programma Perl è cambiata. 
-Se da una parte potete scrivere programmi efficaci senza avvantaggiarvi di tutto ciò che il linguaggio vi offre,
-dall'altra la comunità Perl globale ha inventato, preso a prestito, migliorato e raffinato molte idee e le ha rese disponibili a chiunque le voglia conoscere.
+Se da una parte potete scrivere programmi efficaci senza sfruttare tutto ciò che il linguaggio vi offre,
+dall'altra la comunità Perl mondiale ha inventato, preso a prestito, migliorato e raffinato molte idee e le ha rese disponibili a chiunque le voglia conoscere.
 
-=head1 Usare Modern Perl
+=head1 Usare Perl Moderno
 
-Il modulo C<Modern::Perl>, disponibile su CPAN (L<cpan>), richiede a Perl di segnalare l'uso di costrutti dubbi e errori di battitura, 
-e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. A meno di indicazioni contrarie, i pezzi di codice presentati assumono sempre il seguente scheletro base di programma:
+Il modulo C<Modern::Perl>, disponibile su CPAN (L<cpan>), richiede a Perl di segnalare l'uso di costrutti ambigui e errori di battitura, 
+e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. A meno di indicazioni contrarie, i segmenti di codice presentati suppongono sempre un programma basato sul seguente schema basilare:
 
 =begin programlisting
 
@@ -43,7 +43,7 @@ e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. A meno
 =end programlisting
 
 Alcuni esempi utilizzano funzioni di test come C<ok()>, C<like()> e
-C<is()> (L<testing>). Lo scheletro di questi programmi è il seguente:
+C<is()> (L<testing>). Lo schema di questi programmi è il seguente:
 
 =begin programlisting
 
@@ -52,7 +52,7 @@ C<is()> (L<testing>). Lo scheletro di questi programmi è il seguente:
     use Modern::Perl;
     B<use Test::More;>
 
-    # di seguito il codice dell'esempio
+    # il codice dell'esempio va qui
 
     B<done_testing();>
 
@@ -75,7 +75,7 @@ possono iniziare con l'installare il modulo CPAN C<App::perlbrew>N<Si veda U<htt
 
 C<perlbrew> vi consente di installare e gestire più versioni di Perl 5. 
 In questo modo, potete passare da una versione di Perl 5 all'altra e, inoltre, 
-potete installare Perl 5 e i moduli CPAN nella vostra home directory senza interferire con la versione del Perl di sistema.
+potete installare Perl 5 e i moduli CPAN nella vostra home directory senza interferire con la versione di Perl di sistema.
 Se avete mai dovuto pregare il vostro amministratore di sistema per avere il permesso di installare del software,
 vi dovrebbe essere chiaro come questo vi possa semplificare, e di molto, la vita.
 
