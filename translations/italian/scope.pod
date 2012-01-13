@@ -5,76 +5,55 @@ Z<scope>
 X<scope>
 X<encapsulation>
 
-I<Scope> in Perl refers to the lifespan and visibility of symbols.  Everything
-with a name in Perl (a variable, a function) has a scope.  Scoping helps to
-enforce I<encapsulation>--keeping related concepts together and preventing them
-from leaking out.
+In Perl il concetto di I<scope> si riferisce al tempo di vita e alla visibilità delle entità con un nome.
+Ogni entità Perl con un nome (una variabile, una funzione) ha uno scope. Il meccanismo di scope
+favorisce l'I<incapsulamento>--che consiste nel mantenere insieme i concetti collegati ed
+evitare che essi fuoriescano dall'ambito in cui il programmtore li ha confinati.
 
-=head2 Lexical Scope
+=head2 Scope Lessicale
 
 Z<lexical_scope>
 
 X<lexical scope>
 X<scope; lexical>
 
-The most common form of scoping in modern Perl is lexical scoping.  The Perl
-compiler resolves this scope during compilation.  This scope is visible as you
-I<read> a program.  A block delimited by curly braces creates a new scope,
-whether a bare block, the block of a loop construct, the block of a C<sub>
-declaration, an C<eval> block, or any other non-quoting block:
-
-=begin programlisting
-
-    # outer lexical scope
-    {
-        package My::Class;
-
-        # inner lexical scope
-        sub awesome_method
-        {
-            # further inner lexical scope
-            do {
-                ...
-            } while (@_);
-
-            # sibling inner lexical scope
-            for (@_)
-            {
-                ...
-            }
-        }
-    }
-
-=end programlisting
+Lo I<scope lessicale> è uno scope visibile mente I<leggete> un programma. Il compilatore Perl
+risolve questo tipo di scope durante la compilazione. Un blocco delimitato da parentesi
+graffe crea un nuovo scope, sia che si tratti di un blocco a se stante, di un blocco di un costrutto
+di ciclo, del blocco di una dichiarazione C<sub>, di un blocco C<eval> o di qualunque altro blocco
+purchè non sia di quotatura.
 
 X<variables; lexical>
 
-Lexical scope governs the visibility of variables declared with C<my>; these
-are I<lexical> variables.  A lexical variable declared in one scope is visible
-in that scope and any scopes nested within it, but is invisible to sibling or
-outer scopes.  Thus, in the code:
+Lo cope lessicale determina la visibilità delle variabili dichiarate con
+C<my>--le variabili dette I<lessicali>. Una variabile lessicale dichiarata in uno scope è
+visibile in quello scope e negli scope nidificati, ma è invisibile agli scope
+dello stesso livello e a quelli esterni:
 
 =begin programlisting
 
-    # outer lexical scope
+    # scope lessicale esterno
     {
-        package My::Class;
+        package Robot::Maggiordomo
 
-        my $outer;
+        # scope lessicale interno
+        my $livello_batteria;
 
-        sub awesome_method
+        sub pulisci_stanza
         {
-            my $inner;
+            # scope ancora piu' interno
+            my $timer;
 
             do {
-                my $do_scope;
+                # scope lessicale ancora piu' interno
+                my $paletta;
                 ...
             } while (@_);
 
-            # sibling inner lexical scope
             for (@_)
             {
-                my $for_scope;
+                # altro scope lessicale ancora piu' interno
+                my $straccio;
                 ...
             }
         }
@@ -82,183 +61,167 @@ outer scopes.  Thus, in the code:
 
 =end programlisting
 
-... C<$outer> is visible in all four scopes.  C<$inner> is visible in the
-method, the C<do> block, and the C<for> loop.  C<$do_scope> is visible only in
-the C<do> block and C<$for_scope> within the C<for> loop.
+... C<$livello_batteria> è visibile in tutti e quattro gli scope. C<$timer> è visibile nel
+metodo, nel blocco C<do> e nel ciclo C<for>.  C<$paletta> è visibile soltanto
+nel blocco C<do> e C<$straccio> è visibile soltanto nel ciclo C<for>.
 
 X<lexical shadowing>
 X<scope; lexical shadowing>
 
-Declaring a lexical in an inner scope with the same name as a lexical in an
-outer scope hides, or I<shadows>, the outer lexical:
+Dichiarare un lessicale in uno scope con lo stesso nome di un lessicale in uno
+scope più esterno nasconde, o I<oscura>, il lessicale esterno:
 
 =begin programlisting
 
+    my $nome = 'Jacob';
+
     {
-        my $name = 'Jacob';
-
-        {
-            my $name = 'Edward';
-            say $name;
-        }
-
-        say $name;
+        my $nome = 'Edward';
+        say $nome;
     }
+
+    say $nome;
 
 =end programlisting
 
-This program prints C<Edward> and then C<Jacob>N<Family members and not
-vampires, if you must know.>.  Even though redeclaring a lexical variable with
-the same name and type in a single lexical scope produces a warning message,
-shadowing a lexical in a nested scope does not; this is a feature of lexical
-shadowing.
+Questo programma stampa C<Edward> e quindi C<Jacob>N<Famigliari dell'autore, non
+i noti vampiri.>, sebbene ridichiarare una variabile lessicale con lo stesso nome e lo stesso
+tipo I<nello stesso scope lessicale> produca un messaggio di warning. La possibilità di oscurare un
+lessicale è una funzionalità dell'incapsulamento.
 
-=begin sidebar
+=begin tip Name Collisions
 
-Lexical shadowing can happen by accident, but if you limit the scope of
-variables and limit the nesting of scopes--as is good design anyhow--you lessen
-your risk.
+L'oscuramento di lessicali può essere accidentale. Limitate lo scope delle variabili e la
+nidificazione degli scope per ridurre questo rischio.
 
-=end sidebar
+=end tip
 
-Lexical declaration has its subtleties.  For example, a lexical variable used
-as the iterator variable of a C<for> loop has a scope I<within> the loop block.
-It is not visible outside the block:
+Ci sono alcune sottigliezze relative alle dichiarazioni di lessicali, per esempio quando una variabile lessicale viene usata
+come variabile iteratore di un ciclo C<for>. La sua dichiarazione è al di fuori del
+blocco del ciclo, ma il suo scope è all'I<interno> del blocco stesso:
 
 =begin programlisting
 
-    my $cat = 'Bradley';
+    my $gatto = 'Brad';
 
-    for my $cat (qw( Jack Daisy Petunia Tuxedo ))
+    for my $gatto (qw( Jack Daisy Petunia Tuxedo Choco ))
     {
-        say "Iterator cat is $cat";
+        say "L'iteratore gatto ha il valore $gatto";
     }
 
-    say "Static cat is $cat";
+    say "Il gatto esterno ha sempre valore $gatto";
 
 =end programlisting
 
 X<lexical topic>
 X<topic; lexical>
 
-Similarly, the C<given> construct creates a I<lexical topic> (akin to C<my $_>)
-within its block:
+Analogamente, C<given> (L<given_when>) crea un I<topic lessicale> (come C<my $_>)
+nel proprio blocco:
 
 =begin programlisting
 
-    $_ = 'outside';
+    $_ = 'fuori';
 
-    given ('inner')
+    given ('dentro')
     {
         say;
-        $_ = 'whomped inner';
+        $_ = 'questo assegnamento e' inutile';
     }
 
     say;
 
 =end programlisting
 
-... despite assignment to C<$_> inside the block.  You may explicitly
-lexicalize the topic yourself, though this is more useful when considering
-dynamic scope.
+... in modo che l'uscita dal blocco ripristina il valore precedente di C<$_>.
 
-Finally, lexical scoping facilitates closures (L<closures>).  Beware creating
-closures accidentally.
+Le funzioni--sia con nome che anonime--forniscono uno scope lessicale al proprio corpo. Grazie a questo
+è possibile definire le closure (L<closures>).
 
-=head3 Our Scope
+=head3 Lo Scope Our
 
 Z<our>
 X<builtins; C<our>>
 X<packages; scope>
 X<scope; packages>
 
-Within a given scope, you may declare an alias to a package variable with the
-C<our> builtin.  Like C<my>, C<our> enforces lexical scoping--of the alias.
-The fully-qualified name is available everywhere, but the lexical alias is
-visible only within its scope.
+Dentro a un certo scope, potete dichiarare un alias a una variabile di package con l'istruzione C<our>.
+Come C<my>, C<our> impone uno scope lessicale all'alias. Il nome
+fully-qualified è disponibile ovunque, ma l'alias lessicale è visibile
+solo all'interno dello scope.
 
-The best use of C<our> is for variables you absolutely I<must> have, such as
-C<$VERSION>.
+C<our> è particolarmente utile per le variabili di package globali come C<$VERSION> e
+C<$AUTOLOAD>.
 
-=head2 Dynamic Scope
+=head2 Scope Dinamico
 
 Z<dynamic_scope>
 
 X<dynamic scope>
 X<scope; dynamic>
 
-Dynamic scope resembles lexical scope in its visibility rules, but instead of
-looking outward in compile-time scopes, lookup happens along the current
-calling context.  Consider the example:
+Lo scope dinamico è simile allo scope lessicale per ciò che riguarda le sue regole di visibilità, ma la ricerca dei nomi, invece di
+procedere dagli scope più interni a quelli più esterni durante la compilazione, procede all'indietro nei contesti
+di chiamata. Anche se un variabile di package globale è I<visibile> in tutti gli
+scope, il suo I<valore> cambia a seconda della sua C<local>izzazione e relativo assegnamento:
 
 =begin programlisting
 
+    our $scope;
+
+    sub interno
     {
-        our $scope;
-
-        sub inner
-        {
-            say $scope;
-        }
-
-        sub main
-        {
-            say $scope;
-            local $scope = 'main() scope';
-            middle();
-        }
-
-        sub middle
-        {
-            say $scope;
-            inner();
-        }
-
-        $scope = 'outer scope';
-        main();
         say $scope;
     }
 
+    sub main
+    {
+        say $scope;
+        local $scope = 'scope del main()';
+        intermedio();
+    }
+
+    sub intermedio
+    {
+        say $scope;
+        interno();
+    }
+
+    $scope = 'scope esterno';
+    main();
+    say $scope;
 
 =end programlisting
 
-The program begins by declaring an C<our> variable, C<$scope>, as well as three
-functions.  It ends by assigning to C<$scope> and calling C<main()>.
+Il programma inizia con la dichiarazione di una variabile C<our>, C<$scope>, e di tre
+funzioni. Quindi, fa un assegnamento a C<$scope> e chiama la funzione C<main()>.
 
 X<builtins; C<local>>
 
-Within C<main()>, the program prints C<$scope>'s current value, C<outer scope>,
-then C<local>izes the variable.  This changes the visibility of the symbol
-within the current lexical scope I<as well as> in any functions called from the
-current lexical scope.  Thus, C<$scope> contains C<main() scope> within the
-body of both C<middle()> and C<inner()>.  After C<main()> returns--at the point
-of exiting the block containing the C<local>ization of C<$scope>, Perl restores
-the original value of the variable.  The final C<say> prints C<outer scope>
-once again.
-
-While the variable is I<visible> within all scopes, the I<value> of the
-variable changes depending on C<local>ization and assignment.  This feature can
-be tricky and subtle, but it is especially useful for changing the values of
-magic variables.
+Dentro a C<main()>, il programma stampa il valore corrente di C<$scope>, C<scope esterno>,
+e poi C<local>izza la variabile. Questo cambia la visibilità del simbolo
+nello scope lessicale corrente I<così come> in ogni funzione chiamata dallo scope lessicale
+I<corrente>. Quindi, C<$scope> contiene C<scope del main()> sia nel corpo
+di C<intermedio()> che di C<interno()>.  Quando C<main()> termina perchè il controllo di
+flusso raggiunge la fine del suo blocco, Perl ripristina il valore originale
+della variabile C<$scope> C<local>izzata. Quindi, l'ultimo C<say> stampa di nuovo C<scope esterno>.
 
 X<lexicals; pads>
 X<lexpads>
 X<symbol tables>
 
-This difference in visibility between package variables and lexical variables
-is apparent in the different storage mechanisms of these variables within Perl
-5 itself.  Every scope which contains lexical variables has a special data
-structure called a I<lexical pad> or I<lexpad> which can store the values for
-its enclosed lexical variables.  Every time control flow enters one of these
-scopes, Perl creates another lexpad for the values of those lexical variables
-for that particular call.  (This is how a function can call itself and not
-clobber the values of existing variables.)
+Le variabili di package e quelle lessicali hanno regole di visibilità e meccanismi di
+memorizzazione diversi nel Perl. Ogni scope che contiene variabili lessicali
+ha una speciale struttura dati chiamata I<pad lessicale> o I<lexpad> che può
+memorizzare i valori delle variabili lessicali incluse nello scope. Ogni volta che il controllo di flusso
+entra in uno di questi scope, Perl crea un nuovo lexpad per i valori delle variabili lessicali
+in quella particolare chiamata. Questo determina la corretta esecuzione delle funzioni,
+specialmente nelle chiamate ricorsive (L<recursion>).
 
-Package variables have a storage mechanism called symbol tables.  Each package
-has a single symbol table, and every package variable has an entry in this
-table.  You can inspect and modify this symbol table from Perl; this is how
-importing works (L<importing>).  This is also why you may only C<local>ize
-global and package global variables and never lexical variables.
+Ogni package ha un'unica I<tabella dei simboli> che contiene sia le variabili di package che
+le funzioni con nome. L'importazione (L<importing>) si basa sull'ispezione e la
+manipolazione di tale tabella dei simboli. Lo stesso vale per C<local>. Potete C<local>izzare
+solo le variabili globali e di package--e non le variabili lessicali.
 
 X<C<$/>>
 X<magic variables; C<$/>>
@@ -269,19 +232,18 @@ X<magic variables; C<$@>>
 X<C<$|>>
 X<magic variables; C<$|>>
 
-It's common to C<local>ize several magic variables.  For example, C<$/>, the
-input record separator, governs how much data a C<readline> operation will read
-from a filehandle.  C<$!>, the system error variable, contains the error number
-of the most recent system call.  C<$@>, the Perl C<eval> error variable,
-contains any error from the most recent C<eval> operation.  C<$|>, the
-autoflush variable, governs whether Perl will flush the currently C<select>ed
-filehandle after every write operation.
+C<local> è particolarmente utile con le variabili predefinite. Per esempio, il
+separatore di record in input C<$/> determina quanti dati vengono letti da un filehandle da un'operazione C<readline>.
+C<$!>, la variabile di errore di sistema, contiene il numero di errore
+della chiamata di sistema più recente. C<$@>, la variabile Perl di errore di C<eval>,
+contiene l'errore generato dalla operazione C<eval> più recente. C<$|>, la variabile di flush
+automatico, determina se Perl deve eseguire il flush del filehandle corrente impostato con C<select>
+dopo ogni operazione di scrittura.
 
-These are all special global variables; C<local>izing them in the narrowest
-possible scope will avoid the action at a distance problem of modifying global
-variables used other places in your code.
+C<local>izzare queste variabili in uno scope il più ristretto possibile limita gli effetti delle vostre
+modifiche. In questo modo, potete evitare strani comportamenti in altre parti del vostro codice.
 
-=head2 State Scope
+=head2 Scope di Variabili State
 
 Z<state_scope>
 
@@ -289,71 +251,87 @@ X<C<state>>
 X<builtins; C<state>>
 X<scope; state>
 
-A final type of scope is new as of Perl 5.10.  This is the scope of the
-C<state> builtin.  State scope resembles lexical scope in that it declares a
-lexical variable, but the value of that variable gets initialized I<once>, and
-then persists:
+Perl 5.10 ha aggiunto un nuovo scope per supportare l'istruzione nativa C<state>. Lo scope di state
+è simile allo scope lessicale per quanto riguarda la visibilità, ma impone un'unica
+initializzazione e la persistenza del valore:
 
 =begin programlisting
 
-    sub counter
+    sub contatore
     {
-        B<state> $count = 1;
-        return $count++;
+        B<state> $cont = 1;
+        return $cont++;
     }
 
-    say counter();
-    say counter();
-    say counter();
+    say contatore();
+    say contatore();
+    say contatore();
 
 =end programlisting
 
-On the first call to state, C<$count> has never been initialized, so Perl
-executes the assignment.  The program prints C<1>, C<2>, and C<3>.  If you
-change C<state> to C<my>, the program will print C<1>, C<1>, and C<1>.
+Nella prima chiamata a C<contatore>, Perl esegue l'unica inizializzazione di
+C<$cont>. Nelle chiamate successive, C<$cont> mantiene il suo valore precedente. Questo
+programma stampa quindi C<1>, C<2> e C<3>. Se cambiate C<state> in C<my> il programma
+stamperà C<1>, C<1> e C<1>.
 
-You may also use an incoming parameter to set the initial value of the C<state> variable:
+Potete anche usare un'espressione per impostare il valore iniziale di una variabile C<state>:
 
 =begin programlisting
 
-    sub counter
+    sub countatore
     {
-        state $count = shift;
-        return $count++;
+        state $cont = shift;
+        return $cont++;
     }
 
-    say counter(B<2>);
-    say counter(B<4>);
-    say counter(B<6>);
+    say contatore(B<2>);
+    say contatore(B<4>);
+    say contatore(B<6>);
 
 =end programlisting
 
-Even though a simple reading of the code may suggest that the output should be
-C<2>, C<4>, and C<6>, the output is actually C<2>, C<3>, and C<4>. The first
-call to the sub C<counter> sets the C<$count> variable.  Subsequent calls will
-not change its value.  This behavior is as intended and documented, though its
-implementation can lead to surprising results:
+Sebbene a prima vista si potrebbe pensare che l'output del codice sia
+C<2>, C<4>, and C<6>, tale output è invece C<2>, C<3>, and C<4>. La prima
+chiamata alla funzione C<contatore> inizializza la variabile C<$cont>. Nelle chiamate successive
+la parte di inizializzazione non viene più eseguita.
+
+C<state> può essere utile sia per impostare un valore di default che per predisporre una cache,
+ma se la usate fate attenzione ad avere compreso il suo comportamento con le inizializzazioni:
 
 =begin programlisting
 
-    sub counter
+    sub contatore
     {
-        state $count = shift;
-        say 'Second arg is: ', shift;
-        return $count++;
+        state $cont = shift;
+        say 'Il secondo arg ha valore: ', shift;
+        return $cont++;
     }
 
-    say counter(2, 'two');
-    say counter(4, 'four');
-    say counter(6, 'six');
+    say contatore(2, 'due');
+    say contatore(4, 'quattro');
+    say contatore(6, 'sei');
 
 =end programlisting
 
-The counter for this program prints C<2>, C<3>, and C<4> as expected, but the
-values of the intended second arguments to the C<counter()> calls are C<two>,
-C<4>, and C<6>--not because the integers are the second arguments passed, but
-because the C<shift> of the first argument only happens in the first call to
-C<counter()>.
+In questo programma il contatore stampa C<2>, C<3> e C<4> come vi aspettate, ma i
+valori del presunto secondo argomento nelle chiamate a C<contatore()> sono C<due>,
+C<4> e C<6>--dato che lo C<shift> del primo argumento ha luogo soltanto nella
+prima chiamata a C<contatore()>. Per evitare questo problema potete cambiare l'interfaccia di C<contatore()>, 
+oppure gestirlo nel modo seguente:
 
-C<state> can be useful for establishing a default value or preparing a cache,
-but be sure to understand its initialization behavior if you use it.
+=begin programlisting
+
+    sub contatore
+    {
+        my ($valore_iniziale, $testo) = @_;
+
+        state $cont = $valore_iniziale;
+        say "Il secondo arg ha valore: $testo";
+        return $cont++;
+    }
+
+    say contatore(2, 'due');
+    say contatore(4, 'quattro');
+    say contatore(6, 'sei');
+
+=end programlisting
