@@ -1,50 +1,49 @@
-=head1 State versus Closures
+=head1 State e Chiusure
 
 Z<state>
 
-Closures (L<closures>) are an easy, effective, and safe way to make data
-persist between function invocations without using global variables.  If you
-need to share variables between named functions, you can introduce a new scope
-(L<scope>) for only those function declarations:
+Le chiusure (L<closures>) sfruttano lo scope lessicale (L<scope>) per mediare
+l'accesso a variabili semi-private. Anche le funzioni con nome possono sfruttare i
+legami imposti dallo scope lessicale:
 
 =begin programlisting
 
     {
-        my $safety = 0;
+        my $sicurezza = 0;
 
-        sub enable_safety  { $safety = 1 }
-        sub disable_safety { $safety = 0 }
+        sub abilita_sicurezza    { $sicurezza = 1 }
+        sub disabilita_sicurezza { $sicurezza = 0 }
 
-        sub do_something_awesome
+        sub fai_qualcosa_di_straordinario
         {
-            return if $safety;
+            return if $sicurezza;
             ...
         }
     }
 
 =end programlisting
 
-The encapsulation of functions to toggle the safety allows all three functions
-to share state without exposing the lexical variable directly to external code.
-This idiom works well for cases where external code should be able to change
-internal state, but it's clunkier when only one function needs to manage that
-state.
+L'incapsulamento delle funzioni che (dis)attivano la sicurezza permette alle tre funzioni
+di condividere uno stato senza esporre la variabile lessicale direttamente al codice esterno.
+Questo idioma funziona bene nei casi in cui il codice esterno deve poter cambiare lo
+stato interno, ma è un po' ingombrante quando tale stato deve essere gestito da una singola funzione.
 
-Suppose that you want to count the number of customers at your ice cream
-parlor.  Every hundredth person gets free sprinkles:
+Immaginate di voler contare il numero di clienti della vostra
+gelateria. Ogni cento persone, una riceve gratis un'aggiunta di panna:
 
 =begin programlisting
 
     {
-        my $cust_count = 0;
+        my $conta_cli = 0;
 
-        sub serve_customer
+        sub servi_cliente
         {
-            $cust_count++;
+            $conta_cli++;
 
-            my $order = shift;
+            my $ordine = shift;
 
-            add_sprinkles($order) if $cust_count % 100 == 0)
+            aggiungi_panna($ordine)
+                if ($conta_cli % 100 == 0);
 
             ...
         }
@@ -55,20 +54,21 @@ parlor.  Every hundredth person gets free sprinkles:
 X<state>
 X<builtins; C<state>>
 
-This approach I<works>, but creating a new lexical scope for a single function
-introduces more accidental complexity than is necessary.  The C<state> builtin
-allows you to declare a lexically scoped variable with a value that persists
-between invocations:
+Questo approccio I<funziona>, ma creare un nuovo scope lessicale per un'unica funzione
+introduce più complessità di quanto sembri necessario. L'istruzione nativa C<state>
+vi permette di dichiarare una variabile con scope lessicale il cui valore persiste
+tra un'invocazione e l'altra:
 
 =begin programlisting
 
-    sub serve_customer
+    sub servi_cliente
     {
-        B<state $cust_count = 0;>
-        $cust_count++;
+        B<state $conta_cli = 0;>
+        $conta_cli++;
 
-        my $order = shift;
-        add_sprinkles($order) if $cust_count % 100 == 0)
+        my $ordine = shift;
+        aggiungi_panna($ordine)
+            if ($conta_cli % 100 == 0);
 
         ...
     }
@@ -78,48 +78,46 @@ between invocations:
 X<C<feature>>
 X<C<feature>; C<state>>
 
-You must enable this feature explicitly by using a module such as
-C<Modern::Perl>, the C<feature> pragma, or requiring a specific version of Perl
-of 5.10 or newer (with C<use 5.010;> or C<use 5.012;>, for example).
+Dovete attivare questa funzionalità usando un modulo come
+C<Modern::Perl>, la direttica C<feature> (L<pragmas>) o richiedendo una versione
+specifica di Perl che sia la 5.10 o una successiva (per esempio, con C<use 5.010;> o C<use 5.012;>).
 
-You may also use C<state> within anonymous functions, such as the canonical
-counter example:
+C<state> funziona anche nelle funzioni anonime:
 
 =begin programlisting
 
-    sub make_counter
+    sub crea_contatore
     {
         return sub
         {
-             B<state $count = 0;>
-             return $count++;
+             B<state $cont = 0;>
+             return $cont++;
          }
     }
 
 =end programlisting
 
-... though there are few obvious benefits to this approach.
+... anche se questo approccio non presenta molti vantaggi evidenti.
 
-=head1 State versus Psuedo-State
+=head1 State e Pseudo-State
 
-Perl 5.10 deprecated a technique from previous versions of Perl by which you
-could effectively emulate C<state>.  Using a postfix conditional which evaluates
-to false with a C<my> declaration avoids I<reinitializing> a lexical variable
-to C<undef> or its initialized value.  In effect, a named function can close
-over its previous lexical scope by abusing a quirk of implementation.
+A partire da Perl 5.10 è stata deprecata una tecnica usata con le versioni precedenti del Perl per
+emulare il comportamento di C<state>. Una funzione con nome poteva fare una chiusura sul suo scope lessicale
+precedente abusando di un'idiosincrasia dell'implementazione. L'aggiunta di un condizionale postfisso
+che valutasse a falso in coda a una dichiarazione C<my> evitava
+di I<reinizializzare> una variabile lessicale a C<undef> o al suo valore iniziale.
 
-Any use of a postfix conditional expression modifying a lexical variable
-declaration now produces a deprecation warning.  It's too easy to write
-inadvertently buggy code with this technique; use C<state> instead where
-available, or a true closure otherwise.  Avoid this idiom, but understand it if
-you encounter it:
+Adesso la presenza di un'espressione condizionale postfissa come modificatore di una dichiarazione di variabile lessicale
+viene deprecato con un warning. In effetti, con questa tecnica è troppo facile introdurre inavvertitemente
+dei bug nel codice; usate invece C<state> dove è
+possibile o in alternativa una vera chiusura. Riscrivete in modo corretto questo idioma quando lo incontrate:
 
 =begin programlisting
 
-    sub inadvertent_state
+    sub cattivo_stato
     {
-        # DEPRECATED; do not use
-        my $counter = 1 if 0;
+        # my $contatore  = 1 if 0; # DEPRECATO; non usatelo
+        state $contatore = 1;      # usate invece questo
 
         ...
     }
