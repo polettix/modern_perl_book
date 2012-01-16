@@ -3,51 +3,51 @@ Z<perl_community>
 =head1 Siti della Comunità
 
 X<perl.org>
-X<websites; perl.org>
+X<siti web; perl.org>
 
-La homepage Perl all'URL U<http://www.perl.org/> contiene link alla documentazione e al codice sorgente del Perl,
-oltre che a tutorial, mailing list e diversi progetti importanti della comunità. Se
+La homepage Perl all'URL U<http://www.perl.org/> contiene link alla documentazione e al codice sorgente di Perl,
+oltre che a tutorial, mailing list e a molti progetti importanti della comunità. Se
 siete nuovi utenti del Perl, la mailing list Perl beginners è un luogo accogliente dove potete porre
 domande tipiche per un principiante e ottenere risposte utili ed accurate. Guardate
 U<http://learn.perl.org/faq/beginners.html>.
 
-La home per lo sviluppo di Perl è U<http://dev.perl.org/>, e contiene link alle risorse utili
+La homepage per lo sviluppo di Perl è U<http://dev.perl.org/>, e contiene link alle risorse utili
 per lo sviluppo del core di Perl 5 e Perl 6N<Vedete anche U<http://www.perl6.org/>>.
 
 X<perl.com>
-X<websites; perl.com>
+X<siti web; perl.com>
 
 Perl.com pubblica articoli e tutorial sul Perl e la sua cultura. I suoi archivi
 contengono materiale la cui datazione va indietro fino al ventesimo secolo. Vedete U<http://www.perl.com/>.
 
 X<cpan.org>
-X<websites; cpan.org>
+X<siti web; cpan.org>
 X<MetaCPAN>
-X<websites; MetaCPAN>
+X<siti web; MetaCPAN>
 
 Il sito centrale di CPAN (L<cpan>) è U<http://www.cpan.org/>, anche se gli utenti esperti
 usano più frequentemente U<http://search.cpan.org/>. Questo centro di distribuzione
-di codice Perl free riusabile è una componente essenziale della comunità Perl.
+di codice Perl libero e riusabile è una componente essenziale della comunità Perl.
 MetaCPAN (U<https://metacpan.org/>) è un'interfaccia alternativa a CPAN apparsa di recente.
 
 X<PerlMonks>
-X<websites; PerlMonks>
+X<siti web; PerlMonks>
 
 Il sito PerlMonks, che si trova all'URL U<http://perlmonks.org/>, è dedicato alle
 discussioni sulla programmazione in Perl. Essendo attivo da undici anni, esso costituisce uno dei siti
 più venerandi di domande e risposte su un linguaggio di programmazione.
 
 X<blogs.perl.org>
-X<websites; blogs.perl.org>
+X<siti web; blogs.perl.org>
 
-Diversi siti della comunità riportano e commentano le novità. U<http://blogs.perl.org/> è una piattaforma free di blog
+Diversi siti della comunità riportano e commentano le novità. U<http://blogs.perl.org/> è una piattaforma gratuita di blog
 aperta a tutti i membri della comunità Perl.
 
 X<Enlightened Perl Organization>
 X<Planet Perl>
 X<Planet Perl Iron Man>
-X<websites; Planet Perl>
-X<websites; Planet Perl Iron Man>
+X<siti web; Planet Perl>
+X<siti web; Planet Perl Iron Man>
 
 Altri siti raccolgono le elucubrazioni dei programmatori Perl; tra questi: U<http://perlsphere.net/>, U<http://planet.perl.org/> e
 U<http://ironman.enlightenedperl.org/>.
@@ -55,48 +55,48 @@ Quest'ultimo è parte di una iniziativa della Enlightened Perl Organization (U<h
 incrementare il numero e migliorare la qualità delle pubblicazioni sul Web relative al Perl.
 
 X<Perl Buzz>
-X<websites; Perl Buzz>
+X<siti web; Perl Buzz>
 X<Perl Weekly>
-X<websites; Perl Weekly>
+X<siti web; Perl Weekly>
 
-Perl Buzz (U<http://perlbuzz.com/>) raccoglie e ripubblica su base regolare alcune delle novità più
+Perl Buzz (U<http://perlbuzz.com/>) raccoglie e ripubblica periodicamente alcune delle novità più
 utili e interessanti. Perl Weekly
-(U<http://perlweekly.com/>) offre una panoramica settimanale delle news dal mondo Perl.
+(U<http://perlweekly.com/>) offre una panoramica settimanale delle notizie dal mondo Perl.
 
 =head1 Siti sullo Sviluppo
 
 X<RT>
 X<Best Practical>
 
-Il sito di Best Practical Solutions (U<http://bestpractical.com/>) ospita una installazione
+Best Practical Solutions (U<http://bestpractical.com/>) gestisce una installazione
 del loro popolare sistema di tracking, RT, sia per gli autori CPAN che per lo sviluppo
-del core di Perl 5 e di Perl 6. Ogni distribuzione CPAN ha la propria coda RT, raggiungibile da C<search.cpan.org> e accessibile su U<http://rt.cpan.org/>.
+del core di Perl 5 e di Perl 6. Ciascuna distribuzione CPAN ha la propria coda RT, raggiungibile da C<search.cpan.org> e accessibile su U<http://rt.cpan.org/>.
 Perl 5 e Perl 6 hanno code RT separate su U<http://rt.perl.org/>.
 
 X<Perl 5 Porters>
 X<p5p>
 
-La mailing list dei Perl 5 Porter (I<p5p>) è il punto di riferimento degli sviluppatori
+La mailing list dei Perl 5 Porters (I<p5p>) è il punto di riferimento degli sviluppatori
 di Perl 5. Vedete U<http://lists.cpan.org/showlist.cgi?name=perl5-porters>.
 
 X<TPF>
 X<The Perl Foundation>
 X<TPF; wiki>
-X<websites; TPF wiki>
+X<siti web; wiki TPF>
 
 La Perl Foundation (U<http://www.perlfoundation.org/>) ospita un wiki per tutto ciò che riguarda
 Perl 5. Vedete U<http://www.perlfoundation.org/perl5>.
 
 X<Github>
 X<gitpan>
-X<websites; gitpan>
+X<siti web; gitpan>
 
 I progetti di molti programmatori Perl sono ospitati su Github (U<http://github.com/>)N<...  inclusi i sorgenti di questo libro all'URL
 U<http://github.com/chromatic/modern_perl_book/>>. Guardate in special modo Gitpan
 (U<http://github.com/gitpan/>), che ospita i repository Git che tangono traccia della storia completa
 di ogni distribuzione su CPAN.
 
-=begin tip A Local Git Mirror
+=begin tip Un mirror Git locale
 
 X<CPAN; C<Git::CPAN::Patch>>
 X<Champoux, Yanick>
@@ -134,7 +134,7 @@ attraverso il sistema testuale di chat IRC. Molti dei progetti Perl più seguiti
 hanno il proprio canale IRC; ad esempio, I<#moose> e I<#catalyst>.
 
 Il server principale per la comunità Perl è U<irc://irc.perl.org/>. Prendete nota dei canali
- I<#perl-help>, per assistenza generica sulla programmazione Perl, e di
-I<#perl-qa>, dedicato al testing e ad altre problematiche legate alla qualità del codice. Ricordate anche che invece
+ I<#perl-help>, per assistenza generica sulla programmazione Perl, e
+I<#perl-qa>, dedicato al testing e ad altre problematiche legate alla qualità del codice. Sappiate che invece
 il canale I<#perl> ha uno scopo molto generale, ed è usato dai suoi partecipanti per discutere di qualunque argomento
-gli interessi in quel momentoN<... e, come tale, non è un helpdesk.>.
+gli interessi in quel momentoN<... e, come tale, non è principalmente una sorgente di aiuto.>.

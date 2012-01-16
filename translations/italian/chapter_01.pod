@@ -2,16 +2,16 @@
 
 =encoding utf-8
 
-Perl vi permette di arrivare al risultato--è flessibile, accomodante e malleabile. 
-Dei programmatori in gamba lo usano ogni giorno per i compiti più diversi, dai programmi di automazione ad hoc lunghi una riga
-ai progetti che coinvolgono diversi programmatori e durano anni.
+Perl risolve problemi--è flessibile, accomodante e malleabile. 
+Programmatori in gamba lo usano ogni giorno per i compiti più diversi, dai programmi di automazione ad hoc lunghi una riga
+ai progetti che coinvolgono molti programmatori e durano anni.
 
-Perl è pragmatico, e il controllo è in mano ai programmatori. Siete voi a scegliere il modo migliore di risolvere un problema,
-e Perl asseconderà le vostre intenzioni creandovi senza darvi fastidio e senza tante cerimonie.
+Perl è pragmatico, e il controllo è in mano al programmatore. Siete voi a scegliere il modo migliore di risolvere un problema,
+e Perl asseconderà le vostre intenzioni senza darvi fastidio e senza tante cerimonie.
 
-Perl è un linguaggio in grado di crescere con la vostra conoscenza. Nel giro di un'ora imparerete abbastanza per poter scrivere 
-dei programmi utili a risolvere problemi reali--e imparerete I<come> lavora il linguaggio e I<perché>.
-A partire da questa conoscenza e dalla esperienza della comunità Perl globale, Modern Perl ci iuterà a scrivere codice che funziona ed è facilmente manutenibile.
+Perl è un linguaggio che cresce di pari passo con le vostra conoscenze. Nel giro di un'ora imparerete abbastanza per poter scrivere 
+dei programmi utili a risolvere problemi reali--e imparerete I<come> funziona il linguaggio e I<perché> funziona in quel modo.
+A partire da questa conoscenza e dalla esperienza della comunità Perl mondiale, Perl Moderno ci aiuterà a scrivere codice che funziona ed è facilmente manutenibile.
 
 Prima di tutto, avete bisogno di sapere come imparare di più.
 

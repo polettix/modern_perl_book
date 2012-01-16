@@ -7,14 +7,14 @@ Z<expressivity>
 X<Wall, Larry>
 X<Larry Wall>
 
-Gli studi di linguistica e lingue naturali di Larry Wall hanno molto influenzato la progettazione del Perl.
+Gli studi di linguistica e lingue umane di Larry Wall hanno molto influenzato la progettazione di Perl.
 Come conseguenza, il linguaggio vi dà una enorme libertà nel modo di risolvere i problemi, a seconda dello stile del vostro gruppo di lavoro, 
-del tempo a vostra disposizione, del periodo di vita atteso per il programma, e persino di quanto vi sentite creativi. 
+del tempo a vostra disposizione, quanto a lungo il programma dovrà continuare a funzionare, e persino di quanto vi sentite creativi. 
 Potete scrivere un pezzo di codice semplice e lineare
 oppure partecipare alla scrittura di programmi di grandi dimensioni, basati su un progetto ben definito. Potete
-scegliere tra diversi paradigmi di programmazione, e decidere di evitare o di sposare le funzionalità più avanzate.
+scegliere tra diversi paradigmi di programmazione, e decidere di evitare o di adottare le funzionalità più avanzate.
 
-Laddove altri linguaggi impongono che ci sia un modo migliore per scrivere ciascun pezzo di codice, il Perl permette a I<voi> di decidere che cosa è più leggibile, efficace o semplicemente divertente.
+Laddove altri linguaggi impongono un singolo modo "corretto" di scrivere ciascun pezzo di codice, Perl lascia a I<voi> decidere che cosa è più leggibile, efficace o semplicemente divertente.
 
 X<TIMTOWTDI>
 X<Tim Toady>
@@ -25,37 +25,37 @@ I programmatori Perl hanno uno slogan per questo: I<TIMTOWTDI>, pronunciato "Tim
 Questa espressività permette ai maestri del linguaggio di creare programmi superlativi,
 ma permette anche ai neofiti e ai programmatori poco accorti di fare pasticci. L'esperienza e il gusto estetico
 vi guideranno a scrivere codice eccellente. La scelta è vostra--ma prestate attenzione alla
-leggibilità e alla manutenibilità, specialmente per quelli che verranno dopo di voi.
+leggibilità e alla manutenibilità, specialmente per chi che verrà dopo di voi.
 
-I principianti del Perl spesso trovano che alcuni dei suoi costrutti siano poco comprensibili. Molti di questi idiomi
-(L<idioms>) sono in effetti sottili da capire, ma estrememente potenti. Può essere una buona idea evitarli fino a che non
+I principianti di Perl spesso trovano che alcuni dei suoi costrutti siano poco comprensibili. Molti di questi idiomi
+(L<idioms>) sono estrememente potenti, anche se in modi sottili e non sempre ovvi. Può essere una buona idea evitarli fino a che non
 arrivate a padroneggiarli.
 
-Imparare il Perl è come imparare una nuova lingua. Imparerete alcune parole,
+Imparare Perl è come imparare una nuova lingua. Imparerete alcune parole,
 metterete insieme delle frasi, e presto potrete sostenere semplici conversazioni. La padronanza del linguaggio
-si ottiene praticando sia la lettura che la scrittura. Non dovete conoscere ogni dettaglio del Perl per usarlo in modo produttivo,
+si ottiene esercitando sia nella lettura sia nella scrittura. Non dovete conoscere ogni dettaglio di Perl per usarlo in modo produttivo,
 ma i principi esposti in questo capitolo sono fondamentali per la vostra crescita come programmatori.
 
-Un altro degli obiettivi di progetto del Perl è quello di evitare di sorprendere i programmatori (Perl)
+Un altro degli obiettivi nel progettare Perl è quello di evitare di sorprendere i programmatori (Perl)
 esperti.  Per esempio, sommare due variabili (C<$first_num + $second_num>)
 è ovviamente una operazione numerica (L<numeric_operators>); l'operatore di addizione
-tratta entrambe le variabili come valori numerici e produce un risultato numerico. Indipendentemente da quale sia il contenuto di
+tratta entrambe le variabili come valori numerici e produce un risultato numerico. Indipendentemente da quale siano i contenuti di
 C<$first_num> e C<$second_num>, Perl li converte in valori numerici (L<numeric_coercion>). In altre parole, se avete espresso l'intenzione di trattarli come numeri
 usando un operatore numerico Perl sarà felice di accontentarvi.
 
 X<DWIM>
 X<principio di minima sorpresa>
 
-Gli adepti del Perl spesso chiamano questo principo I<DWIM>, ovvero I<do what I mean> (fai ciò che intendo).  Un altro modo
-per dirlo è che il Perl segue il I<principio di minima sorpresa>.  Data una conoscenza anche solo
-superficiale del Perl (e specialmente del contesto; L<context_philosophy>), dovreste
+Gli adepti di Perl spesso chiamano questo principo I<DWIM>, ovvero I<do what I mean> (fai ciò che intendo).  Un altro modo
+per dirlo è che Perl segue il I<principio di minima sorpresa>.  Data una conoscenza anche solo
+superficiale di Perl (e specialmente del contesto; L<context_philosophy>), dovreste
 riuscire a comprendere lo scopo anche di espressioni Perl che non vi sono familiari.
 Svilupperete man mano questa capacità.
 
 X<baby Perl>
 
 L'espressività del Perl permette anche ai principianti di scrivere programmi utili senza 
-capirli in tutti i dettagi. Il codice che ne risulta è spesso chiamato I<baby Perl>, nel senso
+dover conoscere l'intero linguaggio. Il codice che ne risulta è spesso chiamato I<baby Perl>, nel senso
 che quasi tutti desiderano aiutare un bambino a imparare a comunicare bene.
 Tutti noi iniziamo come principianti. Con la pratica e gli insegnamenti dei programmatori più esperti, 
 inizierete a capire e ad adottare gli idiomi e le tecniche più potenti.
@@ -95,10 +95,10 @@ Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di
 
 =end programlisting
 
-Tutti e tre gli approcci portano allo stesso risultato, ma ciascuno sfrutta il Perl in modo diverso.
+Tutti e tre gli approcci portano allo stesso risultato, ma ciascuno sfrutta Perl in modo diverso.
 
 L'esperienza con la programmazione in Perl vi aiuterà a focalizzarvi sul I<che cosa> volete ottenere piuttosto che sul I<come> ottenerlo.
 In ogni caso, Perl esegue di buon grado anche i programmi più semplici. Potete
 progettare e raffinare i vostri programmi per aumentarne la chiarezza, l'espressività, il riuso e la manutenibilità, in parte o completamente.
-Avvantaggiatevi di questa flessibilità e pragmatismo: è molto meglio raggiungere il vostro scopo adesso in modo efficace che scrivere
-un programma di superba purezza e bellezza concettuale il prossimo anno.
+Sfruttate la flessibilità e il pragmatismo: è molto meglio raggiungere il vostro scopo adesso in modo efficace che scrivere
+un programma di superba purezza e bellezza concettuale l'anno prossimo.

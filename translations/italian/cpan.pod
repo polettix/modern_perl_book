@@ -2,31 +2,31 @@
 
 Z<cpan>
 
-Perl 5 è già di per se stesso un linguaggio pragmatico, ma la sua comunità
-ne ha notevolmente esteso le potenzialità, rendendo poi disponibile a tutti il proprio lavoro.
+Perl 5 è già di per se stesso un linguaggio pragmatico, ma la sua comunità, ancora più pragmatica,
+lo ha notevolmente esteso, rendendo poi disponibile a tutti i risultati di questo lavoro.
 Se avete un problema, è probabile che qualcuno abbia già scritto--e condiviso--del codice Perl che lo risolve.
 
 X<CPAN>
 
-La programmazione in Modern Perl fa un uso estensivo di CPAN (U<http://www.cpan.org/>).
+La programmazione in Perl Moderno fa un uso estensivo di CPAN (U<http://www.cpan.org/>).
 La Comprehensive Perl Archive Network è un sistema di uploading e mirroring di codice Perl
 redistribuibile e riusabile. È certamente uno dei più grandi
 archivi di librerie di codice del mondo, se non I<il> più grande. CPAN offre librerie per
-qualunque cosa: dall'accesso ai database ai tool di profiling, dai protocolli per 
+qualunque cosa: dall'accesso ai database agli strumenti di profiling, dai protocolli per 
 quasi ogni apparecchiatura di rete che sia mai stata prodotta alle librerie per la grafica e il suono, ai wrapper
 Perl di librerie esterne disponibili per il vostro sistema.
 
-Senza CPAN, il Modern Perl semplicemente non sarebbe l'incredibile linguaggio che è.
+Perl Moderno senza CPAN è solo un linguaggio. Perl Moderno con CPAN è linguaggio incredibile.
 
-X<distribution>
-X<modules>
+X<distribuzioni>
+X<moduli>
 
 CPAN contiene I<distribuzioni>, ovvero collezioni di codice Perl riusabile. Una
 distribuzione può contenere una o più librerie autosufficienti di
 codice Perl dette I<moduli>. Ogni distribuzione ha un proprio namespace ed è corredata
 da metadati.
 
-=begin tip The CPAN is Big, Really Big
+=begin CPAN è grande, molto grande
 
 Centinaia di collaboratori registrati e migliaia di moduli indicizzati
  in centinaia di distribuzioni vengono I<aggiunti> a CPAN ogni mese, senza considerare gli aggiornamenti. 
@@ -38,10 +38,10 @@ questo libro).
 
 X<search.cpan.org>
 
-Il sistema CPAN è semplicemente un servizio di mirroring. Gli autori fanno l'upload delle distribuzioni
+Il sistema CPAN di per sé è soltanto un servizio di mirroring. Gli autori fanno l'upload delle distribuzioni
 e CPAN le invia ai mirror, da cui gli utenti e i programmi client possono scaricarli e
-configurarli, farne il build, testarli e installarli. Il successo di questo sistema è docuto sia alla sua
-semplicità che al contributo delle migliaia di volontari che lo hanno adottato per distribuire il proprio codice. 
+configurarli, farne il build, testarli e installarli. Il successo di questo sistema è dovuto sia alla sua
+semplicità che al contributo delle migliaia di volontari che hanno costruito nuovi strumenti su queste basi.
 In particolare, si sono sempre più affermati nella comunità certi attributi e caratteristiche standard che una distribuzione CPAN deve avere. Tra questi:
 
 =over 4
@@ -58,18 +58,18 @@ e i suoi prerequisiti.
 Altri servizi di CPAN sono quelli di testing automatico e generazione dei relativi report,
 che aiutano a verificare la qualità del pacchetto contenente la distribuzione e il suo funzionamento su diverse piattaforme
 e con diverse versioni di Perl. Ogni distribuzione CPAN ha inoltre una sua coda di ticket
-U<http://rt.cpan.org/> per segnalare bug e lavorare insieme agli autori alla loro soluzione. 
+U<http://rt.cpan.org/> per segnalare bug e collaborare con gli autori alla loro soluzione. 
 I siti CPAN forniscono inoltre link alle versioni precedenti delle distribuzioni, valutazioni dei moduli scritte dagli utenti,
-documentazione e altro ancora. Tutto questo è disponibile su U<http://search.cpan.org/>.
+note alla documentazione e altro ancora. Tutto questo è disponibile partendo da U<http://search.cpan.org/>.
 
 X<CPAN; C<CPAN.pm>>
 X<CPAN; C<CPANPLUS>>
 
-Le installazioni di Modern Perl contengono due client per connettersi a CPAN e cercare, scaricare,
+Le installazioni di Perl Moderno contengono due client per connettersi a CPAN e cercare, scaricare,
 fare il build, testare e installare le distribuzioni: CPAN.pm e CPANPLUS. I due client sono essenzialmente
 equivalenti per effettuare installazioni di base. In questo libro
 vi consigliamo l'uso di CPAN.pm semplicemente per la sua onnipresenza. Se usate una versione recente
-(al momento presente, l'ultima release stabile è la 1.9800), l'installazione di moduli è ragionevolmente facile.
+(al momento di questa stesura, l'ultima release stabile è la 1.9800), l'installazione di moduli è ragionevolmente facile.
 Lanciate il client con:
 
 =begin screen
@@ -99,24 +99,24 @@ X<CPAN; C<CPAN.pm>>
 
 Il tutorial scritto da Eric Wilhelm sulla configurazione di
 CPAN.pmN<U<http://learnperl.scratchcomputing.com/tutorials/configuration/>>
-contiene un'eccellente sezione sul troubleshooting.
+contiene un'eccellente sezione sulla risoluzione dei problemi.
 
 =begin sidebar
 
 Anche se il client CPAN è ormai integrato nella distribuzione di Perl 5, potreste
-dovere installare alcuni tool standard di sviluppo, come l'utility C<make>
- e un compilatore C. Se siete utenti Windows, guardate Strawberry Perl
+dovere installare alcuni strumenti standard di sviluppo, come l'utility C<make>
+e un compilatore C. Se siete utenti Windows, guardate Strawberry Perl
 (U<http://strawberryperl.com/>) e Strawberry Perl Professional. Se siete utenti Mac OS X,
-installate XCode. Se siete utenti Unix o Unix-like dovreste già avere questi tool installati sul vostro sistema 
+installate XCode. Se siete utenti Unix o Unix-like dovreste già avere questi strumenti installati sul vostro sistema 
 (per gli utenti Debian e Ubuntu: installate C<build-essential>).
 
 =end sidebar
 
-=head2 Tool per la Gestione di CPAN
+=head2 Strumenti per la Gestione di CPAN
 
 Se il vostro sistema operativo possiede una sua installazione di Perl 5, questa potrebbe essere
-obsoleta o dipendere da specifiche versioni di alcune distribuzioni CPAN. Gli sviluppatori Perl esperti spesso creano delle barriere virtuali
- tra il Perl di sistema e le loro installazioni Perl di sviluppo. Ci sono diversi progetti che vi aiuteranno a raggiungere questo scopo.
+obsoleta o dipendere da specifiche versioni di alcune distribuzioni CPAN. Gli sviluppatori Perl seri spesso creano delle barriere virtuali
+ tra il Perl di sistema e le loro installazioni Perl di sviluppo. Ci sono diversi progetti che possono aiutare a far ciò.
 
 C<App::cpanminus> è un client CPAN relativamente recente, i cui obiettivi principali sono la velocità,
 la semplicità e l'assenza di costi di configurazione. Installatelo con C<cpan App::cpanminus>, oppure con:
@@ -129,7 +129,7 @@ la semplicità e l'assenza di costi di configurazione. Installatelo con C<cpan A
 =end screen
 
 C<App::perlbrew> è un sistema che vi consente di installare e gestire diverse versioni e configurazioni di Perl, e di passare da una all'altra.
-La sua installazione si fa semplicemente scrivendo:
+Si installa semplicemente scrivendo:
 
 =begin screen
 
@@ -144,12 +144,12 @@ X<CPAN; local::lib>
 X<CPAN; App::local::lib::helper>
 
 La distribuzione CPAN C<local::lib> vi permette di installare e gestire
-distribuzioni nella vostra directory utente, anzichè nell'intero sistema.
+distribuzioni in una vostra directory personale, anzichè nell'intero sistema.
 È un modo molto efficace per poter lavorare con le vostre distribuzioni CPAN senza interferire con il lavoro degli altri utenti.
-L'installazione è un pó più complicata di quella delle due distribuzioni descritte sopra, ma C<App::local::lib::helper> vi semplificherà il processo.  Vedete
+L'installazione è un pó più complicata di quella delle due distribuzioni descritte sopra, ma C<App::local::lib::helper> può renderla più semplice.  Guardate
 U<http://search.cpan.org/perldoc?local::lib> e
 U<http://search.cpan.org/perldoc?App::local::lib::helper> per maggiori dettagli.
 
-Tutti e tre i progetti assumono che lavoriate in ambiente Unix-like (come
+Tutti e tre i progetti suppongono che lavoriate in ambiente Unix-like (come
 una distribuzione GNU/Linux, ma anche Mac OS X). Se siete utenti Windows, scaricatevi il pacchetto Padre
  (U<http://padre.perlide.org/download.html>).
