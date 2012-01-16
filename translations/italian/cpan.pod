@@ -26,7 +26,7 @@ distribuzione può contenere una o più librerie autosufficienti di
 codice Perl dette I<moduli>. Ogni distribuzione ha un proprio namespace ed è corredata
 da metadati.
 
-=begin CPAN è grande, molto grande
+=begin tip CPAN è grande, molto grande
 
 Centinaia di collaboratori registrati e migliaia di moduli indicizzati
  in centinaia di distribuzioni vengono I<aggiunti> a CPAN ogni mese, senza considerare gli aggiornamenti. 
