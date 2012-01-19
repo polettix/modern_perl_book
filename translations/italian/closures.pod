@@ -273,6 +273,6 @@ namespace.>.
 X<I<Higher Order Perl>>
 
 Questo è solo un assaggio di quello che potete fare con le funzioni di ordine superiore. Il libro
-I<Higher Order Perl> di Mark Jason Dominus è il riferimento bibliografico canonico per imparare a scrivere
-funzioni e chiusure in Perl di ottimo livello. Potete leggerlo online all'URL
+I<Higher Order Perl> di Mark Jason Dominus è il riferimento bibliografico canonico per trattare
+funzioni e chiusure come oggetti di prima classe. Potete leggerlo online all'URL
 U<http://hop.perl.plover.com/>.

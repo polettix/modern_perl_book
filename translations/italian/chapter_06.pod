@@ -4,29 +4,23 @@
 
 Z<regex>
 
-X<regular expressions>
+X<espressioni regolari>
 X<regex>
-X<regex; engine>
+X<regex; motore>
 
-La potente capacità di manipolazione del testo di Perl viene in parte
-dall'inclusione di un concetto di computazione che va sotto il nome di
-I<espressioni regolari>. Un'espressione regolare (spesso abbreviata in
-I<regex> o I<regexp>) è un I<pattern>N<Nota di traduzione: si mantiene
+La potenza di Perl nell'elaborazione di testi è dovuta al suo uso della I<espressioni regolari>.
+Un'espressione regolare (spesso abbreviata in I<regex> o I<regexp>) è un I<pattern> N<NdT: si mantiene
 la terminologia inglese per i concetti principali, come appunto pattern,
-matching, ecc.> che descrive le caratteristiche di una stringa di testo.
-Un I<motore per espressioni regolari> interpreta un pattern e lo applica
-alle stringhe di testo per identificare quelle che corrispondono (nel
-qual caso si dice che si ha un I<match> o che, con linguaggio molto
-gergale, I<matcha>, N.d.T.).
+matching, ecc.> che descrive le caratteristiche di un pezzo di testo.
+Un I<motore di espressioni regolari> interpreta i pattern e li applica
+per fare il match su pezzi di testo e modificarli.
 
-La documentazione base di Perl descrive con copiosi dettagli le espressioni
-regolari in Perl; riferitevi a C<perldoc perlretut>, C<perldoc perlre> e
-C<perldoc perlreref> rispettivamente per un tutorial, la documentazione
-completa ed una guida di riferimento. Il libro di Jeffrey Friedl
-I<Mastering Regular Expressions> spiega la teoria ed i meccanismi su come
-funzionano le espressioni regolari. Sebbene tutta questa documentazione
-tenda ad intimidire, le espressioni regolari sono come Perl--potete farci
-tante cose anche con una conoscenza ristretta.
+La documentazione base di Perl sulle regex include un tutorial (C<perldoc perlretut>), una
+guida di riferimento (C<perldoc perlreref>) e un trattato completo (C<perldoc
+perlre>). Il libro I<Mastering Regular Expressions> di Jeffrey Friedl spiega la
+teoria e i meccanismi alla base del funzionamento delle espressioni regolari. Sebbene
+padroneggiare completamente le espressioni regolari sia un'impresa piuttosto ardua, anche una
+conoscenza limitata vi fornisce degli strumenti estremamente potenti.
 
 L<regular_expressions>
 
