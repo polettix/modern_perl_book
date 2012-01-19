@@ -1034,9 +1034,9 @@ ha senso nelle sostituzioni:
 
 =begin programlisting
 
-    # un po' di pace nella proprieta` della Mitchell
+    # un po' di pace in Via col Vento
     my $contenuto = slurp( $file );
-    $contenuto    =~ s/Scarlett O'Hara/Camomilla Calmante/g;
+    $contenuto    =~ s/Rossella O'Hara/Camomilla Calmante/g;
 
 =end programlisting
 
@@ -1075,16 +1075,9 @@ della sventurata protagonista:
 
 =begin programlisting
 
-    # un po' di pace nella proprieta` della Mitchell
+    # un po' di pace in Via col Vento
     my $contenuto = slurp( $file );
-    $contenuto    =~ s/Scarlett( O'Hara)?}
-
-/Camomilla/g;
-
-
-    # appease the Mitchell estate
-    my $contents = slurp( $file );
-    $contents    =~ s{Scarlett( O'Hara)?}
+    $contenuto    =~ s{Rossella( O'Hara)?}
                      {
                         'Camomilla' . defined $1
                                 ? ' Calmante'
