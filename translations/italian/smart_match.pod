@@ -32,7 +32,7 @@ Se l'operando destro è un array, il confronto effettuerà un grep o un match
 intelligente ricorsivo. Se l'operando destro è un hash, il confronto verificherà
 l'esistenza di una o più chiavi.
 
-For example:
+Per esempio:
 
 =begin programlisting
 
@@ -95,7 +95,7 @@ For example:
 
 =end programlisting
 
-Questi confronti funzionano anche quando uno degli operandi è un I<riferimento> uno dei tipi
+Questi confronti funzionano anche quando uno degli operandi è un I<riferimento> a uno dei tipi
 di dati elencati. Per esempio:
 
 =begin programlisting
@@ -105,7 +105,7 @@ di dati elencati. Per esempio:
 =end programlisting
 
 Una tabella di dimensioni scoraggianti in C<perldoc perlsyn> fornisce molti più dettagli
-sui confronti che il match intelligente può effettuare. Una rilevante proposta
+sui confronti che il match intelligente può effettuare. Una proposta importante
 per la versione 5.16 suggerisce di semplificare il match intelligente in modo sostanziale. Più i vostri operandi sono complicati,
 più è probabile che i risultati confondano chi legge il vostro programma. Se
 evitate di confrontare oggetti e vi limitate a semplici operazioni con scalari o al più
