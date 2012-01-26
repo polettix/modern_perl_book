@@ -2,21 +2,20 @@
 
 =head0 Oggetti
 
-Scrivere programmi molto ampi richiede maggiore disciplina che scriverne di
-piccoli, a causa della difficoltà di gestione di tutti i dettagli del
-vostro programma tutti insieme. L'astrazione (ossia la ricerca e la messa
-in evidenza delle similitudini e delle quasi similitudini) e
-l'incapsulamento (ossia raggruppare insieme dettagli specifici e accedervi
-dove essi appartengono) sono essenziali nella gestione di questa
-complessità.
+Programmare è un'attività di gestione. Più il programma è lungo, più dettagli vi trovate
+a dover gestire. L'unica possibilità di gestire con successo una tale complessità è un opportuno
+uso dell'astrazione (ossia la capacità di trattare cose simili in modo simile) e dell'incapsulamento (ossia il raggruppamento
+di dettagli che sono in relazione tra loro).
 
-Le funzioni aiutano, ma da sole non sono sufficienti per i programmi più
-grandi. L'orientamento agli oggetti è una tecnica popolare per raggruppare
-funzioni assieme in classi dai comportamenti correlati.
+X<OO>
+X<oggetti>
+X<OO; classi>
+X<classi>
 
-Il sistema ad oggetti di Perl 5 è minimale. E<Egrave> molto flessibile--potete
-realizzare praticamente qualsiasi altro sistema ad oggetti su di esso--ma dà
-molta poca assistenza per i compiti più comuni.
+Il solo uso delle funzioni non è sufficiente per i programmi più grandi. Ci sono diverse
+tecniche per raggruppare le funzioni in unità di comportamenti correlati.
+Una di queste tecniche è l'I<orientamento agli oggetti> (OO), o I<programmazione orientata agli oggetti> (OOP),
+secondo la quale i programmi lavorano su I<oggetti>--entità univoche e discrete con una propria identità.
 
 L<moose>
 
