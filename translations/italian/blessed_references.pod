@@ -1,334 +1,300 @@
-=head1 Blessed References
+=head1 Riferimenti Blessed
 
 Z<blessed_references>
 
-Perl 5's default object system is deliberately minimal.  Three simple rules
-combine to form the simple--though effective--basic object system:
+Il sistema ad oggetti base di Perl 5 è deliberatamente minimale. È basato su tre sole regole:
 
 =over 4
 
-=item * A class is a package.
+=item * Una classe è un package.
 
-=item * A method is a function.
+=item * Un metodo è una funzione.
 
-=item * A (blessed) reference is an object.
+=item * Un riferimento (blessed) è un oggetto.
 
 =back
 
+Potete costruire tutto il resto su queste tre regole, ma esse sono tutto ciò che vi viene offerto
+come default. Questo minimalismo può essere poco adatto a progetti di grandi dimensioni--in particolare,
+le possibilità di avere una maggiore astrazione con la metaprogrammazione
+(L<code_generation>) sono scomode e limitate. Moose (L<moose>) è una scelta
+migliore per programmi moderni con più di un paio di centinaia di linee di codice, sebbene
+ci sia moltissimo codice legacy che usa ancora il sistema OO di default di Perl 5.
+
 X<OO; C<bless>>
-X<builtins; C<bless>>
+X<builtin; C<bless>>
 
-You've already seen the first two rules (L<moose>).  The third rule is new.
-The C<bless> builtin associates the name of a class with a reference, such that
-any method invocation performed on that reference uses the associated class for
-resolution.  That sounds more complicated than it is.
+Il terzo e ultimo pezzo del sistema OO base di 5 sono i riferimenti blessed.  L'istruzione predefinita C<bless>
+associa il nome di una classe ad un riferimento. Tale riferimento diventa così
+un invocante valido, e Perl esegue il dispatch di metodi su di esso usando la classe
+associata.
 
-The result is a minimal but working system, though its minimalism can be
-impractical for larger projects.  In particular, the default object system
-offers only partial and akward facilities for metaprogramming
-(L<code_generation>).  Moose is a better choice for serious, modern Perl
-programs larger than a couple of hundred lines, but you will likely encounter
-bare-bones Perl 5 OO in existing code.
+X<OO; costruttori>
+X<OO; metodi di classe>
+X<metodi; classe>
 
-X<OO; constructors>
-X<OO; class methods>
-X<methods; class>
+Un costruttore è un metodo che crea un riferimento e ne fa il bless. Per convenzione,
+il nome dei costruttori è C<new()>, ma non è obbligatorio.
+Quasi sempre i costruttori sono I<metodi di classe>.
 
-The default Perl 5 object constructor is a method which creates and blesses a
-reference.  By convention, constructors have the name C<new()>, but this is not
-a requirement.  Constructors are also almost always I<class methods>:
+C<bless> riceve due argomenti, un riferimento e un nome di classe, e restituisce il
+riferimento. Il riferimento può essere vuoto e non è neanche richiesto che la classe esista già.
+Potete usare C<bless> anche al di fuori di un costruttore o di una classe, ma tutti i programmi
+eccetto i più semplici dovrebbero usarlo all'interno di un vero costruttore. La forma canonica di un
+costruttore è simile a questa:
 
 =begin programlisting
 
     sub new
     {
-        my $class = shift;
-        bless {}, $class;
+        my $classe = shift;
+        bless {}, $classe;
     }
 
 =end programlisting
 
-C<bless> takes two arguments, the reference to associate with a class and the
-name of a class.  You may use C<bless> outside of a constructor or a
-class--though abstraction recommends the use of the method.  The class name
-does not have to exist yet.
+Un costruttore come questo è progettato per ricevere il nome della classe come invocante del metodo.
+Potreste anche specificare il nome della classe nel codice, ma perdereste in flessibilità.
+Un costruttore parametrico permette infatti il riuso con l'ereditarietà, la delega e
+l'esportazione.
 
-By design, this constructor receives the class name as the method's invocant.
-It's possible, but inadvisable, to hard-code the name of a class directly.  The
-parametric constructor allows reuse of the method through inheritance,
-delegation, or exporting.
+X<OO; dati di istanza>
 
-X<OO; instance data>
-
-The type of reference makes no difference when invoking methods on the object.
-It only governs how the object stores I<instance data>--the object's own
-information.  Hash references are most common, but you can bless any type of
-reference:
+Il tipo del riferimento usato è rilevante solo per quanto riguarda il modo in cui l'oggetto memorizza i propri
+I<dati di istanza>. Non ha altri effetti sull'oggetto risultante. I riferimenti
+a hash sono i più comuni, ma potete fare il bless di qualunque tipo di riferimento:
 
 =begin programlisting
 
-    my $array_obj  = bless [], $class;
-    my $scalar_obj = bless \$scalar, $class;
-    my $sub_obj    = bless \&some_sub, $class;
+    my $ogg_array   = bless [], $classe;
+    my $ogg_scalare = bless \$scalare, $classe;
+    my $ogg_sub     = bless \&una_sub, $classe;
 
 =end programlisting
 
-Whereas classes built with Moose define their own object attributes
-declaratively, Perl 5's default OO is lax.  A class representing basketball
-players which stores jersey number and position might use a constructor like:
+Le classi Moose definiscono gli attributi degli oggetti in modo dichiarativo, ma il sistema OO di default di Perl 5
+non è altrettanto solerte. Una classe che rappresenta giocatori di basket mememorizzandone il numero e
+la posizione potrebbe usare un costruttore come questo:
 
 =begin programlisting
 
-    package Player;
-
-    sub new
+    package Giocatore
     {
-        my ($class, %attrs) = @_;
-
-        bless \%attrs, $class;
+        sub new
+        {
+            my ($classe, %attr) = @_;
+            bless \%attr, $classe;
+        }
     }
 
 =end programlisting
 
-... and create players with:
+... e creare i giocatori con:
 
 =begin programlisting
 
-    my $joel = Player->new(
-        number   => 10,
-        position => 'center',
-    );
+    my $joel  = Giocatore->new( numero    => 10,
+                                posizione => 'centro' );
 
-    my $jerryd = Player->new(
-        number   => 4,
-        position => 'guard',
-    );
+    my $dante = Giocatore->new( numer     => 33,
+                                posizione => 'attacco' );
 
 =end programlisting
 
-Within the body of the class, methods can access hash elements directly:
+I metodi della classe possono accedere agli attributi dell'oggetto direttamente come elementi dell'hash:
 
 =begin programlisting
 
-    sub format
+    sub formatta
     {
         my $self = shift;
-        return '#' . $self->{number} . ' plays ' . $self->{position};
+        return '#'          . $self->{numero}
+             . ' gioca in ' . $self->{posizione};
     }
 
 =end programlisting
 
-Yet so can any code outside of the class.  This violates encapsulation--in
-particular, it means that you can never change the object's internal
-representation without breaking external code or perpetuating ugly hacks--so
-it's safer to provide accessor methods:
+... ma la stessa cosa può essere fatta da qualunque pezzo di codice, con la conseguenza che una modifica nella rappresentazione interna dell'oggetto
+può invalidare del codice esterno alla classe. L'uso di metodi accessori è più sicuro:
 
 =begin programlisting
 
-    sub number   { return shift->{number}   }
-    sub position { return shift->{position} }
+    sub numero    { return shift->{numero}    }
+    sub posizione { return shift->{posizione} }
 
 =end programlisting
 
-Even with two attributes, Moose is much more appealing in terms of code you
-don't have to write.
+... e così iniziate a scrivere a mano ciò che Moose vi fornisce gratuitamente.
+Meglio ancora, nascondendo il codice di generazione degli accessori, Moose incoraggia le persone a usarli
+ al posto degli accessi diretti. E addio tentazioni.
 
-=begin sidebar
+=head2 Ricerca di Metodi e Ereditarietà
 
-Moose's default behavior of accessor generation encourages you to do the right
-thing with regard to encapsulation as well as genericity.
+X<dispatch di metodi>
+X<OO; metodi>
 
-=end sidebar
-
-=head2 Method Lookup and Inheritance
-
-X<method dispatch>
-X<OO; methods>
-
-Besides instance data, the other part of objects is method dispatch.  Given an
-object (a blessed reference), a method call of the form:
+Dato un riferimento blessed, una chiamata di metodo come questa:
 
 =begin programlisting
 
-    my $number = $joel->number();
+    my $numero = $joel->numero();
 
 =end programlisting
 
-... looks up the name of the class associated with the blessed reference
-C<$joel>.  In this case, the class is C<Player>.  Next, Perl looks for a
-function named C<number> in the C<Player> package.  If the C<Player> class
-inherits from another class, Perl looks in the parent class (and so on and so
-on) until it finds a C<number> method.  If one exists, Perl calls it with
-C<$joel> as an invocant.
+... cerca anzitutto il nome della classe associata al riferimento blessed
+C<$joel>--in questo caso, C<Giocatore>. Quindi, Perl cerca una funzioneN<Ricordate
+che Perl 5 non distingue tra funzioni di un namespace e metodi.>
+di nome C<numero()> in C<Giocatore>. Se tale funzione non esiste e se C<Giocatore>
+estende una classe, Perl cerca nella superclasse (e così via) finchè
+non trova una funzione C<numero()>. Quando C<numero()> è stata trovata, viene chiamata come metodo con
+invocante C<$joel>.
+
+=begin tip Mantenere l'Ordine nei Namespace
+
+X<CPAN; C<namespace::autoclean>>
+
+Il modulo CPAN C<namespace::autoclean> può aiutare ad evitare collisioni accidentali tra le funzioni importate e i metodi.
+
+=end tip
 
 X<C<@ISA>>
 X<OO; C<@ISA>>
 
-Moose classes store their inheritance information in a metamodel which provides
-additional abilities on top of Perl 5's default OO system.
-
-In the default system, every class stores information about its parents in a
-package global variable named C<@ISA>.  The method dispatcher looks in a
-class's C<@ISA> to find the names of parent classes in which to search for the
-appropriate method.  Thus, an C<InjuredPlayer> class might contain C<Player> in
-its C<@ISA>.  You could write this relationship as:
+Mentre Moose fornisce l'istruzione C<extends> per specificare le relazioni di ereditarietà, Perl 5 usa una
+variabile globale di package di nome C<@ISA>. Il dispatcher di metodi scorre l'array C<@ISA>
+di ciascuna classe per trovare i nomi delle sue superclassi. Se C<GiocatoreInfortunato>
+estende C<Giocatore>, potreste scrivere:
 
 =begin programlisting
 
-    package InjuredPlayer;
-
-    @InjuredPlayer::ISA = 'Player';
+    package GiocatoreInfortunato
+    {
+        @GiocatoreInfortunato::ISA = 'Giocatore';
+    }
 
 =end programlisting
 
-X<C<parent> pragma>
-X<pragmas; C<parent>>
+X<direttiva C<parent>>
+X<direttive; C<parent>>
 
-Many existing Perl 5 projects do this, but it's easier and simpler to use the
-C<parent> pragma instead:
+È preferibile usare la direttiva C<parent> (L<pragmas>)N<Il vecchio codice potrebbe usare la direttiva
+C<base>, ma in Perl 5.10 C<parent> ha rimpiazzato C<base>.>:
 
 =begin programlisting
 
-    package InjuredPlayer;
-
-    use parent 'Player';
+    package GiocatoreInfortunato
+    {
+        use parent 'Giocatore';
+    }
 
 =end programlisting
 
-X<C<base> pragma>
-X<pragmas; C<base>>
+Moose ha il proprio metamodello per memorizzare informazioni di ereditarietà estese che offrono
+funzionalità aggiuntive.
 
-=begin sidebar
+X<ereditarietà multipla>
+X<OO; ereditarietà>
 
-Perl 5.10 added C<parent> to supersede the C<base> pragma.  If you can't use
-Moose, use C<parent>.
-
-=end sidebar
-
-X<multiple inheritance>
-X<OO; inheritance>
-
-You may inherit from multiple parent classes:
+Potete ereditare da diverse superclassi:
 
 =begin programlisting
 
-    package InjuredPlayer;
-
-    use parent qw( Player Hospital::Patient );
-
-=end programlisting
-
-Perl 5 has traditionally preferred a depth-first search of parents when
-resolving method dispatch.  That is to say, if C<InjuredPlayer> inherits from
-both C<Player> and C<Hospital::Patient>, a method call on an C<InjuredPlayer>
-instance will dispatch first to C<InjuredPlayer>, then C<Player>, then any of
-C<Player>'s parents before dispatching in C<Hospital::Patient>.
-
-X<C<mro> pragma>
-X<pragmas; C<mro>>
-
-Perl 5.10 also added a pragma called C<mro> which allows you to use a different
-method resolution scheme called C3.  While the specific details can get complex
-in the case of complex multiple inheritance hierarchies, the important
-difference is that method resolution will visit all children of a parent before
-visiting the parent.
-
-While other techniques such as roles (L<roles>) and Moose method modifiers
-allow you to avoid multiple inheritance, the C<mro> pragma can help avoid
-surprising behavior with method dispatch.  Enable it in your class with:
-
-=begin programlisting
-
-    package InjuredPlayer;
-
-    use mro 'c3';
+    package GiocatoreInfortunato;
+    {
+        use parent qw( Giocatore Ospedale::Paziente );
+    }
 
 =end programlisting
 
-Unless you're writing a complex framework with multiple interoperable plugins,
-you likely never need to use this.
+... sebbene vadano tenuti presenti gli avvertimenti dati prima sulla complessità dell'ereditarietà multipla
+e del dispatch di metodi. Considerate piuttosto l'uso dei ruoli (L<roles>) oppure i modificatori di metodo di Moose.
 
 =head2 AUTOLOAD
 
 X<C<AUTOLOAD>>
 X<OO; C<AUTOLOAD>>
-X<methods; C<AUTOLOAD>>
+X<metodi; C<AUTOLOAD>>
 
-If there is no applicable method in the invocant's class or any of its
-superclasses, Perl 5 will next look for an C<AUTOLOAD> function in every class
-according to the selected method resolution order.  Perl will invoke any
-C<AUTOLOAD> (L<autoload>) it finds to provide or decline the desired method.
+Se non trova alcun metodo appropriato nella classe dell'invocante e nelle sue
+superclassi, Perl 5 cerca una funzione C<AUTOLOAD()> (L<autoload>)
+in ciascuna classe seguendo l'ordine di risoluzione selezionato. Ciascuna
+C<AUTOLOAD()> trovata viene invocata e può fornire o declinare il metodo desiderato.
 
-As you might expect, this can get quite complex in the face of multiple
-inheritance and multiple potential C<AUTOLOAD> targets.
+C<AUTOLOAD()> rende molto difficile capire l'ereditarietà multipla.
 
-=head2 Method Overriding and SUPER
+=head2 Sovrascrittura di Metodi e SUPER
 
-You may override methods in the default Perl 5 OO system as well as in Moose.
-Unfortunately, core Perl 5 provides no mechanism for indicating your I<intent>
-to override a parent's method.  Worse yet, any function you predeclare,
-declare, or import into the child class may override a method in the parent
-class simply by existing and having the same name.  While you may forget to use
-the C<override> system of Moose, you have no such protection (even optional) in
-the default Perl 5 OO system.
+Come in Moose, anche nel sistema OO base di Perl potete sovrascrivere dei metodi. Al contrario di Moose,
+però, il sistema base non fornisce meccanismi per indicare la vostra I<intenzione> di sovrascrivere un metodo
+di una superclasse. Peggio ancora, ogni funzione che predichiarate, dichiarate o importate
+nella classe derivata potrebbe sovrascrivere accidentalmente un metodo della superclasse semplicemente perchè hanno lo
+stesso nome. Anche quando vi dimenticate di usare il sistema di C<override> di Moose, almeno esso
+esiste. Nel sistema OO base di Perl 5, invece, tale protezione è del tutto assente.
 
-To override a method in a child class, declare a method of the same name as the
-method in the parent.  Within an overridden method, call the parent method with
-the C<SUPER::> dispatch hint:
+X<builtin; C<SUPER::>>
+
+Per sovrascrivere un metodo in una classe derivata, dichiarate un metodo con lo stesso nome del
+metodo nella superclasse. All'interno di un metodo che ne sovrascrive un altro, chiamate il metodo sovrascritto usando
+il suggerimento C<SUPER::> per farne il dispatch:
 
 =begin programlisting
 
-    sub overridden
+    sub sovrascritto
     {
         my $self = shift;
-        warn "Called overridden() in child!";
-        return $self->SUPER::overridden( @_ );
+        warn 'Chiamata a sovrascritto() nella classe derivata!';
+        return $self->SUPER::sovrascritto( @_ );
     }
 
 =end programlisting
 
-The C<SUPER::> prefix to the method name tells the method dispatcher to
-dispatch to the named method in a I<parent> implementation.  You may pass any
-arguments to it you like, but it's safest to reuse C<@_>.
+Il prefisso C<SUPER::> al nome del metodo indica al dispatcher di metodi di
+chiamare un metodo sovrascritto col nome appropriato. Potete passare dei vostri
+argomenti al metodo sovrascritto, ma gran parte del codice riusa semplicemente C<@_>. In quest'ultimo caso,
+occorre ricordare di fare lo C<shift> dell'invocante.
 
-=begin sidebar
+=begin tip Il Problema di C<SUPER::>
 
-X<C<SUPER>>
+X<CPAN; C<SUPER>>
 
-Beware that this dispatcher relies on the package into which the overridden
-method was originally compiled when redispatching to a parent method.  This is
-a long-standing misfeature retained for the sake of backwards compatibility.
-If you export methods into other classes or compose roles into classes
-manually, you may run afoul of this feature.  The C<SUPER> module on the CPAN
-can work around this for you.  Moose handles it nicely as well.
+C<SUPER::> ha una funzionalità dannosa: fa il dispatch alla superclasse del
+package in cui il metodo che sovrascrive è stato I<compilato>. Se avete importato
+tale metodo da un altro package, Perl non avrà problemi a fare il dispatch alla suprclasse
+I<sbagliata>. Il desiderio di mantenere la retrocompatibilità ha fatto sì che questa funzionalità
+dannosa fosse mantenuta. Il modulo CPAN C<SUPER> offre una soluzione. La funzione C<super()> di Moose è
+invece del tutto esente da questo problema.
 
-=end sidebar
+=end tip
 
-=head2 Strategies for Coping with Blessed References
+=head2 Strategie per Sopravvivere ai Riferimenti Blessed
 
-Avoid C<AUTOLOAD> where possible.  If you I<must> use it, use forward
-declarations of your functions (L<functions>) to help Perl know which
-C<AUTOLOAD> will provide the method implementation.
+Se i riferimenti blessed vi sembrano minimali e complicati e confusi, ebbene: lo sono davvero. Moose rappresenta
+un enorme miglioramento, quindi usatelo ogni volta che vi è possibile. Se invece vi trovate a fare la
+manutenzione di codice che usa i riferimenti blessed oppure proprio non siete ancora riusciti a convincere il vostro
+gruppo ad abbracciare completamente Moose, potete aggirare alcuni dei problemi dei riferimenti blessed
+con un'opportuna disciplina.
 
-Use accessor methods rather than accessing instance data directly through the
-reference.  This applies even within the bodies of methods within the class
-itself.  Generating these yourself can be tedious; if you can't use Moose,
-consider using a module such as C<Class::Accessor> to avoid repetitive
-boilerplate.
+X<C<Class::Accessor>>
 
-Expect that someone, somewhere will eventually need to subclass (or delegate to
-or reimplement the interface of) your classes.  Make it easier for them by not
-assuming details of the internals of your code, by using the two-argument form
-of C<bless>, and by breaking your classes into the smallest responsible units
-of code.
+=over 4
 
-Do not mix functions and methods in the same class.
+=item * Usate i metodi accessori in modo pervasivo, anche all'interno dei metodi della vostra classe.
+Considerate di usare un modulo come C<Class::Accessor> per evitare un eccessivo 
+copia e incolla.
 
-Use a single F<.pm> file for each class, unless the class is a small,
-self-contained helper used from a single place.
+=item * Evitate C<AUTOLOAD()> ogni volta che potete. Se proprio I<dovete> usarlo, fate delle
+dichiarazioni in avanti delle vostre funzioni (L<functions>) per aiutare Perl a scoprire quale
+C<AUTOLOAD()> fornisce l'implementazione del metodo.
 
-X<C<Any::Moose>>
+=item * Tenete a mente che qualcuno, da qualche parte dovrà prima o poi derivare dalle vostre classi (o
+usarle per delegare, o reimplementarne l'interfaccia). Facilitate la vita di queste persone
+evitando assunzioni sui dettagli interni del vostro codice, usando la forma
+di C<bless> a due argomenti e suddividendo le vostre classi in unità di codice
+il più piccole possibile.
 
-Consider using Moose and C<Any::Moose> instead of bare-bones Perl 5 OO; they
-can interact with vanilla classes and objects with ease, alleviate almost of
-the tedium of declaring classes, and provide more and better features.
+=item * Non mescolate funzioni e metodi nella stessa classe.
+
+=item * Usate un unico file F<.pm> per ciascuna classe, a meno che una classe sia piccola,
+autocontenuta e serva da supporto in un unico punto.
+
+=back
