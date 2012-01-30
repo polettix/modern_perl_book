@@ -2,20 +2,21 @@
 
 =head0 Stile ed Efficacia
 
-Programmare e programmare I<bene> sono capacità correlate ma distinte. Se
-scrivessimo programmi solo una volta e non dovessimo mai modificarli o
-manutenerli, se i nostri programmi non avessero mai bug, se non dovessimo mai
-scegliere fra usare più memoria o impiegare più tempo, ed ancora se non
-dovessimo mai lavorare con altre persone, allora non dovremmo preoccuparci
-di quanto bene scriviamo i programmi. Per programmare bene, dovete comprendere
-le differenze fra le soluzioni potenziali basate su priorità specifiche di
-tempo, risorse e piani evolutivi per il futuro.
+La qualità è importante.
 
-Scrivere bene in Perl significa capire come funziona Perl. Significa anche
-sviluppare un senso di buon gusto. Per sviluppare questa capacità, dovete
-fare pratica nello scrivere e nel manutenere codice e nel leggere buon
-codice. Non ci sono scorciatoie--ma potete incrementare l'efficacia dei
-vostri sforzi seguendo alcune linee guida.
+I programmi hanno dei bug. Necessitano di manutenzione e di estensioni. E
+coinvolgono molteplici programmatori.
+
+Programmare I<bene> richiede un equilibrio tra la necessità di raggiungere velocemente
+gli obiettivi e quella di poter continuare a raggiungerli in futuro. Potete
+bilanciare tra di loro il tempo, le risorse e la qualità. La capacità di
+arrivare a un buon bilanciamento determina il vostro livello di abilità e di
+pragmatismo come artigiani.
+
+Conoscere Perl a fondo è importante. Altrettanto importante è sviluppare un senso estetico.
+L'unico modo di raggiungere questi obiettivi è fare pratica con la
+manutenzione del codice e con la lettura e scrittura di codice di qualità.
+Non ci sono scorciatoie, ma almeno potete seguire alcune linee guida.
 
 L<style>
 
