@@ -1,234 +1,241 @@
-=head1 Exceptions
+=head1 Eccezioni
 
 Z<exceptions>
+X<eccezioni>
 
-Programming would be simpler if everything always worked as intended.
-Unfortunately, files you expect to exist don't.  Sometimes you run out of disk
-space.  Your network connection vanishes.  The database stops accepting new
-data.
+Programmare bene significa anticipare le situazioni impreviste. File che dovrebbero esistere
+e non ci sono. Un hard disk enorme che non dovrebbe mai riempirsi ma lo fa. La connessione di rete che
+dovrebbe sempre essere disponibile ma non lo è. Un database infallibile che fallisce. Le cose eccezionali succedono e un software robusto
+dovrebbe saperle gestire. Se potete ripristinare il funzionamento, è un'ottima cosa! Ma se non potete, fate almeno il logging delle
+informazioni rilevanti e riprovate.
 
-X<exceptions>
+Perl 5 gestisce le situazioni eccezionali attraverso le I<eccezioni>: un
+meccanismo di controllo di flusso con scope dinamico progettato per segnalare e gestire gli errori.
 
-Exceptional cases happen, and robust software must handle those exceptional
-conditions.  If you can recover, great!  If you can't, sometimes the best you
-can do is retry or at least log all of the relevant information for further
-debugging.  Perl 5 handles exceptional conditions through the use of
-I<exceptions>: a dynamically-scoped form of control flow that lets you handle
-errors in the most appropriate place.
-
-=head2 Throwing Exceptions
+=head2 Sollevare Eccezioni
 
 Z<throwing_exceptions>
 
-Consider the case where you need to open a file for logging.  If you cannot
-open the file, something has gone wrong.  Use C<die> to throw an exception:
+Supponete di voler scrivere su un file di log. Se non riuscite ad aprire tale file, qualcosa sta andando
+storto. Usate C<die> per sollevare un'eccezione:
 
 =begin programlisting
 
-    sub open_log_file
+    sub apri_file_log
     {
-        my $name = shift;
-        open my $fh, '>>', $name
-            B<or die "Can't open logging file '$name': $!";>
+        my $nome = shift;
+        open my $fh, '>>', $nome
+            B<or die "Apertura del file di log '$nome' non riuscita: $!";>
         return $fh;
     }
 
 =end programlisting
 
 X<builtins; C<die>>
-X<exceptions; throwing>
-X<exceptions; throwing strings>
-X<exceptions; C<die>>
+X<eccezioni; sollevare>
+X<eccezioni; sollevare con stringhe>
+X<eccezioni; C<die>>
 X<C<$@>>
-X<exceptions; C<$@>>
+X<eccezioni; C<$@>>
 
-C<die()> sets the global variable C<$@> to its argument and immediately exits
-the current function I<without returning anything>.  If the calling function
-does not explicitly handle this exception, the exception will propagate upwards
-to every caller until something handles the exception or the program exits with
-an error message.
+C<die()> imposta il valore della variabile globale C<$@> a quello del proprio operandoto ed esce immediatamente
+dalla funzione corrente I<senza restituire nulla>. L'eccezione sollevata continua
+il suo percorso nello stack di chiamate (L<controlled_execution>) finchè incontra del codice che la
+cattura. Se nessuna chiamata cattura l'eccezione, il programma termina con un errore.
 
-=begin sidebar
+La gestione delle eccezioni adotta lo scope dinamico (L<dynamic_scope>) come i simboli C<local>.
 
-This dynamic scoping of exception throwing and handling is the same as the
-dynamic scoping of C<local> symbols (L<dynamic_scope>).
-
-=end sidebar
-
-=head2 Catching Exceptions
+=head2 Catturare Eccezioni
 
 Z<catching_exceptions>
 
-X<exceptions; catching>
+X<eccezioni; catturare>
 
-Uncaught exceptions eventually terminate the program.  Sometimes this is
-useful; a system administration program run from cron (a Unix jobs scheduler)
-might throw an exception when the error logs have filled; this could page an
-administrator that something has gone wrong.  Yet many other exceptions should
-not be fatal; good programs can recover from them, or at least save their
-state and exit more cleanly.
+Talvolta è utile che un'eccezione faccia terminare il programma. Un programma eseguito come processo
+temporizzato potrebbe sollevare un'eccezione quando i log di errore sono pieni, in modo che venga
+inviato un SMS agli amministratori. Tuttavia non tutte le eccezioni dovrebbero essere fatali. I programmi
+ben scritti talvolta riescono a ripristinare il funzionamento o almeno a salvare il proprio stato e terminare in modo controllato.
 
-X<builtins; C<eval>>
-X<C<eval>; block>
+X<builtin; C<eval>>
+X<C<eval>; blocco>
 
-To catch an exception, use the block form of the C<eval> operator:
+Usate la forma a blocco dell'operatore C<eval> per catturare un'eccezione:
 
 =begin programlisting
 
-    # log file may not open
-    my $fh = eval { open_log_file( 'monkeytown.log' ) };
+    # l'apertura del file di log potrebbe fallire
+    my $fh = eval { apri_file_log( 'paperopoli.log' ) };
 
 =end programlisting
 
-As with all blocks, the block argument to C<eval> introduces a new scope.  If
-the file open succeeds, C<$fh> will contain the filehandle.  If it fails,
-C<$fh> will remain undefined, and Perl will move on to the next statement in
-the program.
+Se l'apertura del file ha successo, C<$fh> conterrà il filehandle. Se fallisce,
+C<$fh> resta non definito, e il flusso del programma continua.
 
-If C<open_log_file()> called other functions which called other functions, and
-if one of those functions threw its own exception, this C<eval> could catch it,
-if nothing else did.  There is no requirement that your exception handlers
-catch only those exceptions you expect.
+Il blocco passato come argomento a C<eval> introduce un nuovo scope, sia lessicale che dinamico.
+Se C<apri_file_log()> chiamasse altre funzioni e una di queste lanciasse
+un'eccezione, questo C<eval> la catturerebbe.
 
-To check which exception you've caught (or if you've caught an exception at
-all), check the value of C<$@>:
+X<variabili predefinite; C<$@>>
 
-=begin programlisting
-
-    # log file may not open
-    my $fh = eval { open_log_file( 'monkeytown.log' ) };
-
-    # caught exception
-    B<if ($@) { ... }>
-
-=end programlisting
-
-Of course, C<$@> is a I<global> variable.  For optimal safety, C<local>ize its
-value before you attempt to catch an exception:
+Un gestore di eccezioni dev'essere uno strumento generico, dato che potrebbe catturare tutte le eccezioni nel
+suo scope dinamico. Per capire quale eccezione è stata catturata (e anzitutto se è c'è stata un'eccezione)
+controllate il valore di C<$@>. Ricordatevi di C<local>izzare C<$@>
+prima di tentare di catturare un'eccezione, dato che C<$@> è una variabile
+globale:
 
 =begin programlisting
 
     B<local $@;>
 
-    # log file may not open
-    my $fh = eval { open_log_file( 'monkeytown.log' ) };
+    # l'apertura del file di log potrebbe fallire
+    my $fh = eval { apri_file_log( 'paperopoli.log' ) };
 
-    # caught exception
-    if ($@) { ... }
+    # eccezione catturata
+    B<if (my $eccezione = $@) { ... }>
 
 =end programlisting
 
-X<exceptions; rethrowing>
+X<eccezioni; rilanciare>
 
-You may check the string value of C<$@> against expected exceptions to see if
-you can handle the exception or if you should throw it again:
+Copiate immediatamente C<$@> in una variabile lessicale per evitare che il codice eseguito
+successivamente possa sovrascrivere la variabile globale C<$@>. Non potete sapere se da qualche parte c'è un blocco C<eval>
+che può reimpostare C<$@>.
+
+Solitamente C<$@> contiene una stringa che descrive l'eccezione. Ispezionatene il contenuto
+per capire se potete gestire l'eccezione:
 
 =begin programlisting
 
-    if (my $exception = $@)
+    if (my $eccezione = $@)
     {
-        die $exception unless $exception =~ /^Can't open logging file/;
-        $fh = log_to_syslog();
+        die $eccezione
+            unless $eccezione =~ /^Il file di log non puo' essere aperto/;
+        $fh = log_su_syslog();
     }
 
 =end programlisting
 
-=begin sidebar
+Rilanciate un'eccezione chiamando di nuovo C<die()>. Passatele l'eccezione corrente oppure
+una nuova eccezione a seconda delle vostre esigenze.
 
-Copy C<$@> to C<$exception> to avoid the possibility of subsequent code
-clobbering the global variable C<$@>.  You never know what else has used
-an C<eval> block elsewhere and reset C<$@>.
+X<eccezioni; sollevare con oggetti>
 
-=end sidebar
+Applicare delle espressioni regolari a eccezioni stringa è poco robusto, dato che i messaggi
+d'errore possono cambiare nel tempo. Questo vale anche per le eccezioni predefinite sollevate dallo
+stesso Perl. Per fortuna, potete anche passare a C<die> un riferimento--e perfino un riferimento
+blessed. Ciò vi permette di fornire molte più informazioni nella vostra
+eccezione: numeri di linea, file e altre informazioni di debugging. Ottenere
+queste informazioni da un'entità strutturata è molto più facile che estrarle parsificando
+una stringa. Catturate queste eccezioni come fareste con qualunque altra eccezione.
 
-Rethrow an exception by calling C<die()> again, passing C<$@>.
-
-X<exceptions; throwing objects>
-
-You may find the idea of using regular expressions against the value of C<$@>
-distasteful; you can also use an I<object> with C<die>.  Admittedly, this is
-rare.  C<$@> I<can> contain any arbitrary reference, but in practice it seems
-to be 95% strings and 5% objects.
-
-X<exceptions; custom classes with C<Exception::Class>>
+X<eccezioni; classi personalizzate con C<Exception::Class>>
 X<C<Exception::Class>>
 
-As an alternative to writing your own exception system, see the CPAN
-distribution C<Exception::Class>.
+La distribuzione CPAN C<Exception::Class> facilita la creazione e l'uso di oggetti eccezione:
 
-=head2 Exception Caveats
+=begin programlisting
+
+    package Zoo::Eccezioni
+    {
+        use Exception::Class
+            'Zoo::AnimaleFuggito',
+            'Zoo::GestoreFuggito';
+    }
+
+    sub gabbia_aperta
+    {
+        my $self = shift;
+        Zoo::AnimaleFuggito->throw
+            unless $self->contiene_animale;
+        ...
+    }
+
+    sub ufficio_aperto
+    {
+        my $self = shift;
+        Zoo::GestoreFuggito->throw
+            unless $self->contiene_gestore;
+        ...
+    }
+
+=end programlisting
+
+=head2 Avvertenze sulle Eccezioni
 
 Z<exception_caveats>
 
-X<exceptions; caveats>
+X<eccezioni; avvertenze>
 
-Using C<$@> correctly can be tricky; the global nature of the variable leaves
-it open to several subtle flaws:
+Mentre sollevare eccezioni è relativamente semplice, catturarle lo è di meno.
+Usare C<$@> correttamente vi richiede di scansare svariati rischi piuttosto sottili:
 
 =over 4
 
-=item * UnC<local>ized uses further down the dynamic scope may reset its value
+=item * Un uso non C<local>izzato della variabile C<$@> all'interno dello scope dinamico potrebbe modificarla
 
-=item * The destruction of any objects at scope exit from exception throwing
-may call C<eval> and change its value
+=item * C<$@> potrebbe contenere un oggetto che sovrascrive il proprio valore booleano in modo da restituire falso
 
-=item * It may contain an object which overrides its boolean value to return
-false
+=item * Un gestore di segnali (specialmente il gestore del segnale C<DIE>) potrebbe modificare C<$@>
 
-=item * A signal handler (especially the C<DIE> signal handler) may change its
-value when you do not expect it
+=item * The destruction of an object during scope exit may call C<eval> and
+change C<$@>
 
 =back
 
-X<exceptions; handling safely with C<Try::Tiny>>
+X<eccezioni; gestione sicura con C<Try::Tiny>>
 X<C<Try::Tiny>>
 
-Writing a perfectly safe and sane exception handler is difficult.  The
-C<Try::Tiny> distribution from the CPAN is short, easy to install, easy to
-understand, and very easy to use:
+Alcuni di questi problemi sono stati risolti in Perl 5.14. Se da una parte essi si presentano molto raramente, dall'altra
+sono spesso difficili da diagnosticare e risolvere. La distribuzione CPAN C<Try::Tiny>
+migliora l'affidabilità I<e> la sintassi della gestione di eccezioni N<In effetti,
+C<Try::Tiny> è stato di ispirazione per le migliorie alla gestione delle eccezioni
+in Perl 5.14.>.
+
+C<Try::Tiny> è facile da usare:
 
 =begin programlisting
 
     use Try::Tiny;
 
-    my $fh = try   { open_log_file( 'monkeytown.log' ) }
-             catch { ... };
+    my $fh = try   { apri_file_log( 'paperopoli.log' ) }
+             catch { log_eccezione( $_ ) };
 
 =end programlisting
 
-Not only is the syntax somewhat nicer than the Perl 5 default, but the module
-handles all of those edge cases for you without your knowledge.
+C<try> sostituisce C<eval>. Il blocco opzionale C<catch> viene eseguito solo quando C<try>
+cattura un'eccezione. C<catch> riceve l'espressione catturata nella variabile
+topic C<$_>.
 
-=head2 Built-in Exceptions
+=head2 Eccezioni Predefinite
 
 Z<builtin_exceptions>
 
-X<exceptions; core>
+X<eccezioni; predefinite>
 
-Perl 5 has several exceptional conditions you can catch with an C<eval> block.
-C<perldoc perldiag> lists them as "trappable fatal errors".  Most are syntax
-errors thrown during compilation.  Others are runtime errors.  Some of these
-may be worth catching; syntax errors rarely are.  The most interesting or
-likely exceptions occur for:
+Perl 5 può sollevare svariate eccezioni. C<perldoc perldiag> elenca
+numerosi "errori fatali intercettabili". Mentre alcuni di essi sono errori di sintassi sollevati durante
+il processo di compilazione, altri possono essere catturati durante l'esecuzione. Quelli di
+maggiore interesse sono:
 
 =over 4
 
-=item * Using a disallowed key in a locked hash (L<locked_hashes>)
+=item * Usare una chiave non permessa in un hash bloccato (L<locked_hashes>)
 
-=item * Blessing a non-reference (L<blessed_references>)
+=item * Fare il bless di un'entità che non sia un riferimento (L<blessed_references>)
 
-=item * Calling a method on an invalid invocant (L<moose>)
+=item * Chiamare un metodo su un invocante non valido (L<moose>)
 
-=item * Failing to find a method of the given name on the invocant
+=item * Non riuscire a trovare un metodo con un certo nome nell'invocante
 
-=item * Using a tainted value in an unsafe fashion (L<taint>)
+=item * Usare un valore tainted in modo scorretto (L<taint>)
 
-=item * Modifying a read-only value
+=item * Modificare un valore di sola lettura
 
-=item * Performing an invalid operation on a reference (L<references>)
+=item * Effettuare un'operazione non valida su un riferimento (L<references>)
 
 =back
 
-If you have enabled fatal lexical warnings (L<registering_warnings>), you can
-catch the exceptions they throw.  The same goes for exceptions from C<autodie>
-(L<autodie>).
+X<C<autodie>>
+
+Naturalmente, potete anche catturare le eccezioni prodotte da C<autodie> (L<autodie>) e
+i warning lessicali promossi a eccezioni (L<registering_warnings>).
