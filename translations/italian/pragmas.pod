@@ -1,149 +1,169 @@
-=head1 Pragmas
+=head1 Direttive
 
 Z<pragmas>
 
-Perl 5's extension mechanism is modules (L<modules>).  Most modules provide
-functions to call or they define classes (L<moose>), but some modules instead
-influence the behavior of the language itself.
+X<direttive>
+X<moduli; direttive>
 
-X<pragmas>
-X<modules; pragmas>
+Molte delle estensioni di Perl 5 sono moduli che forniscono nuove funzioni o definiscono
+classi (L<moose>). Alcuni moduli, invece, come C<strict> e C<warnings>, influenzano il comportamento
+del linguaggio stesso. Tali moduli sono detti I<direttive>. Per
+convenzione, le direttive hanno nomi con soli caratteri minuscoli per differenziarli dagli altri
+moduli.
 
-A module which influences the behavior of the compiler is a I<pragma>.  By
-convention, pragmas have lower-case names to differentiate them from other
-modules.  You've heard of some before: C<strict> and C<warnings>, for example.
+=head2 Direttive e Scope
 
-=head2 Pragmas and Scope
+X<direttive; scope>
 
-X<pragmas; scope>
-
-A pragma works by exporting specific behavior or information into the enclosing
-static scope.  The scope of a pragma is the same as the scope of a lexical
-variable.  In a way, you can think of lexical variable declaration as a sort of
-pragma with funny syntax.  Pragma scope is clearer with an example:
+Il funzionamento delle direttive consiste nell'esportare comportamenti o informazioni specifiche nello scope lessicale
+dei loro chiamanti. Così come dichiarare una variabile lessicale rende disponibile in uno scope
+il nome di un simbolo, usare una direttiva attiva il suo comportamento in un certo scope:
 
 =begin programlisting
 
     {
-        # $lexical is B<not> visible; strict is B<not> in effect
+        # $lessicale B<non> e` visibile; strict B<non> e` attiva
         {
             use strict;
-            my $lexical = 'available here';
-            # $lexical B<is> visible; strict B<is> in effect
+            my $lessicale = 'disponibile qui';
+            # $lessicale B<e`> visibile; strict B<e`> attiva
             ...
         }
-        # $lexical is again B<not> visible; strict is B<not> in effect
+        # $lessicale e` di nuovo invisible; strict B<non> e` attiva
     }
 
 =end programlisting
 
-=begin sidebar
-
-A sufficiently motivated Perl guru could implement a poorly-behaved pragma
-which ignores scoping, but that would be unneighborly.
-
-=end sidebar
-
-Just as lexical declarations affect inner scopes, so do pragmas maintain their
-effects on inner scopes:
+Inoltre, così come le dichiarazioni lessicali interessano anche gli scope più interni, le dichiarazioni rimangono attive
+in tali scope:
 
 =begin programlisting
 
-    # file scope
+    # scope di file
     use strict;
 
     {
-        # inner scope, but strict still in effect
-        my $inner = 'another lexical';
+        # scope interno, dove strict continua a essere attivo
+        my $interno = 'un altro lessicale';
         ...
     }
 
 =end programlisting
 
-=head2 Using Pragmas
+=head2 Uso delle Direttive
 
-X<pragmas; enabling>
+X<direttive; attivazione>
 
-Pragmas have the same usage mechanism as modules.  As with modules, you may
-specify the desired version number of the pragma and you may pass a list of
-arguments to the pragma to control its behavior at a finer level:
+Fate la C<use> di una direttiva come fareste con qualunque altro modulo. Le direttive possono ricevere argomenti, ad esempio
+un numero minimo di versione accettabile e una lista di argomenti per modificarne il comportamento:
 
 =begin programlisting
 
-    # require variable declarations; prohibit bareword function names
+    # richiede la dichiarazione delle variabili e proibisce le bareword
     use strict qw( subs vars );
 
 =end programlisting
 
-X<pragmas; disabling>
-X<builtins; C<no>>
+X<direttive; disattivazione>
+X<builtin; C<no>>
 
-Within a scope you may disable all or part of a pragma with the C<no> builtin:
+Talvolta vi servirà I<disattivare> del tutto o in parte gli effetti di una direttiva in uno
+scope lessicale nidificato. L'istruzione predefinita C<no> annulla un'importazione (L<importing>),
+il che disattiva gli effetti di una direttiva se essa si conforma alle regole. Per esempio, se volete disattivare la
+protezione di C<strict> quando dovete manipolare direttamente dei simboli:
 
 =begin programlisting
 
-    use strict;
+    use Modern::Perl;
+    # oppure use strict;
 
     {
-        # get ready to manipulate the symbol table
         no strict 'refs';
-        ...
+        # manipolazione della tabella dei simboli
     }
 
 =end programlisting
 
-=head2 Useful Core Pragmas
+=head2 Direttive Utili
 
-X<pragmas; useful core pragmas>
+X<variabili predefinite; C<$^H>>
+X<direttive; scrittura>
 
-Perl 5 includes several useful core pragmas:
+In Perl 5.10.0 è stata aggiunta la possibilità di scrivere le proprie pragma lessicali in puro codice Perl.
+C<perldoc perlpragma> vi spiega come fare e la descrizione di
+C<$^H> in C<perldoc perlvar> vi spiega il suo funzionamento.
 
-X<pragmas; C<strict>>
+X<direttive; direttive predefinite utili>
+
+Già prima della versione 5.10, Perl 5 includeva svariate direttive predefinite utili:
+
+X<direttive; C<strict>>
 
 =over 4
 
-=item * the C<strict> pragma enables compiler checking of symbolic references,
-the use of barewords, and the declaration of variables
+=item * la direttiva C<strict> attiva il controllo durante la compilazione dei riferimenti simbolici, dell'uso di bareword e
+della dichiarazione di variabili.
 
-X<pragmas; C<warnings>>
+X<direttive; C<warnings>>
 
-=item * the C<warnings> pragma enables optional warnings for deprecated,
-unintended, and awkward behaviors that are not I<necessarily> errors but may
-produce unwanted behaviors
+=item * la direttiva C<warnings> attiva l'emissione di warning per comportamenti deprecati,
+inappropriati o confusi del codice.
 
-X<pragmas; C<utf8>>
+X<direttive; C<utf8>>
 
-=item * the C<utf8> pragma enables the use of the UTF-8 encoding of source code
+=item * la direttiva C<utf8> forza il parser a interpretare il codice sorgente con la codifica
+UTF-8.
 
-X<pragmas; C<autodie>>
+X<direttive; C<autodie>>
 
-=item * the C<autodie> pragma (new in 5.10.1) enables automatic error checking
-of system calls and builtins, reducing the need for manual error checking
+=item * la direttiva C<autodie> attiva il controllo automatico degli errori nelle chiamate alle funzioni di sistema e
+predefinite.
 
-X<pragmas; C<constant>>
+X<direttive; C<constant>>
 
-=item * the C<constant> pragma allows you to create compile-time constant
-values (though see C<Readonly> from the CPAN for an alternative)
+=item * la direttiva C<constant> vi permette di creare valori costanti durante la
+compilazione (vedete il modulo CPAN C<Const::Fast> per un'alternativa).
 
-X<pragmas; C<vars>>
+X<direttive; C<vars>>
 
-=item * the C<vars> pragma allows you to declare package global variables, such
-as C<$VERSION> or those for exporting (L<exporting>) and manual OO
-(L<blessed_references>)
+=item * la direttiva C<vars> vi permette di dichiarare variabili globali di package, come
+C<$VERSION> e C<@ISA> (L<blessed_references>).
+
+X<direttive; C<feature>>
+
+=item * la direttiva C<feature> vi permette di attivare e disattivare singolarmente le 
+funzionalità post-5.10. La direttiva C<use feature ':5.14';> è equivalente a C<use 5.14;>, ovvero attiva tutte le funzionalità di Perl
+5.14 più la direttiva C<strict>. Questa direttiva è più utile per I<disattivare> singolarmente delle funzionalità in uno scope
+lessicale.
+
+X<direttive; C<less>>
+
+=item * la direttiva C<less> illustra come scrivere una direttiva.
 
 =back
 
-X<C<autobox>>
-X<C<perl5i>>
+CPAN ha iniziato a raccogliere delle direttive non predefinite:
 
-Several useful pragmas exist on the CPAN as well.  Two worth exploring in
-detail are C<autobox>, which enables object-like behavior for Perl 5's core
-types (scalars, references, arrays, and hashes) and C<perl5i>, which combines
-and enables many experimental language extensions into a coherent whole.  These
-two pragmas may not belong yet in your production code without extensive
-testing and thoughtful consideration, but they demonstrate the power and
-utility of pragmas.
+X<CPAN; C<autobox>>
+X<CPAN; C<perl5i>>
+X<CPAN; C<autovivification>>
+X<CPAN; C<indirect>>
 
-Perl 5.10.0 added the ability to write your own lexical pragmas in pure Perl
-code.  C<perldoc perlpragma> explains how to do so, while the explanation of
-C<$^H> in C<perldoc perlvar> explains how the feature works.
+=over 4
+
+=item * C<autobox> attiva un comportamento ad oggetti per i tipi predefiniti di Perl 5
+(scalari, riferimenti, array e hash).
+
+=item * C<perl5i> combina e attiva numerose estensioni sperimentali del linguaggio
+in un tutto coerente.
+
+=item * C<autovivification> disattiva l'autovivificazione (L<autovivification>)
+
+=item * C<indirect> previene l'uso dell'invocazione indiretta
+(L<indirect_objects>)
+
+=back
+
+Attualmente, questi strumenti non sono molto usati. Gli ultimi due vi aiutano a scrivere codice
+più corretto, mentre coi primi due vale la pena di fare degli esperimenti all'interno di piccoli
+progetti. Essi rappresentano delle interessanti potenzialità di Perl 5.
