@@ -4,14 +4,13 @@ Z<testing>
 
 X<testing>
 
-I<Testing> is the process of writing and running automated verifications that
-your software behaves as intended, in whole or in part.  At its heart, this is
-an automation of a process you've performed countless times already: write a
-bit of code, run it, and see if it works.  The difference is in the
-I<automation>.  Rather than relying on humans to perform each manual check
-perfectly every time, let the computer handle the repetition.
+Il I<testing> è un  processo che consiste nella scrittura ed esecuzione di piccoli pezzi di codice al fine di verificare
+che il vostro software funzioni come vi aspettate. Un testing efficace è essenzialmente l'automatizzazione di un processo
+che avete sicuramente già eseguito innumerevoli volte a mano: scrivere del codice, eseguirlo e controllare
+se funziona. L'I<automazione> è il punto più importante. Anzichè dover contare su delle persone
+per ripetere in modo affidabile i controlli a mano, lasciate questo compito al calcolatore.
 
-Perl 5 provides great tools to help you write good and useful automated tests.
+Perl 5 fornisce degli ottimi strumenti per aiutarvi a scrivere i test nel modo giusto.
 
 =head2 Test::More
 
@@ -19,82 +18,82 @@ X<C<Test::More>>
 X<C<ok()>>
 X<testing; C<ok()>>
 
-Perl testing begins with the core module C<Test::More> and its C<ok()>
-function.  C<ok()> takes two parameters, a boolean value and a string
-describing the purpose of the test:
+Per iniziare a fare testing in Perl dovete usare il modulo C<Test::More> distribuito con Perl 5, e in particolare la sua funzione
+C<ok()>. C<ok()> riceve due parametri, un valore booleano e una stringa che descrive
+lo scopo del test:
 
 =begin programlisting
 
-    ok(   1, 'the number one should be true'         );
-    ok(   0, '... and the number zero should not'    );
-    ok(  '', 'the empty string should be false'      );
-    ok( '!', '... and a non-empty string should not' );
+    ok(   1, 'il numero uno dovrebbe essere vero'            );
+    ok(   0, '... mentre lo zero non dovrebbe'               );
+    ok(  '', 'la stringa vuota dovrebbe avere valore falso'  );
+    ok( '!', '... mentre una stringa non vuota non dovrebbe' );
+
+    done_testing();
 
 =end programlisting
 
-Ultimately, any condition you can test for in your program should become a
-binary value.  Does the code work as I intended?  A complex program may have
-thousands of these individual conditions.  In general, the smaller the
-granularity the better.  The purpose of writing individual assertions is to
-isolate individual features to understand what doesn't work as you intended and
-what ceases to work after you make changes in the future.
+X<testing; asserzione>
 
-X<testing; plan>
+Qualunque condizione vogliate testare nel vostro programma può essere ridotta a un valore
+binario. Ogni I<asserzione> di test è una semplice domanda a cui si può rispondere sì o no:
+questo pezzettino di codice funziona come mi aspetto?  Un programma complesso potrebbe avere
+migliaia di tali condizioni e, in generale, più ne considerate
+meglio è. Isolare comportamenti specifici in singole asserzioni
+vi permette di restringere il campo d'azione di bug ed equivoci, specialmente quando modificherete il
+codice in futuro.
+
+La funzione C<done_testing()> dice a C<Test::More> che il programma ha
+eseguito con successo tutte le asserzioni di test previste. Se il programma
+è incappato in una eccezione o è comunque terminato in modo inatteso prima di
+chiamare C<done_testing()>, il framework di test vi notificherà che qualcosa
+è andato storto. Senza un meccanismo come C<done_testing()>, come potreste I<accorgervene>?
+È vero che il codice di questo esempio è troppo semplice per poter fallire, ma è altrettanto vero che il codice troppo semplice
+per poter fallire fallisce molto più spesso di quanto ci si aspetti.
+
+=begin sidebar
+
+X<testing; piano>
 X<C<plan()>>
 
-This snippet isn't a complete test script, however.  C<Test::More> and related
-modules require the use of a I<test plan>, which represents the number of
-individual tests you plan to run:
+C<Test::More> vi permette di specificare un I<piano di test> che rappresenta il numero di
+asserzioni singole che intendete eseguire:
 
 =begin programlisting
 
     use Test::More tests => 4;
 
-    ok(   1, 'the number one should be true'         );
-    ok(   0, '... and the number zero should not'    );
-    ok(  '', 'the empty string should be false'      );
-    ok( '!', '... and a non-empty string should not' );
+    ok(   1, 'il numero uno dovrebbe essere vero'            );
+    ok(   0, '... mentre lo zero non dovrebbe'               );
+    ok(  '', 'la stringa vuota dovrebbe avere valore falso'  );
+    ok( '!', '... mentre una stringa non vuota non dovrebbe' );
 
 =end programlisting
 
-The C<tests> argument to C<Test::More> sets the test plan for the program.
-This gives the test an additional assertion.  If fewer than four tests ran,
-something went wrong.  If more than four tests ran, something went wrong.  That
-assertion is unlikely to be useful in this simple scenario, but it I<can> catch
-bugs in code that seems too simple to have errorsN<As a rule, any code you brag
-about being too simple to contain errors will contain errors at the least
-opportune moment.>.
-
-=begin sidebar
-
-You don't have to provide C<< tests => ... >> as an C<import()> argument.  At
-the end of your test program, call the function C<done_testing()>.  While a
-plan at the start with a fixed number of tests can verify that you ran only the
-expected number of tests, sometimes it's difficult or painful to verify that
-number.  In those cases, C<done_testing()> verifies that the test program
-completed successfully--otherwise, how would you I<know>?
+L'argomento C<tests> di C<Test::More> imposta il piano di test per il programma. In pratica, è
+una rete di sicurezza. Se sono stati eseguiti meno di quattro test, qualcosa è andato storto.  Se
+sono stati eseguiti più di quattro test, qualcosa è andato storto.
 
 =end sidebar
 
-=head2 Running Tests
+=head2 Eseguire Test
 
 Z<running_tests>
 
-The resulting program is now a full-fledged Perl 5 program which produces the
+Il programma risultante è a tutti gli effetti un programma Perl 5 che produce il seguente
 output:
 
 =begin screen
 
+    ok 1 - il numero uno dovrebbe essere vero
+    not ok 2 - ... mentre lo zero non dovrebbe
+    #   Failed test '... mentre lo zero non dovrebbe'
+    #   at valori_booleani.t line 4.
+    not ok 3 - la stringa vuota dovrebbe avere valore falso
+    #   Failed test 'la stringa vuota dovrebbe avere valore falso'
+    #   at valori_booleani.t line 5.
+    ok 4 - ... mentre una stringa non vuota non dovrebbe
     1..4
-
-    ok 1 - the number one should be true
-    not ok 2 - ... and the number zero should not
-    #   Failed test '... and the number zero should not'
-    #   at truth_values.t line 4.
-    not ok 3 - the empty string should be false
-    #   Failed test 'the empty string should be false'
-    #   at truth_values.t line 5.
-    ok 4 - ... and a non-empty string should not
     # Looks like you failed 2 tests of 4.
 
 =end screen
@@ -102,280 +101,310 @@ output:
 X<TAP (Test Anything Protocol)>
 X<testing; TAP>
 
-This format adheres to a standard of test output called I<TAP>, the I<Test
-Anything Protocol> (U<http://testanything.org/>).  As part of this protocol,
-failed tests produce diagnostic messages.  This is a tremendous aid to
-debugging.
+Questo formato è conforme a uno standard per l'output dei test chiamato I<TAP>, il I<Test
+Anything Protocol> (U<http://testanything.org/>). Il fallimento di test TAP genera
+dei messaggi diagnostici per facilitare il debugging.
 
 X<C<Test::Harness>>
 X<C<prove>>
 X<testing; C<prove>>
-X<testing; running tests>
+X<testing; eseguire test>
 
-The output of a test file containing multiple assertions (especially multiple
-I<failed> assertions) can be verbose.  In most cases, you want to know either
-that everything passed or that x, y, and z failed.  The core module
-C<Test::Harness> interprets TAP and displays only the most pertinent
-information.  It also provides a program called C<prove> which takes the hard
-work out of the process:
+L'output di un file di test che contiene molte asserzioni (e specialmente molte
+asserzioni I<fallite>) può essere verboso. Nella maggior parte dei casi, siete interessati soltanto a sapere
+se tutti i test sono passati e, in caso contrario, i dettagli dei fallimenti. Il modulo
+C<Test::Harness> distribuito con Perl interpreta il formato TAP e il suo programma associato C<prove> esegue i test
+e visualizza solo le informazioni più pertinenti:
 
-=begin programlisting
+=begin screen
 
-    $ B<prove truth_values.t>
-    truth_values.t .. 1/4
-    #   Failed test '... and the number zero should not'
-    #   at truth_values.t line 4.
+    $ B<prove valori_booleani.t>
+    valori_booleani.t .. 1/?
+    #   Failed test '... mentre lo zero non dovrebbe'
+    #   at valori_booleani.t line 4.
 
-    #   Failed test 'the empty string should be false'
-    #   at truth_values.t line 5.
+    #   Failed test 'la stringa vuota dovrebbe avere valore falso'
+    #   at valori_booleani.t line 5.
     # Looks like you failed 2 tests of 4.
-    truth_values.t .. Dubious, test returned 2 (wstat 512, 0x200)
+    valori_booleani.t .. Dubious, test returned 2
+        (wstat 512, 0x200)
     Failed 2/4 subtests
 
     Test Summary Report
     -------------------
-    truth_values.t (Wstat: 512 Tests: 4 Failed: 2)
+    valori_booleani.t (Wstat: 512 Tests: 4 Failed: 2)
       Failed tests:  2-3
 
-=end programlisting
+=end screen
 
-That's a lot of output to display what is already obvious: the second and third
-tests fail because zero and the empty string evaluate to false.  It's easy to
-fix that failure by inverting the sense of the condition with the use of
-boolean coercion (L<boolean_coercion>):
+È un output molto lungo che riporta qualcosa che dovrebbe essere gíà ovvio: il secondo e il terzo
+test falliscono perchè lo zero e la stringa vuota hanno valore falso.  Si possono facilmente
+evitare tali fallimeti invertendo il senso delle condizioni con l'uso della
+coercizione booleana (L<boolean_coercion>):
 
 =begin programlisting
 
-    ok(   B<!> 0, '... and the number zero should not'  );
-    ok(  B<!> '', 'the empty string should be false'    );
+    ok(   B<!> 0, '... mentre lo zero non dovrebbe'              );
+    ok(  B<!> '', 'la stringa vuota dovrebbe avere valore falso' );
 
 =end programlisting
 
-With those two changes, C<prove> now displays:
+Con queste modifiche, C<prove> visualizza ciò che segue:
 
 =begin screen
 
-    $ B<prove truth_values.t>
-    truth_values.t .. ok
+    $ B<prove valori_booleani.t>
+    valori_booleani.t .. ok
     All tests successful.
 
 =end screen
 
-=head2 Better Comparisons
+=begin sidebar
 
-Even though the heart of all automated testing is the boolean condition "is
-this true or false?", reducing everything to that boolean condition is tedious
-and offers few diagnostic possibilities.  C<Test::More> provides several other
-convenient functions to ensure that your code behaves as you intend.
+Vedete C<perldoc prove> per la descrizione di opzioni utili per il test, come la possibilità di eseguire test
+in parallelo (C<-j>), di aggiungere automaticamente F<lib/> al path degli include di Perl (C<-l>),
+di eseguire ricorsivamente tutti i file di test che si trovano nella directory F<t/> (C<-r t>) e di eseguire
+per primi i test più lenti (C<--state=slow,save>).
+
+X<C<proveall>>
+X<testing; alias C<proveall>>
+Il seguente alias C<proveall> della shell bash può essere utile:
+
+    alias proveall='prove -j9 --state=slow,save -lr t'
+
+=end sidebar
+
+=head2 Miliorare i Confronti
+
+Sebbene al cuore di ogni test automatico ci sia la condizione booleana "questo è
+vero o falso?", ridurre ogni cosa a tale condizione booleana è noioso
+e offre scarse possibilità di diagnostica. C<Test::More> fornisce svariate
+altre funzioni di asserzione che possono essere più convenienti.
 
 X<C<is()>>
 X<testing; C<is()>>
-X<operators; C<eq>>
+X<operatori; C<eq>>
 
-The C<is()> function compares two values using the C<eq> operator.  If the
-values are equal, the test passes.  Otherwise, the test fails and provides a
-relevant diagnostic message:
+La funzione C<is()> confronta due valori usando l'operatore C<eq>. Se tali valori sono
+uguali il test passa. Altrimenti il test fallisce con un messaggio
+diagnostico:
 
 =begin programlisting
 
-    is(         4, 2 + 2, 'addition should hold steady across the universe' );
-    is( 'pancake',   100, 'pancakes should have a delicious numeric value' );
+    is(           4,   2 + 2, 'la somma dovrebbe funzionare' );
+    is( 'frittella',   100,   'le frittelle sono numeri'     );
 
 =end programlisting
 
-As you might expect, the first test passes and the second fails:
+Come vi aspettavate, il primo test passa e il secondo fallisce:
 
 =begin screen
 
-    t/is_tests.t .. 1/2
-    #   Failed test 'pancakes should have a delicious numeric value'
-    #   at t/is_tests.t line 8.
-    #          got: 'pancake'
+    t/test_is.t .. 1/2
+    #   Failed test 'le frittelle sono numeri'
+    #   at t/test_is.t line 8.
+    #          got: 'frittella'
     #     expected: '100'
     # Looks like you failed 1 test of 2.
 
 =end screen
 
-Where C<ok()> only provides the line number of the failing test, C<is()>
-displays the mismatched values.
+Mentre C<ok()> fornisce solo il numero di linea del test fallito, C<is()>
+visualizza il valore atteso e quello ricevuto.
 
-C<is()> applies implicit scalar context to its values.  This means, for
-example, that you can check the number of elements in an array without
-explicitly evaluating the array in scalar context:
+C<is()> applica implicitamente il contesto scalare ai propri valori (L<prototypes>). Pertanto
+potete ad esempio controllare il nomero di elementi di un array
+senza valutarlo esplicitamente in contesto scalare:
 
 =begin programlisting
 
-    my @cousins = qw( Rick Kristen Alex Kaycee Eric Corey );
-    is( @cousins, 6, 'I should have only six cousins' );
+    my @cugini = qw( Riccardo Ale Carlo
+                     Enrico Camilla Maria );
+    is( @cugini, 6, 'Dovrei avere solo sei cugini' );
 
 =end programlisting
 
-... though some people prefer to write C<scalar @cousins> for the sake of
-clarity.
+... anche se alcuni preferiscono scrivere C<scalar @cugini> per essere più
+chiari.
 
 X<C<isnt()>>
 X<testing; C<isnt()>>
-X<operators; C<ne>>
+X<operatori; C<ne>>
 
-C<Test::More> provides a corresponding C<isnt()> function which passes if the
-provided values are not equal (according to the C<ne> operator).  Otherwise, it
-behaves the same way as C<is()> with respect to scalar context and comparison
-types.
+La funzione duale C<isnt()> di C<Test::More> confronta due valori usando l'operatore
+C<ne> e ha successo se essi non sono uguali. Anche in questo caso gli operandi sono valutati
+in contesto scalare.
 
 X<C<cmp_ok()>>
 X<testing; C<cmp_ok()>>
 
-Both C<is()> and C<isnt()> apply I<string comparisons> with the Perl 5
-operators C<eq> and C<ne>.  This almost always does the right thing, but for
-complex values such as objects with overloading (L<overloading>) or dual vars
-(L<dualvars>), you may prefer explicit comparison testing.  The C<cmp_ok()>
-function allows you to specify your own comparison operator:
+Sia C<is()> che C<isnt()> effettuano dei I<confronti stringa> con gli operatori
+C<eq> e C<ne> di Perl 5. Quasi sempre questa è la cosa giusta da fare, ma per
+valori complessi come gli oggetti con overloading (L<overloading>) o le dualvar
+(L<dualvars>) può essere preferibile effettuare il test con un confronto esplicito. La funzione C<cmp_ok()>
+vi permette di specificare l'operatore di confronto:
 
 =begin programlisting
 
-    cmp_ok(     100, $cur_balance, '<=', 'I should have at least $100' );
-    cmp_ok( $monkey,         $ape, '==', 'Simian numifications should agree' );
+    cmp_ok( 100, $saldo_corrente, '<=',
+           'Dovrei avere almeno 100€' );
+
+    cmp_ok( $pastore_scozzese, $collie, '==',
+           'I numeri dei parenti di Lassie dovrebbero essere gli stessi' );
 
 =end programlisting
 
 X<C<isa_ok()>>
 X<testing; C<isa_ok()>>
 
-Classes and objects provide their own interesting ways to interact with tests.
-Test that a class or object extends another class (L<inheritance>) with
+Classi e oggetti hanno dei propri modi peculiari di interagire con i test.
+Potete verificare se una classe o un oggetto estendono un'altra classe (L<inheritance>) con
 C<isa_ok()>:
 
 =begin programlisting
 
-    my $chimpzilla = RobotMonkey->new();
-    isa_ok( $chimpzilla, 'Robot' );
-    isa_ok( $chimpzilla, 'Monkey' );
+    my $gorzilla = RobotScimmia->new();
+    isa_ok( $gorzilla, 'Robot' );
+    isa_ok( $gorzilla, 'Scimmia' );
 
 =end programlisting
 
-C<isa_ok()> provides its own diagnostic message on failure.
+C<isa_ok()> fornisce un proprio messaggio diagnostico in caso di fallimento.
 
-C<can_ok()> verifies that a class or object can do the requested method (or
-methods):
+C<can_ok()> verifica che una classe o un oggetto possano eseguire uno o più metodi specificati:
 
 =begin programlisting
 
-    can_ok( $chimpzilla, 'eat_banana' );
-    can_ok( $chimpzilla, 'transform', 'destroy_tokyo' );
+    can_ok( $gorzilla, 'mangia_banana' );
+    can_ok( $gorzilla, 'trasformati', 'distruggi_tokyo' );
 
 =end programlisting
 
-The C<is_deeply()> function compares two references to ensure that their
-contents are equal:
+La funzione C<is_deeply()> confronta due riferimenti per garantire che abbiano
+contenuti uguali:
 
 =begin programlisting
 
     use Clone;
 
-    my $numbers   = [ 4, 8, 15, 16, 23, 42 ];
-    my $clonenums = Clone::clone( $numbers );
+    my $numeri     = [ 4, 8, 15, 16, 23, 42 ];
+    my $numclonati = Clone::clone( $numeri );
 
-    is_deeply( $numbers, $clonenums,
-         'Clone::clone() should produce identical structures' );
+    is_deeply( $numeri, $numclonati,
+         'clone() dovrebbe generare elementi identici' );
 
 =end programlisting
 
-If the comparison fails, C<Test::More> will do its best to provide a reasonable
-diagnostic indicating the position of the first inequality between the
-structures.  See the CPAN modules C<Test::Differences> and C<Test::Deep> for
-more configurable tests.
+X<CPAN; C<Test::Differences>>
+X<CPAN; C<Test::Deep>>
 
-C<Test::More> has several more test functions, but these are the most useful.
+Se il confronto fallisce, C<Test::More> fa del suo meglio per fornire una ragionevole
+diagnostica che indichi la posizione della prima differenza tra le
+strutture. Vedete i moduli CPAN C<Test::Differences> e C<Test::Deep> per
+test maggiormente configurabili.
 
-=head2 Organizing Tests
+C<Test::More> contiene molte altre funzioni, ma quelle descritte sono le più utili.
 
-X<testing; F<.t> files>
-X<testing; F<t/> directory>
+=head2 Organizzazione dei Test
+
+X<testing; file F<.t>>
+X<testing; directory F<t/>>
 X<C<Module::Build>>
 X<C<ExtUtils::MakeMaker>>
 
-CPAN's infrastructure and ecosystem expects distributions to include a F<t/>
-containing one or more test files named with the F<.t> suffix.  By default,
-when you build a distribution with C<Module::Build> or C<ExtUtils::MakeMaker>,
-the testing step runs all of the F<t/*.t> files, summarizes their output, and
-succeeds or fails on the results of the test suite as a whole.  There are no
-concrete guidelines on how to manage the contents of individual F<.t> files,
-though two strategies are popular:
+Le distribuzioni CPAN dovrebbero includere una directory F<t/> con uno o più file di
+test i cui nomi terminano col suffisso F<.t>.  Per default, quando fate il build di una distribuzione
+con C<Module::Build> o C<ExtUtils::MakeMaker>, il passo di testing esegue tutti i file
+F<t/*.t>, sintetizza i loro output e ha successo o fallisce a seconda dei
+risultati dell'intera suite di test.  Non ci sono linee guida specifiche su come
+gestire i contenuti dei singoli file F<.t>, ma due strategie sono piuttosto
+comuni:
 
 =over 4
 
-=item * Each F<.t> file should correspond to a F<.pm> file
+=item * Ogni file F<.t> corrisponde a un file F<.pm>
 
-=item * Each F<.t> file should correspond to a feature
+=item * Ogni file F<.t> corrisponde a una funzionalità
 
 =back
 
-The important considerations are maintainability of the test files, as larger
-files are more difficult to maintain than smaller files, and the granularity of
-the test suite.  A hybrid approach is the most flexible; one test can verify
-that all of your modules compile, while other tests verify that each module
-behaves as intended.
+Un approccio ibrido vi dà più flessibilità; un test potrebbe verificare che tutti i vostri moduli
+siano compilabili, mentre gli altri test potrebbero verificare che ogni modulo si comporti come previsto.
+Gestire i test in termini di funzionalità diventa più opportuno man mano che le distribuzioni diventano più grandi;
+dei file di test troppo grandi sono più difficili da manutenere.
 
-It's often useful to run tests only for a specific feature under development.
-If you're adding the ability to breathe fire to your C<RobotMonkey>, you may
-want only to run the F<t/breathe_fire.t> test file.  When you have the feature
-working to your satisfaction, run the entire test suite to verify that local
-changes have no unintended global effects.
+L'uso di file di test separati può anche accelerare lo sviluppo. Se state aggiungendo
+la capacità di sputare fuoco al vostro C<RobotScimmia>, potreste volere eseguire il solo file di test
+F<t/sputa_fuoco.t>.  Quando la nuova funzionalità si comporta in modo soddisfacente,
+eseguite l'intera suite di test per verificare che le modifiche locali non abbiano
+effetti globali indesiderati.
 
-=head2 Other Testing Modules
+=head2 Altri Moduli di Testing
 
 X<C<Test::Builder>>
 X<testing; C<Test::Builder>>
 
-C<Test::More> relies on a testing backend known as C<Test::Builder>.  The
-latter module manages the test plan and coordinates the test output into TAP.
-This design allows multiple test modules to share the same C<Test::Builder>
-backend.  Consequently, the CPAN has hundreds of test modules available--and
-they can all work together in the same program.
+C<Test::More> si basa su un modulo sottostante di nome C<Test::Builder>.  Tale
+modulo gestisce il piano di test e coordina l'output del test col protocollo TAP.
+Questa separazione permette a diversi moduli di test di condividere lo stesso
+C<Test::Builder>.  Di conseguenza, CPAN contiene centinaia di moduli di test--e tutti
+possono convivere nello stesso programma.
 
-X<C<Test::Exception>>
-X<C<Test::MockObject>>
-X<C<Test::MockModule>>
-X<C<Test::WWW::Mechanize>>
-X<C<Test::Database>>
-X<C<Test::Class>>
-X<C<Test::Differences>>
-X<C<Test::Deep>>
-X<C<Devel::Cover>>
+X<CPAN; C<Test::Exception>>
+X<CPAN; C<Test::Fatal>>
+X<CPAN; C<Test::MockObject>>
+X<CPAN; C<Test::MockModule>>
+X<CPAN; C<Test::WWW::Mechanize>>
+X<CPAN; C<Plack::Test>>
+X<CPAN; C<Test::WWW::Mechanize::PSGI>>
+X<CPAN; C<Test::Database>>
+X<CPAN; C<DBICx::TestDatabase>>
+X<CPAN; C<DBIx::Class>>
+X<CPAN; C<Test::Class>>
+X<CPAN; C<Test::Routine>>
+X<CPAN; C<Test::Differences>>
+X<CPAN; C<Test::Deep>>
+X<CPAN; C<Test::LongString>>
+X<CPAN; C<Devel::Cover>>
 
 =over 4
 
-=item * C<Test::Exception> provides functions to ensure that your code throws
-(and does not throw) exceptions appropriately.
+=item * C<Test::Fatal> vi aiuta a controllare se il vostro codice lancia (oppure non lancia)
+le eccezioni in modo appropriato. Potreste anche imbattervi in C<Test::Exception>.
 
-=item * C<Test::MockObject> and C<Test::MockModule> allow you to test difficult
-interfaces by I<mocking> (emulating but producing different results).
+=item * C<Test::MockObject> e C<Test::MockModule> vi permettono di testare interfacce
+complesse attraverso il I<mocking> (ovvero l'emulazione di oggetti per produrre risultati in modo controllato).
 
-=item * C<Test::WWW::Mechanize> allows you to test live web applications.
+=item * C<Test::WWW::Mechanize> vi aiuta a testare le applicazioni web, mentre
+C<Plack::Test>, C<Plack::Test::Agent> e la sottoclasse
+C<Test::WWW::Mechanize::PSGI> fanno la stessa cosa senza utilizzare un server web
+esterno.
 
-=item * C<Test::Database> provides functions to test the use and abuse of
-databases.
+=item * C<Test::Database> fornisce funzioni per il test, l'uso e l'abuso di database.
+C<DBICx::TestDatabase> vi aiuta a testare schemi generati con C<DBIx::Class>.
 
-=item * C<Test::Class> offers an alternate mechanism for organizing test
-suites.  It allows you to create classes in which specific methods group tests.
-You can inherit from test classes just as your code classes inherit from each
-other.  This is an excellent way to reduce duplication in test suites.  See the
-C<Test::Class> series written by Curtis Poe at
-U<http://www.modernperlbooks.com/mt/2009/03/organizing-test-suites-with-testclass.html>.
+=item * C<Test::Class> offre un meccanismo alternativo per organizzare le suite di
+test.  Vi permette di creare classi i cui metodi raggruppano dei test.
+Potete ereditare da classi di test allo stesso modo in cui le classi del vostro codice ereditano l'una
+dall'altra. Ciò costituisce un modo eccellente di ridurre la duplicazione nelle suite di test.  Vedete
+l'eccellente serie di scritti su C<Test::Class> di
+Curtis PoeN<U<http://www.modernperlbooks.com/mt/2009/03/organizing-test-suites-with-testclass.html>>.
+La più recente distribuzione C<Test::Routine> offre funzionalità simili attraverso
+l'uso di Moose (L<moose>).
 
-=item * C<Test::Differences> tests strings and data structures for equality and
-displays any differences in its diagnostics.
+=item * C<Test::Differences> testa l'uguaglianza di stringhe e strutture dati e
+visualizza le differenze nei messaggi di diagnostica. C<Test::LongString> fornisce
+assrzioni analoghe.
 
-=item * C<Test::Deep> tests the equivalence of nested data structures
+=item * C<Test::Deep> testa l'equivalenza di strutture dati nidificate
 (L<nested_data_structures>).
 
-=item * C<Devel::Cover> analyzes the execution of your test suite to report on
-the amount of your code your tests actually exercises.  In general, the more
-coverage the better--though 100% coverage is not always possible, 95% is far
-better than 80%.
+=item * C<Devel::Cover> analizza l'esecuzione della vostra suite di test e riporta
+la quantità del vostro codice che i vostri test vanno effettivamente a stimolare.  In generale, maggiore è
+la copertura meglio è--sebbene una copertura del 100% non sia sempre possibile, il 95% è molto meglio
+dell'80%.
 
 =back
 
-The Perl QA project (U<http://qa.perl.org/>) is a primary source of test
-modules as well as wisdom and practical experience making testing in Perl easy
-and effective.
+Vedete il progetto Perl QA (U<http://qa.perl.org/>) per maggiori informazioni sul
+testing in Perl.

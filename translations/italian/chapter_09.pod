@@ -4,18 +4,13 @@
 
 Z<writing_real_programs>
 
-Scrivere programmi di esempio semplici per risolvere problemi di esempio
-semplici in un libro vi aiuta ad imparare un linguaggio "in piccolo".
-D'altra parte scrivere programmi reali richied più che imparare la sintassi
-di un linguaggio, o i suoi principi base, o anche come trovare ed utilizzarne
-le librerie.
+Un libro deve anzitutto insegnarvi a scrivere piccoli programmi per risolvere piccoli problemi d'esempio.
+In questo modo potete imparare bene la sintassi. Tuttavia, per scrivere programmi reali che risolvono problemi reali
+dovete anche imparare a I<gestire> il codice scritto nel vostro linguaggio. Come dovete organizzare
+tale codice? Come potete verificare che funziona? Come potete renderlo robusto rispetto
+agli errori? Che cosa rende il vostro codice conciso, chiaro e manutenibile?
 
-La programmazione pratica vi richiede di gestire codice: organizzarlo,
-sapere come funziona, renderlo robusto rispetto ad errori di logica o
-di intento, facendo tutto ciò in modo conciso, chiaro e manutenibile.
-Fortunatamente il Perl moderno mette a disposizione molti strumenti e
-tecniche per scrivere programmi reali--dal test all'organizzazione del
-codice sorgente.
+Il Perl moderno fornisce molti strumenti e tecniche per scrivere programmi reali.
 
 L<testing>
 
