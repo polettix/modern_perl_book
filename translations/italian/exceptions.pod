@@ -49,7 +49,7 @@ La gestione delle eccezioni adotta lo scope dinamico (L<dynamic_scope>) come i s
 
 Z<catching_exceptions>
 
-X<eccezioni; catturare>
+X<eccezioni; cattura>
 
 Talvolta è utile che un'eccezione faccia terminare il programma. Un programma eseguito come processo
 temporizzato potrebbe sollevare un'eccezione quando i log di errore sono pieni, in modo che venga

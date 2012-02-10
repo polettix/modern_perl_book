@@ -174,7 +174,7 @@ Il seguente alias C<proveall> della shell bash può essere utile:
 
 =end sidebar
 
-=head2 Miliorare i Confronti
+=head2 Migliorare i Confronti
 
 Sebbene al cuore di ogni test automatico ci sia la condizione booleana "questo è
 vero o falso?", ridurre ogni cosa a tale condizione booleana è noioso

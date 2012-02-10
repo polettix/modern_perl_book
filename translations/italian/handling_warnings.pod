@@ -1,29 +1,29 @@
-=head1 Handling Warnings
+=head1 Gestione dei Warning
 
 Z<handling_warnings>
 
-Perl 5 produces optional warnings for many confusing, unclear, and ambiguous
-situations.  Even though you should almost always enable warnings
-unconditionally, certain circumstances dictate prudence in disabling certain
-warnings--and Perl supports this.
+Anche se c'è più di un modo di scrivere un programma funzionante in Perl 5, alcuni di tali
+modi possono essere poco eleganti, poco chiari o anche sottilmente 
+sbagliati. Il sistema di warning opzionali di Perl 5 può aiutarvi a identificare e
+evitare queste situazioni.
 
-=head2 Producing Warnings
+=head2 Generare i Warning
 
 Z<producing_warnings>
 
-X<builtins; C<warn>>
+X<builtin; C<warn>>
 
-Use the C<warn> builtin to emit a warning:
+Usate la funzione predefinita C<warn> per emettere un warning:
 
 =begin programlisting
 
-    warn 'Something went wrong!';
+    warn 'Qualcosa e` andato storto!';
 
 =end programlisting
 
-C<warn> prints a list of values to the STDERR filehandle (L<filehandle>).  Perl
-will append the filename and line number on which the C<warn> call occurred
-unless the last element of the list ends in a newline.
+C<warn> stampa una lista di valori sul filehandle STDERR (L<filehandle>).  Perl
+aggiunge il nome del file e il numero di linea in cui è stata chiamata C<warn>
+a meno che l'ultimo elemento della lista termini con un carattere di a capo.
 
 X<C<Carp>>
 X<C<Carp>; C<carp()>>
@@ -31,114 +31,109 @@ X<C<Carp>; C<cluck()>>
 X<C<Carp>; C<croak()>>
 X<C<Carp>; C<confess()>>
 
-The core C<Carp> module offers other mechanisms to produce warnings.  Its
-C<carp()> function reports a warning from the perspective of the calling code.
-That is, you could check the arity of a function (L<arity>) with:
+Il modulo C<Carp> distribuito con Perl 5 offre altri meccanismi per generare dei warning. La sua
+funzione C<carp()> emette un warning dal punto di vista del codice chiamante.
+Dato il seguente codice di validazione dei parametri di una funzione:
 
 =begin programlisting
 
-    use Carp;
+    use Carp 'carp';
 
-    sub only_two_arguments
+    sub solo_due_argomenti
     {
-        my ($lop, $rop) = @_;
-        Carp::carp( 'Too many arguments provided' ) if @_ > 2;
+        my ($ops, $opd) = @_;
+        carp( 'Ho ricevuto troppi argomenti' ) if @_ > 2;
         ...
     }
 
 =end programlisting
 
-... and anyone who reads the error message will receive the filename and line
-number of the I<calling> code, not C<only_two_arguments()>.  Similarly,
-C<Carp>'s C<cluck()> produces an entire backtrace of all function calls up to
-the current function.
+... il warning di arità (L<arity>) includerà il nome del file e il numero di linea relativi al
+codice I<chiamante>, e non quelli relativi alla funzione C<solo_due_argomenti()>. Analogamente, la funzione
+C<cluck()> di C<Carp> genera una traccia di tutte le chiamate di funzione effettuate fino a quella
+corrente.
 
 X<C<Carp>; verbose>
 
-To track down weird warnings or exceptions throughout your system, enable
-C<Carp>'s verbose mode throughout the entire program:
+Il modo verbose di C<Carp> aggiunge le tracce delle chiamate a tutti i warning generati da C<carp()> e C<croak()> (L<reporting_errors>), dovunque ci si trovi all'interno del programma:
 
-=begin programlisting
+=begin screen
 
-    $ perl -MCarp=verbose my_prog.pl
+    $ perl -MCarp=verbose mio_prog.pl
 
-=end programlisting
+=end screen
 
-This changes all C<carp()> (and C<croak()>--L<reporting_errors>) calls to
-include a backtrace.  When you organize your code into modules (L<modules>),
-use Carp instead of C<warn> or C<die> to save debugging time.
+Quando scrivete dei moduli (L<modules>), usate C<Carp> al posto di C<warn> e C<die>.
 
-=head2 Enabling and Disabling Warnings
+=head2 Attivare e Disattivare i Warning
 
-X<C<-w>; enable warnings command-line argument>
-X<command-line arguments; C<-w>>
+X<C<-w>; argomento da linea di comando di attivazione dei warning>
+X<argomenti da linea di comando; C<-w>>
 
-Lexical encapsulation of warnings is as important as lexical encapsulation of
-variables.  Older code may use the C<-w> command-line argument to enable
-warnings throughout the program, even if other code has not specifically
-attempted to suppress warnings.  It's all or nothing.  If you have the
-wherewithal to eliminate warnings and potential warnings throughout the entire
-codebase, this can be useful.
+Potrebbe capitarvi di incontrare l'argomento da linea di comando C<-w> nel codice poco recente. Tale argomento attiva
+i warning in tutto il programma, inclusi i moduli esterni scritti e manutenuti da
+altre persone. Il suo effetto è del tipo "tutto o niente", ma potrebbe esservi utile se
+intendete eliminare i warning attuali e potenziali nell'intera
+codebase.
 
 X<C<warnings>>
-X<pragmas; C<warnings>>
+X<direttive; C<warnings>>
 
-The modern approach is to use the C<warnings> pragmaN<...or an equivalent such
-as C<use Modern::Perl;>.>, which indicates the intent of the author of the code
-that normal operation should not produce warnings.
+L'approccio moderno è quello di usare la direttiva C<warnings>N<...o un suo equivalente come
+C<use Modern::Perl;>.>. In questo modo si attivano i warning all'interno di scope I<lessicali>
+e si indica che gli autori del codice ritengono che esso non debba normalmente produrre dei
+warning.
 
-=begin sidebar
+=begin tip Flag Globali per i Warning
 
-X<C<-W>; enable warnings command-line argument>
-X<command-line arguments; C<-W>>
-X<C<-X>; disable warnings command-line argument>
-X<command-line arguments; C<-X>>
+X<C<-W>; argomento da linea di comando di attivazione dei warning>
+X<argomenti da linea di comando; C<-W>>
+X<C<-X>; argomento da linea di comando di disattivazione dei warning>
+X<argomenti da linea di comando; C<-X>>
 
-The C<-W> flag enables warnings throughout the program unilaterally, regardless
-of lexical enabling or disabling through the C<warnings> pragma.  The C<-X>
-flag I<disables> warnings throughout the program unilaterally.  Neither is
-common.
+Il flag C<-W> attiva i warning nell'intero programma in modo unilaterale, indipendentemente
+dall'attivazione o disattivazione lessicale con la direttiva C<warnings>. Il flag C<-X>
+I<disattiva> i warning nell'intero programma in modo unilaterale. Nessuno dei due è usato frequentemente.
 
-=end sidebar
+=end tip
 
 X<C<$^W>>
-X<global variables; C<$^W>>
+X<variabili globali; C<$^W>>
 
-All of C<-w>, C<-W>, and C<-X> affect the value of the global variable C<$^W>.
-Code written before the C<warnings> pragma (Perl 5.6.0 in spring 2000) may
-C<local>ize C<$^W> to suppress certain warnings within a given scope.  New code
-should use the pragma instead.
+I flag C<-w>, C<-W> e C<-X> influenzano il valore della variabile globale C<$^W>.
+Il codice scritto prima dell'introduzione della direttiva C<warnings> (avvenuta con Perl 5.6.0 nella primavera del 2000) potrebbe
+C<local>izzare C<$^W> per sopprimere certi warning in un dato scope.
 
-=head2 Disabling Warning Categories
+=head2 Disabilitare Categorie di Warning
 
-To disable selective warnings within a scope, use C<no warnings;> with an
-argument list.  Omitting the argument list disables all warnings within that
+Per disabilitare i warning in uno scope in modo selettivo, usate C<no warnings;> con una
+lista di argomenti. Omettendo la lista di argomenti disattiverete tutti i warning all'interno dello
 scope.
 
-C<perldoc perllexwarn> lists all of the warnings categories your version of
-Perl 5 understands with the C<warnings> pragma.  Most of them represent truly
-interesting conditions which Perl may find in your program.  A few may be
-unhelpful in specific conditions.  For example, the C<recursion> warning will
-occur if Perl detects that a function has called itself more than a hundred
-times.  If you are confident in your ability to write recursion-ending
-conditions, you may disable this warning within the scope of the recursion
-(though tail calls may be better; L<tail_calls>).
+C<perldoc perllexwarn> elenca tutte le categorie di warning riconosciute dalla direttiva
+C<warnings> della vostra versione di Perl 5. La maggior parte di essi rappresenta
+condizioni interessanti, ma alcuni possono essere peggio che inutili in certe
+situazioni. Per esempio, il warning C<recursion> viene generato quando Perl si accorge
+che una funzione ha chiamato se stessa più di cento volte. Se confidate
+nella vostra capacità di scrittura delle condizioni di terminazione della ricorsione, potete disattivare
+questo warning nello scope della ricorsione (anche se forse è meglio usare le chiamate di coda;
+L<tail_calls>).
 
-If you're generating code (L<code_generation>) or locally redefining symbols,
-you may wish to disable the C<redefine> warnings.
+Se state facendo generazione di codice (L<code_generation>) o state ridefinendo dei simboli localmente,
+potete disattivare i warning C<redefine>.
 
-Some experienced Perl hackers disable the C<uninitialized> value warnings in
-string-processing code which concatenates values from many sources.  Careful
-initialization of variables can avoid the need to disable the warning, but
-local style and concision may render this warning moot.
+Alcuni programmatori Perl esperti disattivano i warning di C<uninitialized> (valori non inizializzati, NdT)
+nel codice di elaborazione di stringhe che concatena valori con molte origini diverse. Con un'attenta inizializzazione delle variabili
+potete evitare di disattivare questi warning, ma potreste invece considerarli dei semplici fastidi
+per questioni di stile e di concisione.
 
-=head2 Making Warnings Fatal
+=head2 Rendere Fatali i Warning
 
 Z<fatal_warnings>
-X<warnings; fatal>
+X<warning; fatali>
 
-If your project considers warnings as onerous as errors, you can make them
-lexically fatal.  To promote I<all> warnings into exceptions:
+Se il vostro progetto considera i warning gravi come gli errori, potete renderli
+fatali. Per promuovere I<tutti> i warning a eccezioni, usate:
 
 =begin programlisting
 
@@ -146,8 +141,8 @@ lexically fatal.  To promote I<all> warnings into exceptions:
 
 =end programlisting
 
-You may also make specific categories of warnings fatal, such as the use of
-deprecated constructs:
+Potete anche rendere fatali solo alcune categorie specifiche di warning, come l'uso di
+costrutti deprecati:
 
 =begin programlisting
 
@@ -155,16 +150,20 @@ deprecated constructs:
 
 =end programlisting
 
-=head2 Catching Warnings
+Con una buona dose di disciplina, questo meccanismo vi consente di scrivere codice molto robusto--ma fate attenzione.
+Molti warning derivano da condizioni che si verificano durante l'esecuzione. Se la vostra suite di test
+non tiene conto di tutti i warning in cui potete imbattervi, il vostro programma potrebbe terminare
+inaspettatamente a causa di un'eccezione non catturata.
+
+=head2 Catturare i Warning
 
 X<C<$SIG{__WARN__}>>
-X<warnings; catching>
+X<warning; cattura>
 
-Just as you can catch exceptions, so you can catch warnings.  The C<%SIG>
-variableN<See C<perldoc perlvar>.> holds handlers for all sorts of signals Perl
-or your operating system might throw.  It also includes two slots for signal
-handlers for Perl 5 exceptions and warnings.  To catch a warning, install an
-anonymous function into C<$SIG{__WARN__}>:
+Analogamente a come potete catturare le eccezioni, potete anche catturare i warning. La variabile C<%SIG>
+N<Vedete C<perldoc perlvar>.> contiene i gestori dei segnali fuori banda
+sollevati da Perl o dal vostro sistema operativo. Per catturare un warning, assegnate un riferimento
+a funzione a C<$SIG{__WARN__}>:
 
 =begin programlisting
 
@@ -172,66 +171,64 @@ anonymous function into C<$SIG{__WARN__}>:
         my $warning;
         local $SIG{__WARN__} = sub { $warning .= shift };
 
-        # do something risky
+        # fai qualcosa di pericoloso
         ...
 
-        say "Caught warning:\n$warning" if $warning;
+        say "Ho catturato il warning:\n$warning" if $warning;
     }
 
 =end programlisting
 
-Within the warning handler, the first argument is the warning's message.
-Admittedly, this technique is less useful than disabling warnings
-lexically--but it can come to good use in test modules such as
-C<Test::Warnings> from the CPAN, where the actual text of the warning is
-important.
+Il primo argomento del gestore dei warning è il messaggio di warning.
+In effetti questa tecnica è meno utile della disattivazione lessicale dei
+warning--ma può diventare rilevante in moduli di test come il modulo CPAN
+C<Test::Warnings>, dove il testo del warning è importante.
 
-=head2 Registering Your Own Warnings
+State attenti al fatto che C<%SIG> è globale. C<local>izzatela nello scope più limitato possibile,
+ma ricordate che è comunque una variabile globale.
+
+=head2 Registrare i Vostri Warning
 
 Z<registering_warnings>
 
-X<warnings; registering>
-X<lexical warnings>
+X<warning; registrazione>
+X<warning lessicali>
 
-With the use of the C<warnings::register> pragma you can even create your own
-lexical warnings so that users of your code can enable and disable lexical
-warnings as appropriate.  This is easy to accomplish; from a module, C<use> the
-C<warnings::register> pragma:
+La direttiva C<warnings::register> vi permette di creare i vostri warning lessicali
+in modo che gli utenti del vostro codice possano attivarli e disattivarli. Fate
+la C<use> della direttica C<warnings::register> in un modulo: 
 
 =begin programlisting
 
-    package Scary::Monkey;
+    package Scimmia::Pericolosa;
 
     B<use warnings::register;>
 
-    1;
-
 =end programlisting
 
-This will create a new warnings category named after the package
-C<Scary::Monkey>.  Enable these warnings with C<use warnings 'Scary::Monkey'>
-and disable them with C<no warnings 'Scary::Monkey'>.
+Questo codice crea una nuova categoria di warning con il nome del package
+C<Scimmia::Pericolosa>. Attivate questi warning con C<use warnings 'Scimmia::Pericolosa'>
+e disattivateli con C<no warnings 'Scimmia::Pericolosa'>.
 
-Use C<warnings::enabled()> to test if the calling lexical scope has the given
-warning category enabled.  Use C<warnings::warnif()> to produce a warning only
-if warnings are in effect.  For example, to produce a warning in the
-C<deprecated> category:
+Usate C<warnings::enabled()> per verificare se una data categoria di warning è
+attiva nello scope lessicale chiamante. Usate C<warnings::warnif()> per generare un warning solo
+se i warning sono attivi. Per esempio, per generare un warning della
+categoria C<deprecated>:
 
 =begin programlisting
 
-    package Scary::Monkey;
+    package Scimmia::Pericolosa;
 
     use warnings::register;
 
     B<sub import>
     B<{>
         B<warnings::warnif( 'deprecated',>
-            B<'empty imports from ' . __PACKAGE__ . ' are now deprecated' )>
-            B<unless @_;>
+            B<'l'importazione senza parametri da ' . __PACKAGE__ .>
+            B<' e` deprecata' )>
+        B<unless @_;>
     B<}>
-
-    1;
 
 =end programlisting
 
-See C<perldoc perllexwarn> for more details.
+Vedete C<perldoc perllexwarn> per maggiori dettagli.
