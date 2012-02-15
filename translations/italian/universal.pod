@@ -1,36 +1,36 @@
-=head1 The UNIVERSAL Package
+=head1 Il Package UNIVERSAL
 
 Z<universal>
 
 X<C<UNIVERSAL>>
 
-Perl 5 provides a special package which is the ancestor of all other packages
-in a very object-oriented way.  The C<UNIVERSAL> package provides a few methods
-available for all other classes and objects.
+Il package C<UNIVERSAL> predefinito in Perl 5 è l'antenato comune di tutti gli altri package--in
+un senso orientato agli oggetti (L<moose>). C<UNIVERSAL> fornisce alcuni metodi che i suoi
+derivati possono ereditare o sovrascrivere.
 
-=head2 The isa() Method
+=head2 Il Metodo isa()
 
 X<C<UNIVERSAL::isa>>
 X<C<isa()>>
 
-The C<isa()> method takes a string containing the name of a class or the name
-of a built-in type.  You can call it as a class method or an instance method on
-an object.  It returns true if the class or object is or derives from the named
-class, or if the object itself is a blessed reference to the given type.
+Il metodo C<isa()> riceve una stringa contenente il nome di una classe o di un tipo
+predefinito. Potete invocarlo come metodo di classe o di istanza su un
+oggetto.  Restituisce un valore vero se il suo invocante è la classe
+data o una sua derivata, oppure se il suo invocante è un riferimento blessed al tipo dato.
 
-Given an object C<$pepper>, a hash reference blessed into the C<Monkey> class
-(which inherits from the C<Mammal> class):
+Dato un oggetto C<$pepe> (un riferimento a hash su cui si è fatto il bless alla classe C<Scimmia>,
+che deriva dalla classe C<Mammifero>):
 
 =begin programlisting
 
-    say $pepper->isa( 'Monkey'  );  # prints 1
-    say $pepper->isa( 'Mammal'  );  # prints 1
-    say $pepper->isa( 'HASH'    );  # prints 1
-    say Monkey->isa(  'Mammal'  );  # prints 1
+    say $pepe->isa(   'Monkey'    );  # stampa 1
+    say $pepe->isa(   'Mammal'    );  # stampa 1
+    say $pepe->isa(   'HASH'      );  # stampa 1
+    say Scimmia->isa( 'Mammifero' );  # stampa 1
 
-    say $pepper->isa( 'Dolphin' );  # prints 0
-    say $pepper->isa( 'ARRAY'   );  # prints 0
-    say Monkey->isa(  'HASH'    );  # prints 0
+    say $pepper->isa( 'Delfino'   );  # stampa 0
+    say $pepper->isa( 'ARRAY'     );  # stampa 0
+    say Monkey->isa(  'HASH'      );  # stampa 0
 
 =end programlisting
 
@@ -41,145 +41,152 @@ X<C<Regexp>>
 X<C<IO>>
 X<C<CODE>>
 
-Perl 5's core types are C<SCALAR>, C<ARRAY>, C<HASH>, C<Regexp>, C<IO>, and
+I tipi predefiniti di Perl 5 sono C<SCALAR>, C<ARRAY>, C<HASH>, C<Regexp>, C<IO> e
 C<CODE>.
 
-You can override C<isa()> in your own classes.  This can be useful when working
-with mock objects (see C<Test::MockObject> and C<Test::MockModule> on the CPAN,
-for example) or with code that does not use roles (L<roles>).
+X<CPAN; C<Test::MockObject>>
+X<CPAN; C<Test::MockModule>>
 
-=head2 The can() Method
+Ogni classe può sovrascrivere C<isa()>. Ciò può essere utile quando si usano oggetti emulati
+(vedete C<Test::MockObject> e C<Test::MockModule> su CPAN) e con il
+codice che non usa i ruoli (L<roles>). Tenete presente che ciascuna classe che I<sovrascrive>
+C<isa()> deve avere in genere una buona ragione per farlo.
+
+=head2 Il Metodo can()
 
 X<C<UNIVERSAL::can>>
 X<C<can()>>
 
-The C<can()> method takes a string containing the name of a method.  It returns
-a reference to the function which implements that method, if it exists.
-Otherwise, it returns false.  You may call this on a class, an object, or the
-name of a package.  In the latter case, it returns a reference to a function,
-not a method.
+Il metodo C<can()> riceve una stringa contenente il nome di un metodo. Restituisce
+un riferimento alla funzione che implementa tale metodo, se esso esiste.
+Altrimenti, restituisce un valore falso. Potete chiamarlo su una classe, su un oggetto
+o sul nome di un package. In quest'ultimo caso, viene restituito un riferimento a una
+funzione anzichè a un metodoN<... anche se non potete distinguerli, dato tale
+riferimento.>.
 
-Given a class named C<SpiderMonkey> with a method named C<screech>, you can get
-a reference to the method with:
+=begin tip Questa Classe Esiste?
+
+Anche se C<UNIVERSAL::isa()> e C<UNIVERSAL::can()> sono metodi
+(L<method_sub_equivalence>), potete I<tranquillamente> usare quest'ultimo come funzione
+allo scopo di determinare se una classe esiste in Perl 5.  Se C<UNIVERSAL::can(
+$nomeclasse, 'can' )> restituisce un valore vero, significa che qualcuno da qualche parte ha definito una
+classe di nome C<$nomeclasse>. Tale classe potrebbe non essere utilizzabile, ma esiste.
+
+=end tip
+
+Data una classe di nome C<ScimmiaRagno> con un metodo di nome C<strilla>, potete ottenere un
+riferimento al metodo con:
 
 =begin programlisting
 
-    if (my $meth = SpiderMonkey->can( 'screech' )) { ... }
+    if (my $met = ScimmiaRagno->can( 'strilla' )) {...}
 
-    if (my $meth = $sm->can( 'screech' )
+    if (my $met = $sm->can( 'strilla' )
     {
-        $sm->$meth();
+        $sm->$met();
     }
 
 =end programlisting
 
-X<builtins; C<require>>
+X<builtin; C<require>>
+X<CPAN; C<UNIVERSAL::require>>
 
-Given a plugin-style architecture, you can test to see if a package implements
-a specific function in a similar way.  The C<UNIVERSAL::require> module adds a
-C<require()> method to the C<UNIVERSAL> namespace to invert the sense of the
-C<require> builtin:
+Usate C<can()> per testare se un package implementa una specifica funzione o metodo:
 
 =begin programlisting
 
-    # a useful CPAN module
-    use UNIVERSAL::require;
+    use Class::Load;
 
-    die $@ unless $module->require();
+    die "Caricamento di $modulo non riuscito!"
+        unless load_class( $modulo );
 
-    if (my $register = $module->can( 'register' )
+    if (my $registra = $modulo->can( 'registra' ))
     {
-        $register->();
+        $registra->();
     }
 
 =end programlisting
 
-... though in larger programs, use C<Module::Pluggable> to handle this busy
-work for you.
+=begin tip C<Module::Pluggable>
 
-You can (and should) override C<can()> in your own code if you use
-C<AUTOLOAD()> (L<autoload_drawbacks>).
+X<CPAN; C<Class::Load>>
+X<CPAN; C<Module::Pluggable>>
 
-=begin sidebar
+Mentre il modulo CPAN C<Class::Load> semplifica il caricamento di classi per
+nome--evitando il balletto dei C<require>--C<Module::Pluggable> vi solleva
+da gran parte del lavoro necessario per creare e gestire sistemi plugin. Imparate a usare entrambe le
+distribuzioni.
 
-There is I<one> known case where calling C<UNIVERSAL::can()> as a function and
-not a method is not incorrect: to determine whether a class exists in Perl 5.
-If C<UNIVERSAL::can( $classname, 'can' )> returns true, someone somewhere has
-defined a class of the name C<$classname>--though consider using instead
-Moose's introspection.
+=end tip
 
-=end sidebar
-
-=head2 The VERSION() Method
+=head2 Il Metodo VERSION()
 
 X<C<UNIVERSAL::VERSION>>
 X<C<VERSION()>>
 
-The C<VERSION()> method is available to all packages, classes, and objects.  It
-returns the value of the C<$VERSION> variable for the appropriate package or
-class.  It takes a version number as an optional parameter.  If you provide
-this version number, the method will throw an exception if the queried
-C<$VERSION> is not equal to or greater than the parameter.
+Il metodo C<VERSION()> restituisce il valore della variabile C<$VERSION> per il package o la classe
+appropriata. Se fornite un numero di versione come parametro opzionale,
+il metodo solleva un'eccezione quando la variabile
+C<$VERSION> considerata non è uguale o maggiore al parametro.
 
-Given a C<HowlerMonkey> module of version C<1.23>:
+Dato un modulo C<ScimmiaUrlatrice> con versione C<1.23>:
 
 =begin programlisting
 
-    say HowlerMonkey->VERSION();    # prints 1.23
-    say $hm->VERSION();             # prints 1.23
-    say $hm->VERSION( 0.0  );       # prints 1.23
-    say $hm->VERSION( 1.23 );       # prints 1.23
-    say $hm->VERSION( 2.0  );       # throws exception
+    say ScimmiaUrlatrice->VERSION();    # stampa 1.23
+    say $su->VERSION();                 # stampa 1.23
+    say $su->VERSION( 0.0  );           # stampa 1.23
+    say $su->VERSION( 1.23 );           # stampa 1.23
+    say $su->VERSION( 2.0  );           # eccezione!
 
 =end programlisting
 
-You can override C<VERSION()> in your own code, but there's little reason to do
-so.
+Non ci sono molte ragioni validi per sovrascrivere C<VERSION()>.
 
-=head2 The DOES() Method
+=head2 Il Metodo DOES()
 
 X<C<UNIVERSAL::DOES>>
 X<C<DOES()>>
 
-The C<DOES()> method is new in Perl 5.10.0.  It exists to support the use of
-roles (L<roles>) in programs.  Pass it an invocant and the name of a role, and
-the method will return true if the appropriate class somehow does that
-role--whether through inheritance, delegation, composition, role application,
-or any other mechanism.
+Il metodo C<DOES()> è stato introdotto in Perl 5.10.0. Il suo scopo è quello di supportare l'uso dei
+ruoli (L<roles>) nei programmi. Passategli un invocante e il nome di un ruolo, e
+il metodo restituirà  vero se la classe appropriata ha in qualche modo quel
+ruolo--attraverso l'ereditarietà, la delega, la composizione, l'applicazione di ruolo
+o un qualunque altro meccanismo.
 
-The default implementation of C<DOES()> falls back to C<isa()>, because
-inheritance is one mechanism by which a class may do a role.  Given a
-C<Cappuchin>:
+L'implementazione di default di C<DOES()> si riconduce a C<isa()>, in quanto
+l'ereditarietà è uno dei meccanismi con cui una classe assume un ruolo. Data una scimmia
+C<Cappuccina>:
 
 =begin programlisting
 
-    say Cappuchin->DOES( 'Monkey'       );  # prints 1
-    say $cappy->DOES(    'Monkey'       );  # prints 1
-    say Cappuchin->DOES( 'Invertebrate' );  # prints 0
+    say Cappuccina->DOES( 'Scimmia'      );  # stampa 1
+    say $cappy->DOES(     'Scimmia'      );  # stampa 1
+    say Cappuccina->DOES( 'Invertebrato' );  # stampa 0
 
 =end programlisting
 
-You can (and should) override C<DOES()> in your own code if you manually
-provide a role or other allomorphic behavior.
+Sovrascrivete C<DOES()> se fornite manualmente un ruolo o un altro comportamento
+allomorfico.
 
-=head2 Extending UNIVERSAL
+=head2 Estendere UNIVERSAL
 
-It's tempting to store other methods in C<UNIVERSAL> to make it available to
-all other classes and objects in Perl 5.  Avoid this temptation; this global
-behavior can have subtle side effects because it is unconstrained.
+Potreste essere tentati di memorizzare altri metodi in C<UNIVERSAL> per renderli disponibili a
+tutte le altre classi e oggetti Perl 5. Resistete a questa tentazione; un comportamento globale
+può avere effetti collaterali sottili proprio perchè non è vincolato.
 
-X<C<UNIVERSAL::ref>>
-X<C<UNIVERSAL::isa>>
-X<C<UNIVERSAL::can>>
-X<C<Perl::Critic>>
+X<CPAN; C<UNIVERSAL::ref>>
+X<CPAN; C<UNIVERSAL::isa>>
+X<CPAN; C<UNIVERSAL::can>>
+X<CPAN; C<Perl::Critic>>
 
-With that said, occasional abuse of C<UNIVERSAL> for I<debugging> purposes and
-to fix improper default behavior may be excusable.  For example, Joshua ben
-Jore's C<UNIVERSAL::ref> distribution makes the nearly-useless C<ref()>
-operator usable.  The C<UNIVERSAL::can> and C<UNIVERSAL::isa> distributions can
-help you debug anti-polymorphism bugs (L<method_sub_equivalence>), while
-C<Perl::Critic> can detect thoseN<... and many, many other.> problems.
+Detto questo, talvolta può essere accettabile abusare di C<UNIVERSAL> a scopo di I<debugging> o per
+correggere un comportamento di default improprio. Per esempio, la distribuzione
+C<UNIVERSAL::ref> di Joshua ben Jore rende usabile l'operatore C<ref()>
+che normalmente è inutile. Le distribuzioni C<UNIVERSAL::can> e C<UNIVERSAL::isa> possono aiutarvi
+a fare il debug di errori di anti-polimorfismo (L<method_sub_equivalence>).
+C<Perl::Critic> può rilevare questi ed altri problemi.
 
-Outside of very carefully controlled code and very specific, very pragmatic
-situations, there's no reason to put code in C<UNIVERSAL> directly.  There are
-almost always much better design alternatives.
+Al di fuori di codice molto controllato e di esigenze pragmatiche molto specifiche,
+non c'è ragione di aggiungere direttamente del codice a C<UNIVERSAL>. Quasi sempre
+ci sono alternative di progettazione migliori.
