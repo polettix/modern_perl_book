@@ -2,15 +2,12 @@
 
 =head0 Perl Oltre la Sintassi
 
-Perl5 è un linguaggio ampio, come qualsiasi linguaggio che mira a risolvere
-problemi nel mondo reale. Progammi Perl efficaci richiedono più della mera
-comprensione della sintassi; dovete anche iniziare a capire come le
-caratteristiche di Perl interagiscono ed come vengono risolti comunemente
-i problemi noti.
+Con il Perl scolastico potete arrivare solo fino a un certo livello. Una vera scioltezza nel linguaggio vi permette di usare i
+suoi pattern e idiomi naturali. I programmatori esperti comprendono
+come interagiscono e si combinano le funzionalità di Perl.
 
-Preparatevi per la seconda curva di apprendimento di Perl: pensare
-Perlisticamente. L'uso efficace di costrutti comuni e le scorciatoie
-proprie del linguaggio vi permettonon di scrivere codice conciso e potente.
+Preparatevi per una seconda curva di apprendimento di Perl: il modo di pensare "alla Perl". Il risultato sarà del codice
+conciso, potente e "alla Perl".
 
 L<idioms>
 
