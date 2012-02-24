@@ -1,56 +1,52 @@
-=head1 Global Variables
+=head1 Variabili Globali
 
 Z<globals>
 
-X<super globals>
-X<variables; super global>
+X<variabili globali predefinite>
+X<variabili; globali predefinite>
 
-Perl 5 provides several I<super global variables> that are truly global, not
-restricted to any specific package.  These super globals have two drawbacks.
-First, they're global; any direct or indirect modifications may have effects on
-other parts of the program.  Second, they're terse.  Experienced Perl 5
-programmers have memorized some of them.  Few people have memorized all of
-them.  Only a handful are ever useful.  C<perldoc perlvar> contains the
-exhaustive list of such variables.
+Perl 5 fornisce svariate I<variabili globali predefinite> il cui scope è realmente globale e non
+limitato a un package o a un file. Sfortunatamente,
+la loro accessibilità globale significa anche che ogni modifica diretta o indiretta dei loro valori
+può avere effetti su altre parti del programma; inoltre, i loro nomi sono alquanto criptici.
+Anche i programmatori Perl 5 esperti generalmente ne conoscono a memoria solo alcune, e ben poche persone
+le conoscono tutte. D'altra parte, solo un piccolo sottoinsieme di queste variabili può davvero esservi utile.
+La loro lista esaustiva è contenuta in C<perldoc perlvar>.
 
-=head2 Managing Super Globals
+=head2 Gestire le Variabili Globali Predefinite
 
-X<super globals; managing>
-X<builtins; C<local>>
+X<variabili globali predefinite; gestione>
+X<builtin; C<local>>
 
-The best approach to managing the global behavior of these super globals is to
-avoid using them.  When you must use them, use C<local> in the smallest
-possible scope to constrain any modifications.  You are still susceptible to
-any changes code you I<call> makes to those globals, but you reduce the
-likelihood of surprising code I<outside> of your scope.
-
-Workarounds exist for some of this global behavior, but many of these variables
-have existed since Perl 1 and will continue as part of Perl 5 throughout its
-lifetime.  As the easy file slurping idiom (L<easy_file_slurping>)
-demonstrates, this is often possible:
+Le nuove versioni di Perl 5 continano a convertire dei comportamenti globali in comportamenti lessicali; grazie a ciò,
+è possibile evitare di usare molte di queste variabili globali. Quando però non potete evitarle, usate C<local> nello scope
+più ristretto possibile per limitare gli effetti delle vostre modifiche. In questo modo, anche se il vostro codice rimane
+esposto ai cambiamenti effettuati su tali variabili dal codice che I<chiamate>,
+evitate almeno possibili sorprese da parte del codice I<esterno> al vostro scope. Come illustrato
+dall'idioma dello slurp semplificato di file (L<easy_file_slurping>), C<local> è spesso l'approccio
+giusto:
 
 =begin programlisting
 
-    my $file = do { B<local $/> = <$fh> };
+    my $file; { B<local $/>; $file = <$fh> };
 
 =end programlisting
 
-The effect of C<local>izing C<$/> lasts only through the end of the block.
-There is a low chance that any Perl code will run as a result of reading lines
-from the filehandleN<A tied filehandle is one of the few possibilities.> and
-change the value of C<$/> within the C<do> block.
+L'effetto della C<local>izzazione di C<$/> dura soltanto fino alla fine del blocco.
+E ci sono poche possibilità che la lettura di linee da un filehandle provochi l'esecuzione di codice Perl
+N<Un filehandle tied (L<tie>) è una di queste possibilità.> che modifica il valore di C<$/> all'interno del blocco C<do>.
 
-Not all cases of using super globals are this easy to guard, but this often
-works.
+Non tutti i casi di utilizzo delle variabili globali predefiniti sono così facili da trattare, ma spesso questo approccio
+funziona.
 
 X<C<eval>>
-X<exceptions; catching>
+X<eccezioni; catturare>
+X<eccezioni; C<$@>>
 
-Other times you need to I<read> the value of a super global and hope that no
-other code has modified it.  Catching exceptions with an C<eval> block can be
-susceptible to race conditionsN<< Use C<Try::Tiny> instead! >>, in that
-C<DESTROY()> methods invoked on lexicals that have gone out of scope may reset
-C<$@>:
+Talvolta potete aver bisogno di I<leggere> il valore di una variabile globale predefinita, sperando che nel frattempo
+esso non sia stato modificato da altro codice. Catturare eccezioni con un blocco C<eval> può dar luogo
+a problemi di concorrenza, dato che i metodi C<DESTROY()> invocati sui
+lessicali dello scope da cui il programma è appena uscito potrebbero cancellare il valore di C<$@>:
 
 =begin programlisting
 
@@ -58,18 +54,18 @@ C<$@>:
 
     eval { ... };
 
-    if (B<my $exception = $@>) { ... }
+    if (B<my $eccezione = $@>) { ... }
 
 =end programlisting
 
-Copy C<$@> I<immediately> to preserve its contents.
+Copiate C<$@> I<immediatamente> dopo aver catturato un'eccezione per preservare il suo contenuto.
+In alternativa, vedete C<Try::Tiny> (L<exception_caveats>).
 
-=head2 English Names
+=head2 Nomi in Inglese
 
 X<C<English>>
 
-The core C<English> module provides verbose names for the punctuation-heavy
-super globals.  Import them into a namespace with:
+Il modulo C<English> distribuito con Perl fornisce dei nomi verbosi per le variabili globali predefinite al posto di quelli composti di punteggiatura. Potete importarli in un namespace con:
 
 =begin programlisting
 
@@ -77,167 +73,158 @@ super globals.  Import them into a namespace with:
 
 =end programlisting
 
-Subsequently you can use the verbose names documented in C<perldoc perlvar>
-within the scope of this namespace.
+In questo modo potete usare i nomi verbosi documentati in C<perldoc perlvar>
+all'interno dello scope della direttiva.
 
 X<C<$&>>
-X<global variables; C<$&>>
+X<variabili globali; C<$&>>
 X<C<$`>>
-X<global variables; C<$`>>
+X<variabili globali; C<$`>>
 X<C<$'>>
-X<global variables; C<$'>>
+X<variabili globali; C<$'>>
 
-Three regex-related super globals (C<$&>, C<$`>, and C<$'>) impose a global
-performance penalty for I<all> regular expressions within a program.  If you
-neglect to provide that import flag, your program will suffer the penalty even
-if you don't explicitly read from those variables.  This is not the default
-behavior for backwards-compatibility concerns.
+Tre variabili globali predefinite relative alle regex (C<$&>, C<$`> e C<$'>) impongono una penalità
+all'efficienza che si applica globalmente a I<le> espressioni regolari di un programma.  Se
+dimenticate di importare C<-no_match_vars>, il vostro programma pagherà la penalità anche
+se non leggete esplicitamente da tali variabili.
 
-Modern Perl programs should use the C<@-> variable as a replacement for the
-terrible three.
+I programmi in Perl moderno dovrebbero usare la variabile C<@-> come sostituta di questo terribile
+terzetto di variabili.
 
-=head2 Useful Super Globals
+=head2 Variabili Predefinite Utili
 
-X<super globals; useful>
+X<variabili globali predefinite; utili>
 
-Most modern Perl 5 programs can get by with using only a couple of the super
-globals.  Several exist for special circumstances you're unlikely to encounter.
-While C<perldoc perlvar> is the canonical documentation for most of these
-variables, some deserve special mention.
+Molti programmi in Perl 5 moderno possono cavarsela usando solo un paio delle variabili predefinite
+globali. Probabilmente, incontrerete solo alcune di queste variabili nei programmi reali.
 
 X<C<$/>>
-X<global variables; C<$/>>
+X<variabili globali; C<$/>>
 X<C<$INPUT_RECORD_SEPARATOR>>
-X<global variables; C<$INPUT_RECORD_SEPARATOR>>
+X<variabili globali; C<$INPUT_RECORD_SEPARATOR>>
 X<C<readline>>
 
 =over 4
 
-=item * C<$/> (or C<$INPUT_RECORD_SEPARATOR> from the C<English> pragma) is a
-string of zero or more characters which denotes the end of a record when
-reading input a line at a timeN<Yes, C<readline()> should more accurately be
-C<readrecord()>, but the name has stuck by now.>.  By default, this is your
-platform-specific newline character sequence.  If you undefine this value, Perl
-will attempt to read the entire file into memory.  If you set this value to a
-I<reference> to an integer, Perl will try to read that many I<bytes> per record
-(so beware of Unicode concerns).
+=item * C<$/> (C<$INPUT_RECORD_SEPARATOR> con la direttiva C<English>) è una
+stringa di zero o più caratteri che denota la fine di un record durante la
+lettura linea per linea dell'input. Per default, essa contiene la sequenza di caratteri di a capo
+specifici per la vostra piattaforma. Se la impostate al valore non definito, Perl tenterà di
+leggere l'intero file in memoria. Se la impostate ad un I<riferimento> a numero
+intero, Perl tenterà di leggere un numero corrispondente di I<byte> per ciascun record (tenete quindi presenti
+le caratteristiche di Unicode). Se la impostate a stringa vuota (C<''>), Perl leggerà
+un paragrafo per volta, dove per paragrafo si intende un blocco di testo seguito da un
+numero arbitrario di caratteri di a capo.
 
 X<C<$.>>
-X<global variables; C<$.>>
+X<variabili globali; C<$.>>
 X<C<$INPUT_LINE_NUMBER>>
-X<global variables; C<$INPUT_LINE_NUMBER>>
+X<variabili globali; C<$INPUT_LINE_NUMBER>>
 
-=item * C<$.> (C<$INPUT_LINE_NUMBER>) contains the number of current record
-read from the most recently-accessed filehandle.  You can read from this
-variable, but writing to it has no effect.  Localizing this variable will
-localize the filehandle to which it refers.
+=item * C<$.> (C<$INPUT_LINE_NUMBER>) contiene il numero di record letti dal
+filehandle usato più di recente. Potete leggere questa variabile, ma
+tentare di modificarla non ha effetto. Localizzando questa variabile localizzerete il
+filehandle a cui si riferisce.
 
 X<C<$|>>
-X<global variables; C<$|>>
+X<variabili globali; C<$|>>
 X<C<$OUTPUT_AUTOFLUSH>>
-X<global variables; C<$OUTPUT_AUTOFLUSH>>
+X<variabili globali; C<$OUTPUT_AUTOFLUSH>>
 
-=item * C<$|> (C<$OUTPUT_AUTOFLUSH>) is the boolean value of this variable
-governs whether Perl will flush everything written to the currently selected
-filehandle immediately or only when Perl's buffer is full.  Unbuffered output
-is useful when writing to a pipe or socket or terminal which should not block
-waiting for input.
+=item * C<$|> (C<$OUTPUT_AUTOFLUSH>) determina se Perl deve fare il flush immediato di
+tutto ciò che viene scritto sul filehandle selezionato corrente, oppure se deve attendere
+che il buffer sia pieno. L'output che non fa uso di buffer è utile quando scrivete su una pipe, un socket o
+un terminale che non devono bloccarsi in attesa del vostro input. Qualunque valore assegnate a questa variabile
+verrà convertito in un booleano.
 
 X<C<@ARGV>>
-X<global variables; C<@ARGV>>
+X<variabili globali; C<@ARGV>>
 
-=item * C<@ARGV> contains the command-line arguments passed to the program.
+=item * C<@ARGV> contiene gli argomenti pasati al programma da linea di comando.
 
 X<C<$!>>
-X<global variables; C<$!>>
+X<variabili globali; C<$!>>
 X<C<$ERRNO>>
-X<global variables; C<$ERRNO>>
+X<variabili globali; C<$ERRNO>>
 
-=item * C<$!> (C<$ERRNO>) is a dualvar (L<dualvars>) which contains the result
-of the I<most recent> system call.  In numeric context, this corresponds to C's
-C<errno> value, where anything other than zero indicates some kind of error.
-In string context, returns the appropriate system error string.  Localize this
-variable before making a system call (implicitly or explicitly) to avoid
-overwriting the appropriate value for other code elsewhere.  Many places within
-Perl 5 itself make system calls without your knowledge.  The value of this
-variable can change out from under you, so copy it I<immediately> after making
-such a call yourself.
+=item * C<$!> (C<$ERRNO>) è una dualvar (L<dualvars>) contenente il risultato
+della chiamata di sistema I<più recente>. In contesto numerico, essa corrisponde alla variabile C
+C<errno>, per la quale ogni valore diverso da zero indica un errore.  In contesto
+stringa, essa valuta al messaggio d'errore di sistema appropriato. Localizzate questa
+variabile prima di effettuare una chiamata di sistema (implicita o esplicita) per evitare
+di sovrascriverne il valore prima che possa essere utilizzato da altre parti di codice. Dato che molte chiamate di sistema
+vengono effettuate dallo stesso Perl 5 senza che ne siate consapevoli, il valore di questa
+variabile può essere modificato sotto il vostro naso. Copiatelo I<immediatamente> dopo aver causato una
+chiamata di sistema per avere un risultato che sia il più accurato possibile.
 
 X<C<$">>
-X<global variables; C<$">>
+X<variabili globali; C<$">>
 X<C<$LIST_SEPARATOR>>
-X<global variables; C<$LIST_SEPARATOR>>
+X<variabili globali; C<$LIST_SEPARATOR>>
 
-=item * C<$"> (C<$LIST_SEPARATOR>) is a string used to separate array and list
-elements interpolated into a string.
+=item * C<$"> (C<$LIST_SEPARATOR>) è una stringa usata per separare gli elementi di array e liste
+quando vengono interpolati all'interno di una stringa.
 
 X<C<%+>>
-X<global variables; C<%+>>
+X<variabili globali; C<%+>>
 
-=item * C<%+> contains named captures from successful regular expression
-matches (L<named_captures>).
+=item * C<%+> contiene le catture con nome derivanti da un match riuscito di una espressione
+regolare (L<named_captures>).
 
 X<C<$@>>
-X<global variables; C<$@>>
+X<variabili globali; C<$@>>
 X<C<$EVAL_ERROR>>
-X<global variables; C<$EVAL_ERROR>>
+X<variabili globali; C<$EVAL_ERROR>>
 
-=item * C<$@> (C<$EVAL_ERROR>) contains the value thrown from the most recent
-exception (L<catching_exceptions>).
+=item * C<$@> (C<$EVAL_ERROR>) contiene il valore lanciato dall'eccezione
+più recente (L<catching_exceptions>).
 
 X<C<$0>>
-X<global variables; C<$0>>
+X<variabili globali; C<$0>>
 X<C<$PROGRAM_NAME>>
-X<global variables; C<$PROGRAM_NAME>>
+X<variabili globali; C<$PROGRAM_NAME>>
 
-=item * C<$0> (C<$PROGRAM_NAME>) contains the name of the program currently
-executing.  You may modify this value on some Unix-like platforms to change the
-name of the program as it appears to other programs on the system, such as
-C<ps> or C<top>.
+=item * C<$0> (C<$PROGRAM_NAME>) contiene il nome del programma in
+esecuzione. Su alcune piattaforme Unix-like potete modificare tale valore per cambiare
+il nome del programma così come appare ad altri programmi nel sistema, come
+C<ps> e C<top>.
 
 X<C<$$>>
-X<global variables; C<$$>>
+X<variabili globali; C<$$>>
 X<C<$PID>>
-X<global variables; C<$PID>>
+X<variabili globali; C<$PID>>
 
-=item * C<$$> (C<$PID>) contains the process id of the currently running
-instance of the program, as the operating system understands it.  This will
-vary between C<fork()>ed programs and may vary between threads in the same
-program.
+=item * C<$$> (C<$PID>) contiene l'id del processo dell'istanza in esecuzione
+del programma, dal punto di vista del sistema operativo. Tale id
+sarà diverso tra programmi eseguiti in seguito a una C<fork()> e I<potrebbe> variare anche tra thread dello stesso
+programma.
 
 X<C<@INC>>
-X<global variables; C<@INC>>
+X<variabili globali; C<@INC>>
 
-=item * C<@INC> holds a list of filesystem paths in which Perl will look for
-files to load with C<use> or C<require>.  See C<perldoc -f require> for other
-items this array can contain.
+=item * C<@INC> contiene una lista di path del filesystem nei quali Perl cerca i file
+da caricare con C<use> e C<require>. Vedete C<perldoc -f require> per una descrizione di
+altri dati che potrebbero essere contenuti in questo array.
 
 X<C<%SIG>>
-X<global variables; C<%SIG>>
+X<variabili globali; C<%SIG>>
 
-=item * C<%SIG> maps OS and low-level Perl signals to function references
-used to handle those signals.  Trap the standard Ctrl-C interrupt by catching
-the C<INT> signal, for example.  See C<perldoc perlipc> for more information
-about signals and especially safe signals.
+=item * C<%SIG> mappa i segnali del SO e i segnali di basso livello di Perl su riferimenti alla funzioni
+usate per gestire tali segnali. Per esempio, potete intercettare l'interrupt standard Ctrl-C catturando
+il segnale C<INT>. Vedete C<perldoc perlipc> per maggiori informazioni
+sui segnali e specialmente sui segnali sicuri.
 
 =back
 
-=head2 Alternatives to Super Globals
+=head2 Alternative alle Variabili Predefinite
 
-X<super globals; alternatives>
+X<variabili globali predefinite; alternative>
 X<C<Try::Tiny>>
 
-The worst culprits for action at a distance relate to IO and exceptional
-conditions.  Using C<Try::Tiny> (L<exception_caveats>) will help insulate you
-from the tricky semantics of proper exception handling.  C<local>izing and
-copying the value of C<$!> can help you avoid strange behaviors when Perl makes
-implicit system calls.
-
-X<C<IO::Handle>>
-
-C<IO::Handle> allows you to call methods on filehandles
-(L<lexical_filehandles>) to replace the manipulation of IO-related super
-globals.  Call the C<autoflush()> method on a lexical filehandle instead of
-C<select>ing the filehandle, then manipulating C<$|>.  Use the
-C<input_line_number()> method to get the equivalent of C<$.> for that specific
-filehandle.  See the C<IO::Handle> documentation for other appropriate methods.
+Le maggiori responsabilità di azioni a distanza ricadono sull'IO e sulle condizioni
+eccezionali. Usare C<Try::Tiny> (L<exception_caveats>) vi aiuta a isolarvi
+dalla complicata semantica della gestione corretta delle eccezioni. C<local>izzare e
+copiare il valore di C<$!> può aiutarvi a evitare comportamenti strani quando Perl effettua
+chiamate implicite di sistema. Usare C<IO::File> e i suoi metodi sui filehandle lessicali
+(L<file_handling_variables>) vi aiuta a prevenire modifiche globali indesiderate al comportamento
+dell'IO.

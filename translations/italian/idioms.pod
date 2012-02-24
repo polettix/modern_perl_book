@@ -232,7 +232,7 @@ hash crittografici per grandi file. La trasformata di Schwartz è particolarment
 poiché fa il caching dei risultati delle computazioni costose, eseguendole una sola volta
 nel C<map> più a destra.
 
-=head2 Semplificare lo Slurp di File
+=head2 Slurp Semplificato di File
 
 Z<easy_file_slurping>
 
