@@ -1,77 +1,83 @@
-=head1 Barewords
+=head1 Bareword
 
 Z<barewords>
 
-Perl uses sigils and other punctuation pervasively to help both the parser and
-the programmer identify the categories of named entities.  Even so, Perl is a
-malleable language.  You can write programs in the most creative, maintainable,
-obfuscated, or bizarre fashion as you prefer.  Maintainability is a concern of
-good programmers, but the developers of Perl itself don't presume to dictate
-what I<you> find most maintainable.
+Perl è un linguaggio malleabile. Potete scrivere programmi nei modi più creativi,
+manutenibili, criptici e bizzarri che preferite. I buoni programmatori si preoccupano
+della manutenibilità, ma Perl non ha la presunzione di sapere che cos'è la manutenibilità
+secondo il I<vostro> punto di vista.
 
-X<barewords>
-X<C<strict> pragma>
-X<pragmas; C<strict>>
+X<bareword>
+X<direttiva C<strict>>
+X<direttive; C<strict>>
 
-Perl's parser understands the builtin Perl builtins and operators; it knows
-that C<bless()> means you're making objects (L<blessed_references>).  These are
-rarely ambiguous... but Perl programmers can add complexity to parsing by using
-I<barewords>.  A bareword is an identifier without a sigil or other attached
-disambiguation as to its intended syntactical function.  Because there's no
-Perl 5 builtin C<curse>, the literal word C<curse> appearing in source code is
-ambiguous.  Did you intend to use a variable C<$curse> or to call a function
-C<curse()>?  The C<strict> pragma warns about use of such ambiguous barewords
-for good reason.
+Il parser Perl riconosce le istruzioni native e gli operatori. Usa i  sigilli per
+identificare le variabili e altri simboli di punteggiatura per riconoscere chiamate a funzioni e
+metodi.  Tuttavia, qualche volta il parser deve cercare di indovinare le vostre intenzioni, specialmente quando
+usate una I<bareword>--un identificatore senza sigilli o altra punteggiatura sintatticamente
+significativa.
 
-Even so, barewords are permissible in several places in Perl 5 for good reason.
+=head2 Usi Appropriati delle Bareword
 
-=head2 Good Uses of Barewords
+X<bareword; pro>
 
-X<barewords; pros>
-X<hashes; bareword keys>
-X<C<+>; unary operator>
+Sebbene la direttiva C<strict> (L<pragmas>) sia rigida nel proibire l'uso di bareword ambigue,
+accetta invece alcuni usi delle bareword.
 
-Hash keys in Perl 5 are barewords.  These are usually not ambiguous because
-their use as keys is sufficient for the parser to identify them as the
-equivalent of single-quoted strings.  Yet be aware that attempting to evaluate
-a function call or a builtin operator (such as C<shift>) to I<produce> a hash
-key may not do what you expect, unless you disambiguate by providing arguments,
-using function argument parentheses, or prepending unary plus to force the
-evaluation of the builtin rather than its interpretation as a string:
+=head3 Bareword come chiavi di hash
 
-=begin programlisting
+X<hash; bareword come chiavi>
+X<C<+>; operatore unario>
 
-    # the literal 'shift' is the key
-    my $value = $items{B<shift>};
+Le chiavi di hash in Perl 5 sono generalmente I<non> ambigue poiché il parser le
+può identificare come stringhe; in C<$giochi{flipper}>, C<flipper> è ovviamente una
+stringa.
 
-    # the value produced by shift is the key
-    my $value = $items{B<shift @_>}
-
-    # unary plus uses the builtin shift
-    my $value = $items{B<+>shift};
-
-=end programlisting
-
-X<packages; bareword names>
-
-Package names in Perl 5 are barewords in a sense.  Good naming conventions for
-packages (initial caps) help prevent unwanted surprises, but the parser uses a
-complex heuristic based on the code it's already compiled within the current
-namespace to determine whether C<< Package->method() >> means to call a
-function named C<Package()> and then call the C<method()> method on its results
-or whether to treat C<Package> as the name of a package.  You can disambiguate
-this with the postfix package separator (C<::>), but that's rare and admittedly
-ugly:
+Occasionalmente, questa interpretazione non è ciò che desiderate, specialmente quando
+intendete I<valutare> una funzione nativa o definita da voi per produrre la chiave di hash. In tal
+caso, potete disambiguare fornendo degli argomenti, usando le parentesi degli argomenti di funzione
+oppure anteponendo un operatore più unario per forzare la valutazione della funzione nativa:
 
 =begin programlisting
 
-    # probably a class method
-    Package->method();
+    # la chiave e` il letterale 'shift'
+    my $valore = $elementi{B<shift>};
 
-    # definitely a class method
-    Package::->method();
+    # la chiave e` il valore prodotto da shift
+    my $valore = $elementi{B<shift @_>}
+
+    # il + unario usa la funzione nativa shift
+    my $valore = $elementi{B<+>shift};
 
 =end programlisting
+
+=head3 Bareword come nomi di package
+
+X<package; bareword come nomi>
+
+Anche i nomi di package in Perl 5 sono delle bareword. Se vi attenete alla convenzione
+per cui i nomi di package hanno iniziali maiuscole e le funzioni no, vi imbatterete raramente
+in collisioni di nomi, ma il parser di Perl 5 deve decidere come parsificare
+C<< Package->metodo() >>. Significa "chiama una funzione di nome C<Package()> e
+poi chiama C<metodo()> sul suo valore di ritorno"? oppure significa "Chiama un metodo di nome
+C<metodo()> nel namespace C<Package>"?. La risposta cambia a seconda del codice
+che il parser ha già incontrato nel namespace corrente.
+
+Potete forzare il parser a trattare C<Package> come un nome di package appendendo il separatore di
+package (C<::>)N<Anche tra le persone che capiscono perchè questo funziona, pochissime
+lo usano.>:
+
+=begin programlisting
+
+    # probabilmente e` un metodo di classe
+    Package->metodo();
+
+    # sicuramente e` un metodo di classe
+    Package::->metodo();
+
+=end programlisting
+
+=head3 Bareword come nomi di blocchi di codice
 
 X<C<BEGIN>>
 X<C<DESTROY>>
@@ -81,123 +87,129 @@ X<C<UNITCHECK>>
 X<C<CHECK>>
 X<C<END>>
 
-The special named code blocks provide their own types of barewords.
-C<AUTOLOAD>, C<BEGIN>, C<CHECK>, C<DESTROY>, C<END>, C<INIT>, and C<UNITCHECK>
-I<declare> functions, but they do not need the C<sub> builtin to do so.  You
-may be familiar with the idiom of writing C<BEGIN> without C<sub>:
+I blocchi di codice con i nomi speciali C<AUTOLOAD>, C<BEGIN>, C<CHECK>, C<DESTROY>,
+C<END>, C<INIT> e C<UNITCHECK> sono bareword che I<dichiarano> delle funzioni
+senza usare l'istruzione nativa C<sub>. Li avete già incontrati in questo libro (L<code_generation>):
 
 =begin programlisting
 
-    package Monkey::Butler;
+    package Scimmia::Maggiordomo;
 
-    BEGIN { initialize_simians( __PACKAGE__ ) }
+    BEGIN { inizializza_scimmie( __PACKAGE__ ) }
+
+    sub AUTOLOAD { ... }
 
 =end programlisting
 
-You I<can> leave off the C<sub> on C<AUTOLOAD()> declarations, but that's
-uncommon.
+Anche se I<potete> omettere C<sub> nelle dichiarazioni di C<AUTOLOAD()>, poche persone lo fanno.
 
-X<constants; barewords>
+=head3 Bareword come costanti
 
-Constants declared with the C<constant> pragma are usable as barewords:
+X<costanti; bareword>
+
+Le costanti dichiarate con la direttiva C<constant> si usano come bareword:
 
 =begin programlisting
 
-    # don't use this for real authentication
-    use constant NAME     => 'Bucky';
-    use constant PASSWORD => '|38fish!head74|';
+    # non usatelo per una vera autenticazione
+    use constant NAME     => 'Bob';
+    use constant PASSWORD => '|38pesce!lesso74|';
 
-    ...
-
-    return unless $name eq NAME && $pass eq PASSWORD;
+    return unless $nome eq NAME && $pass eq PASSWORD;
 
 =end programlisting
 
-Be aware that these constants do I<not> interpolate in interpolation contexts
-such as double-quoted strings.
+Notate che queste costanti I<non> vengono interpolate in una stringa con doppia quotatura.
 
-X<prototypes; barewords>
+X<prototipi; bareword>
 
-Constants are a special case of prototyped functions (L<prototypes>).  If
-you've predeclared a prototype for a function, you may use that function as a
-bareword; Perl 5 knows everything it needs to know to parse all occurrences of
-that function appropriately.  The other drawbacks of prototypes still apply.
+Le costanti sono un caso speciale di funzioni prototipate (L<prototypes>). Quando
+predichiarate una funzione con un prototipo, il parser sa come deve trattare tale
+funzione e vi avverte in caso ci siano ambiguità di parsificazione. Tutti i problemi dei
+prototipi si applicano anche alle costanti.
 
-=head2 Ill-Advised Uses of Barewords
+=head2 Usi Inappropriati delle Bareword
 
-X<barewords; cons>
+X<bareword; contro>
 
-Barewords should be rare in modern Perl code; their ambiguity produces fragile
-code.  You can avoid them in almost every case, but you may encounter several
-poor uses of barewords in legacy code.
+Indipendentemente da quanta cura mettete nel programmare, le bareword producono codice ambiguo. Nella maggior
+parte dei casi potete evitare di usarle, ma incontrerete svariati tipi di bareword nel
+codice preesistente.
 
-X<barewords; filehandles>
+=head3 Bareword nelle chiamate di funzione
 
-Prior to lexical filehandles (L<lexical_filehandles>), all file and directory
-handles used barewords.  You can almost always safely rewrite this code to use
-lexical filehandles; the exceptions are C<STDIN>, C<STDOUT>, and C<STDERR>.
+X<bareword; chiamate di funzione>
+X<C<B::Deparse>>
 
-X<barewords; function calls>
+Il code scritto senza usare C<strict 'subs'> può usare delle bareword come nomi di funzione. Aggiungere
+delle parentesi fa sì che il codice soddisfi le restrizioni.  Usate C<perl -MO=Deparse,-p> (vedete
+C<perldoc B::Deparse>) per scoprire come Perl le parsifica, e quindi aggiungete le parentesi
+appropriate.
 
-Code written without C<strict 'subs'> in effect may use bareword function
-names.  You may safely parenthesize the argument lists to these functions
-without changing the intent of the codeN<Use C<perl -MO=Deparse,-p> to
-discover how Perl parses them, then parenthesize accordingly.>.
+=head3 Bareword come valori di hash
 
-X<barewords; hash values>
+X<bareword; valori di hash>
 
-Along similar lines, old code may not take pains to quote the I<values> of hash
-pairs appropriately:
+Alcuni pezzi di codice poco recente non si preoccupavano di quotare i I<valori> nelle coppie degli hash:
 
 =begin programlisting
 
-    # poor style; do not use
-    my %parents =
+    # pessimo stile; da evitare
+    my %genitori =
     (
-        mother => Annette,
-        father => Floyd,
+        madre => Anna,
+        padre => Flavio,
     );
 
 =end programlisting
 
-Because neither the C<Floyd()> nor C<Annette()> functions exist, Perl parses
-these hash values as strings.  The C<strict 'subs'> pragma makes the parser
-give an error in this situation.
+Quando non esistono nè la funzione C<Flavio()> nè la funzione C<Anna()>, Perl interpreta
+queste bareword come stringhe. C<strict 'subs'>, in questo caso, genera invece un errore.
 
-X<barewords; sort functions>
+=head3 Bareword come filehandle
+
+X<bareword; filehandle>
+
+Prima dell'introduzione dei filehandle lessicali (L<lexical_filehandles>), tutti gli handle di file e di directory
+erano delle bareword. Potete quasi sempre riscrivere questo codice senza problemi in modo che usi dei
+filehandle lessicali. Fanno eccezione C<STDIN>, C<STDOUT> e C<STDERR>,
+ma fortunatamente il parser di Perl è in grado di riconoscerli.
+
+=head3 Bareword come funzioni per sort
+
+X<bareword; funzioni per sort>
 X<C<sort>>
-X<builtins; C<sort>>
+X<builtin; C<sort>>
 
-Finally, the C<sort> builtin can take as its second argument the I<name> of a
-function to use for sorting.  Instead provide a I<reference> to the function to
-use for sorting to avoid the use of barewords:
-
-=begin programlisting
-
-    # poor style; do not use
-    my @sorted = sort compare_lengths @unsorted;
-
-    # better style
-    my $comparison = \&compare_lengths;
-    my @sorted     = sort $comparison @unsorted;
-
-=end programlisting
-
-The result is one line longer, but it avoids the use of a bareword.  Unlike
-other bareword examples, Perl's parser needs no disambiguation for this syntax.
-There is only one way for it to interpret C<compare_lengths>.  However, the
-clarity of an explicit reference can help human readers.
-
-Perl 5's parser I<does not> understand the single-line version:
+Infine, la funzione nativa C<sort> può ricevere come secondo argomento il I<nome> di una
+funzione da usare per l'ordinamento. Anche se raramente questo nome risulta ambiguo per il parser, esso può
+invece confondere le I<persone> che leggono il codice. L'alternativa di fornire un riferimento a funzione in uno scalare è solo un poco migliore:
 
 =begin programlisting
 
-    # does not work
-    my @sorted = sort \&compare_lengths @unsorted;
+    # stile che usa bareword
+    my @ordinato = sort confronta_lunghezze @nonordinato;
+
+    # riferimento a funzione in scalare
+    my $confronto = \&confronta_lunghezze;
+    my @ordinato  = sort $confronto @nonordinato;
 
 =end programlisting
 
-This is due to the special parsing of C<sort>; you cannot use an arbitrary
-expression (such as taking a reference to a named function) where a block or a
-scalar might otherwise go.
+La seconda opzione evita l'uso di bareword, ma il codice risultante ha una linea
+in più. Purtropppo, il parser di Perl 5 I<non> accetta la versione con una sola
+linea a causa delle speciali regole di parsing di C<sort>; non potete usare espressioni
+arbitrarie (come ottenere un riferimento a una funzione con nome) dove il parser si attende un blocco oppure uno
+scalare.
 
+=begin programlisting
+
+    # non funziona
+    my @ordinato = sort \&confronta_lunghezze @nonordinato;
+
+=end programlisting
+
+In entrambi i casi, il modo in cui C<sort> invoca la funzione e le passa gli argomenti può essere
+poco chiaro (vedete C<perldoc -f sort> per i dettagli). Dove possibile, prendete invece in
+considerazione l'uso della forma a blocco di C<sort>. Se dovete usare una delle forme con funzione,
+ricordate di aggiungere un commento esplicativo.

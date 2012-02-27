@@ -2,12 +2,10 @@
 
 =head0 Cosa Evitare
 
-Perl 5 non è perfetto. Alcune caratteristiche sembravano buone idee al tempo,
-ma sono difficili da utilizzare correttamente. Altre non si comportano come
-uno si aspetterebbe. Un altro po' sono semplicemente cattive idee. Queste
-caratteristiche con buona probabilità verranno conservate--rimuoverne una
-qualsiasi è un processo serio riservato solo ai casi più gravi--ma potete
-e dovreste evitarle in quasi tutti i casi.
+Perl 5 non è perfetto. Alcune funzionalità sono difficili da usare correttamente. 
+Altre non hanno mai funzionato bene. Alcune sono bizzarre combinazioni di altre funzionalità
+con strani casi speciali. Anche se la cosa migliore che potete fare è semplicemente di evitarle,
+conoscerne il motivo vi aiuterà a trovare soluzioni più efficaci.
 
 L<barewords>
 
