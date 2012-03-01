@@ -1,144 +1,131 @@
-=head1 Method-Function Equivalence
+=head1 Equivalenza Metodi-Funzioni
 
 Z<method_sub_equivalence>
 
-X<builtins; C<sub>>
+X<builtin; C<sub>>
 
-Perl 5's object system is deliberately minimal (L<blessed_references>).
-Because a class is a package, Perl itself makes no strong distinction between a
-function stored in a package and a method stored in a package.  The same
-builtin, C<sub>, expresses both.  Documentation and the convention of treating
-the first parameter as C<$self> can imply intent to readers of the code, but
-Perl itself will treat any function of the appropriate name it can find in an
-appropriate package as a method if you try to call it as a method.
+Il sistema ad oggetti di Perl 5 è deliberatamente minimale (L<blessed_references>).
+Dato che una classe è un package, Perl non distinge tra una funzione e
+un metodo memorizzato in un package. La stessa istruzione C<sub> viene usata per dichiarare entrambi.
+La documentazione può esplicitare le vostre intenzioni, ma Perl non avrà problemi a fare il dispatch ad
+una funzione invocata come metodo. Allo stesso modo, potete invocare un metodo come se fosse una
+funzione--fully-qualified, esportata o in forma di riferimento--se gli passate l'invocante
+manualmente.
 
-Likewise, you can invoke a method as if it were a function--fully-qualified,
-exported, or as a reference--if you pass in your own invocant manually.
+Invocare una cosa sbagliata in modo sbagliato è causa di problemi.
 
-Both approaches have their problems; avoid them.
+=head2 Prospettiva del Chiamante
 
-=head2 Caller-side
-
-Suppose you have a class which contains several methods:
+Considerate una classe con svariati metodi:
 
 =begin programlisting
 
-    package Order;
+    package Ordine;
 
     use List::Util 'sum';
 
     ...
 
-    sub calculate_price
+    sub calcola_prezzo
     {
         my $self = shift;
-        return sum( 0, $self->get_items() );
+        return sum( 0, $self->articoli_ordinati() );
     }
 
 =end programlisting
 
-If you have an C<Order> object C<$o>, the following invocations of this method
-I<may> seem equivalent:
+Dato un oggetto C<Ordine> C<$o>, le seguenti chiamate di questo metodo I<possono>
+sembrare equivalenti:
 
 =begin programlisting
 
-    my $price = $o->calculate_price();
+    my $prezzo = $o->calcola_prezzo();
 
-    # broken; do not use
-    my $price = Order::calculate_price( $o );
+    # sbagliato; non usatelo
+    my $prezzo = Ordine::calcola_prezzo( $o );
 
 =end programlisting
 
-Though in this simple case, they produce the same output, the latter violates
-the encapsulation of objects in subtle ways.  It avoids method lookup
-altogether.
+Sebbene in questo semplice caso esse producano lo stesso output, la seconda viola
+l'incapsulamento dell'oggetto aggirando il lookup del metodo.
 
-X<methods; avoid calling as functions>
+X<metodi; evitare di chiamarli come funzioni>
 
-If C<$o> were instead a subclass or allomorph (L<roles>) of C<Order> which
-overrode C<calculate_price()>, calling the method as a function would produce
-the wrong behavior.  Any change to the implementation of C<calculate_price()>,
-such as a modification of inheritance or delegation through
-C<AUTOLOAD()>--might break calling code.
+Se C<$o> fosse invece una sottoclasse o un allomorfismo (L<roles>) di C<Ordine> che
+sovrascrive C<calcola_prezzo()>, aggirare il dispatch del metodo chiamerebbe il metodo
+sbagliato. Qualunque modifica dell'implementazione di C<calcola_prezzo()>, ad esempio
+relativa all'ereditarietà o alla delega con C<AUTOLOAD()>--potrebbe far fallire
+il codice chiamante.
 
-X<methods; calling with references>
+X<metodi; chiamata per riferimento>
 X<C<UNIVERSAL>; C<can()>>
 X<C<can()>>
 
-Perl has one circumstance where this behavior may seem necessary.  If you force
-method resolution without dispatch, how do you invoke the resulting method
-reference?
+Esiste una situazione in Perl in cui questo comportamento può sembrare necessario. Se forzate
+la risoluzione senza dispatch di un metodo, come invocate il riferimento a metodo risultante?
 
 =begin programlisting
 
-    my $meth_ref = $o->can( 'apply_discount' );
+    my $rif_a_met = $o->can( 'applica_sconto' );
 
 =end programlisting
 
-There are two possibilities.  The first is to discard the return value of the
-C<can()> method:
+In realtà, avete due possibilità. La prima consiste nello scartare il valore di ritorno del
+metodo C<can()>:
 
 =begin programlisting
 
-    $o->apply_discount() if $o->can( 'apply_discount' );
+    $o->applica_sconto() if $o->can( 'applica_sconto' );
 
 =end programlisting
 
-The second is to use the reference itself with method invocation syntax:
+La seconda consiste nell'usare il riferimento stesso insieme alla sintassi di invocazione di metodo:
 
 =begin programlisting
 
-    if (my $meth_ref = $o->can( 'apply_discount' ))
+    if (my $rif_a_met = $o->can( 'applica_sconto' ))
     {
-        $o->$meth_ref();
+        $o->$rif_a_met();
     }
 
 =end programlisting
 
-When C<$meth_ref> contains a function reference, Perl will invoke that
-reference with C<$o> as the invocant.  This works even under strictures, as it
-does when invoking a method with a scalar containing its name:
+Quando C<$rif_a_met> contiene un riferimento a funzione, Perl fa un'invocazione su tale
+riferimento passando C<$o> come invocante. Questa sintassi funziona anche quando sono attive delle restrizioni,
+in modo analogo all'invocazione di un metodo attraverso uno scalare che ne contiene il nome:
 
 =begin programlisting
 
-    my $name = 'apply_discount';
-    $o->$name();
+    my $nome = 'applica_sconto';
+    $o->$nome();
 
 =end programlisting
 
-There is one small drawback in invoking a method by reference; if the structure
-of the program has changed between storing the reference and invoking the
-reference, the reference may no longer refer to the current, most appropriate
-method.  If the C<Order> class has changed such that C<Order::apply_discount>
-is no longer the right method to call, the reference in C<$meth_ref> will not
-have updated.
+C'è un piccolo svantaggio nell'invocare un metodo per riferimento; se la struttura
+del programma cambia tra il momento in cui il riferimento viene memorizzato e il momento in cui viene usato
+per l'invocazione, tale riferimento potrebbe non corrispondere più al metodo appropriato. Se
+la classe C<Ordine> fosse cambiata in modo tale che C<Ordine::applica_sconto> non fosse più
+il metodo giusto da chiamare, il riferimento in C<$rif_a_met> non sarebbe stato aggiornato.
 
-If you use this form of invocation, limit the scope of the references.
+Quando usate questa forma di invocazione, limitate lo scope dei riferimenti.
 
-=head2 Callee-side
+=head2 Prospettiva del Chiamato
 
-X<methods; avoid calling as functions>
-X<functions; avoid calling as methods>
+X<metodi; evitare di chiamare come funzioni>
+X<fuzioni; evitare di chiamare come metodi>
 
-Because Perl 5 makes no distinction between functions and methods at the point
-of declaration and because it's I<possible> (however inadvisable) to invoke a
-given function as a function or a method, it's possible to write a function
-callable as either.
+Dato che Perl 5 non distingue tra funzioni e metodi nelle
+dichiarazioni e dato che è I<possibile> (per quanto sconsigliabile) invocare una
+data funzione sia come funzione che come metodo, si può scrivere una funzione
+pronta ad essere chiamata in entrambi i modi. Il modulo C<CGI> distribuito con Perl da il cattivo esempio. Le sue funzioni
+applicano svariate euristiche per determinare se il loro primo argumento è un
+invocante.
 
-The core C<CGI> module is a prime offender.  Its functions manually inspect
-C<@_> to determine whether the first argument is a likely invocant.  If so,
-they ensure that any object state the function needs to access is available.
-If the first argument is not a likely invocant, the function must consult
-global data elsewhere.
+Ciò ha molti svantaggi. Prima di tutto, è difficile predire esattamente quali sono gli invocanti
+potenzialmente validi per un dato metodo, specialmente quando è possibile avere a che fare con
+delle sottoclassi. Anche creare una API che non possa essere usata scorrettamente dagli utenti è più difficile,
+così come scrivere la documentazione. Che cosa succede quando una parte del progetto
+usa l'interfaccia procedurale e un'altra parte usa l'interfaccia a oggetti?
 
-As with all heuristics, there are corner cases.  It's difficult to predict
-exactly which invocants are potentially valid for a given method, especially
-when considering that users can create their own subclasses.  The documentation
-burden is also greater, given the need to explain the dichotomy of the code and
-the desire to avoid misuse.  What happens when one part of the project uses the
-procedural interface and another uses the object interface?
-
-Providing separate procedural and object interfaces to a library may be
-justifiable.  Some designs make some techniques more useful than others.
-Conflating the two into a single API will create a maintenance burden.  Avoid
-it.
+Se I<dovete> fornire sia un'interfaccia procedurale che un'interfaccia OO ad una libreria,
+create due API separate.
