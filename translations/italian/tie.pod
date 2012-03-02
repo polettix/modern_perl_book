@@ -2,78 +2,78 @@
 
 Z<tie>
 
-Where overloading (L<overloading>) allows you to customize the behavior of
-classes and objects for specific types of coercion, a mechanism called I<tying>
-allows you to customize the behavior of primitive variables (scalars, arrays,
-hashes, and filehandles). Any operation you might perform on a tied variable
-translates to a specific method call.
+Mentre l'overloading (L<overloading>) vi permette di personalizzare il comportamento di
+classi e oggetti per tipi specifici di coercizione, un meccanismo detto I<tying> (legatura, NdT)
+ci permette di personalizzare il comportamento dei tipi nativi (scalari, array,
+hash e filehandle). Qualunque operazione effettuate su una variabile legata
+si traduce in una specifica chiamata di metodo.
 
-X<builtins; C<tie>>
+X<builtin; C<tie>>
 X<C<Tie::File>>
 
-The C<tie> builtin originally allowed you to use disk space as the backing
-memory for hashes, so that Perl could access files larger than could easily fit
-in memory. The core module C<Tie::File> provides a similar system, and allows
-you to treat files as if they were arrays.
+La funzione nativa C<tie> (lega, NdT) permetteva originariamente di usare spazio su disco come memoria di supporto
+degli hash, in modo che Perl potesse accedere a file più grandi di quanto potesse essere ospitato
+in memoria. Il modulo C<Tie::File> distribuito con Perl fornisce un sistema simile e vi permette
+di trattare i file come se fossero array.
 
 X<C<Tie::StdScalar>>
 X<C<Tie::StdArray>>
 X<C<Tie::StdHash>>
 
-The class to which you C<tie> a variable must conform to a defined interface
-for a specific data type. See C<perldoc perltie> for an overview, then consult
-the core modules C<Tie::StdScalar>, C<Tie::StdArray>, and C<Tie::StdHash> for
-specific details. Start by inheriting from one of those classes, then override
-any specific methods you need to modify.
+La classe a cui fate il C<tie> di una variabile deve rispettare una interfaccia predefinita
+per ogni tipo di dato. Vedete C<perldoc perltie> per una panoramica, prima di consultare
+i moduli C<Tie::StdScalar>, C<Tie::StdArray> e C<Tie::StdHash> della distribuzione Perl per
+i dettagli più specifici. Iniziate ereditando da una di tali classi, e sovrascrivete
+i metodi che dovete modificare.
 
-=begin tip When Class and Package Names Collide
+=begin tip Collisioni tra Nomi di Classe e di Package
 
-If C<tie> weren't confusing enough, C<Tie::Scalar>, C<Tie::Array>, and
-C<Tie::Hash> define the necessary interfaces to tie scalars, arrays, and
-hashes, but C<Tie::StdScalar>, C<Tie::StdArray>, and C<Tie::StdHash> provide
-the default implementations.
+Come se C<tie> non creasse già abbastanza confusione, C<Tie::Scalar>, C<Tie::Array> e
+C<Tie::Hash> definiscono le interfacce necessarie per legare scalari, array e
+hash, mentre C<Tie::StdScalar>, C<Tie::StdArray> e C<Tie::StdHash> forniscono
+le implementazioni di default.
 
 =end tip
 
-=head2 Tying Variables
+=head2 Legare Variabili
 
-To tie a variable:
+per legare una variabile:
 
 =begin programlisting
 
     use Tie::File;
-    tie my @file, 'Tie::File', @args;
+    tie my @file, 'Tie::File', @arg;
 
 =end programlisting
 
-The first argument is the variable to tie, the second is the name of the class
-into which to tie it, and C<@args> is an optional list of arguments required
-for the tying function. In the case of C<Tie::File>, this is a valid filename.
+Il primo argomento è la variabile da legare, il secondo è il nome della classe a cui
+legarla e C<@args> è una lista opzionale di argomenti richiesti
+dalla funzione di legatura. Nel caso di C<Tie::File>, il parametro richiesto è un nome valido di file.
 
-X<builtins; C<tie>>
-X<builtins; C<tied>>
+X<builtin; C<tie>>
+X<builtin; C<tied>>
 
-Tying functions resemble constructors: C<TIESCALAR>, C<TIEARRAY()>,
-C<TIEHASH()>, or C<TIEHANDLE()> for scalars, arrays, hashes, and filehandles
-respectively. Each function returns a new object which represents the tied
-variable. Both the C<tie> and C<tied> builtins return this object. Most people
-use C<tied> in a boolean context, however.
+Le funzioni di legatora sono simili a costruttori: C<TIESCALAR>, C<TIEARRAY()>,
+C<TIEHASH()> e C<TIEHANDLE()> rispettivamente per gli scalari, gli array, gli hash e i
+filehandle. Ciascuna funzione restituisce un nuovo oggetto che rappresenta la variabile
+legata. Entrambe le funzioni native C<tie> e C<tied> restituiscono tale oggetto. La maggior parte
+delle persone, tuttavia, usa C<tied> in contesto booleano.
 
-=head2 Implementing Tied Variables
+=head2 Implementazione di Variabili Legate
 
-To implement the class of a tied variable, inherit from a core module such as
-C<Tie::StdScalar>N<C<Tie::StdScalar> lacks its own F<.pm> file, so use
-C<Tie::Scalar> to make it available.>, then override the specific methods for
-the operations you want to change.  In the case of a tied scalar, these are
-likely C<FETCH> and C<STORE>, possibly C<TIESCALAR()>, and probably not
+Per implementare la classe di una variabile legata, ereditate anzitutto da uno dei moduli distribuiti con Perl come
+C<Tie::StdScalar>N<C<Tie::StdScalar> non ha un proprio file F<.pm> associato, perciò dovete usare
+C<Tie::Scalar> per renderlo disponibile.>, quindi sovrascrivete i metodi specifici relativi alle
+operazioni che volete modificare.  Nel caso di uno scalare legato, è probabile che essi
+includano C<FETCH> e C<STORE>, forse anche C<TIESCALAR()>, ma probabilmente non
 C<DESTROY()>.
 
-You can create a class which logs all reads from and writes to a scalar with
-very little code:
+Con poco codice, otete creare una classe che tiene traccia di tutte le letture
+e le scritture su uno scalare:
 
 =begin programlisting
 
-    package Tie::Scalar::Logged
+    package Tie::Scalar::Registra
     {
         use Modern::Perl;
 
@@ -82,15 +82,15 @@ very little code:
 
         sub STORE
         {
-            my ($self, $value) = @_;
-            Logger->log("Storing <$value> (was [$$self])", 1);
-            $$self = $value;
+            my ($self, $valore) = @_;
+            Registro->scrivi("Memorizzo <$valore> (prima era [$$self])", 1);
+            $$self = $valore;
         }
 
         sub FETCH
         {
             my $self = shift;
-            Logger->log("Retrieving <$$self>", 1);
+            Registro->scrivi("Leggo <$$self>", 1);
             return $$self;
         }
     }
@@ -99,41 +99,41 @@ very little code:
 
 =end programlisting
 
-Assume that the C<Logger> class method C<log()> takes a string and the number
-of frames up the call stack of which to report the location.
+Assumete che il metodo C<scrivi()> della classe C<Registro> riceva una stringa e il numero
+di contesti di chiamata nello stack di cui riportare il numero di linea.
 
-Within the C<STORE()> and C<FETCH()> methods, C<$self> works as a blessed
-scalar.  Assigning to that scalar reference changes the value of the scalar and
-reading from it returns its value.
+I metodi C<STORE()> e C<FETCH()> trattano C<$self> come uno scalare
+blessed.  Assegnare un valore a tale riferimento a scalare cambia il valore dello scalare e
+leggere da esso restituisce il valore dello scalare.
 
-Similarly, the methods of C<Tie::StdArray> and C<Tie::StdHash> act on blessed
-array and hash references, respectively.  The C<perldoc perltie> documentation
-explains the copious methods they support, as you can read or write multiple
-values from them, among other operations.
+Analogamente, i metodi di C<Tie::StdArray> e C<Tie::StdHash> operano rispettivamente su dei riferimenti
+blessed ad array e hash.  La documentazione contenuta in C<perldoc perltie>
+spiega i numerosi metodi supportati da queste classi, ad esempio per leggere e scrivere valori
+multipli.
 
-=begin tip Isn't C<tie> Fun?
+=begin tip Vero che C<tie> è Divertente?
 
-The C<-norequire> option prevents the C<parent> pragma from attempting to load
-a file for C<Tie::StdScalar>, as that module is part of the file
+Grazie all'opzione C<-norequire> la direttiva C<parent> evita di tentare di caricare
+un file per C<Tie::StdScalar>, dato che tale modulo è contenuto in una parte del file
 F<Tie/Scalar.pm>.
 
 =end tip
 
-=head2 When to use Tied Variables
+=head2 Quando usare le Variabili Legate
 
-Tied variables seem like fun opportunities for cleverness, but they can produce
-confusing interfaces. Unless you have a very good reason for making objects
-behave as if they were builtin data types, avoid creating your own ties.
-C<tie> is also much slower than using the builtin types due to various reasons
-of implementation.
+Le variabili legate possono sembrare delle divertenti occasioni per mostrare la propria brillantezza, ma spesso producono
+interfacce confuse. A meno che abbiate delle ragioni molto valide per volere che certi oggetti
+si comportino come se fossero tipi di dati nativi, evitate di creare le vostre legature.
+Usare C<tie> è anche molto più lento che usare i tipi nativi a causa di vari aspetti
+implementativi.
 
-Good reasons include to ease debugging (use the logged scalar to help you
-understand where a value changes) and to make certain impossible operations
-possible (accessing large files in a memory-efficient way). Tied variables are
-less useful as the primary interfaces to objects; it's often too difficult and
-constraining to try to fit your whole interface to that supported by C<tie()>.
+Tra le ragioni valide ci sono quella di facilitare il debugging (ad esempio usare lo scalare tracciato per aiutarvi
+a capire dove cambia il suo valore) e quella di rendere possibili certe operazioni altrimenti
+impossibili (ad esempio accedere a file di grandi dimensioni con un uso efficiente della memoria). Le variabili legate sono
+invece difficilmente utili come interfacce primarie agli oggetti; spesso è troppo difficile e
+vincolante tentare di uniformare l'intera interfaccia a quella supportata da C<tie()>.
 
-The final word of warning is both sad and convincing; too much code goes out of
-its way to I<prevent> use of tied variables, often by accident. This is
-unfortunate, but violating the expectations of library code tends to reveal
-bugs that are often out of your power to fix.
+Un ultimo avvertimento poco piacevole ma convinente; troppo codice devia dai suoi obiettivi
+al fine di I<prevenire> l'uso di variabili legate, spesso accidentalmente. Questo è sicuramente
+un problema, ma la violazione delle aspettative del codice di una libreria rivela normalmente
+dei bug che non è in vostro potere risolvere.
