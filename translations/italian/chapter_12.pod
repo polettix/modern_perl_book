@@ -2,14 +2,10 @@
 
 =head0 Cosa Manca
 
-Perl5 non è perfetto, almeno nei suoi comportamenti di default. Alcune
-opzioni sono disponibili nel linguaggio, molte altre si possono trovare su
-CPAN. I programmatori Perl esperti hanno ciascuno la propria idea di come
-dovrebbe comportarsi un Perl 5 ideale e spesso utilizzano le proprie
-configurazioni in maniera molto efficace.
-
-I neofiti posono non sapere come essere aiutati da Perl a scrivere meglio
-i programmi. C'è una manciata di moduli base che vi renderanno molto più
-produttivi.
+Perl5 non è perfetto, ma è malleabile--in parte perchè non esiste un'unica
+configurazione ideale per ogni programmatore e ogni obiettivo. Alcuni comportamenti
+utili sono disponibili nelle librerie distribuite con Perl. Altri sono disponibili su CPAN.
+La vostra efficacia come programmatore Perl dipende da quanto sapete avvantaggiarvi di queste
+aggiunte.
 
 L<missing_defaults>
