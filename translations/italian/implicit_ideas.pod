@@ -21,21 +21,36 @@ contenuto di C<$_> in assenza di una variabile esplicita. Potete usare C<$_> com
 
 X<funzioni predefinite; C<chomp>>
 X<predefiniti; funzioni; C<chomp>>
+X<funzioni predefinite; C<chr>>
+X<predefiniti; funzioni; C<chr>>
+X<funzioni predefinite; C<ord>>
+X<predefiniti; funzioni; C<ord>>
+X<funzioni predefinite; C<lc>>
+X<predefiniti; funzioni; C<lc>>
+X<funzioni predefinite; C<length>>
+X<predefiniti; funzioni; C<length>>
+X<funzioni predefinite; C<reverse>>
+X<predefiniti; funzioni; C<reverse>>
+X<funzioni predefinite; C<uc>>
+X<predefiniti; funzioni; C<uc>>
 
-Per esempio, la funzione predefinita C<chomp> rimuove una sequenza di "a capo" dalla
-fine della stringa dataN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli.>:
+Molti degli operatori scalari di Perl (inclusi C<chr>, C<ord>, C<lc>, C<length>,
+C<reverse> e C<uc>) usano la variabile scalare di default se non gli
+fornite un'alternativa. Per esempio, la funzione predefinita C<chomp> rimuove una sequenza di "a capo" dalla
+fine del suo operandoN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli sul suo comportamento.>:
 
 =begin programlisting
 
     my $zio = "Roberto\n";
-    say "'$zio'";
     chomp $zio;
     say "'$zio'";
 
 =end programlisting
 
+C<$_> ha lo stesso ruolo in Perl dei pronomi I<ciò>, I<quello> o del suffisso I<-lo> in Italiano. 
 Se non passate esplicitamente una variabile, C<chomp> rimuove la sequenza di "a capo" dalla fine di C<$_>.
-Queste due linee di codice sono equivalenti:
+Perl capisce a che cosa vi riferite quando dite "C<chomp>", e farà sempre "chomp" su "quel" valore.
+Pertanto, queste due linee di codice sono equivalenti:
 
 =begin programlisting
 
@@ -43,10 +58,6 @@ Queste due linee di codice sono equivalenti:
     chomp;
 
 =end programlisting
-
-C<$_> ha lo stesso ruolo in Perl dei pronomi I<ciò>, I<quello> o del suffisso I<-lo> in Italiano. Leggete la prima linea
-come se dicesse "C<chomp>-alo" e la seconda come "C<chomp>". Perl capisce a che cosa vi riferite
-quando dite "C<chomp>", e farà sempre "chomp" su "quel" valore.
 
 X<funzioni predefinite; C<say>>
 X<predefiniti; funzioni; C<say>>
@@ -58,8 +69,7 @@ Analogamente, C<say> e C<print> operano su C<$_> in assenza di altri argomenti:
 =begin programlisting
 
     print;  # stampa $_ sul filehandle corrente
-    say;    # stampa $_ sul filehandle corrente
-            # con un a capo finale
+    say;    # stampa "$_\n" sul filehandle corrente
 
 =end programlisting
 
@@ -81,23 +91,6 @@ le sostituzioni e le traslitterazioni:
     say;
 
 =end programlisting
-
-X<funzioni predefinite; C<chr>>
-X<predefiniti; funzioni; C<chr>>
-X<funzioni predefinite; C<ord>>
-X<predefiniti; funzioni; C<ord>>
-X<funzioni predefinite; C<lc>>
-X<predefiniti; funzioni; C<lc>>
-X<funzioni predefinite; C<length>>
-X<predefiniti; funzioni; C<length>>
-X<funzioni predefinite; C<reverse>>
-X<predefiniti; funzioni; C<reverse>>
-X<funzioni predefinite; C<uc>>
-X<predefiniti; funzioni; C<uc>>
-
-Molti degli operatori scalari di Perl (inclusi C<chr>, C<ord>, C<lc>, C<length>,
-C<reverse> e C<uc>) lavorano sulla variabile scalare di default se non gli fornite
-un'alternativa.
 
 X<direttive predefinite; C<for>>
 X<predefiniti; direttive; C<for>>

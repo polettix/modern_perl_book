@@ -6,7 +6,7 @@ Perl risolve problemi--è flessibile, accomodante e malleabile.
 Programmatori in gamba lo usano ogni giorno per i compiti più diversi, dai programmi di automazione ad hoc lunghi una riga
 ai progetti che coinvolgono molti programmatori e durano anni.
 
-Perl è pragmatico, e il controllo è in mano al programmatore. Siete voi a scegliere il modo migliore di risolvere un problema,
+Perl è pragmatico, e il controllo è in mano al programmatore. Siete voi a scegliere come risolvere un problema,
 e Perl asseconderà le vostre intenzioni senza darvi fastidio e senza tante cerimonie.
 
 Perl è un linguaggio che cresce di pari passo con le vostra conoscenze. Nel giro di un'ora imparerete abbastanza per poter scrivere 

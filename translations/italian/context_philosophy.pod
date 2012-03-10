@@ -113,19 +113,16 @@ interno, quindi entrambe queste chiamate a C<cerca_faccende()> sono valutate in 
     my %risultati =
     (
         operazione_poco_costosa => $risultati_poco_costosi,
-        oprazione_costosa       => cerca_faccende(), # OPS!
+        operazione_costosa       => cerca_faccende(), # OPS!
     );
 
 =end programlisting
 
-Quest'ultimo esempio sorprende spesso i programmatori principianti che si aspettano un contesto scalare
-per quella chiamata di funzione. Invece, inizializzare un hash (L<hashes>) con una lista di valori
-impone un contesto lista alla chiamata a C<cerca_faccende>.
-
 X<funzioni predefinite; C<scalar>>
 X<predefiniti; funzioni; C<scalar>>
 
-Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
+Quest'ultimo esempio sorprende spesso i programmatori principianti, dato che inizializzare un hash (L<hashes>) con una lista di valori
+impone un contesto lista alla chiamata a C<cerca_faccende>. Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 
 =begin programlisting
 
@@ -138,7 +135,7 @@ Per imporre esplicitamente un contesto scalare, usate l'operatore C<scalar>:
 =end programlisting
 
 Perché è importante il contesto? Una funzione può esaminare il contesto in cui è stata chiamata
-e decidere di conseguenza quanto lavoro fare per restituire il risultato.
+e decidere di conseguenza quanto lavoro deve fare.
 In contesto void, C<cerca_faccende()> potrebbe non fare assolutamente nulla. In contesto scalare, deve trovare soltanto il compito più importante. 
 In contesto lista, deve ordinare e restituire l'intera lista di faccende da sbrigare.
 
@@ -158,10 +155,8 @@ variable o restituito da una funzione, i contesti di valore di Perl forniscono i
 X<operatori predefiniti; C<eq>>
 X<predefiniti; operatori; C<eq>>
 
-Perl fa del suo meglio per convertire i valori al tipo appropriato (L<coercion>),
-in base agli operatori che usate. Prestate attenzione ad usare il giusto operatore per il
-tipo di contesto che desiderate. Supponiamo che vogliate confrontare il contenuto di due stringhe.
-L'operatore C<eq> determina se le due stringhe contengono la stessa informazione I<come stringhe>:
+Perl converte i valori al tipo specifico appropriato (L<coercion>),
+in base agli operatori che usate. Per esempio, l'operatore C<eq> determina se due stringhe contengono la stessa informazione I<come stringhe>:
 
 =begin programlisting
 
@@ -189,6 +184,7 @@ X<predefiniti; operatori; C<==>>
 
 L'operatore C<eq> tratta i suoi operandi come stringhe forzando il I<contesto stringa> su di essi.
 Invece, l'operatore C<==> impone il I<contesto numerico>. In contesto numerico, entrambe le stringhe vengono valutate come C<0> (L<numeric_coercion>).
+Fate attenzione ad usare l'operatore appropriato per tipo di contesto desiderato.
 
 X<booleano; contesto>
 X<contesto booleano>
@@ -212,5 +208,5 @@ Per forzare un contesto booleano, usate due volte l'operatore di negazione:
 
 =end programlisting
 
-I contesti di tipo sono meno difficili da identificare rispetto ai contesti di quantità. Una volta che
-sapete della loro esistenza e conoscete i contesti forniti dai vari operatori (L<operator_types>), è raro che possiate sbagliarvi.
+I contesti di tipo sono più facili da identificare rispetto ai contesti di quantità. Una volta che
+conoscete i contesti forniti dai vari operatori (L<operator_types>), è raro che possiate sbagliarvi.

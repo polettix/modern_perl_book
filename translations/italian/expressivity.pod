@@ -60,7 +60,7 @@ che quasi tutti desiderano aiutare un bambino a imparare a comunicare bene.
 Tutti noi iniziamo come principianti. Con la pratica e gli insegnamenti dei programmatori più esperti, 
 inizierete a capire e ad adottare gli idiomi e le tecniche più potenti.
 
-Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di una lista scrivendo:
+Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di una lista con:
 
 =begin programlisting
 
@@ -81,7 +81,7 @@ Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di
 
 =end programlisting
 
-... mentre un principiante potrebbe iniziare con:
+... mentre un principiante potrebbe provare con:
 
 =begin programlisting
 
@@ -95,7 +95,7 @@ Per esempio, un programmatore Perl esperto potrebbe triplicare tutti i numeri di
 
 =end programlisting
 
-Tutti e tre gli approcci portano allo stesso risultato, ma ciascuno sfrutta Perl in modo diverso.
+Tutti e tre gli approcci portano allo stesso risultato, ma ciascuno usa Perl in modo diverso.
 
 L'esperienza con la programmazione in Perl vi aiuterà a focalizzarvi sul I<che cosa> volete ottenere piuttosto che sul I<come> ottenerlo.
 In ogni caso, Perl esegue di buon grado anche i programmi più semplici. Potete
