@@ -80,5 +80,5 @@ Sawyer X,
 David Yingling,
 Marko Zagozen,
 harleypig,
-hbm,
-and sunnavy.
+hbm
+e sunnavy.
