@@ -445,16 +445,7 @@ il ciclo non terminerebbe mai:
 
 È I<possibile> ciclare su questa lista di chiavi e valori con un ciclo C<for>, ma la
 variabile iteratore conterrà una chiave ad una iterazione e il suo valore in quella successiva,
-poichè Perl appiattisce l'hash in un'unica lista di chiavi e valori alternati:
-
-=begin programlisting
-
-    for (%hash)
-    {
-        ...
-    }
-
-=end programlisting
+poichè Perl appiattisce l'hash in un'unica lista di chiavi e valori alternati.
 
 =head2 Idiomi degli Hash
 
@@ -535,9 +526,7 @@ l'hash.
 Perl 5.10 ha introdotto gli operatori di defined-or e di assegnamento defined-or. Prima
 del 5.10, gran parte del codice usava l'operatore di assegnamento boolean-or (C<||=>) per lo stesso
 scopo. Purtroppo, alcuni valori validi valutano a falso in contesto booleano, quindi valutare la I<definitezza> dei valori
-è quasi sempre più accurato.
-
-Essendo pigra, la manovra orcish testa la definitezza del valore in cache, non
+è quasi sempre più accurato. Essendo pigra, la manovra orcish testa la definitezza del valore in cache, non
 la sua verità.
 
 X<hashes; named parameters>
@@ -565,7 +554,7 @@ Questo approccio vi permette anche di settare dei valori di default, in questo m
 
     sub prepara_coppa
     {
-        my %parametri           = @_;
+        my %parametri         = @_;
         B<$parametri{gusto}   //= 'Vaniglia';>
         B<$parametri{glassa}  //= 'cioccolato';>
         B<$parametri{praline} //= 100;>
@@ -574,7 +563,8 @@ Questo approccio vi permette anche di settare dei valori di default, in questo m
 
 =end programlisting
 
-... oppure includendoli direttamente nell'assegnamento iniziale:
+... oppure includendoli direttamente nell'inizializzazione dell'hash, dato che un assegnamento
+in una certa posizione sovrascrive gli assegnamenti che lo precedono:
 
 =begin programlisting
 
@@ -591,9 +581,6 @@ Questo approccio vi permette anche di settare dei valori di default, in questo m
     }
 
 =end programlisting
-
-... dato che le successive dichiarazioni della stessa chiave con un diverso valore
-sovrascrivono i valori precedenti.
 
 =head2 Bloccare gli Hash
 

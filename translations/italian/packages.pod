@@ -60,9 +60,7 @@ X<packages; versions>
 X<C<$VERSION>>
 
 Oltre al nome, un package ha una versione e tre metodi impliciti:
-C<VERSION()>, C<import()> (L<importing>) e C<unimport()>.
-
-C<VERSION()> restituisce il numero di versione del package. Questo numero è in realtà una serie di
+C<import()> (L<importing>), C<unimport()> e C<VERSION()>. C<VERSION()> restituisce il numero di versione del package. Questo numero è in realtà una serie di
 numeri contenuti in una variabile globale del package di nome C<$VERSION>. Per convenzione,
 le versioni tendono a essere una serie di interi separati dal punto, come C<1.23> o
 C<1.1.10>, dove ogni componente è un intero.

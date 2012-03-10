@@ -10,25 +10,21 @@ di accedere ai tipi di dati aggregati attraverso speciali variabili scalari. Le 
 nidificate del Perl, come un array di array o un hash di hash, sono
 rese possibili dall'uso dei riferimenti.
 
-=head2 Dichiarazione di Strutture Dati Nidificate
-
 Per dichiarare una struttura dati nidificata, usate la sintassi della dichiarazione di riferimenti anonimi:
 
 =begin programlisting
 
-    my @terzetti_famosi =
-    (
+    my @terzetti_famosi = (
         [qw( emy ely evy   )],
         [qw( qui quo qua )],
         [qw( aldo giovanni giacomo )],
     );
 
-    my %pasti =
-    (
+    my %pasti = (
         colazione => { piatto   => 'uova',
                        contorno => 'patatine' },
         pranzo    => { piatto   => 'panini',
-                       contorno => 'mela'         },
+                       contorno => 'mela'     },
         cena      => { piatto   => 'bistecca',
                        contorno => 'insalata di avocado' },
     );
@@ -42,8 +38,6 @@ elementi alla lista.
 
 =end tip
 
-=head2 Accesso a Strutture Dati Nidificate
-
 Usate la sintassi dei riferimenti Perl per accedere agli elementi delle strutture dati nidificate. Il
 sigillo denota la quntità di dati da estrarre e la freccia di dereferenziazione
 indica che il valore di una porzione della struttura dati è un riferimento:
@@ -56,21 +50,15 @@ indica che il valore di una porzione della struttura dati è un riferimento:
 =end programlisting
 
 L'unico modo di nidificare una struttura dati multi-livello è attraverso i riferimenti, quindi la freccia
-è superflua. Potete ometterla per chiarezza:
+è superflua. Potete ometterla per chiarezza, eccetto quando invocate un riferimento a funzione:
 
 =begin programlisting
 
-    my $ultimo_nipote       = $terzetti_famosi[1][2];
-    my $parte_del_risveglio = $piatti{colezione}{contorno};
+    my $nipote = $terzetti_famosi[1][2];
+    my $pasto  = $piatti{colezione}{contorno};
+    $azioni{finanziarie}{compra_cibo}->( $nipote, $pasto );
 
 =end programlisting
-
-=begin tip Save Your Arrows for Functions
-
-La sintassi con la freccia è più chiara solo nel caso in cui vogliate invocare un riferimento a
-funzione memorizzato in una struttura dati nidificata.
-
-=end tip
 
 Usate dei blocchi di disambiguazione per accedere ai componenti delle strutture dati nidificate come se fossero
 array o hash di first-class:
@@ -113,8 +101,6 @@ intermedio:
 
 =end programlisting
 
-... tenendo sempre a mente l'importanza di essere chiari.
-
 C<perldoc perldsc>, il cookbook sulle strutture dati, fornisce numerosi esempi di uso di varie
 strutture dati in Perl.
 
@@ -123,9 +109,8 @@ strutture dati in Perl.
 Z<autovivification>
 X<autovivification>
 
-L'espressività del Perl si applica anche alle strutture dati nidificate. Quando tentate di scrivere
-dentro un componente di una struttura dati nidificata, Perl creerà il cammino
-necessario nella struttura dati fino alla destinazione:
+Quando tentate di scrivere dentro un componente di una struttura dati nidificata, Perl creerà
+il cammino necessario nella struttura dati fino alla destinazione:
 
 =begin programlisting
 
@@ -136,14 +121,14 @@ necessario nella struttura dati fino alla destinazione:
 
 Dopo la seconda linea di codice, questo array di array di array di array
 contiene un riferimento ad array in un riferimento ad array in un riferimento ad array in un 
-riferimento ad array. Ogni riferimento ad array contiene un elemento. Analogamente, trattare
-un valore non definito come se fosse un riferimento ad hash in una struttura dati nidificata
-creerà gli hash intermedi:
+riferimento ad array. Ogni riferimento ad array contiene un elemento. Analogamente, se trattate
+un valore non definito come se fosse un riferimento ad hash in una struttura dati nidificata,
+Perl lo inizializzerà di conseguenza:
 
 =begin programlisting
 
-    my %hdhdh;
-    $hdhdh{Computer}{Disco}{Rigido} = 'molto pericoloso';
+    my %hdh;
+    $hdh{Computer}{Disco} = 'molto pericoloso';
 
 =end programlisting
 

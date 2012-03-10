@@ -1,17 +1,15 @@
 =head1 Array
 
 Z<arrays>
-X<arrays>
+
+X<array>
+X<sigillo C<@>>
+X<sigilli; C<@>>
 
 Gli I<array> del Perl 5 sono una struttura dati I<first-class>--il linguaggio li supporta
 come tipo di dati nativo--che memorizza zero o più scalari. Potete accedere
 a singoli membri dell'array con defli indici interi, e potete aggiungere o rimuovere
-elementi a piacere.
-
-X<C<@> sigil>
-X<sigils; C<@>>
-
-Il sigillo C<@> denota un array. Per dichiarare un array, scrivete:
+elementi a piacere. Il sigillo C<@> denota un array. Per dichiarare un array, scrivete:
 
 =begin programlisting
 
@@ -58,36 +56,27 @@ un'addizione o un contesto booleano), un array valuta al numero di elementi nell
 
 =end programlisting
 
-Per ottenere l'I<indice> dell'ultimo elemento di un array, sottraete uno dal
-numero di elementi dell'array (ricordate che gli indici dell'array iniziano da 0):
-
-=begin programlisting
-
-    my $primo_indice  = 0;
-    my $ultimo_indice = @gatti - 1;
-
-    say   "Il mio primo gatto ha indice $primo_indice, "
-        . "e il mio ultimo gatto ha indice $ultimo_indice."
-
-=end programlisting
-
 X<C<$#>; sigil>
 X<sigils; C<$#>>
 
-Anche la meno elegante sintassi C<$#cats> valuta all'ultimo indice dell'array:
+Per ottenere l'I<indice> dell'ultimo elemento di un array, sottraete uno dal
+numero di elementi dell'array (ricordate che gli indici dell'array iniziano da 0)
+oppure usate la meno elegante sintassi C<$#cats>:
 
 =begin programlisting
 
     my $primo_indice = 0;
-    B<my $ultimo_indice  = $#gatti;>
+    my $ultimo_indice  = @gatti - 1;
+    # oppure
+    # my $ultimo_indice  = $#gatti;
 
     say   "Il mio primo gatto ha indice $primo_indice, "
         . "e il mio ultimo gatto ha indice $ultimo_indice."
 
 =end programlisting
 
-... sebbene sia spesso ancora più chiaro usare invece degli indici di array negativi. L'ultimo
-elemento di un array è accessibile all'indice C<-1>. Il penultimo elemento
+Quando l'indice è meno importante della posizione di un elemento, usate degli indici 
+di array negativi. L'ultimo elemento di un array è accessibile all'indice C<-1>. Il penultimo elemento
 dell'array è accessibile all'indice C<-2>, e così via:
 
 =begin programlisting
@@ -165,68 +154,6 @@ C<my @elementi = ();> è una versione più lunga e verbosa di C<my @elementi>, d
 gli array appena dichiarati sono vuoti.
 
 =end tip
-
-=head2 Slice di Array
-
-Z<array_slices>
-
-X<arrays; slices>
-X<slices; array>
-X<C<@>; sigil>
-X<sigils; C<@>>
-
-Il costrutto di I<array slice> vi permette di accedere agli elementi di un array in contesto
-lista. A differenza dell'accesso scalare a un elemento dell'array, questa operazione di indicizzazione
-riceve una lista di zero o più indici e usa il sigillo array (C<@>):
-
-=begin programlisting
-
-    my @gatti_giovani      = @gatti[-1, -2];
-    my @gatti_anziani      = @gatti[0 .. 2];
-    my @selezione_di_gatti = @gatti[ @indici ];
-
-=end programlisting
-
-Le slice di array possono essere utili negli assegnamenti:
-
-=begin programlisting
-
-    @utenti[ @indici_sostituzioni ] = @sostituisci_utenti;
-
-=end programlisting
-
-Una slice può contenere zero o più elementi--o anche uno solo:
-
-=begin programlisting
-
-    # array con un singolo elemento; la chiamata di funzione è in contesto I<lista>
-    @gatti[-1] = dammi_altri_gatti();
-
-    # array con un singolo elemento; la chiamata di funzione è in contesto I<scalare>
-    $gatti[-1] = dammi_altri_gatti();
-
-=end programlisting
-
-L'unica differenza sintattica tra una slice di array con un solo elemento e
-l'accesso scalare a un elemento dell'array è il sigillo usato. La differenza I<semantica>
-è maggiore: una slice di array impone sempre il contesto lista. Una slice di array
-valutata in contesto scalare produce un warning:
-
-=begin screen
-
-    È meglio scrivere il valore scalare @gatti[1] come $gatti[1]...
-
-=end screen
-
-Una slice di array impone il contesto lista (L<context_philosophy>) anche all'espressione
-che usa come indice:
-
-=begin programlisting
-
-    # la chiamata di funzione è in contesto lista
-    my @gatti_affamati = @gatti[ indici_di_gatti() ];
-
-=end programlisting
 
 =head2 Operazioni sugli Array
 
@@ -326,6 +253,68 @@ A partire da Perl 5.12, C<each> può iterare su un array per indice e valore:
 
 =end programlisting
 
+=head2 Slice di Array
+
+Z<array_slices>
+
+X<arrays; slices>
+X<slices; array>
+X<C<@>; sigil>
+X<sigils; C<@>>
+
+Il costrutto di I<array slice> vi permette di accedere agli elementi di un array in contesto
+lista. A differenza dell'accesso scalare a un elemento dell'array, questa operazione di indicizzazione
+riceve una lista di zero o più indici e usa il sigillo array (C<@>):
+
+=begin programlisting
+
+    my @gatti_giovani      = @gatti[-1, -2];
+    my @gatti_anziani      = @gatti[0 .. 2];
+    my @selezione_di_gatti = @gatti[ @indici ];
+
+=end programlisting
+
+Le slice di array possono essere utili negli assegnamenti:
+
+=begin programlisting
+
+    @utenti[ @indici_sostituzioni ] = @sostituisci_utenti;
+
+=end programlisting
+
+Una slice può contenere zero o più elementi--o anche uno solo:
+
+=begin programlisting
+
+    # slice di array con un singolo elemento; contesto I<lista>
+    @gatti[-1] = dammi_altri_gatti();
+
+    # accesso a un singolo elemento dell'array; contesto I<scalare>
+    $gatti[-1] = dammi_altri_gatti();
+
+=end programlisting
+
+L'unica differenza sintattica tra una slice di array con un solo elemento e
+l'accesso scalare a un elemento dell'array è il sigillo usato. La differenza I<semantica>
+è maggiore: una slice di array impone sempre il contesto lista. Una slice di array
+valutata in contesto scalare produce un warning:
+
+=begin screen
+
+    È meglio scrivere il valore scalare @gatti[1] come $gatti[1]...
+
+=end screen
+
+Una slice di array impone il contesto lista anche all'espressione
+che usa come indice:
+
+=begin programlisting
+
+    # la chiamata di funzione è in contesto lista
+    my @gatti_affamati = @gatti[ indici_di_gatti() ];
+
+=end programlisting
+
 =head2 Array e Contesto
 
 X<list context; arrays>
@@ -400,23 +389,13 @@ C<$LIST_SEPARATOR>. Quindi:
 
 =end programlisting
 
-Localizzare temporaneamente C<$"> e assegnarle un altro valore a scopo di debugging
-può essere molto comodoN<Il credito per averne dimostrato l'efficacia va a Mark Jason Dominus.>:
+Localizzate C<$"> con un delimitatore per facilitare il debuggingN<Il credito per questa tecnica va a Mark Jason Dominus.>:
 
 =begin programlisting
 
-    # cos'è già che c'è in questo array?
-    {
-        local $" = ')(';
-        say "(@dolciumi)";
-    }
+    # cosa c'e' gia' in questo array?
+    local $" = ')(';
+    say "(@dolciumi)";
+    B<(crostata)(torta)(ciambelle)(biscotti)(pane dolce)>
 
 =end programlisting
-
-... che produce il risultato:
-
-=begin screen
-
-    (crostata)(torta)(ciambelle)(biscotti)(pane dolce)
-
-=end screen

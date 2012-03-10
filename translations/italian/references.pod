@@ -295,7 +295,7 @@ al riferimento:
 =end programlisting
 
 Per accedere a singoli valori dell'hash (ovvero settarli, cancellarli, controllarne l'esistenza ed
-estrarli) usate la freccia di dereferenziazione:
+estrarli) usate la freccia di dereferenziazione o un sigillo doppio:
 
 =begin programlisting
 
@@ -303,16 +303,10 @@ estrarli) usate la freccia di dereferenziazione:
     {
         my $colore = shift;
         return B<< $rif_a_colori->{$colore} >>;
+        # oppure return B<< $$rif_a_colori{$colore} >>;
     }
 
 =end programlisting
-
-=begin tip Doubling Sigils Redux
-
-Analogamente ai riferimenti ad array, potete sostituire la freccia di dereferenziazione con un altro
-sigillo scalare, ad esempio C<$$rif_a_colori{$colore}>.
-
-=end tip
 
 Per le slice di riferimenti ad hash usate il sigillo array (C<@>) e le parentesi graffe per disambiguare:
 
@@ -498,25 +492,20 @@ scrivendo:
 
 =end programlisting
 
-In Perl 5.12, questo codice funziona se prima avete scritto C<use IO::File;>. Prima del 5.12,
-questi oggetti erano istanze di C<IO::Handle>, e quindi dovevate specificare tale classe nello C<use>.
-
-Potreste anche vedere vecchio codice che usa riferimenti a typeglob, come il seguente:
+Per attivare questa funzionalità, in Perl 5.12 dovete fare la C<use IO::File;> in Perl 5.10
+e versioni precedenti dovete fare la C<use IO::Handle;>. Anche il codice meno recente può
+creare dei riferimenti a typeglob:
 
 =begin programlisting
 
-    my $fh = do
-    {
-        local *FH;
-        open FH, "> $file"
-            or die "Non posso scrivere su '$file': $!\n";
-        B<\*FH>;
-    };
+    local *FH;
+    open FH, "> $file" or die "Non posso scrivere su '$file': $!";
+    my $fh = B<\*FH>;
 
 =end programlisting
 
-Questo idioma è antecedente alla comparsa dei filehandle lessicali come parte di Perl 5.6.0 nel
-Marzo del 2000. Potete ancora usare l'operatore di riferimento a typeglob per ottenere
+Questo idioma è antecedente alla comparsa dei filehandle lessicali (avvenuta con Perl 5.6.0 nel
+Marzo del 2000). Potete ancora usare l'operatore di riferimento a typeglob per ottenere
 riferimenti ai filehandle globali del package come C<STDIN>, C<STDOUT>,
 C<STDERR> e C<DATA>--ma questi nomi sono comunque globali.
 
@@ -542,17 +531,14 @@ fa il Perl a sapere quando è sicuro chiudere il file aperto nello scope più in
 
 =begin programlisting
 
-    sub mostra_scope
+    say 'file non aperto';
+
     {
-        say 'file non aperto';
-
-        {
-            open my $fh, '>', 'scope_interno.txt';
-            $fh->say( 'qui il file è aperto' );
-        }
-
-        say 'qui il file è chiuso';
+        open my $fh, '>', 'scope_interno.txt';
+        $fh->say( 'qui il file e` aperto' );
     }
+
+    say 'qui il file e` chiuso';
 
 =end programlisting
 

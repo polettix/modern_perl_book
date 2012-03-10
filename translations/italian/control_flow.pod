@@ -104,10 +104,7 @@ dei parametri delle funzioni (L<postfix_parameter_validation>):
     {
         return unless @_;
 
-        for my $canzone (@_)
-        {
-            ...
-        }
+        for my $canzone (@_) { ... }
     }
 
 =end programlisting
@@ -829,10 +826,7 @@ Potete nidificare i cicli dentro altri cicli:
 
     for my $colore (@colori)
     {
-        for my $valore (@valori_delle_carte)
-        {
-            ...
-        }
+        for my $valore (@valori_delle_carte) { ... }
     }
 
 =end programlisting
@@ -1061,7 +1055,7 @@ C<given> lessicalizza la variabile topic:
 X<builtins; C<when>>
 X<topicalization>
 
-C<given> è particolarmente utile quando è usato in combinazione con C<when>. 
+C<given> è particolarmente utile quando è usato in combinazione con C<when> (L<smart_match>). 
 C<given> I<topicalizza> un valore dentro un blocco in modo che diverse istruzioni C<when> possano
 fare il match del topic con delle espressioni usando una semantica di I<smart-match>. Il seguente codice
 implementa il gioco di Sasso, Carta e Forbici:
@@ -1131,17 +1125,13 @@ questo codice.
 
 =end tip
 
-Il costrutto C<when> è ancora più potente di quanto mostrato fin qui; può fare un match (L<smart_match>)
-con molti altri tipi di espressioni inclusi scalari, aggregati,
-riferimenti, espressioni di confronto arbitrarie e anche riferimenti a codice.
-
 =head2 Chiamate di coda
 
 Z<tailcalls>
 X<tailcalls>
 
 Una I<chiamata di coda> ha luogo quando l'ultima espressione in una funzione è una chiamata a
-un'altra funzione--il volaore di ritorno della funzione chiamante è il valore
+un'altra funzione--il valore di ritorno della funzione chiamante è il valore
 di ritorno della funzione chiamata:
 
 =begin programlisting
@@ -1156,18 +1146,16 @@ di ritorno della funzione chiamata:
 
 =end programlisting
 
-In questo codice, ritornare da C<saluta_persona()> direttamente al chiamante di
-C<traccia_e_saluta_persona()> è più efficiente che ritornare a
+Ritornare da C<saluta_persona()> direttamente al chiamante di
+C<traccia_e_saluta_persona()> è più efficiente che ritornare I<a>
 C<traccia_e_saluta_persona()> e poi ritornare immediatamente I<da>
-C<traccia_e_saluta_persona()>. Ritornare direttamente da C<saluta_persona()> al
+C<traccia_e_saluta_persona()>. Ritornare direttamente I<da> C<saluta_persona()> al
 chiamante di C<traccia_e_saluta_persona()> è una I<ottimizzazione di chiamata di coda>.
 
 Il codice fortemente ricorsivo (L<recursion>), specialmente quando ha luogo una mutua ricorsione, può
 consumare molta memoria. Le chiamate di coda riducono la quantità di memoria necessaria per il tracciamento
 interno del controllo di flusso e possono rendere trattabili degli algoritmi molto costosi.
-Purtroppo, il Perl 5 non riesce sempre a identificare i casi dove potrebbe applicare questa
-ottimizzazione automaticamente. Se questo succede col vostro codice, fate a mano una ottimizzazione
-di chiamata di coda.
+Purtroppo, Perl 5 non applica questa ottimizzazione automaticamente; dovete applicarla voi stessi quando lo ritenete necessario.
 
 X<builtins; C<goto>>
 

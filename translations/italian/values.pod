@@ -787,10 +787,7 @@ un singolo elemento) che in contesto lista (per una slice):
     my @slice_di_array  = @slice_di_lista[contesto()];
     my $indice_di_array = $slice_di_array[contesto()];
 
-    # say impone contesto lista
-    say contesto();
-
-    # il contesto void è triviale
-    contesto();
+    say contesto(); # contesto lista
+    contesto();     # contesto void
 
 =end programlisting
