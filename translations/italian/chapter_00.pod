@@ -26,7 +26,8 @@ e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. A meno
 
     #!/usr/bin/env perl
 
-    use Modern::Perl;
+    use Modern::Perl 2011;
+    use autodie;
 
 =end programlisting
 
@@ -36,7 +37,7 @@ e attiva nuove funzionalità introdotte nelle versioni recenti di Perl 5. A meno
 
     #!/usr/bin/env perl
 
-    use 5.012;
+    use 5.012;      # implica "use strict;"
     use warnings;
     use autodie;
 
