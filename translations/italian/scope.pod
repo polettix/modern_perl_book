@@ -69,7 +69,8 @@ X<lexical shadowing>
 X<scope; lexical shadowing>
 
 Dichiarare un lessicale in uno scope con lo stesso nome di un lessicale in uno
-scope più esterno nasconde, o I<oscura>, il lessicale esterno:
+scope più esterno nasconde, o I<oscura>, il lessicale esterno nello scope interno.
+Spesso, è proprio ciò che desiderate:
 
 =begin programlisting
 
@@ -84,17 +85,17 @@ scope più esterno nasconde, o I<oscura>, il lessicale esterno:
 
 =end programlisting
 
-Questo programma stampa C<Edward> e quindi C<Jacob>N<Famigliari dell'autore, non
-i noti vampiri.>, sebbene ridichiarare una variabile lessicale con lo stesso nome e lo stesso
-tipo I<nello stesso scope lessicale> produca un messaggio di warning. La possibilità di oscurare un
-lessicale è una funzionalità dell'incapsulamento.
-
 =begin tip Name Collisions
 
 L'oscuramento di lessicali può essere accidentale. Limitate lo scope delle variabili e la
 nidificazione degli scope per ridurre questo rischio.
 
 =end tip
+
+Questo programma stampa C<Edward> e quindi C<Jacob>N<Famigliari dell'autore, non
+i noti vampiri.>, sebbene ridichiarare una variabile lessicale con lo stesso nome e lo stesso
+tipo I<nello stesso scope lessicale> produca un messaggio di warning. La possibilità di oscurare un
+lessicale è una funzionalità dell'incapsulamento.
 
 Ci sono alcune sottigliezze relative alle dichiarazioni di lessicali, per esempio quando una variabile lessicale viene usata
 come variabile iteratore di un ciclo C<for>. La sua dichiarazione è al di fuori del
@@ -138,7 +139,7 @@ nel proprio blocco:
 Le funzioni--sia con nome che anonime--forniscono uno scope lessicale al proprio corpo. Grazie a questo
 è possibile definire le closure (L<closures>).
 
-=head3 Lo Scope Our
+=head2 Lo Scope Our
 
 Z<our>
 X<builtins; C<our>>

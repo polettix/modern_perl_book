@@ -36,11 +36,9 @@ degli attributi parametrici:
 
 =begin programlisting
 
-    sub configura_test :Test(setup) { ... }
-
-    sub creazione_test_automatico :Test(10) { ... }
-
-    sub termina_test :Test(teardown) { ... }
+    sub configura_test            :Test(setup)    { ... }
+    sub creazione_test_automatico :Test(10)       { ... }
+    sub termina_test              :Test(teardown) { ... }
 
 =end programlisting
 

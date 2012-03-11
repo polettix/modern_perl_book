@@ -8,8 +8,6 @@ programma:
 
 =begin programlisting
 
-    #!/usr/bin/perl
-
     use Modern::Perl;
 
     cuoci_crostata( ripieno => 'mele' );
@@ -17,7 +15,9 @@ programma:
 =end programlisting
 
 Quando lo eseguite, Perl solleva un'eccezione di chiamata a una funzione C<cuoci_crostata()>
-non definita. Ora aggiungete una funzione con nome C<AUTOLOAD()>:
+non definita.
+
+Ora aggiungete una funzione di nome C<AUTOLOAD()>:
 
 =begin programlisting
 
@@ -25,9 +25,9 @@ non definita. Ora aggiungete una funzione con nome C<AUTOLOAD()>:
 
 =end programlisting
 
-Se rieseguite ora il programma, non succede nulla.  Perl chiama la funzione
+Se rieseguite il programma, non succede nulla di evidente.  Perl chiama la funzione
 C<AUTOLOAD()> di un package--se esiste-- ogni volta che il normale meccanismo di chiamata
-non trova una funzione. Modificate C<AUTOLOAD()> in modo da stampare un messaggio:
+fallisce. Modificate C<AUTOLOAD()> in modo da stampare un messaggio:
 
 =begin programlisting
 
@@ -35,26 +35,15 @@ non trova una funzione. Modificate C<AUTOLOAD()> in modo da stampare un messaggi
 
 =end programlisting
 
+... per dimostrare che viene chiamata.
+
 =head2 Funzionalità Base di AUTOLOAD
-
-La funzione C<AUTOLOAD()> riceve direttamente in C<@_> gli argomenti che erano stati passati
-alla funzione non definita. Potete manipolarli a vostro piacimento:
-
-=begin programlisting
-
-    sub AUTOLOAD
-    {
-        # stampa gli argomenti separati da virgola
-        B<local $" = ', ';>
-        B<say "Sono in AUTOLOAD(@_)!">
-    }
-
-=end programlisting
 
 X<C<$AUTOLOAD>>
 
-Il I<nome> della funzione non definita è memorizzato nella variabile pseudo-globale
-C<$AUTOLOAD>:
+La funzione C<AUTOLOAD()> riceve direttamente in C<@_> gli argomenti che erano stati passati
+alla funzione non definita, mentre il I<nome> della funzione non definita è memorizzato nella variabile globale di package
+C<$AUTOLOAD>. Potete manipolare questi argomenti a vostro piacimento:
 
 =begin programlisting
 
@@ -69,8 +58,8 @@ C<$AUTOLOAD>:
 
 =end programlisting
 
-Con la dichiarazione C<our> (L<our>), lo scope della variabile è il corpo di
-C<AUTOLOAD()>. La variabile contiene il nome fully-qualified della funzione
+Con la dichiarazione C<our> (L<our>), lo scope della variabile diventa il corpo della
+funzione. La variabile contiene il nome fully-qualified della funzione
 non definita (in questo caso, C<main::cuoci_crostata>). Potete rimuovere il nome del package con
 un'espressione regolare (L<regex>):
 
@@ -191,7 +180,6 @@ C<AUTOLOAD()> con una chiamata al metodo destinatario:
     sub AUTOLOAD
     {
         B<my ($nome) = our $AUTOLOAD =~ /::(\w+)$/;>
-
         my $metodo = sub { ... }
 
         no strict 'refs';

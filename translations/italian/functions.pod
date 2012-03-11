@@ -475,7 +475,7 @@ funzione è corretto:
 
     sub somma_numeri
     {
-        croak 'Mi aspettavo due numeri, ma ne ho ricevuti: ' . @_
+        croak 'Mi aspettavo due numeri, ne ho ricevuti: ' . @_
             unless @_ == 2;
 
         ...
@@ -699,12 +699,12 @@ X<C<goto>>
 X<functions; C<goto>>
 X<builtins; C<goto>>
 
-Purtroppo, Perl 5 non elimina automaticamente le chiamate di coda. Potete farlo
+Purtroppo, Perl 5 non elimina automaticamente le chiamate di coda. Fatelo
 voi manualmente con una speciale forma dell'istruzione C<goto>. Contrariamente alla forma
-che può spesso risultare in spaghetti code, la forma di C<goto> a funzione sostituisce la
+che spesso produce dello spaghetti code, la C<goto> a funzione sostituisce la
 chiamata di funzione corrente con quella ad un'altra funzione. Potete indicare una funzione
-sia per nome che per riferimento. Dovete sempre impostare manualmente C<@_>, se volete
-passare degli argomenti diversi da quelli correnti:
+sia per nome che per riferimento. Per passare degli argomenti diversi,
+impostate direttamente C<@_>:
 
 =begin programlisting
 
@@ -729,10 +729,6 @@ Qualche volta le ottimizzazioni lasciano a desiderare dal punto di vista estetic
 =head1 Trappole e Funzionalità da Evitare
 
 X<functions; misfeatures>
-
-Alcune funzionalità del Perl sembrano utili, ma hanno dei gravi inconvenienti. In particolare,
-i prototipi (L<prototypes>) raramente fanno ciò che i principianti vorrebbero.
-
 X<functions; Perl 4>
 X<functions; Perl 1>
 X<C<&>; sigil>

@@ -99,8 +99,10 @@ Potreste anche vedere delle funzioni anonime passate come argomenti ad altre fun
 
 X<anonymous functions; names>
 
+X<CPAN; C<Sub::Identify>>
+
 Dato un riferimento a una funzione, è possibile determinare se la funzione ha
-un nome oppure è anonima usando l'introspezione:
+un nome oppure è anonima usando l'introspezioneN<oppure C<sub_name> del modulo CPAN C<Sub::Identify>.>:
 
 =begin programlisting
 
@@ -122,15 +124,6 @@ un nome oppure è anonima usando l'introspezione:
     main();
 
 =end programlisting
-
-=begin tip Who Are You?
-
-X<CPAN; C<Sub::Identify>>
-
-La funzione C<sub_name> del modulo CPAN C<Sub::Identify> semplifica questa
-introspezione.
-
-=end tip
 
 Il risultato potrebbe cogliervi un po' di sorpresa:
 
@@ -183,7 +176,10 @@ Perl 5 permette la dichiarazione implicita di funzioni anonime attraverso l'uso
 dei prototipi (L<prototypes>). Sebbene questa funzionalità ufficialmente sia presente per permettere
 ai programmatori di definire una propria sintassi come fanno C<map> e C<eval>, un
 esempio interessante è l'uso di funzioni I<ritardate> che non sembrano
-funzioni. Considerate il modulo CPAN C<Test::Fatal>:
+funzioni. 
+
+Considerate il modulo CPAN C<Test::Fatal>, che riceve una funzione anonima come primo argomento della sua
+funzione C<exception>:
 
 =begin programlisting
 
@@ -200,8 +196,7 @@ funzioni. Considerate il modulo CPAN C<Test::Fatal>:
 
 =end programlisting
 
-La funzione C<exception()> prende una funzione anonima come primo argomento.
-Le chiamate qui sopra sono equivalenti a:
+Potete riscrivere questo codice in modo più verboso:
 
 =begin programlisting
 
@@ -210,9 +205,7 @@ Le chiamate qui sopra sono equivalenti a:
 
 =end programlisting
 
-... ma sono più agevoli da leggere.
-
-Questa sintassi vi permette anche di passare riferimenti a funzioni con nome:
+...o passare riferimenti a funzioni con nome:
 
 =begin programlisting
 

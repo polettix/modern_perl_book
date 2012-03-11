@@ -148,15 +148,11 @@ solo quando vi servono:
 Ogni chiamata alla funzione restituita da C<gen_fib()> riceve un argomento, l'indice dell'I<n>-esimo
 elemento della serie di Fibonacci.  La funzione genera tutti i valori
 precedenti necessari della serie, li memorizza in cache e restituisce l'elemento
-richiesto. Ritarda le computazioni fino a quando non sono assolutamente necessarie.
-
-Forse tutto questo può sembrare eccessivo per calcolare una semplice serie numerica, ma è
-la funzione C<gen_fib()> in sè ad essere notevole. Inizializza un array come cache,
-esegue del codice dedicato per popolare elementi arbitrari della cache e
-restituisce il valore calcolato o estratto dalla cache. Se astraete dalle operazioni specifiche per la serie
-di Fibonacci, questo codice può fornire un meccanismo pigro di cache del codice arbitrario.
-
-L'estrazione di una funzione generica C<genera_chiusura_cache()> produce:
+richiesto--ritardando le computazioni fino a quando non sono assolutamente necessarie. C'è un pattern
+specifico di caching intrecciato con la serie numerica. Che cosa succede
+se estraete il codice specifico di caching (inizializzazione della cache, escuzione di codice 
+dedicato al popolamento dei elementi arbitrari della cache e restituzione di un valore calcolato o estratto dalla cache)
+in una funzione C<genera_chiusura_cache()>?
 
 =begin programlisting
 
@@ -179,8 +175,8 @@ L'estrazione di una funzione generica C<genera_chiusura_cache()> produce:
 
 =begin tip Fold, Apply, and Filter
 
-In un certo senso, le funzioni native C<map>, C<grep> e C<sort> sono esse stesse delle
-funzioni di ordine superiore. Confrontatele con C<genera_chiusura_cache()>.
+Le funzioni native C<map>, C<grep> e C<sort> sono anch'esse delle
+funzioni di ordine superiore.
 
 =end tip
 

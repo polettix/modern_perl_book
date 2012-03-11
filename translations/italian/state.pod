@@ -28,25 +28,21 @@ di condividere uno stato senza esporre la variabile lessicale direttamente al co
 Questo idioma funziona bene nei casi in cui il codice esterno deve poter cambiare lo
 stato interno, ma è un po' ingombrante quando tale stato deve essere gestito da una singola funzione.
 
-Immaginate di voler contare il numero di clienti della vostra
-gelateria. Ogni cento persone, una riceve gratis un'aggiunta di panna:
+Immaginate che ogni cento clienti della vostra gelateria, uno riceva gratis un'aggiunta di panna:
 
 =begin programlisting
 
+    my $conta_cli = 0;
+
+    sub servi_cliente
     {
-        my $conta_cli = 0;
+        $conta_cli++;
 
-        sub servi_cliente
-        {
-            $conta_cli++;
+        my $ordine = shift;
 
-            my $ordine = shift;
+        aggiungi_panna($ordine) if $conta_cli % 100 == 0;
 
-            aggiungi_panna($ordine)
-                if ($conta_cli % 100 == 0);
-
-            ...
-        }
+        ...
     }
 
 =end programlisting
