@@ -358,6 +358,7 @@ X<metacaratteri; regex>
 Perl interpreta alcuni caratteri nelle espressioni regolari come I<metacaratteri>,
 ovvero caratteri che rappresentano qualcosa di diverso dalla loro interpretazione letterale.
 I metacaratteri danno a chi sa usare le regex una potenza che va ben al di là del match di sottostringhe.
+Il motore di regex tratta tutti i metacaratteri come atomi.
 
 X<regex; C<.>>
 X<C<.>; metacarattere di tutto tranne a capo nelle regex>
@@ -426,12 +427,14 @@ X<C<\D>; metacarattere di non-cifra nelle regex>
 X<C<\S>; metacarattere di non-spaziatura nelle regex>
 X<C<\W>; metacarattere di non-alfanumerico nelle regex>
 
+=begin tip Metacaratteri Negati
+
 Questi metacaratteri hanno delle corrispondenti forme negate. Usate C<\W> per riconoscere qualunque carattere
 I<eccetto> un carattere di parola. Usate C<\D> per riconoscere un carattere che non sia una cifra. Usate C<\S>
 per riconoscere qualunque cosa tranne un carattere di spaziatura. Usate C<\B> per iniziare il match in qualunque posizione eccetto che
 ai limiti di una parola.
 
-Il motore di regex tratta tutti i metacaratteri come atomi.
+=end tip
 
 =head1 Classi di Caratteri
 
@@ -559,7 +562,9 @@ X<variabili globali; C<%+>>
 
 Le parentesi tonde racchiudono la cattura. Il costrutto C<< ?< nome > >>, che segue
 immediatamente la parentesi aperta, assegna un nome alla cattura. Il
-resto della cattura è un'espressione regolare. Quando il match di un pattern contenente la cattura
+resto della cattura è un'espressione regolare. 
+
+Quando il match di un pattern contenente la cattura
 ha successo, Perl memorizza la parte di stringa che corrisponde
 al pattern interno alla cattura nella variabile predefinita C<%+>. In tale hash, la chiave è
 il nome della cattura e il valore è l'appropriata porzione di stringa.
@@ -595,16 +600,11 @@ seconda in C<$2> e così via.
 Anche se la sintassi per le catture con nome è più verbosa di quella per le catture numerate, in
 genere risulta più chiara. Contare le parentesi aperte è un lavoro noioso e la complessità di
 combinare diverse regex ognuna delle quali contiene delle catture numerate diventa proibitiva.
-Le catture con nome aumentano il grado di manutenibilità delle regex.
+Le catture con nome aumentano il grado di manutenibilità delle regex--sebbene ci possano essere
+collisioni di nome, esse sono relativamente rare. Per minimizzare i rischi,
+usate le catture con nome solo nelle regex più esterne.
 
-=begin tip Composizione Sicura di Catture
-
-Le catture con nome I<possono> dar luogo a collisioni di nome, sebbene queste siano di gran lunga meno frequenti
-delle collisioni di numero. Per evitarle, usate le catture con nome solo nelle regex più esterne.
-
-=end tip
-
-In contesto lista, il match di una regex con una stringa restituisce una lista di tutte le sottostringhe
+In contesto lista, il match di una regex restituisce una lista di sottostringhe
 catturate:
 
 =begin programlisting
@@ -1000,22 +1000,17 @@ la spaziatura e i commenti. Spesso la regex risultante è molto più leggibile:
     my $regex_attrib = qr{
         \A                    # inizio linea
 
-        # varie
         (?:
           [;\n\s]*            # spaziatura e punto e virgola
           (?:/\*.*?\*/)?      # commenti C
         )*
 
-        # marcatore di attributo
         ATTR
 
-        # tipo
         \s+
         (   U?INTVAL
           | FLOATVAL
           | STRING\s+\*
-          | PMC\s+\*
-          | \w*
         )
     }x;
 
@@ -1070,22 +1065,19 @@ X<regex; valutazione di sostituzione>
 Il modificatore C</e> vi permette di scrivere codice Perl 5 arbitrario nella parte destra
 di un'operazione di sostituzione. Se il match ha successo, il motore di regex esegue
 il codice e usa il valore restituito come valore per la sostituzione. L'esempio di sostituzione
-globale visto prima potrebbe essere reso più robusto nel rimpiazzare tutte le occorrenze del nome
-della sventurata protagonista:
+globale visto prima potrebbe essere reso più semplice con del codice come quello che segue:
 
 =begin programlisting
 
     # un po' di pace in Via col Vento
-    my $contenuto = slurp( $file );
-    $contenuto    =~ s{Rossella( O'Hara)?}
-                     {
-                        'Camomilla' . defined $1
+    $sequel  =~ s{Rossella( O'Hara)?}
+                 {
+                    'Camomilla' . defined $1
                                 ? ' Calmante'
                                 : ''
-                     }ge;
+                 }ge;
 
 =end programlisting
 
 Ogni occorrenza aggiuntiva del modificatore C</e> provoca un'altra valutazione
-del risultato dell'espressione, ma solo i golfer Perl tendono a usare C</ee> o
-qualunque altra cosa ancora più complessa.
+del risultato dell'espressione, ma solo i golfer Perl si spingono oltre l'uso di C</ee>.

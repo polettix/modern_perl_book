@@ -9,7 +9,7 @@ X<operatore; C<~~>>
 X<istruzioni predefinite; C<given>>
 
 L'operatore di match intelligente, C<~~>, confronta due operandi e restituisce un valore vero
-se il match tra di essi ha successo. L'indeterminatezza della definizione dimostra l'intelligenza
+se corrispondono. L'indeterminatezza della definizione dimostra l'intelligenza
 dell'operatore: il tipo di confronto dipende dai tipi di entrambi
 gli operandi. C<given> (L<given_when>) effettua implicitamente un match intelligente.
 
@@ -30,83 +30,54 @@ con una componente numerica, il confronto sarà basato sull'uguaglianza numerica
 destro è una regex, il confronto userà un grep o un match di pattern.
 Se l'operando destro è un array, il confronto effettuerà un grep o un match
 intelligente ricorsivo. Se l'operando destro è un hash, il confronto verificherà
-l'esistenza di una o più chiavi.
+l'esistenza di una o più chiavi. Una tabella di dimensioni scoraggianti in C<perldoc perlsyn> fornisce molti più dettagli
+sui confronti che il match intelligente può effettuare.
 
-Per esempio:
-
-=begin programlisting
-
-    # confronto scalare numerico
-    my $x = 10;
-    my $y = 20;
-    say 'Numericamente diversi' unless $x ~~ $y;
-
-    # confronto scalare pseudo-numerico
-    my $x = 10;
-    my $y = '10 piccoli indiani';
-    say 'Pseudo-numericamente uguali' if $x ~~ $y;
-
-=end programlisting
-
-... oppure:
-
-=begin programlisting
-
-    my $agopat = qr/ago/;
-
-    say 'Match di pattern'
-        if $ago   ~~ $agopat
-
-    say 'Grep su array'
-        if @pagliaio ~~ $agopat;
-
-    say 'Grep su chiavi di hash'
-        if %pagliaio  ~~ $agopat;
-
-=end programlisting
-
-... oppure:
-
-=begin programlisting
-
-    say 'Grep su array'
-        if $agopat  ~~ @pagliaio;
-
-    say 'Gli elementi dell'array esistono come chiavi di hash'
-        if %hashiago    ~~ @pagliaio;
-
-    say 'Smart match tra elementi di array'
-        if @mucchio_di_paglia ~~ @pagliaio;
-
-=end programlisting
-
-.... oppure:
-
-=begin programlisting
-
-    say 'Grep su chiavi di hash'
-        if $agopat ~~ %hashiago;
-
-    say 'Gli elementi dell'array esistono come chiavi di hash'
-        if @pagliaio  ~~ %hashiago;
-
-    say 'Chiavi di hash identiche'
-        if %hashiago   ~~ %mappago;
-
-=end programlisting
-
-Questi confronti funzionano anche quando uno degli operandi è un I<riferimento> a uno dei tipi
-di dati elencati. Per esempio:
-
-=begin programlisting
-
-    say 'Chiavi di hash identiche' if %pagliaio ~~ \%hashiago;
-
-=end programlisting
-
-Una tabella di dimensioni scoraggianti in C<perldoc perlsyn> fornisce molti più dettagli
-sui confronti che il match intelligente può effettuare. Una proposta importante
-per la versione 5.16 suggerisce di semplificare il match intelligente in modo sostanziale. Più i vostri operandi sono complicati,
-più è probabile che i risultati confondano chi legge il vostro programma. Se
+Una proposta importante per la versione 5.16 suggerisce di semplificare il match intelligente in modo sostanziale. Più i vostri operandi sono complicati,
+più è probabile che i risultati siano poco chiari. Se
 evitate di confrontare oggetti e vi limitate a semplici operazioni con scalari o al più
 tra uno scalare e un aggregato, otterrete risultati migliori.
+
+Ciò detto, il match intelligente può essere utile:
+
+=begin programlisting
+
+    my ($x, $y) = (10, 20);
+    say 'Numericamente diversi' unless $x ~~ $y;
+
+    my $z = '10 piccoli indiani';
+    say 'Pseudo-numericamente uguali' if $x ~~ $z;
+
+    # match di espressione regolare
+    my $ago = qr/ago/;
+
+    say 'Match di pattern' if 'ago' ~~ $ago;
+
+    say 'Grep su array' if @pagliaio ~~ $ago;
+
+    say 'Grep su chiavi di hash' if %hashiago ~~ $ago;
+
+    say 'Grep su array' if $ago ~~ @pagliaio;
+
+    say 'Gli elementi dell'array esistono come chiavi di hash'
+         if %hashiago    ~~ @pagliaio;
+
+    say 'Match intelligente tra elementi di array' if @mucchio_di_paglia ~~ @pagliaio;
+
+    say 'Grep su chiavi di hash' if $ago ~~ %hashiago;
+
+    say 'Gli elementi dell'array esistono come chiavi di hash' 
+        if @pagliaio  ~~ %hashiago;
+
+    say 'Chiavi di hash identiche' if %hashiago ~~ %mappago;
+
+=end programlisting
+
+Il match intelligente funziona anche quando uno degli operandi è un I<riferimento> a uno dei tipi
+di dati elencati:
+
+=begin programlisting
+
+    say 'Chiavi di hash identiche' if %hashiago ~~ \%hashiago;
+
+=end programlisting
