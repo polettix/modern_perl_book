@@ -112,23 +112,31 @@ estensioni telefoniche:
 
     my %estensioni =
     (
-        001 => 'Anna',
-        002 => 'Walter',
-        003 => 'Gerardo',
-        005 => 'Rudy',
-        007 => 'Brenda',
-        008 => 'Patrizio',
-        011 => 'Luca',
-        012 => 'Lidia',
-        017 => 'Cristina',
-        020 => 'Maurizio',
-        023 => 'Marco',
-        024 => 'Andrea',
-        052 => 'Giorgia',
-        088 => 'Nicola',
+        '001' => 'Anna',
+        '002' => 'Walter',
+        '003' => 'Gerardo',
+        '005' => 'Rudy',
+        '007' => 'Brenda',
+        '008' => 'Patrizio',
+        '011' => 'Luca',
+        '012' => 'Lidia',
+        '017' => 'Cristina',
+        '020' => 'Maurizio',
+        '023' => 'Marco',
+        '024' => 'Andrea',
+        '052' => 'Giorgia',
+        '088' => 'Nicola',
     );
 
 =end programlisting
+
+=begin tip Regole di Quotatura delle Chiavi di Hash
+
+La quotatura delle chiavi di hash con l'operatore fat comma funziona soltanto su entità interpretabili come bareword;
+le chiavi di questo esempio sono invece numeri--in particolare numeri ottali, poiché iniziano con lo zero. Quasi
+tutti cascano in questo tranello.
+
+=end tip
 
 Per ordinare questa lista per nome in ordine alfabetico, dovete ordinare l'hash in base ai suoi valori
 anzichè in base alle sue chiavi. Ordinare i valori è facile:
