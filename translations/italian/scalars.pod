@@ -2,9 +2,9 @@
 
 Z<scalars>
 
-X<scalars>
-X<C<$>; sigil>
-X<sigils; C<$>>
+X<scalari>
+X<C<$>; sigillo>
+X<sigilli; C<$>>
 
 Il tipo di dati fondamentale in Perl 5 è lo I<scalare>, un valore discreto singolo.
 Tale valore può essere una stringa, un intero, un numero floating point, un filehandle
@@ -14,7 +14,7 @@ di package. I nomi delle variabili scalari devono conformarsi alle linee guida s
 per i nomi di variabile (L<names>). Le variabili scalari usano sempre, come sigillo (L<sigils>),
 il carattere del dollaro (C<$>).
 
-=begin tip Variant Sigils and Context
+=begin tip Sigilli Varianti e Contesto
 
 I valori scalari e il contesto scalare sono fortemente legati; assegnare a uno scalare
 fornisce un contesto scalare. Usare il sigillo scalare con una variabile aggregato
@@ -68,11 +68,11 @@ Potete anche applicare operazioni matematiche a delle stringhe:
 
 =end programlisting
 
-X<increment; string>
+X<incremento; stringa>
 
-=begin tip One-Way Increment Magic
+=begin tip Incremento Magico Unidirezionale
 
-Questo magico incremento di stringa non ha un corrispondente
+Questo incremento magico di stringa non ha un corrispondente
 decremento. Non potete ottenere il valore stringa precedente scrivendo C<$codice_radio-->.
 
 =end tip
@@ -82,8 +82,8 @@ rispettando l'insieme di caratteri e la distinzione maiuscole/minuscole. Mentre 
 diventa C<ZZ10>--i numeri danno luogo a riporto fino a che ci sono cifre più significative da
 incrementare, come sul contachilometri di un'automobile.
 
-X<stringification>
-X<numification>
+X<conversione a stringa>
+X<conversione a numero>
 
 Valutare un riferimento (L<references>) in contesto stringa produce una stringa.
 Valutare un riferimento in contesto numerico produce un numero. Nessuna delle due operazioni
@@ -102,7 +102,7 @@ che non ha connessioni con il riferimento e C<$riferimento_come_numero> è un nu
 non ha connessioni con il riferimento.
 
 X<C<Scalar::Util>>
-X<dualvars>
+X<dualvar>
 X<C<dualvar()>>
 
 Per permettere di effettuare coercizioni senza perdere dei dati, gli scalari del Perl 5 possono contenere componenti
@@ -112,21 +112,21 @@ produce uno scalare con valori sia numerico che stringa. La funzione C<dualvar()
 del modulo core C<Scalar::Util> ci permette di manipolare entrambi i
 valori direttamente in un singolo scalare.
 
-X<boolean>
-X<scalars; boolean values>
-X<boolean; true>
-X<boolean; false>
-X<strings; true>
-X<strings; false>
-X<numbers; true>
-X<numbers; false>
+X<booleano>
+X<scalari; valori booleani>
+X<booleani; vero>
+X<booleani; falso>
+X<stringhe; vero>
+X<stringhe; falso>
+X<numeri; vero>
+X<numeri; falso>
 
 Gli scalari non contengono uno slot separato per i valori booleani. In contesto booleano,
 la stringa vuota (C<''>) e la stringa C<'0'> hanno valore falso. Tutte le altre stringhe hanno valore vero. In
 contesto booleano, i numeri che hanno valore zero (C<0>, C<0.0>, and C<0e0>) rappresentano il valore booleano
 falso. Tutti gli altri numeri rappresentano il valore vero.
 
-=begin tip What is Truth?
+=begin tip Che Cos'è la Verità?
 
 Attenzione al fatto che le I<stringhe> C<'0.0'> e C<'0e0'> hanno valore vero; questo è uno
 dei casi in cui Perl 5 fa una distinzione fra ciò che sembra un numero e

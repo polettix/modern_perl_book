@@ -32,7 +32,7 @@ Tuttavia alcune volte è utile che i valori possano essere modificati. Se volete
 pieno di dati perchè vengano modificati, creare e restituire un nuovo hash per
 ogni modifica è scomodo (per non dire nulla dell'efficienza).
 
-X<references>
+X<riferimenti>
 
 Perl 5 fornisce un meccanismo con cui potete riferirvi a un valore senza farne una copia.
 Ogni modifica fatta a quel I<riferimento> ne aggiorna il valore in un modo visibile a
@@ -43,11 +43,11 @@ un tipo di dato scalare first-class di Perl 5 che si riserisce ad un altro tipo 
 
 Z<scalar_references>
 
-X<operators; C<\>>
-X<references; C<\> operator>
+X<operatori; C<\>>
+X<riferimenti; operatore C<\>>
 
-X<references; scalar>
-X<scalars; references>
+X<riferimenti; scalari>
+X<scalari; riferimenti>
 
 L'operatore di riferimento è il backslash (C<\>). In contesto scalare, crea un singolo
 riferimento ad un altro valore. In contesto lista, crea una lista di
@@ -60,8 +60,8 @@ riferimenti. Per ottenere un riferimento a C<$name>:
 
 =end programlisting
 
-X<dereferencing>
-X<references; dereferencing>
+X<dereferenziazione>
+X<riferimenti; dereferenziazione>
 
 Dovete I<dereferenziare> un riferimento per accedere al valore cui si riferisce.
 La dereferenziazione vi richiede di aggiungere un sigillo extra per ogni livello di
@@ -83,8 +83,8 @@ indirezione:
 
 Il sigillo scalare doppio (C<$$>) dereferenzia un riferimento a scalare.
 
-X<references; aliases>
-X<aliases>
+X<riferimenti; alias>
+X<alias>
 
 Nell'array C<@_>, i parametri si comportano come I<alias> alle variabili del chiamanteN<Ricordate che i cicli C<for> producono un comportamento simile.>, quindi potete modificarli:
 
@@ -104,7 +104,7 @@ Nell'array C<@_>, i parametri si comportano come I<alias> alle variabili del chi
 Normalmente, non desiderate modificare dei valori in questo modo--e i chiamanti raramente se lo aspettano.
 Assegnando i parametri a dei lessicali nelle vostre funzioni evita questo rischio.
 
-=begin tip Saving Memory with References
+=begin tip Risparmiare Memoria con i Riferimenti
 
 Modificare direttamente un valore o restituire un riferimento a uno scalare può farvi risparmiare
 memoria. Dato che gli assegnamenti in Perl copiano i valori, potreste ritrovarvi con
@@ -131,7 +131,7 @@ al riferimento. Il valore stringa sarà nella forma C<SCALAR(0x93339e8)> e il
 valore numerico sarà la porzione C<0x93339e8>. Questo valore codifica il tipo di
 riferimento (in questo caso, C<SCALAR>) e la locazione di memoria del riferimento.
 
-=begin tip References Aren't Pointers
+=begin tip I Riferimenti Non Sono Puntatori
 
 Perl non offre nativamente accesso alle locazioni di memoria. L'indirizzo di un
 riferimento è un valore usato come identificatore. Diversamente dai puntatori in un linguaggio come
@@ -145,8 +145,8 @@ di memoria dopo avere reclamato della memoria inutilizzata.
 
 Z<array_references>
 
-X<arrays; references>
-X<references; arrays>
+X<array; riferimenti>
+X<riferimenti; array>
 
 I I<riferimenti ad array> sono utili in diverse circostanze:
 
@@ -182,8 +182,8 @@ appiattirlo in una lista che per contarne gli elementi:
 
 =end programlisting
 
-X<<< C<< -E<gt> >>; dereferencing arrow >>>
-X<<< operators; C<< -E<gt> >> >>>
+X<<< C<< -E<gt> >>; freccia di dereferenziazione >>>
+X<<< operatori; C<< -E<gt> >> >>>
 
 Accedete a singoli elementi dell'array usando una freccia di dereferenziazione (C<< -> >>):
 
@@ -198,7 +198,7 @@ La freccia è necessaria per distinguere tra uno scalare di nome C<$rif_a_carte>
 un array di nome C<@rif_a_carte>. Notate l'uso del sigillo scalare (L<sigils>) per
 accedere a un singolo elemento.
 
-=begin tip Doubling Sigils
+=begin tip Raddoppiare i Sigilli
 
 Una sintassi alternativa antepone il sigillo scalare al riferimento ad array. Anche
 se meno elegante, C<< my $prima_carta = B<$$rif_a_carte[0]>; >> è più breve da scrivere.
@@ -217,8 +217,8 @@ ad array:
 È I<possibile> omettere le parentesi graffe, ma usarle come raggruppamenti spesso migliora la
 leggibilità.
 
-X<references; anonymous arrays>
-X<arrays; anonymous>
+X<riferimenti; array anonimi>
+X<array; anonimi>
 
 Per creare un array anonimo--che non è stato dichiarato--racchiudete una lista
 di valori tra parentesi quadre:
@@ -264,8 +264,8 @@ C<@piatti> in una lista separata da C<@piatti>.
 
 Z<hash_references>
 
-X<hashes; references>
-X<references; hashes>
+X<hash; riferimenti>
+X<riferimenti; hash>
 
 Usate l'operatore di riferimento su un hash per creare un I<riferimento a hash>:
 
@@ -332,7 +332,7 @@ Per creare hash anonimi usate le parentesi graffe:
 
 Come per gli array anonimi, ogni volta vengono creati dei nuovi hash anonimi.
 
-=begin tip Watch Those Braces!
+=begin tip Attenzione alle Graffe!
 
 Un errore comune per i principianti è quello di assegnare un hash anonimo ad un hash standard,
 il che produce un warning relativo ad un numero dispari di elementi nell'hash. Usate le parentesi
@@ -344,7 +344,7 @@ tonde per assegnare a un hash standard e le parentesi graffe per creare un hash 
 
 Z<automatic_dereferencing>
 
-X<builtins; C<push>>
+X<predefinite; funzioni; C<push>>
 
 A partire dalla versione 5.14, il Perl può dereferenziare automaticamente alcuni riferimenti al posto
 vostro. Dato un riferimento ad array in C<$rif_a_array>, potete scrivere:
@@ -363,14 +363,14 @@ Potete fare la stessa cosa con un'espressione che restituisce un riferimento ad 
 
 =end programlisting
 
-X<builtins; C<push>>
-X<builtins; C<pop>>
-X<builtins; C<shift>>
-X<builtins; C<unshift>>
-X<builtins; C<splice>>
-X<builtins; C<keys>>
-X<builtins; C<values>>
-X<builtins; C<each>>
+X<predefinite; funzioni; C<push>>
+X<predefinite; funzioni; C<pop>>
+X<predefinite; funzioni; C<shift>>
+X<predefinite; funzioni; C<unshift>>
+X<predefinite; funzioni; C<splice>>
+X<predefinite; funzioni; C<keys>>
+X<predefinite; funzioni; C<values>>
+X<predefinite; funzioni; C<each>>
 
 Lo stesso vale per gli operatori su array C<pop>, C<shift>, C<unshift>, C<splice>,
 C<keys>, C<values> e C<each> e gli operatori su hash C<keys>, C<values> e
@@ -396,9 +396,9 @@ dereferenziare esplicitamente i riferimenti, ma è invece la stessa cosa:
 
 Z<function_references>
 
-X<functions; references>
-X<references; functions>
-X<functions; first-class>
+X<funzioni; riferimenti>
+X<riferimenti; funzioni>
+X<funzioni; first-class>
 
 Perl 5 supporta le I<funzioni first-class>, ovvero la funzione è un tipo di dati esattamente come
 lo sono l'array e l'hash. Questo fatto è reso particolarmente evidente dai I<riferimenti a funzione>, e
@@ -413,9 +413,9 @@ usate l'operatore di riferimento sul nome della funzione:
 
 =end programlisting
 
-X<functions; sigil>
-X<sigils; C<&>>
-X<C<&>; sigil>
+X<funzioni; sigillo>
+X<sigilli; C<&>>
+X<C<&>; sigillo>
 
 Se non usate il I<sigillo funzione> (C<&>), otterrete un riferimento al
 valore o ai valori di ritorno della funzione.
@@ -428,7 +428,7 @@ Per creare delle funzioni anonime usate la keyword C<sub> senza nome:
 
 =end programlisting
 
-X<builtins; C<sub>>
+X<predefinite; direttive; C<sub>>
 
 L'uso di C<sub> I<senza> un nome compila la funzione normalmente,
 ma non la installa nel namespace corrente. L'unico modo per
@@ -442,7 +442,7 @@ riferimento a funzione con la freccia di dereferenziazione:
 
 =end programlisting
 
-=begin tip Perl 4 Function Calls
+=begin tip Chiamate di Funzione in Perl 4
 
 Un modo alternativo per invocare riferimenti a funzione è quello di usare il sigillo funzione
 (C<&>) invece della freccia di dereferenziazione. Evitate questa sintassi, dato che ha alcune
@@ -475,8 +475,8 @@ può essere utile quando avete dovute fare il lookup del metodo stesso (L<reflec
 
 Z<lexical_filehandles>
 
-X<filehandles; references>
-X<references; filehandles>
+X<filehandle; riferimenti>
+X<riferimenti; filehandle>
 X<C<IO::File>>
 X<C<IO::Handle>>
 
@@ -516,7 +516,7 @@ una funzionalità della gestione della memoria di Perl 5.
 =head2 Reference Count
 
 Z<reference_counts>
-X<references; reference counting>
+X<riferimenti; reference counting>
 
 Perl 5 usa una tecnica di gestione della memoria nota come I<reference counting>.
 Ogni valore Perl ha un contatore associato. Perl incrementa tale contatore ogni volta
@@ -524,7 +524,7 @@ che viene richiesto un riferimento al valore, sia implicito che esplicito.
 Analogamente, Perl decrementa tale contatore ogni volta che un riferimento scompare. Quando il contatore
 arriva a zero, Perl può riciclare il valore in modo sicuro.
 
-X<lexicals; lifecycle>
+X<lessicali; ciclo di vita>
 
 Come fa il Perl a sapere quando può rilasciare la memoria associata a una variabile senza causare problemi? Come
 fa il Perl a sapere quando è sicuro chiudere il file aperto nello scope più interno del codice:

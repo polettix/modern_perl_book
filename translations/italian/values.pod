@@ -2,8 +2,8 @@
 
 Z<values>
 
-X<variables>
-X<values>
+X<variabili>
+X<valori>
 
 La struttura di un proramma è fortemente influenzata dal modo in cui modellate i vostri dati
 con le variabili appropriate.
@@ -19,13 +19,13 @@ rappresentare i propri dati.
 
 =head2 Stringhe
 
-X<strings>
+X<stringhe>
 
 Una I<stringa> è un dato testuale o binario senza particolari restrizioni di formato o
 contenuto. Potrebbe essere il vostro nome, il contenuto di un file immagine o lo stesso
 vostro programma. Una stringa ha un significato nel programma solo quando gliene attribuite uno.
 
-X<strings; delimiters>
+X<stringhe; delimitatori>
 
 Per rappresentare una stringa nel vostro programma, racchiudetela tra una coppia di caratteri di
 quotatura. I I<delimitatori di stringa> più comuni sono i singoli e doppi apici:
@@ -37,7 +37,7 @@ quotatura. I I<delimitatori di stringa> più comuni sono i singoli e doppi apici
 
 =end programlisting
 
-X<strings; single-quoted>
+X<stringhe; singola quotatura>
 
 I caratteri in una I<stringa a singola quotatura> rappresentano se stessi letteralmente, con due
 eccezioni. Per inserire un apice singolo in una stringa a singola quotatura fatelo precedere da un carattere backslash di escape:
@@ -69,7 +69,7 @@ in sequenza, nel qual caso il primo fa da escape al secondo:
 
 =end programlisting
 
-X<strings; double-quoted>
+X<stringhe; doppia quotatura>
 
 Una I<stringa a doppia quotatura> ha molti più caratteri speciali a disposizione. Per
 esempio, potete codificare nella stringa dei caratteri di spaziatura altrimenti invisibili:
@@ -103,9 +103,9 @@ equivalenti:
 
 Le sequenze di escape sono spesso più facili da leggere della spaziatura equivalente.
 
-X<concatenation>
-X<strings; concatenation>
-X<operators; C<.>>
+X<concatenazione>
+X<stringhe; concatenazione>
+X<operatori; C<.>>
 
 Le stringhe Perl hanno lunghezza variabile. Quando le manipolate e modificate, il Perl
 cambia la loro dimensione in modo appropriato. Per esempio, potete combinare diverse
@@ -119,8 +119,8 @@ stringhe in una stringa più grande con l'operatore C<.> di I<concatenazione>:
 
 A tutti gli effetti, è come se aveste inizializzato la stringa tutta insieme.
 
-X<interpolation>
-X<strings; interpolation>
+X<interpolazione>
+X<stringhe; interpolazione>
 
 In una stringa a doppia quotatura potete anche I<interpolare> il valore di una variabile scalare o i valori di un
 array, in modo tale che il contenuto I<attuale> della variabile 
@@ -135,7 +135,7 @@ diventi parte della stringa come se le aveste concatenate:
 
 =end programlisting
 
-X<escaping>
+X<escape>
 
 Per inserire un doppio apice in una stringa a doppia quotatura fatelo precedere da un carattere di I<escape>
 (ovvero, un backslash):
@@ -146,11 +146,11 @@ Per inserire un doppio apice in una stringa a doppia quotatura fatelo precedere 
 
 =end programlisting
 
-X<operators; quoting>
-X<C<q>; single quoting operator>
-X<operators; C<q>>
-X<C<qq>; double quoting operator>
-X<operators; C<qq>>
+X<operatori; quotatura>
+X<C<q>; operatore di quotatura singola>
+X<operatori; C<q>>
+X<C<qq>; operatore di quotatura doppia>
+X<operatori; C<qq>>
 
 Quando troppi backslash creano confusione, usate un I<operatore di quotatura> alternativo 
 con cui potete scegliere un diverso delimitatore di stringa. L'operatore C<q>
@@ -169,8 +169,8 @@ sia di inizio che di fine stringa.
 
 =end programlisting
 
-X<heredocs>
-X<strings; heredocs>
+X<heredoc>
+X<stringhe; heredoc>
 
 Quando dichiarare una stringa complessa con molti caratteri di escape diventa noioso,
 usate la sintassi I<heredoc> per assegnare una o più linee a una stringa:
@@ -249,14 +249,14 @@ di caratteri Unicode.
 
 =item Sequenze di ottetti
 
-X<octet>
+X<ottetto>
 
 I dati binari sono sequenze di I<ottetti>--numeri di 8 bit, ognuno dei quali può
 rappresentare un numero tra 0 e 255.
 
 =back
 
-=begin tip Words Matter
+=begin tip Le Parole Contano
 
 Perchè I<ottetti> e non I<byte>? L'assunzione che un carattere possa stare dentro un byte può essere causa
 di problemi senza fine con Unicode. Separate quindi l'idea di spazio in memoria da quella della
@@ -277,8 +277,8 @@ a tali dati.
 
 =head3 Codifica dei Caratteri
 
-X<encoding>
-X<Unicode; encoding>
+X<codifica>
+X<Unicode; codifica>
 X<UTF-8>
 X<ASCII>
 X<Latin-1>
@@ -293,7 +293,7 @@ Latin-1 può rappresentare testo nella maggior parte delle lingue che usano l'al
 Per evitare problemi con Unicode, decodificate e codificate sempre dalla/alla codifica appropriata
 durante l'input e l'output del vostro programma.
 
-=begin tip An Evolving Standard
+=begin tip Uno Standard in Evoluzione
 
 Perl 5.12 supporta lo standard Unicode 5.2, mentre Perl 5.14 supporta Unicode
 6.0. Se avete bisogno di tenere conto delle differenze tra le versioni di Unicode,
@@ -304,8 +304,8 @@ probabilmente conoscete già il sito U<http://unicode.org/versions/>.
 =head3 Unicode nei Vostri Filehandle
 
 X<C<open>>
-X<builtins; C<open>>
-X<IO layers>
+X<predefinite; funzioni; C<open>>
+X<layer di IO>
 
 Quando comunicate al Perl che uno specifico filehandle (L<files>) lavora con testo codificato,
 Perl convertirà automaticamente gli ottetti in input in stringhe Unicode.
@@ -324,7 +324,7 @@ decodifica dei dati UTF-8:
 =end programlisting
 
 X<C<binmode>>
-X<builtins; C<binmode>>
+X<predefinite; funzioni; C<binmode>>
 
 Con C<binmode>, potete anche modificare un filehandle esistente, sia per l'input
 che per l'output:
@@ -362,9 +362,9 @@ converte dalla codifica interna del Perl alla codifica di output desiderata:
 
 =head3 Unicode nei Vostri Programmi
 
-X<pragmas; C<utf8>>
-X<C<utf8> pragma>
-X<encoding>
+X<direttive; C<utf8>>
+X<direttiva C<utf8>>
+X<codifica>
 
 Potete includere caratteri Unicode nei vostri programmi in tre modi. Il modo più semplice
 è quello di usare la pragma C<utf8> (L<pragmas>), che indica al parser Perl di
@@ -384,8 +384,8 @@ di usare caratteri Unicode nelle stringhe e negli identificatori:
 Per poter I<scrivere> questo codice, il vostro editor di testo deve supportare UTF-8 e dovete salvare
 il file con la codifica appropriata.
 
-X<strings; C<\x{}>>
-X<C<\x{}>; escape sequence for character encodings>
+X<stringhe; C<\x{}>>
+X<C<\x{}>; sequenza di escape per la codifica dei caratteri>
 
 All'interno di stringhe a doppia quotatura, potete usare la sequenza di escape Unicode per
 rappresentare la codifica dei caratteri. La sintassi C<\x{}> rappresenta un carattere
@@ -398,13 +398,13 @@ parentesi graffe:
 
 =end programlisting
 
-X<C<charnames> pragma>
-X<pragmas; C<charnames>>
-X<strings; C<\N{}>>
-X<C<\N{}>; escape sequence for named character encodings>
+X<direttiva C<charnames>>
+X<direttive; C<charnames>>
+X<stringhe; C<\N{}>>
+X<C<\N{}>; sequenza di escape per le codifiche di caratteri con nome>
 
 Alcuni caratteri Unicode hanno dei nomi, che spesso sono più facili da leggere
-dei codici Unicode. Usate la pragma C<charnames> per attivarli e la sequanza di escape
+dei codici Unicode. Usate la direttiva C<charnames> per attivarli e la sequanza di escape
 C<\N{}> per riferirvi ad essi:
 
 =begin programlisting
@@ -531,7 +531,7 @@ U<http://stackoverflow.com/questions/6162484/why-does-modern-perl-avoid-utf-8-by
 =begin sidebar
 
 X<C<unicode_strings>>
-X<pragmas; C<feature>>
+X<direttive; C<feature>>
 
 Perl 5.12 ha aggiunto una funzionalità, C<unicode_strings>, che attiva la semantica Unicode
 per tutte le operazioni su stringa all'interno del suo scope. Perl 5.14 ha ulteriormente migliorato questa
@@ -541,9 +541,9 @@ funzionalità; se lavorate con Unicode in Perl, vale la pena di fare un aggiorna
 
 =head2 Numeri
 
-X<numbers>
-X<integers>
-X<floating-point values>
+X<numeri>
+X<interi>
+X<valori floating-point>
 
 Perl supporta i numeri sia come valori interi che floating-point. Potete rappresentarli
 anche con la notazione scientifica e in forma binaria, ottale ed
@@ -560,7 +560,7 @@ esadecimale:
 
 =end programlisting
 
-X<numbers; representation prefixes>
+X<numeri; prefissi delle rappresentazioni>
 X<C<0b>>
 X<C<0>>
 X<C<0x>>
@@ -569,10 +569,10 @@ I caratteri in grassetto sono i prefissi numerici rispettivamente per le notazio
 ed esadecimale. Ricordate che uno zero iniziale in un intero indica I<sempre>
 la forma ottale.
 
-X<numbers; underscore separator>
+X<numeri; separatore underscore>
 X<underscore>
 
-=begin tip When 1.99 + 1.99 is 4
+=begin tip Quando 1.99 + 1.99 fa 4
 
 Anche se in Perl 5 potete scrivere esplicitamente valori floating-point
 perfettamente accurati, Perl 5 li memorizza internamente in forma binaria. Questa
@@ -627,7 +627,7 @@ Le variabili scalari dichiarate ma non definite contengono C<undef>:
 
 =end programlisting
 
-X<C<undef>; coercions>
+X<C<undef>; coercizioni>
 
 In contesto booleano, C<undef> viene valutato come falso. Valutare C<undef> in contesto stringa
 --ad esempio interpolarlo in uno stringa--causa un warning di C<uninitialized value>:
@@ -648,7 +648,7 @@ In contesto booleano, C<undef> viene valutato come falso. Valutare C<undef> in c
 
 =end screen
 
-X<builtins; C<defined>>
+X<predefinite; funzioni; C<defined>>
 
 La funzione nativa C<defined> restituisce vero se il suo operando viene valutato come valore
 definito (ovvero qualunque cosa tranne C<undef>):
@@ -664,8 +664,8 @@ definito (ovvero qualunque cosa tranne C<undef>):
 
 =head2 La Lista Vuota
 
-X<empty list>
-X<C<()>; empty list>
+X<lista vuota>
+X<C<()>; lista vuota>
 
 Quando compare a destra in un assegnamento, il costrutto C<()>
 rappresenta una lista vuota. In contesto scalare, viene valutato come C<undef>. In
@@ -695,7 +695,7 @@ più chiaro.
 
 =head2 Liste
 
-X<lists>
+X<liste>
 
 Una lista è un gruppo di una o più espressioni separate dalla virgola. Le liste possono comparire
 letteralmente nel codice sorgente come valori:
@@ -726,9 +726,9 @@ Non sono le parentesi tonde che I<creano> una lista. È la virgola che la crea. 
 sono presenti in questi esempi, le parentesi raggruppano espressioni per modificarne la
 I<precedenza> (L<precedence>).
 
-X<operators; range>
-X<operators; C<..>>
-X<C<..>; range operator>
+X<operatori; range>
+X<operatori; C<..>>
+X<C<..>; operatore range>
 
 Usate l'operatore di range per creare liste di letterali in forma compatta:
 
@@ -739,8 +739,8 @@ Usate l'operatore di range per creare liste di letterali in forma compatta:
 
 =end programlisting
 
-X<operators; C<qw()>>
-X<C<qw()>; quote words operator>
+X<operatori; C<qw()>>
+X<C<qw()>; operatore di quotatura parole>
 
 Usate l'operatore C<qw()> per spezzare un letterale stringa con i caratteri di spaziatura e produrre una
 lista di stringhe:
@@ -751,7 +751,7 @@ lista di stringhe:
 
 =end programlisting
 
-=begin tip No Comment Please
+=begin tip Nessun Commento per Favore
 
 Perl genera un warning se C<qw()> contiene una virgola o il carattere di commento
 (C<#>), perchè non solo tali caratteri sono rari in un C<qw()>, ma la loro presenza

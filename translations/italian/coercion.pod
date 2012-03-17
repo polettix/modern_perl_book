@@ -4,7 +4,7 @@ Z<coercion>
 
 X<DWIM>
 X<dwimmery>
-X<coercion>
+X<coercizione>
 
 Una variabile Perl può contenere diversi tipi di valori in momenti diversi--stringhe,
 interi, numeri razionali, ecc.. Anzichè associare dell'informazione di tipo alle
@@ -18,8 +18,8 @@ una stringa con una I<coercizione>.
 =head2 Coercizione Booleana
 
 Z<boolean_coercion>
-X<coercion; boolean>
-X<truthiness>
+X<coercizione; booleana>
+X<verità>
 
 La coercizione booleana ha luogo quando testate la I<verità> di un valore, per esempio nella
 condizione di un C<if> o di un C<while>. Il numero 0, C<undef>, la stringa vuota e la stringa
@@ -34,8 +34,8 @@ valuta a vero.
 
 =head2 Coercizione a Stringa
 
-X<coercion; string>
-X<stringification>
+X<coercizione; stringa>
+X<conversione a stringa>
 
 La coercizione a stringa ha luogo quando usate degli operatori stringa come il confronto (C<eq>
 e C<cmp>), la concatenazione, C<split>, C<substr> e le espressioni regolari, e quando
@@ -53,8 +53,8 @@ diventa la stringa C<'10'>. Potete fare lo C<split> di un numero in singole cifr
 =head2 Coercizione Numerica
 
 Z<numeric_coercion>
-X<coercion; numeric>
-X<numification>
+X<coercizione; numerica>
+X<conversione a numero>
 
 La coercizione numerica ha luogo quando usate operatori di confronto numerico (come C<==>
 e C<< <=> >>), quando effettuate operazioni matematiche e quando usate un valore
@@ -72,7 +72,7 @@ Il modulo core C<Scalar::Util> contiene una funzione C<looks_like_number()>
 che usa le stesse regole di parsing della grammatica del Perl 5 per estrarre un numero
 da una stringa.
 
-=begin tip Mathematicians Rejoice
+=begin tip Tripudio Matematico
 
 Le stringhe C<Inf> e C<Infinity> rappresentano il valore infinito e si comportano come
 numeri. La stringa C<NaN> rappresenta il concetto "not a number" ("non è un numero"). In contesto
@@ -82,8 +82,8 @@ numerico non danno luogo al warning "Argument isn't numeric".
 
 =head2 Coercizione di Riferimento
 
-X<coercion; reference>
-X<autovivification>
+X<coercizione; riferimento>
+X<autovivificazione>
 
 Usare un'operazione di dereferenza su un valore che non sia un riferimento trasforma quel valore I<in> un
 riferimento. Questo processo di autovivificazione (L<autovivification>) è utile quando manipolate
@@ -106,7 +106,7 @@ con chiave C<id> a ciascuno di essi.
 
 Z<cached_coercions>
 
-X<coercion; cached>
+X<coercizione; cached>
 
 La rappresentazione interna dei valori in Perl 5 memorizza sia un valore stringa che un valore
 numerico. La coercizione di un valore numerico a stringa non I<rimpiazza> il valore numerico.
@@ -126,10 +126,10 @@ fare la diagnosi di qualche strana situazione.
 
 Z<dualvars>
 
-X<coercion; dualvars>
+X<coercizione; dualvar>
 X<C<dualvar()>>
 X<C<Scalar::Util>>
-X<dualvars>
+X<dualvar>
 
 La natura multi-componente dei valori Perl è disponibile agli utenti in forma di
 I<dualvar>. Il modulo core C<Scalar::Util> fornisce una funzione C<dualvar()>

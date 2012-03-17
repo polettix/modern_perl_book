@@ -1,9 +1,9 @@
 =head1 Variabili
 
 Z<variables>
-X<variable>
+X<variabile>
 
-Una I<variable> in Perl è un'area per la memorizzazione di un valore (L<values>). Mentre
+Una I<variabile> in Perl è un'area per la memorizzazione di un valore (L<values>). Mentre
 un programma triviale può manipolare direttamente dei valori, quasi tutti i programmi usano le
 variabili per semplificare la logica del codice. Una variabile reppresenta valori; è
 più semplice spiegare il teorema di Pitagora in termini di variabili C<a>, C<b> e
@@ -15,9 +15,9 @@ padroneggiare l'arte di bilanciare tra il generico e riusabile e lo specifico.
 
 Z<variable_scopes>
 
-X<variables; scope>
+X<variabili; scope>
 X<scope>
-X<builtins; C<package>>
+X<predefinite; istruzioni; C<package>>
 
 Le variabili sono visibili alle diverse parti del vostro programma in base al loro scope
 (L<scope>). Molte delle variabili che incontrerete hanno uno scope lessicale
@@ -37,7 +37,7 @@ una dichiarazione di C<package> non crea di per sè un nuovo scope:
 
 =end programlisting
 
-X<builtins; C<package>; BLOCK>
+X<predefinite; istruzioni; C<package>; BLOCCO>
 
 A partire da Perl 5.14, potete associare un blocco a una dichiarazione C<package>. Questa
 sintassi I<fornisce> effettivamente uno scope lessicale:
@@ -64,8 +64,8 @@ sintassi I<fornisce> effettivamente uno scope lessicale:
 
 Z<sigils>
 
-X<variables; sigils>
-X<sigils>
+X<variabili; sigilli>
+X<sigilli>
 
 Il sigillo della variabile in una dichiarazione determina il tipo della variabile:
 scalare, array o hash. Il sigillo usato quando si accede alla variabile varia invece
@@ -75,8 +75,8 @@ C<$valori[0]>. E accedete a una lista di valori dentro l'array con C<@valori[ @i
 
 =head2 Variabili Anonime
 
-X<anonymous variables>
-X<variables; anonymous>
+X<variabili anonime>
+X<variabili; anonime>
 
 In Perl non è I<richiesto> che le variabili abbiano un nome. I nomi servono ad aiutare voi, i
 programmatori, a tener traccia di una C<$mela>, delle C<@scatole> o dei C<%ristoranti_economici>.
@@ -86,9 +86,9 @@ L'unico modo per accedere a una variabile anonima è per riferimento
 
 =head2 Variabili, Tipi e Coercizione
 
-X<variables; types>
-X<variables; container type>
-X<variables; value type>
+X<variabili; tipi>
+X<variabili; tipo contenitore>
+X<variabili; tipo valore>
 
 Una variabile in Perl 5 rappresenta sia un valore (un costo in euro, dei tipi di pizza
 disponibili, dei negozi di chitarre con i loro numeri di telefono) che il contenitore che memorizza tale

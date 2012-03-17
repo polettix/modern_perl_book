@@ -2,7 +2,7 @@
 
 Z<control_flow>
 
-X<control flow>
+X<controllo di flusso>
 
 Il I<controllo di flusso> di base del Perl è molto semplice. L'esecuzione del programma comincia dall'inizio
 (la prima linea del file da eseguire) e prosegue fino alla fine:
@@ -15,14 +15,14 @@ Il I<controllo di flusso> di base del Perl è molto semplice. L'esecuzione del p
 
 =end programlisting
 
-X<control flow directives>
+X<direttive di controllo di flusso>
 
 Le I<direttive di controllo di flusso> del Perl modificano l'ordine di esecuzione--ovvero che cosa
 avviene al prossimo passo nel programma--in base ai valori delle loro espressioni.
 
 =head2 Direttive di Scelta
 
-X<control flow directives; C<if>>
+X<direttive di controllo di flusso; C<if>>
 
 La direttiva C<if> esegue l'azione associata solo quando la sua espressione condizionale
 ha valore I<vero>:
@@ -71,7 +71,7 @@ costo di una minor eleganza visiva:
 
 =end programlisting
 
-X<control flow directives; C<unless>>
+X<direttice di controllo di flusso; C<unless>>
 
 La direttiva C<unless> è una forma negata di C<if>. Perl esegue l'azione
 quando l'espressione condizionale è I<falsa>:
@@ -109,7 +109,7 @@ dei parametri delle funzioni (L<postfix_parameter_validation>):
 
 =end programlisting
 
-X<control flow directives; C<else>>
+X<direttive di controllo di flusso; C<else>>
 
 Entrambe le forme a blocco di C<if> e C<unless> accettano la direttiva C<else>,
 che specifica il codice da eseguire quanddo l'espressione condizionale non ha valore
@@ -173,7 +173,7 @@ positivi e negativi:
 ... anche se la doppia negazione implicita nella presenza del blocco C<else>
 suggerirebbe di invertire il condizionale.
 
-X<control flow directives; C<elsif>>
+X<direttive di controllo di flusso; C<elsif>>
 
 Una o più direttive C<elsif> possono seguire un blocco C<if> e precedere
 un singolo C<else>:
@@ -221,8 +221,8 @@ estetiche, come nell'antica arte del linguaggio Ada.>:
 
 =head2 L'Operatore Condizionale Ternario
 
-X<ternary conditional>
-X<control flow directives; ternary conditional>
+X<condizionale ternario>
+X<direttive di controllo di flusso; condizionale ternario>
 
 L'operatore I<condizionale ternario> valuta un'espressione condizionale e
 sceglie tra due alternative:
@@ -259,7 +259,7 @@ Come al solito, valutate i benefici della chiarezza rispetto ai benefici della c
 =head3 Cortocircuiti
 
 Z<short_circuiting>
-X<short-circuiting>
+X<corto-circuiti>
 
 Il Perl può I<cortocircuitare> parti di espressioni condizionali
 complesse. Quando Perl è in grado di determinare che un'espressione complessa
@@ -345,10 +345,10 @@ l'uso di un valore non definito potrebbe causare un warning:
 
 =head2 Contesto per le Direttive Condizionali
 
-X<context; conditional>
-X<boolean; true>
-X<true>
-X<false>
+X<contesto; condizionale>
+X<booleano; vero>
+X<vero>
+X<falso>
 
 Le direttive condizionali--C<if>, C<unless> e l'operatore condizionale
 ternario--valutano tutte un'espressione in contesto booleano
@@ -369,10 +369,10 @@ C<undef>--valuta a vero in contesto booleano. Un hash che contiene qualche eleme
 --anche una chiave con valore associato C<undef>--valuta a vero in
 contesto booleano.
 
-=begin tip Greater Control Over Context
+=begin tip Più Controllo suo Contesto
 
 X<CPAN; C<Want>>
-X<pragmas; C<overloading>>
+X<direttive; C<overloading>>
 
 Il modulo CPAN C<Want> vi permette di individuare un contesto booleano all'interno
 delle vostre funzioni. La pragma C<overloading> del core (L<overloading>) vi permette
@@ -384,8 +384,8 @@ di specificare che cosa devono produrre i vostri tipi di dati quando sono valuta
 
 Z<looping_directives>
 
-X<looping directives; C<for>>
-X<looping directives; C<foreach>>
+X<direttive di ciclo; C<for>>
+X<direttive di ciclo; C<foreach>>
 
 Perl fornisce diverse direttive di ciclo e iterazione. Il ciclo in stile
 I<foreach> valuta un'espressione che produce una lista e
@@ -405,10 +405,10 @@ dieci inclusi. La direttiva C<foreach> cicla su questi numeri, settando la varia
 topic C<$_> (L<default_scalar_variable>) a ciascuno di essi a turno. Perl esegue il
 blocco per ogni intero e stampa il suo quadrato.
 
-=begin tip C<foreach> versus C<for>
+=begin tip C<foreach> e C<for>
 
-X<builtins; C<for>>
-X<builtins; C<foreach>>
+X<predefinite; direttive; C<for>>
+X<predefinite; direttive; C<foreach>>
 
 Molti programmatori Perl si riferiscono alle iterazioni come cicli C<foreach>, ma Perl tratta
 i nomi C<foreach> e C<for> in modo interscambiabile. È il codice che li accompagna a determinare
@@ -473,9 +473,9 @@ lo scope.>:
 
 =head2 Iterazione e Alias
 
-X<iteration; aliasing>
+X<iterazione; aliasing>
 X<aliasing>
-X<aliasing; iteration>
+X<aliasing; iterazione>
 
 Il ciclo C<for> effettua un I<aliasing> della variabile iteratore ai valori su cui opera l'iterazione
 in modo che ogni modifica al valore dell'iteratore modifica anche il valore corrente dell'iterazione:
@@ -548,10 +548,10 @@ effettuare un aliasing di C<$_> a tale variabile:
 
 =head2 Iterazione e Scope
 
-X<iteration; scoping>
-X<scope; iterator>
+X<iterazione; scope>
+X<scope; iteratore>
 X<C<my $_>>
-X<C<$_>; lexical>
+X<C<$_>; lessicale>
 
 Lo scope della variabile topic usata come iteratore è una causa comune di
 confusione. Considerate una funzione C<scombina_topic()> il cui scopo è di
@@ -595,7 +595,7 @@ di C<$_>.
 
 =head2 Il Ciclo For in Stile C
 
-X<loops; C<for>>
+X<cicli; C<for>>
 
 Il I<ciclo for> in stile C vi richiede di gestire le condizioni dell'iterazione:
 
@@ -666,7 +666,7 @@ Tutte e tre le sottoespressioni sono opzionali. Un ciclo C<for> infinito si otti
 
 =head2 While e Until
 
-X<loops; C<while>>
+X<cicli; C<while>>
 
 Un ciclo I<while> continua fino a che l'espressione condizionale del ciclo assume un valore
 booleano falso. Un modo idiomatico di scrivere un ciclo infinito è:
@@ -690,7 +690,7 @@ anche questo codice è un ciclo infinito:
 
 =end programlisting
 
-X<destructive update>
+X<aggiornamento distruttivo>
 
 Per prevenire i cicli C<while> infiniti, fate un I<aggiornamento distruttivo> dell'array
 C<@valori> modificandolo ad ogni iterazione del ciclo:
@@ -721,7 +721,7 @@ Questo ciclo termina non appena incontra un elemento che ha un valore
 falso, e quindi non esaurisce necessariamente tutto l'array. Questo potrebbe essere il comportamento
 desiderato, ma spesso è invece una sorpresa per i principianti.
 
-X<loops; C<until>>
+X<cicli; C<until>>
 
 Il ciclo I<until> inverte il senso del test del ciclo C<while>.
 L'iterazione continua finchè l'espressione condizionale del ciclo valuta a falso:
@@ -767,9 +767,9 @@ contiene il solo carattere C<0>--farebbe terminare il ciclo. L'operatore C<readl
 (C<< <> >>) restituisce un valore non definito solo quando ha raggiunto la fine del
 file.
 
-=begin tip C<chomp> Your Lines
+=begin tip C<chomp> Sulle Vostre Linee
 
-X<builtins; C<chomp>>
+X<predefinite; funzioni; C<chomp>>
 
 Usate la funzione nativa C<chomp> per rimuovere i caratteri di fine linea da ogni linea. Molti
 principianti se ne dimenticano.
@@ -795,7 +795,7 @@ programmi con GUI, per gli interpreti di programmi o per i server di rete:
 
 =end programlisting
 
-X<loops; C<do>>
+X<cicli; C<do>>
 
 Usate un blocco C<do> per raggruppare diverse espressioni in una singola unità:
 
@@ -818,7 +818,7 @@ costrutto è meno comune delle altre forme di ciclo, ma non meno potente.
 
 =head2 Cicli dentro altri Cicli
 
-X<loops; nested>
+X<cicli; nidificati>
 
 Potete nidificare i cicli dentro altri cicli:
 
@@ -882,13 +882,13 @@ all'inizio del file ad ogni iterazione con un C<seek> (un'opzione spesso trascur
 
 =head2 Controllo di Ciclo
 
-X<loops; control>
+X<cicli; controllo>
 
 Talvolta, dovete uscire da un ciclo prima di avere esaurito le
 condizioni di iterazione. Potete usare i meccanismi standard di controllo del Perl 5--eccezioni e
 C<return>--oppure le istruzioni di I<controllo di ciclo>.
 
-X<loops; C<next>>
+X<cicli; C<next>>
 
 L'istruzione I<next> fa ripartire il ciclo alla prossima iterazione. Usatelo quando
 avete già fatto tutto ciò che dovevate fare nell'iterazione corrente. Per scorrere le linee di un
@@ -904,7 +904,7 @@ file saltando quelle che iniziano col carattere di commento C<#>, scrivete:
 
 =end programlisting
 
-=begin tip Multiple Exits versus Nested Ifs
+=begin tip Exit Multiple e If Annidati
 
 Confrontate l'uso di C<next> con l'alternativa: racchiudere il resto del corpo
 del blocco in un C<if>. E ora considerate cosa succede se ci sono diverse
@@ -913,7 +913,7 @@ ai condizionali postfissi possono rendere il vostro codice molto più leggibile.
 
 =end tip
 
-X<loops; C<last>>
+X<cicli; C<last>>
 
 L'istruzione I<last> fa uscire immediatamente dal ciclo. Per finire di processare un file
 dopo avere incontrato un marcatore di terminazione, scrivete:
@@ -929,7 +929,7 @@ dopo avere incontrato un marcatore di terminazione, scrivete:
 
 =end programlisting
 
-X<loops; C<redo>>
+X<cicli; C<redo>>
 
 L'istruzione I<redo> fa ripartire l'iterazione corrente senza valutare di nuovo
 la condizione. Questo può essere utile in quei pochi casi in cui volete
@@ -956,7 +956,7 @@ parser di file che unisce tra loro le linee che terminano con un backslash:
 
 =end programlisting
 
-X<loops; labels>
+X<cicli; etichette>
 
 Usare le istruzioni di controllo di ciclo nei cicli nidificati può creare confusione. Se non potete
 evitare di nidificare i cicli--trasformando i cicli interni in funzioni--usate una
@@ -982,7 +982,7 @@ I<etichetta di ciclo> per essere più chiari:
 
 =head2 Continue
 
-X<loops; C<continue>>
+X<cicli; C<continue>>
 
 Il costrutto C<continue> si comporta come la terza sottoespressione di un ciclo
 C<for>; Perl esegue il suo blocco prima di passare alla prossima iterazione del ciclo, sia
@@ -1014,7 +1014,7 @@ un ciclo a causa di un C<last> o di un C<redo>.
 
 Z<given_when>
 
-X<builtins; C<given>>
+X<predefinite; direttive; C<given>>
 
 Il costrutto C<given> è una nuova funzionalità di Perl 5.10. Esso assegna il valore di
 un'espressione alla variabile topic ed è seguito da un blocco:
@@ -1052,8 +1052,8 @@ C<given> lessicalizza la variabile topic:
 
 =end programlisting
 
-X<builtins; C<when>>
-X<topicalization>
+X<predefinite; direttive; C<when>>
+X<topicalizzazione>
 
 C<given> è particolarmente utile quando è usato in combinazione con C<when> (L<smart_match>). 
 C<given> I<topicalizza> un valore dentro un blocco in modo che diverse istruzioni C<when> possano
@@ -1116,7 +1116,7 @@ implementa il gioco di Sasso, Carta e Forbici:
 
 Perl esegue la regola di C<default> quando il match con tutte le altre condizioni fallisce.
 
-=begin tip Dispatch semplificato con i Multimetodi
+=begin tip Dispatch Semplificato con i Multimetodi
 
 X<CPAN; C<MooseX::MultiMethods>>
 
@@ -1128,7 +1128,7 @@ questo codice.
 =head2 Chiamate di coda
 
 Z<tailcalls>
-X<tailcalls>
+X<chiamate di coda>
 
 Una I<chiamata di coda> ha luogo quando l'ultima espressione in una funzione è una chiamata a
 un'altra funzione--il valore di ritorno della funzione chiamante è il valore
@@ -1157,7 +1157,7 @@ consumare molta memoria. Le chiamate di coda riducono la quantità di memoria ne
 interno del controllo di flusso e possono rendere trattabili degli algoritmi molto costosi.
 Purtroppo, Perl 5 non applica questa ottimizzazione automaticamente; dovete applicarla voi stessi quando lo ritenete necessario.
 
-X<builtins; C<goto>>
+X<predefinite; direttive; C<goto>>
 
 L'operatore nativo C<goto> ha una forma per cui chiama una funzione come se la
 funzione corrente non fosse mai stata chiamata, cancellando in sostanza il tracciamento della chiamata

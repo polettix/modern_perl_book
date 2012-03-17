@@ -2,8 +2,8 @@
 
 Z<names>
 
-X<names>
-X<identifiers>
+X<nomi>
+X<identificatori>
 
 I I<nomi> (o I<identificatori>) sono dappertutto nei programmi Perl: variabili,
 funzioni, package, classi e perfino filehandle. Tutti questi nomi iniziano con
@@ -37,7 +37,7 @@ Questi invece sono identificatori non validi:
 
 =end programlisting
 
-X<symbolic lookups>
+X<lookup simbolici>
 
 I<I nomi esistono principalmente a beneficio del programmatore>. Queste regole si applicano
 solo ai nomi che compaiono esplicitamente nel vostro codice sorgente, come C<sub
@@ -53,15 +53,15 @@ Tutto questo può portare a del codice confuso. Come raccomanda molto efficaceme
 
 =head2 Nomi di Variabili e Sigilli
 
-X<variables; names>
-X<scalar variables>
-X<variables; scalars>
-X<scalars>
-X<arrays>
-X<variables; arrays>
-X<hashes>
-X<variables; hashes>
-X<sigil>
+X<variabili; nomi>
+X<variabili scalari>
+X<variabili; scalari>
+X<scalari>
+X<array>
+X<variabili; array>
+X<hash>
+X<variabili; hash>
+X<sigillo>
 
 I I<nomi di variabile> iniziano sempre con un I<sigillo> (o simbolo) che indica
 il tipo del valore della variabile. Le I<variabili scalari> (L<scalars>) usano il simbolo
@@ -87,7 +87,7 @@ dichiarare più variabili con lo stesso nome e tipi diversi, ma crea confusione:
 
 Questo codice non confonde il Perl, ma confonde le persone che lo leggono.
 
-X<variant sigils>
+X<sigilli varianti>
 
 I sigilli di Perl 5 sono I<varianti>. Così come il contesto determina quanti elementi vi
 aspettate da un'operazione o quali tipi di dati vi aspettate di ottenere, i sigilli determinano
@@ -112,7 +112,7 @@ aggregato come I<lvalue> (parte di un assegnmento a sinistra del carattere
 C<=>) impone un contesto scalare (L<context_philosophy>) all'I<rvalue>
 (parte a destra del carattere C<=>).
 
-X<slices>
+X<slice>
 
 In modo simile, un accesso a più elementi di un hash o di un array--una operazione
 nota come I<slicing>--usa il simbolo chiocciola (C<@>) e impone un contesto listaN<...
@@ -135,8 +135,8 @@ accessi indicizzati che usano le parentesi quadre. Gli hash supportano accessi p
 
 =head2 Namespace
 
-X<fully-qualified name>
-X<namespaces>
+X<nome fully-qualified>
+X<namespace>
 
 Perl fornisce un meccanismo per raggruppare funzioni e variabili correlate in un proprio
 spazio dei nomi univoco--i I<namespace> (L<packages>). Un namespace è una collezione di simboli
@@ -145,7 +145,7 @@ con doppi due punti (C<::>); per esempio, C<Dolci::Gelato> si riferisce a una co
 variabili e funzioni logicamente correlate, come C<cono()> e C<versa_cioccolata_calda()>.
 
 All'interno di un namespace, potete usare dei nomi abbreviati per i suoi membri. Al di fuori del
-namespace, vi riferite invece a un membro usando il suo I<fully-qualified name>. Ovvero, all'interno di
+namespace, vi riferite invece a un membro usando il suo I<nome fully-qualified>. Ovvero, all'interno di
 C<Dolci::Gelato>, C<aggiungi_praline()> si riferisce alla stessa funzione di
 C<Dolci::Gelato::aggiungi_praline()> al di fuori del namespace.
 

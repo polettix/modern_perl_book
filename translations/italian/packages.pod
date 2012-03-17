@@ -1,8 +1,8 @@
 =head1 Package
 
 Z<packages>
-X<packages>
-X<namespaces>
+X<package>
+X<namespace>
 
 Un I<namespace> in Perl associa e incapsula varie entità con nome all'interno di una
 categoria con un proprio nome, come potrebbe essere il vostro cognome o il nome di una marca. Al contrario di un nome
@@ -13,7 +13,7 @@ In Perl 5 un I<package> è una collezione di codice contenuto in un singolo name
 distinzione è sottile: il package rappresenta il codice sorgente e il namespace
 rappresenta l'entità creata quando Perl parsifica tale codice.
 
-X<builtins; C<package>>
+X<predefinite; direttive; C<package>>
 
 La funzione nativa C<package> dichiara un package e un namespace:
 
@@ -27,7 +27,7 @@ La funzione nativa C<package> dichiara un package e un namespace:
 
 =end programlisting
 
-X<namespaces; fully qualified>
+X<namespace; fully qualified>
 
 Tutte le variabili e funzioni globali che dichiarate o a cui fate riferimento dopo la dichiarazione del package
 si riferiscono a simboli del namespace C<MioCodice>. Potete riferirvi
@@ -36,7 +36,7 @@ qualified> C<@MioCodice::scatole>. Un nome fully qualified include un
 nome completo di package, quindi potete chiamare la funzione C<aggiungi_scatola()> soltanto con
 C<MioCodice::aggiungi_scatola()>.
 
-X<scope; packages>
+X<scope; package>
 
 Lo scope di un package continua fino alla successiva dichiarazione C<package> oppure fino alle
 fine del file, a seconda di ciò che avviene per primo. Perl 5.14 ha potenziato C<package> in modo che
@@ -56,7 +56,7 @@ Il package di default è il package C<main>. In assenza di una dichiarazione di 
 package corrente è C<main>. Questa regola si applica tanto ai programmi a linea di comando quanto ai programmi
 standalone e anche ai file F<.pm>.
 
-X<packages; versions>
+X<package; versioni>
 X<C<$VERSION>>
 
 Oltre al nome, un package ha una versione e tre metodi impliciti:
@@ -65,7 +65,7 @@ numeri contenuti in una variabile globale del package di nome C<$VERSION>. Per c
 le versioni tendono a essere una serie di interi separati dal punto, come C<1.23> o
 C<1.1.10>, dove ogni componente è un intero.
 
-X<version numbers>
+X<numeri di versione>
 
 Perl 5.12 ha introdotto una nuova sintassi intesa asemplificare i numeri di versione, come
 documentato in C<perldoc version::Internals>. Questi numeri di versione con forma più restrittiva
@@ -127,14 +127,14 @@ un'eccezione a meno che la versione del modulo sia uguale o successiva all'argom
 
 =head2 Package e Namespace
 
-X<namespaces>
-X<packages; namespaces>
+X<namespace>
+X<package; namespace>
 
 Ogni dichiarazione C<package> crea, se necessario, un nuovo namespace e impone
 al parser di inserire tutti i successivi simboli globali del package (variabili globali e
 funzioni) in tale namespace.
 
-X<namespaces; open>
+X<namespace; aperti>
 
 Perl ha dei I<namespace aperti>. Potete aggiungere funzioni e variabili a un namespace
 in qualunque punto, sia con una dichiarazione di package:
@@ -173,7 +173,7 @@ Potete fare aggiunte a un package in ogni punto sia durante la compilazione che 
 dal file corrente, sebbene costruire un package con diverse dichiarazioni
 separate può rendere il codice difficile da esplorare.
 
-X<namespaces; multi-level>
+X<namespace; multi-livello>
 
 I namespace possono avere tanti livelli quanti ne richiede il vostro schema organizzativo,
 ma i namespace non sono gerarchici. L'unica relazione tra i package

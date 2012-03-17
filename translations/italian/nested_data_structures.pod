@@ -1,8 +1,8 @@
 =head1 Strutture Dati Nidificate
 
 Z<nested_data_structures>
-X<data structures>
-X<nested data structures>
+X<strutture dati>
+X<strutture dati nidificate>
 
 I dati aggregati del Perl--array e hash--vi permettono di memorizzare scalari e
 indicizzarli per numero o per chiave. I riferimenti Perl 5 (L<references>) vi permettono
@@ -31,7 +31,7 @@ Per dichiarare una struttura dati nidificata, usate la sintassi della dichiarazi
 
 =end programlisting
 
-=begin tip Commas are Free
+=begin tip Le Virgole sono Gratuite
 
 Perl permette, ma non richiede, la virgola finale come modo per facilitare l'aggiunta di nuovi
 elementi alla lista.
@@ -107,7 +107,7 @@ strutture dati in Perl.
 =head2 Autovivificazione
 
 Z<autovivification>
-X<autovivification>
+X<autovivificazione>
 
 Quando tentate di scrivere dentro un componente di una struttura dati nidificata, Perl creerà
 il cammino necessario nella struttura dati fino alla destinazione:
@@ -132,9 +132,9 @@ Perl lo inizializzerà di conseguenza:
 
 =end programlisting
 
-X<autovivification>
-X<C<autovivification> pragma>
-X<pragmas; C<autovivification>>
+X<autovivificazione>
+X<direttiva C<autovivification>>
+X<direttive; C<autovivification>>
 
 Questo utile processo è detto I<autovivificazione>. Anche se riduce il codice
 di inizializzazione delle strutture dati nidificate, non distingue tra un
@@ -192,8 +192,8 @@ più chiari da leggere e capire.
 
 Z<circular_references>
 
-X<circular references>
-X<memory management; circular references>
+X<riferimenti circolari>
+X<gestione della memoria; riferimenti circolari>
 X<garbage collection>
 
 Il sistema di gestione della memoria di Perl 5 ha un problema con il reference counting (L<reference_counts>)

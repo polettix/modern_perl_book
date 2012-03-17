@@ -2,7 +2,7 @@
 
 Z<hashes>
 
-X<hashes>
+X<hash>
 
 Un I<hash> è una struttura dati nativa del Perl che associa delle chiavi stringa a
 dei valori scalari. Allo stesso modo in cui una variabile corrisponde a un'area
@@ -18,9 +18,9 @@ non impongono alcun ordine specifico sulle chiavi.
 
 Z<declaring_hashes>
 
-X<hashes; declaring>
-X<C<%>; sigil>
-X<sigils; C<%>>
+X<hash; dichiarazione>
+X<C<%>; sigillo>
+X<sigilli; C<%>>
 
 Gli hash usano il sigillo C<%>. Dichiarate un hash lessicale con:
 
@@ -33,8 +33,8 @@ Gli hash usano il sigillo C<%>. Dichiarate un hash lessicale con:
 Un hash appena dichiarato è vuoto. Potreste anche scrivere C<my %gusti_preferiti = ();>, ma
 sarebbe superfluo.
 
-X<C<$>; sigil>
-X<sigils; C<$>>
+X<C<$>; sigillo>
+X<sigilli; C<$>>
 
 Gli hash usano il sigillo C<$> quando accedete a singoli elementi e le parentesi graffe
 C<{ }> per specificare la chiave:
@@ -58,8 +58,8 @@ C<{ }> per specificare la chiave:
 
 =end programlisting
 
-X<<< C<< => >>; fat comma operator >>>
-X<<< operators; C<< => >> >>>
+X<<< C<< => >>; operatore fat comma >>>
+X<<< operatori; C<< => >> >>>
 
 Se assegnate un numero dispari di elementi ad un hash, riceverete un warning.
 Un idioma del Perl suggerisce di usare l'operatore I<fat comma> (C<< => >>)
@@ -120,7 +120,7 @@ Per svuotare un hash, assegnategli la lista vuotaN<Potreste vedere occasionalmen
 
 =head2 Indicizzazione di Hash
 
-X<hashes; values>
+X<hash; valori>
 
 Per accedere ai singoli valori di un hash dovete eseguire un'operazione di indicizzazione. Usate una chiave (operazione di
 accesso I<per chiave>) per estrarre un valore da un hash:
@@ -151,7 +151,7 @@ automaticamente seguendo le stesse regole del fat comma:
 
 =end programlisting
 
-=begin tip Don't Quote Me
+=begin tip Non Quotatemi
 
 I principianti tendono a quotare i letterali stringa che usano come chiavi di hash, mentre i programmatori esperti
 evitano la quotatura quando è possibile. La quotatura delle chiavi di hash viene usata
@@ -212,8 +212,8 @@ la versione stringa dell'oggetto anzichè l'oggetto stesso:
 
 =head2 Esistenza di Chiavi di Hash
 
-X<builtins; C<exists>>
-X<hashes; C<exists>>
+X<predefinite; funzioni; C<exists>>
+X<hash; C<exists>>
 
 L'operatore C<exists> restituisce un valore booleano che indica se un hash
 contiene una data chiave:
@@ -249,7 +249,7 @@ potrebbe esistere e avere un valore anche se tale valore corrisponde a falso in 
 Inoltre, C<exists> evita l'autovivicazione (L<autovivification>) nelle strutture dati
 nidificate (L<nested_data_structures>).
 
-X<builtins; C<defined>>
+X<predefinite; funzioni; C<defined>>
 
 Se una chiave di hash esiste, il suo valore potrebbe essere C<undef>. Potete controllarlo con C<defined>:
 
@@ -265,8 +265,8 @@ Se una chiave di hash esiste, il suo valore potrebbe essere C<undef>. Potete con
 
 =head2 Accedere a Chiavi e Valori degli Hash
 
-X<hashes; C<keys>>
-X<builtins; C<keys>>
+X<hash; C<keys>>
+X<predefinite; funzioni; C<keys>>
 
 Gli hash sono variabili aggregate, ma la loro struttura a coppie offre diverse
 possibilità di iterazione: sulle chiavi dell'hash, sui valori dell'hash o
@@ -281,8 +281,8 @@ sulle coppie chiave/valore. L'operatore C<keys> produce una lista di chiavi di u
 
 =end programlisting
 
-X<hashes; C<values>>
-X<builtins; C<values>>
+X<hash; C<values>>
+X<predefinite; funzioni; C<values>>
 
 L'operatore C<values> produce una lista di valori di un hash:
 
@@ -295,8 +295,8 @@ L'operatore C<values> produce una lista di valori di un hash:
 
 =end programlisting
 
-X<hashes; C<each>>
-X<builtins; C<each>>
+X<hash; C<each>>
+X<predefinite; direttive; C<each>>
 
 L'operatore C<each> produce una lista di liste di due elementi contenenti una chiave e il suo valore:
 
@@ -340,8 +340,8 @@ C<values> in contesto void:
 
 =head2 Slice di Hash
 
-X<hashes; slicing>
-X<slices; hash>
+X<hash; slice>
+X<slice; hash>
 
 Una I<slice di hash> è una lista di chiavi o valori di un hash indicizzata in una singola
 operazione. Per inizializzare diversi elementi di un hash in una sola istruzione:
@@ -365,8 +365,8 @@ Questo codice è equivalente all'inizializzazione:
 ...eccetto che l'inizializzazione di uno slice di hash non I<sostituisce> i contenuti di un hash
 che esistono già.
 
-X<C<@>; sigil>
-X<sigils; C<@>>
+X<C<@>; sigillo>
+X<sigilli; C<@>>
 
 Le slice di hash vi permettono anche di estrarre diversi valori da un hash in un'unica
 operazione. Come per le slice di array, il sigillo dell'hash cambia per indicare il contesto
@@ -449,7 +449,7 @@ poichè Perl appiattisce l'hash in un'unica lista di chiavi e valori alternati.
 
 =head2 Idiomi degli Hash
 
-X<hashes; finding uniques>
+X<hash; trovare elementi distinti>
 
 Poichè ogni chiave può comparire una sola volta in un hash, assegnare la stessa chiave ad un hash più
 di una volta memorizza solo il valore più recente. Potete sfruttare questo fatto per trovare gli elementi
@@ -466,7 +466,7 @@ distinti di una lista:
 L'uso di C<undef> con uno slice di hash setta i valori dell'hash a C<undef>. Questo idioma
 rappresenta il modo più efficiente di effettuare operazioni insiemistiche con un hash.
 
-X<hashes; counting items>
+X<hash; contare elementi>
 
 Gli hash sono utili anche per contare degli elementi, come gli indirizzi IP in un file di log:
 
@@ -489,8 +489,8 @@ il suo incremento. Se invece non esiste alcun valore per la chiave, Perl crea un
 valore (C<undef>) e lo incrementa immediatamente a uno, dato che il valore numerico di
 C<undef> è 0.
 
-X<hashes; caching>
-X<orcish maneuver>
+X<hash; caching>
+X<manovra orcish>
 
 La seguente strategia costituisce un utile meccanismo di caching per memorizzare il risultato di un'operazione
 costosa con un piccolo overhead:
@@ -511,9 +511,9 @@ costosa con un piccolo overhead:
 =end programlisting
 
 X<defined-or>
-X<C<//>; infix operator>
-X<operators; C<//>>
-X<operators; defined-or>
+X<C<//>; operatore infisso>
+X<operatori; C<//>>
+X<operatori; defined-or>
 
 Questa I<manovra orcish>N<NdT: manovra da orchi; in Inglese è un gioco di parole con Or-cache.> restituisce il valore dell'hash,
 se esso esiste. Altrimenti calcola, mette in cache e restituisce il
@@ -529,7 +529,7 @@ scopo. Purtroppo, alcuni valori validi valutano a falso in contesto booleano, qu
 è quasi sempre più accurato. Essendo pigra, la manovra orcish testa la definitezza del valore in cache, non
 la sua verità.
 
-X<hashes; named parameters>
+X<hash; parametri per nome>
 
 Se la vostra funzione accetta diversi argomenti, sfruttate la golosità degli hash
 (L<parameter_slurping>) per raccogliere delle coppie chiave/valore in un unico hash trattandole come
@@ -586,7 +586,7 @@ in una certa posizione sovrascrive gli assegnamenti che lo precedono:
 
 Z<locked_hashes>
 
-X<hashes; locked>
+X<hash; bloccati>
 
 Dato che le chiavi di hash sono delle bareword, offrono poca protezione contro gli errori di scrittura rispetto alla
 protezione offerta dalla pragma C<strict> sui nomi di funczione e di variabile. Il

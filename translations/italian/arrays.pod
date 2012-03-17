@@ -19,9 +19,9 @@ elementi a piacere. Il sigillo C<@> denota un array. Per dichiarare un array, sc
 
 =head2 Elementi di un Array
 
-X<sigils; variant>
-X<C<$>; sigil>
-X<sigils; C<$>>
+X<sigilli; variante>
+X<C<$>; sigillo>
+X<sigilli; C<$>>
 
 I<Accedere> a un singolo elemento di un array in Perl 5 richiede il sigillo
 scalare. C<$gatti[0]> è un uso non ambiguo dell'array C<@gatti>, dato che
@@ -56,8 +56,8 @@ un'addizione o un contesto booleano), un array valuta al numero di elementi nell
 
 =end programlisting
 
-X<C<$#>; sigil>
-X<sigils; C<$#>>
+X<C<$#>; sigillo>
+X<sigilli; C<$#>>
 
 Per ottenere l'I<indice> dell'ultimo elemento di un array, sottraete uno dal
 numero di elementi dell'array (ricordate che gli indici dell'array iniziano da 0)
@@ -148,7 +148,7 @@ Per svuotare un array, assegnategli la lista vuota:
 
 =end programlisting
 
-=begin tip Arrays Start Empty
+=begin tip Gli Array all'Inizio sono Vuoti
 
 C<my @elementi = ();> è una versione più lunga e verbosa di C<my @elementi>, dato che
 gli array appena dichiarati sono vuoti.
@@ -161,10 +161,10 @@ Qualche volta è più conveniente vedere un array come una collezione ordinata e
 elementi piuttosto che come una mappatura tra indici e valori. Perl 5 fornisce diverse
 operazioni per manipolare gli elementi di un array senza usare gli indici.
 
-X<arrays; C<push>>
-X<arrays; C<pop>>
-X<builtins; C<push>>
-X<builtins; C<pop>>
+X<array; C<push>>
+X<array; C<pop>>
+X<predefinite; funzioni; C<push>>
+X<predefinite; funzioni; C<pop>>
 
 Gli operatori C<push> e C<pop> aggiungono e rimuovono, rispettivamente, degli elementi dalla coda di un
 array:
@@ -194,10 +194,10 @@ Dato che C<push> opera su una lista, potete facilmente appendere gli elementi di
 
 =end programlisting
 
-X<arrays; C<shift>>
-X<arrays; C<unshift>>
-X<builtins; C<shift>>
-X<builtins; C<unshift>>
+X<array; C<shift>>
+X<array; C<unshift>>
+X<predefinite; funzioni; C<shift>>
+X<predefinite; funzioni; C<unshift>>
 
 Analogamente, C<unshift> e C<shift> aggiungono e rimuovono, rispettivamente, degli elementi dalla testa
 di un array:
@@ -218,8 +218,8 @@ elemento dell'array.
 
 Pochi programmi usano i valori di ritorno di C<push> e C<unshift>.
 
-X<arrays; C<splice>>
-X<builtins; C<splice>>
+X<array; C<splice>>
+X<predefinite; funzioni; C<splice>>
 
 L'operatore C<splice> rimuove e sostituisce elementi di un array dato un
 offset, la lunghezza di una slice di lista e i sostituti. Sia la sostituzione che la rimozione
@@ -237,8 +237,8 @@ C<unshift>. Un uso particolarmente efficace è la rimozione di due elementi da u
 
 =end programlisting
 
-X<arrays; C<each>>
-X<builtins; C<each>>
+X<array; C<each>>
+X<predefinite; direttive; C<each>>
 
 Prima del Perl 5.12, iterare su un array per indice richiedeva un ciclo in stile C.
 A partire da Perl 5.12, C<each> può iterare su un array per indice e valore:
@@ -257,10 +257,10 @@ A partire da Perl 5.12, C<each> può iterare su un array per indice e valore:
 
 Z<array_slices>
 
-X<arrays; slices>
-X<slices; array>
-X<C<@>; sigil>
-X<sigils; C<@>>
+X<array; slice>
+X<slice; array>
+X<C<@>; sigillo>
+X<sigilli; C<@>>
 
 Il costrutto di I<array slice> vi permette di accedere agli elementi di un array in contesto
 lista. A differenza dell'accesso scalare a un elemento dell'array, questa operazione di indicizzazione
@@ -317,7 +317,7 @@ che usa come indice:
 
 =head2 Array e Contesto
 
-X<list context; arrays>
+X<contesto lista; array>
 
 In contesto lista, gli array diventano liste.  Se passate diversi array a una
 normale funzione Perl 5, essi si appiattiscono in un'unica lista:
@@ -370,8 +370,8 @@ ad array (L<array_references>).
 
 =head2 Interpolazione di Array
 
-X<arrays; interpolation>
-X<interpolation; arrays>
+X<array; interpolazione>
+X<interpolazione; array>
 X<C<$">>
 X<C<$LIST_SEPARATOR>>
 
