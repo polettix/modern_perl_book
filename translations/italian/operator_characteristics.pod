@@ -3,7 +3,7 @@
 =head1 Caratteristiche degli Operatori
 
 Z<operator_characteristics>
-X<operators; characteristics>
+X<operatori; caratteristiche>
 
 Ogni operatore ha molte importanti caratteristiche che ne determinano
 il comportamento: il numero di operandi su cui opera, le sue relazioni con altri
@@ -18,7 +18,7 @@ semplici. E anche se non li avete mai usati esplicitamente, ne conoscete già il
 =head2 Precedenza
 
 Z<precedence>
-X<precedence>
+X<precedenza>
 
 La I<precedenza> di un operatore determina quando esso viene valutato da Perl in una
 espressione. L'ordine di valutazione va dalla precedenza più alta a quella più bassa.
@@ -40,11 +40,11 @@ l'associatività (L<associativity>) e la posizione (L<fixity>) aiutano a elimina
 =head2 Associatività
 
 Z<associativity>
-X<associativity>
-X<associativity; left>
-X<left associativity>
-X<associativity; right>
-X<right associativity>
+X<associatività>
+X<associatività; a sinistra>
+X<associatività a sinistra>
+X<associatività; a destra>
+X<associatività a destra>
 
 L'I<associatività> di un operatore determina se esso valuta da sinistra verso destra
 o da destra verso sinistra. L'addizione è associativa a sinistra, quindi C<2 + 3 + 4>
@@ -59,8 +59,8 @@ rendere chiare le vostre intenzioni.
 =begin sidebar
 
 X<C<B::Deparse>>
-X<precedence; disambiguation>
-X<associativity; disambiguation>
+X<precedenza; disambiguazione>
+X<associatività; disambiguazione>
 
 Il modulo core C<B::Deparse> è uno strumento indispensabile di debugging. Eseguite C<perl
 -MO=Deparse,-p> su un pezzo di codice per vedere esattamente come Perl gestisce la precedenza e
@@ -77,13 +77,13 @@ $z>.
 
 Z<arity>
 
-X<arity>
-X<operators; arity>
-X<nullary>
-X<unary>
-X<binary>
-X<trinary>
-X<listary>
+X<arità>
+X<operatori; arità>
+X<nullario>
+X<unario>
+X<binario>
+X<trinario>
+X<poliadico>
 
 L'I<arità> di un operatore è il numero di operandi su cui opera.  Un operatore
 I<nullario> opera su zero operandi. Un operatore I<unario> opera su
@@ -120,33 +120,33 @@ le precedenze.
 =head2 Posizione
 
 Z<fixity>
-X<fixity>
-X<operators; fixity>
-X<infix>
-X<fixity; infix>
-X<prefix>
-X<fixity; prefix>
-X<postfix>
-X<fixity; postfix>
-X<circumfix>
-X<fixity; circumfix>
-X<postcircumfix>
-X<fixity; postcircumfix>
+X<posizione>
+X<operatori; posizione>
+X<infisso>
+X<posizione; infissa>
+X<prefisso>
+X<posizione; prefissa>
+X<postfisso>
+X<posizione; postfissa>
+X<raggruppamento>
+X<posizione; di raggruppamento>
+X<post-raggruppamento>
+X<posizione; di post-raggruppamento>
 
 La I<posizione> di un operatore determina il suo posizionamento rispetto ai suoi operandi:
 
-X<C<.>; infix operator>
-X<C<.=>; infix operator>
-X<C<..>; infix operator>
-X<C<...>; infix operator>
-X<C<=~>; infix operator>
-X<C<!~>; infix operator>
-X<C<|>; infix operator>
-X<C<||>; infix operator>
-X<C<//>; infix operator>
-X<C<|=>; infix operator>
-X<C<||=>; infix operator>
-X<C<//=>; infix operator>
+X<C<.>; operatore infisso>
+X<C<.=>; operatore infisso>
+X<C<..>; operatore infisso>
+X<C<...>; operatore infisso>
+X<C<=~>; operatore infisso>
+X<C<!~>; operatore infisso>
+X<C<|>; operatore infisso>
+X<C<||>; operatore infisso>
+X<C<//>; operatore infisso>
+X<C<|=>; operatore infisso>
+X<C<||=>; operatore infisso>
+X<C<//=>; operatore infisso>
 
 =over 4
 
@@ -154,33 +154,33 @@ X<C<//=>; infix operator>
 matematici sono operatori infissi, per esempio l'operatore di moltiplicazione in C<$lunghezza
 * $larghezza>.
 
-X<C<\>; prefix operator>
-X<C<~>; prefix operator>
-X<C<++>; prefix operator>
-X<C<-->; prefix operator>
-X<C<+>; prefix operator>
-X<C<->; prefix operator>
-X<C<!>; prefix operator>
-X<C<!!>; prefix operator>
+X<C<\>; operatore prefisso>
+X<C<~>; operatore prefisso>
+X<C<++>; operatore prefisso>
+X<C<-->; operatore prefisso>
+X<C<+>; operatore prefisso>
+X<C<->; operatore prefisso>
+X<C<!>; operatore prefisso>
+X<C<!!>; operatore prefisso>
 
 =item * Gli operatori I<prefissi> precedono i loro operandi. Gli operatori I<postfissi> li
 seguono. Questi operatori tendono ad essere unari, come la negazione numerica (C<-$x>),
 la negazione booleana (C<!$y>) e l'incremento postfisso (C<$z++>).
 
-X<C<()>; circumfix operator>
-X<C<{}>; circumfix operator>
-X<C<[]>; circumfix operator>
-X<C<//>; circumfix operator>
-X<C<``>; circumfix operator>
-X<C<''>; circumfix operator>
-X<C<"">; circumfix operator>
+X<C<()>; operatore di raggruppamento>
+X<C<{}>; operatore di raggruppamento>
+X<C<[]>; operatore di raggruppamento>
+X<C<//>; operatore di raggruppamento>
+X<C<``>; operatore di raggruppamento>
+X<C<''>; operatore di raggruppamento>
+X<C<"">; operatore di raggruppamento>
 
 =item * Gli operatori di I<raggruppamento> racchiudono i loro operandi, ad esempio il cotruttore di hash
 anonimo (C<{ ... }>) e gli operatori di quotatura (C<qq[ ... ]>).
 
-X<C<()>; postcircumfix operator>
-X<C<{}>; postcircumfix operator>
-X<C<[]>; postcircumfix operator>
+X<C<()>; operatore di post-raggruppamento>
+X<C<{}>; operatore di post-raggruppamento>
+X<C<[]>; operatore di post-raggruppamento>
 
 =item * Gli operatori di I<post-raggruppamento> seguono certi operandi e ne racchiudono altri,
 come nell'accesso agli elementi di hash e array (C<$hash{$x}> e C<$array[$y]>).

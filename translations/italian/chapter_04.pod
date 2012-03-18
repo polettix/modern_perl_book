@@ -3,8 +3,8 @@
 =head0 Operatori
 
 Z<operators>
-X<operators>
-X<operands>
+X<operatori>
+X<operandi>
 
 Alcune persone definiscono il Perl come un "linguaggio orientato agli operatori". Per riuscire a capire un programma
 Perl, dovete sapere come i suoi operatori interagiscono con i propri operandi.

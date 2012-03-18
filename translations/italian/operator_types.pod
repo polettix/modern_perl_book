@@ -10,36 +10,36 @@ passate e del valore che vi aspettate di ricevere.
 
 Z<numeric_operators>
 
-X<operators; numeric>
-X<operators; arithmetic>
-X<operators; C<+>>
-X<C<+>; numeric operator>
-X<operators; C<->>
-X<C<->; numeric operator>
-X<operators; C<*>>
-X<C<*>; numeric operator>
-X<operators; C</>>
-X<C</>; numeric operator>
-X<operators; C<**>>
-X<C<**>; numeric operator>
-X<operators; C<%>>
-X<C<%>; numeric operator>
-X<operators; C<+=>>
-X<C<+=>; numeric operator>
-X<operators; C<-=>>
-X<C<-=>; numeric operator>
-X<operators; C<*=>>
-X<C<*=>; numeric operator>
-X<operators; C</=>>
-X<C</=>; numeric operator>
-X<operators; C<**=>>
-X<C<**=>; numeric operator>
-X<operators; C<%=>>
-X<C<%=>; numeric operator>
-X<operators; C<-->>
-X<C<-->; numeric operator>
+X<operatori; numerici>
+X<operatori; aritmetici>
+X<operatori; C<+>>
+X<C<+>; operatore numerico>
+X<operatori; C<->>
+X<C<->; operatore numerico>
+X<operatori; C<*>>
+X<C<*>; operatore numerico>
+X<operatori; C</>>
+X<C</>; operatore numerico>
+X<operatori; C<**>>
+X<C<**>; operatore numerico>
+X<operatori; C<%>>
+X<C<%>; operatore numerico>
+X<operatori; C<+=>>
+X<C<+=>; operatore numerico>
+X<operatori; C<-=>>
+X<C<-=>; operatore numerico>
+X<operatori; C<*=>>
+X<C<*=>; operatore numerico>
+X<operatori; C</=>>
+X<C</=>; operatore numerico>
+X<operatori; C<**=>>
+X<C<**=>; operatore numerico>
+X<operatori; C<%=>>
+X<C<%=>; operatore numerico>
+X<operatori; C<-->>
+X<C<-->; operatore numerico>
 
-Gli operatori numerici impngono il contesto numerico ai loro operandi. Questi operatori
+Gli operatori numerici impongono il contesto numerico ai loro operandi. Questi operatori
 sono: gli operatori aritmetici standard come addizione (C<+>), sottrazione
 (C<->), moltiplicazione (C<*>), divisione (C</>), elevamento a potenza (C<**>) e modulo
 (C<%>); le loro varianti di assegnamento composto (C<+=>, C<-=>, C<*=>, C</=>, C<**=> e
@@ -48,21 +48,21 @@ C<%=>); e l'auto-decremento (C<-->) sia postfisso che prefisso.
 L'operatore di auto-incremento ha uno speciale comportamento in contesto stringa
 (L<auto_increment_operator>).
 
-X<operators; C<==>>
-X<operators; C<!=>>
-X<<< operators; C<< E<lt> >> >>>
-X<<< operators; C<< E<gt> >> >>>
-X<<< operators; C<< E<lt>= >> >>>
-X<<< operators; C<< E<gt>= >> >>>
-X<<< operators; C<< E<lt>=E<gt> >> >>>
+X<operatori; C<==>>
+X<operatori; C<!=>>
+X<<< operatori; C<< E<lt> >> >>>
+X<<< operatori; C<< E<gt> >> >>>
+X<<< operatori; C<< E<lt>= >> >>>
+X<<< operatori; C<< E<gt>= >> >>>
+X<<< operatori; C<< E<lt>=E<gt> >> >>>
 
-X<C<!=>; numeric comparison operator>
-X<C<==>; numeric comparison operator>
-X<<< C<< E<gt> >>; numeric comparison operator >>>
-X<<< C<< E<lt> >>; numeric comparison operator >>>
-X<<< C<< E<gt>= >>; numeric comparison operator >>>
-X<<< C<< E<lt>= >>; numeric comparison operator >>>
-X<<< C<< E<lt>=E<gt> >>; numeric comparison operator >>>
+X<C<!=>; operatore di confronto numerico>
+X<C<==>; operatore di confronto numerico>
+X<<< C<< E<gt> >>; operatore di confronto numerico >>>
+X<<< C<< E<lt> >>; operatore di confronto numerico >>>
+X<<< C<< E<gt>= >>; operatore di confronto numerico >>>
+X<<< C<< E<lt>= >>; operatore di confronto numerico >>>
+X<<< C<< E<lt>=E<gt> >>; operatore di confronto numerico >>>
 
 Diversi operatori di confronto impongono il contesto numerico ai loro operandi.
 Questi operatori sono: uguaglianza numerica (C<==>), disuguaglianza numerica (C<!=>), maggiore di
@@ -72,33 +72,33 @@ Questi operatori sono: uguaglianza numerica (C<==>), disuguaglianza numerica (C<
 
 =head2 Operatori Stringa
 
-X<operators; string>
-X<strings; operators>
-X<operators; C<=~>>
-X<C<=~>; string operator>
-X<operators; C<!~>>
-X<C<!~>; string operator>
-X<operators; C<.>>
-X<C<.>; string operator>
+X<operatori; stringa>
+X<stringhe; operatori>
+X<operatori; C<=~>>
+X<C<=~>; operatore stringa>
+X<operatori; C<!~>>
+X<C<!~>; operatore stringa>
+X<operatori; C<.>>
+X<C<.>; operatore stringa>
 
 Gli operatori stringa impongono il contesto stringa ai loro operandi. Questi operatori sono
 il binding positivo e negativo a un'espressione regolare (C<=~> and C<!~>,
 respectively) e la concatenazione (C<.>).
 
-X<operators; C<eq>>
-X<operators; C<ne>>
-X<operators; C<gt>>
-X<operators; C<lt>>
-X<operators; C<ge>>
-X<operators; C<le>>
-X<operators; C<cmp>>
-X<C<eq>; string comparison operator>
-X<C<ne>; string comparison operator>
-X<C<gt>; string comparison operator>
-X<C<lt>; string comparison operator>
-X<C<ge>; string comparison operator>
-X<C<le>; string comparison operator>
-X<C<cmp>; string comparison operator>
+X<operatori; C<eq>>
+X<operatori; C<ne>>
+X<operatori; C<gt>>
+X<operatori; C<lt>>
+X<operatori; C<ge>>
+X<operatori; C<le>>
+X<operatori; C<cmp>>
+X<C<eq>; operatore di confronto stringa>
+X<C<ne>; operatore di confronto stringa>
+X<C<gt>; operatore di confronto stringa>
+X<C<lt>; operatore di confronto stringa>
+X<C<ge>; operatore di confronto stringa>
+X<C<le>; operatore di confronto stringa>
+X<C<cmp>; operatore di confronto stringa>
 
 Diversi operatori di confronto impongono il contesto numerico ai loro operandi.
 Questi operatori sono: uguaglianza di stringhe (C<eq>), disuguaglianza di stringhe (C<ne>), maggiore di (C<gt>),
@@ -107,28 +107,28 @@ minore di (C<lt>), maggiore o uguale (C<ge>), minore o uguale
 
 =head2 Operatori Logici
 
-X<operators; logical>
-X<operators; C<&&>>
-X<operators; C<and>>
-X<operators; C<||>>
-X<operators; C<or>>
-X<operators; C<//>>
-X<operators; C<?:>>
-X<operators; C<!>>
-X<operators; C<not>>
-X<operators; C<xor>>
-X<C<&&>; logical operator>
-X<C<and>; logical operator>
-X<C<||>; logical operator>
-X<C<or>; logical operator>
-X<C<//>; logical operator>
-X<C<?:>; logical operator>
-X<C<!>; logical operator>
-X<C<not>; logical operator>
-X<C<xor>; logical operator>
-X<operators; defined-or>
-X<defined-or; logical operator>
-X<short-circuiting>
+X<operatori; logici>
+X<operatori; C<&&>>
+X<operatori; C<and>>
+X<operatori; C<||>>
+X<operatori; C<or>>
+X<operatori; C<//>>
+X<operatori; C<?:>>
+X<operatori; C<!>>
+X<operatori; C<not>>
+X<operatori; C<xor>>
+X<C<&&>; operatore logico>
+X<C<and>; operatore logico>
+X<C<||>; operatore logico>
+X<C<or>; operatore logico>
+X<C<//>; operatore logico>
+X<C<?:>; operatore logico>
+X<C<!>; operatore logico>
+X<C<not>; operatore logico>
+X<C<xor>; operatore logico>
+X<operatori; defined-or>
+X<defined-or; operatore logico>
+X<cortocircuiti>
 
 Gli operatori logici impngono il contesto booleano ai loro operandi. Questi operatori
 sono C<&&>, C<and>, C<||> e C<or>. Sono tutti infssi e tutti possono dar luogo a
@@ -150,7 +150,7 @@ particolarmente utile per impostare i valori di default dei parametri:
 
 =end programlisting
 
-X<C<?:>; ternary conditional operator>
+X<C<?:>; operatore condizionale ternario>
 
 L'operatore condizionale ternario (C<?:>) riceve tre operandi. Valuta il
 primo in contesto booleano e continua con la valutazione del secondo se il primo è vero e
@@ -170,29 +170,29 @@ suoi operandi.
 
 =head2 Operatori bit-a-bit
 
-X<operators; bitwise>
-X<<< operators; C<< E<lt>E<lt> >> >>>
-X<<< operators; C<< E<gt>E<gt> >> >>>
-X<operators; C<&>>
-X<operators; C<|>>
-X<operators; C<^>>
-X<operators; C<&=>>
-X<operators; C<|=>>
-X<operators; C<^=>>
-X<<< operators; C<< E<lt>E<lt>= >> >>>
-X<<< operators; C<< E<gt>E<gt>= >> >>>
+X<operatori; bit-a-bit>
+X<<< operatori; C<< E<lt>E<lt> >> >>>
+X<<< operatori; C<< E<gt>E<gt> >> >>>
+X<operatori; C<&>>
+X<operatori; C<|>>
+X<operatori; C<^>>
+X<operatori; C<&=>>
+X<operatori; C<|=>>
+X<operatori; C<^=>>
+X<<< operatori; C<< E<lt>E<lt>= >> >>>
+X<<< operatori; C<< E<gt>E<gt>= >> >>>
 
-X<<< C<< E<lt>E<lt> >>; bitwise operator >>>
-X<<< C<< E<gt>E<gt> >>; bitwise operator >>>
+X<<< C<< E<lt>E<lt> >>; operatore bit-a-bit >>>
+X<<< C<< E<gt>E<gt> >>; operatore bit-a-bit >>>
 
-X<C<&>; bitwise operator>
-X<C<|>; bitwise operator>
-X<C<^>; bitwise operator>
-X<C<&=>; bitwise operator>
-X<C<|=>; bitwise operator>
-X<C<^=>; bitwise operator>
-X<<< C<< E<lt>E<lt>= >>; bitwise operator >>>
-X<<< C<< E<gt>E<gt>= >>; bitwise operator >>>
+X<C<&>; operatore bit-a-bit>
+X<C<|>; operatore bit-a-bit>
+X<C<^>; operatore bit-a-bit>
+X<C<&=>; operatore bit-a-bit>
+X<C<|=>; operatore bit-a-bit>
+X<C<^=>; operatore bit-a-bit>
+X<<< C<< E<lt>E<lt>= >>; operatore bit-a-bit >>>
+X<<< C<< E<gt>E<gt>= >>; operatore bit-a-bit >>>
 
 Gli operatori bit-a-bit trattano a livello di bit i numeri rappresentati dai propri operandi. Queste
 operazioni, piuttosto rare, sono: shift a sinistra (C<< << >>), shift a destra
@@ -204,10 +204,10 @@ C<^=>).
 
 Z<auto_increment_operator>
 
-X<operators; auto-increment>
-X<auto-increment>
-X<operators; C<++>>
-X<C<++>; auto-increment operator>
+X<operatori; auto-incremento>
+X<auto-incremento>
+X<operatori; C<++>>
+X<C<++>; operatore di auto-incremento>
 
 L'operatore di auto-incremento ha un comportamento speciale. Quando è usato su un valore che ha
 una componente numerica (L<cached_coercions>), l'operatore incrementa tale componente
@@ -234,9 +234,9 @@ diventa C<aaa> e C<a9> diventa C<b0>.
 
 =end programlisting
 
-X<operators; repetition>
-X<operators; C<x>>
-X<C<x>; repetition operator>
+X<operatori; ripetizione>
+X<operatori; C<x>>
+X<C<x>; operatore di ripetizione>
 
 L'operatore di ripetizione (C<x>) è un operatore infisso con un comportamento complesso. In
 contesto lista, se riceve una lista valuta a quella lista ripetuta un numero di volte
@@ -266,10 +266,10 @@ concatenazioni. Per esempio:
 
 =end programlisting
 
-X<operators; range>
+X<operatori; range>
 X<range>
-X<operators; C<..>>
-X<C<..>; range operator>
+X<operatori; C<..>>
+X<C<..>; operatore di range>
 
 L'operatore infisso di I<range> (C<..>) produce una lista di elementi in contesto lista:
 
@@ -282,9 +282,9 @@ L'operatore infisso di I<range> (C<..>) produce una lista di elementi in contest
 Può produrre dei semplici range incrementali (sia di interi che di stringhe), ma
 non è capace di intuire pattern di range più complessi.
 
-X<operators; flip-flop>
+X<operatori; flip-flop>
 X<flip-flop>
-X<C<..>; flip-flop operator>
+X<C<..>; operatore flip-flop>
 
 In contesto booleano, l'operatore di range diventa l'operatore I<flip-flop>. Questo
 operatore produce un valore falso fino a quando il suo operando sinistro non diventa vero. Tale valore
@@ -301,11 +301,11 @@ formale con:
 
 =end programlisting
 
-X<operators; comma>
-X<operators; C<,>>
-X<C<,>; operator>
-X<<< operators; C<< =E<gt> >> >>>
-X<<< C<< =E<gt> >>; fat comma operator >>>
+X<operatori; virgola>
+X<operatori; C<,>>
+X<C<,>; operatore>
+X<<< operatori; C<< =E<gt> >> >>>
+X<<< C<< =E<gt> >>; operatore fat comma >>>
 
 L'operatore I<virgola> (C<,>) è un operatore infisso. In contesto scalare
 valuta il suo operando sinistro e quindi restituisce il valore prodotto dalla valutazione del suo
