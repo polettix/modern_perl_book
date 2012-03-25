@@ -1,9 +1,9 @@
-=head1 Dechiarazione di Funzioni
+=head1 Dichiarazione di Funzioni
 
 Z<functions>
 
-X<functions; declaration>
-X<builtins; C<sub>>
+X<funzioni; dichiarazione>
+X<predefinite; parole chiave; C<sub>>
 
 Usate il costrutto nativo C<sub> per dichiarare una funzione:
 
@@ -15,7 +15,7 @@ Usate il costrutto nativo C<sub> per dichiarare una funzione:
 
 Da questo momento C<salutami()> può essere invocata dovunque all'interno del programma.
 
-X<functions; forward declaration>
+X<funzioni; dichiarazione in avanti>
 
 Non è necessario I<definire> una funzione nello stesso punto in cui la dichiarate. Una
 I<dichiarazione in avanti> dice al Perl di ricordarsi il nome della funzione anche se essa
@@ -29,7 +29,7 @@ verrà definita dopo:
 
 =head1 Invocazione di Funzioni
 
-X<functions; invoking>
+X<funzioni; invocazione>
 
 Usate delle parentesi postfisse (L<fixity>) e il nome di una funzione per invocare la funzione
 ed eventualmente passarle una lista di argomenti:
@@ -62,10 +62,10 @@ Gli argomenti delle funzioni possono essere espressioni arbitrarie, incluse dell
 
 Z<function_parameters>
 
-X<parameters>
-X<functions; parameters>
+X<parametri>
+X<funzioni; parametri>
 X<C<@_>>
-X<parameters; flattening>
+X<parametri; appiattimento>
 
 Una funzione riceve i suoi parametri in un singolo array, C<@_>
 (L<default_array_variables>). Perl I<appiattisce> tutti i parametri in input in un'unica
@@ -116,7 +116,7 @@ Anche se gran parte del codice usa C<shift> o lo spacchettamento in una lista, C
 
 ... ma anche usare C<shift>, C<unshift>, C<push>, C<pop>, C<splice> e le slice con C<@_>.
 
-=begin tip The Implicit Them
+=begin tip Gli Essi Impliciti
 
 Ricordate che le funzioni native che operano sugli array usano C<@_> come operando di default I<all'interno
 delle funzioni>. Sfruttate questo idioma.
@@ -184,7 +184,7 @@ restanti ad un'altra funzione:
 Usate C<shift> quando la vostra funzione necessita di un solo parametro. Usate un assegnamento a lista
 quando dovete accedere a diversi parametri.
 
-=begin tip Real Function Signatures
+=begin tip Vere Segnature di Funzione
 
 X<CPAN; C<signatures>>
 X<CPAN; C<Method::Signatures>>
@@ -264,7 +264,7 @@ parametro (o usate C<pop> per rimuoverlo dalla fine di C<@_>):
 =head2 Slurping
 
 Z<parameter_slurping>
-X<parameters; slurping>
+X<parametri; slurping>
 
 Un assegnamento di un aggregato a una lista è sempre greedy, per cui assegnare a C<%cuccioli>
 fa lo I<slurp> di tutti i valori restanti di C<@_>. Se il parametro C<$tipo>
@@ -289,8 +289,8 @@ appiattimenti e slurping indesiderati degli aggregati.
 
 =head2 Aliasing
 
-X<parameters; aliasing>
-X<functions; aliasing parameters>
+X<parametri; aliasing>
+X<funzioni; aliasing dei parametri>
 
 C'è una sottigliezza legata all'array C<@_>; esso contiene infatti degli I<alias> agli argomenti della funzione, e questo rende possibile
 modificarli direttamente. Per esempio:
@@ -353,8 +353,8 @@ altri namespace.
 
 Z<importing>
 
-X<functions; importing>
-X<builtins; C<use>>
+X<funzioni; importazione>
+X<predefinite; funzioni; C<use>>
 
 Quando caricate un modulo con il costrutto nativo C<use> (L<modules>), Perl chiama automaticamente
 un metodo di nome C<import()> su tale modulo. Un modulo può fornire un proprio
@@ -405,7 +405,7 @@ bareword, e violerebbero la direttiva C<strict>.
 =head1 Gestione degli Errori
 
 Z<reporting_errors>
-X<builtins; C<caller>>
+X<predefinite; funzioni; C<caller>>
 
 All'interno di una funzione, potete ispezionare il contesto della chiamata alla funzione stessa con la funzione nativa
 C<caller>. Quando non riceve argomenti, essa restituisce una lista di tre elementi
@@ -495,9 +495,9 @@ Le funzioni sono alla base di molte funzionalità avanzate del Perl.
 
 =head2 Conoscenza del Contesto
 
-X<context>
+X<contesto>
 X<C<wantarray>>
-X<builtins; C<wantarray>>
+X<predefinite; funzioni; C<wantarray>>
 
 Le funzioni native di Perl 5 sanno se le avete invocate in contesto void, scalare o
 lista; la stessa cosa è possibile per le vostre funzioni. La funzione nativa chiamata
@@ -529,7 +529,7 @@ scalare. Ricordate però che non esiste un'unica regola ottimale per l'uso
 di C<wantarray>. Alcune volte è meglio scrivere funzioni separate per evitare
 l'ambiguità.
 
-=begin tip Putting it in Context
+=begin tip Nel Giusto Contesto
 
 X<C<Want>>
 X<C<Contextual::Return>>
@@ -542,9 +542,9 @@ offrono molti modi di scrivere interfacce sensibili al contesto potenti ed usabi
 =head2 Ricorsione
 
 Z<recursion>
-X<recursion>
-X<call frame>
-X<functions; call frame>
+X<ricorsione>
+X<blocco di attivazione>
+X<funzioni; blocco di attivazione>
 
 Supponete di voler trovare un elemento in un array ordinato. I<Potreste> iterare
 su ogni singolo elemento dell'array, confrontandolo con ciò che cercate, ma in media
@@ -659,7 +659,7 @@ invocazione sono protette e separate:
 =head2 Chiamate di Coda
 
 Z<tail_calls>
-X<recursion; guard conditions>
+X<ricorsione; condizioni di terminazione>
 
 Un I<punto critico> della ricorsione è che dovete specificare correttamente le condizioni di
 terminazione se non volete che la vostra funzione chiami se stessa un numero infinito di volte.
@@ -696,8 +696,8 @@ di ritornare alla chiamata corrente e poi alla chiamata precedente, ritornando i
 subito alla chiamata precedente.
 
 X<C<goto>>
-X<functions; C<goto>>
-X<builtins; C<goto>>
+X<funzioni; C<goto>>
+X<predefinite; parole chiave; C<goto>>
 
 Purtroppo, Perl 5 non elimina automaticamente le chiamate di coda. Fatelo
 voi manualmente con una speciale forma dell'istruzione C<goto>. Contrariamente alla forma
@@ -728,12 +728,12 @@ Qualche volta le ottimizzazioni lasciano a desiderare dal punto di vista estetic
 
 =head1 Trappole e Funzionalità da Evitare
 
-X<functions; misfeatures>
-X<functions; Perl 4>
-X<functions; Perl 1>
-X<C<&>; sigil>
-X<sigils; C<&>>
-X<builtins; C<do>>
+X<funzioni; trappole>
+X<funzioni; Perl 4>
+X<funzioni; Perl 1>
+X<C<&>; sigillo>
+X<sigilli; C<&>>
+X<predefinite; funzioni; C<do>>
 
 Perl 5 supporta ancora le invocazioni di funzione vecchio stile, ereditate da versioni
 precedenti del Perl. Mentre ora potete invocare le funzioni Perl per nome,
@@ -775,5 +775,5 @@ questo problema può rimanere nascosto fino a quando Perl produce dei warning re
 valore non-numerico (la descrizione del test, che non può essere convertita in un numero) e
 l'elemento nell'array.
 
-Mentre l'uso indiscriminato di parentesi può peggiorare la leggibilità, un lor uso ponderato
+Mentre l'uso indiscriminato di parentesi può peggiorare la leggibilità, un loro uso ponderato
 può chiarire il significato del codice e rendere improbabili alcuni errori sottili.

@@ -129,7 +129,7 @@ ricevuti.
 
 =head2 Generazione di Codice in AUTOLOAD()
 
-X<C<AUTOLOAD>; code installation>
+X<C<AUTOLOAD>; installazione di codice>
 
 Questa doppia chiamata è facile da scrivere, ma inefficiente. L'esecuzione di ogni chiamata di metodo sull'oggetto
 che fa da proxy deve fallire per entrare in C<AUTOLOAD()>.  Potete pagare questa penalità una sola volta,
@@ -169,8 +169,8 @@ una semplice chiamata a C<caller()> rivela la doppia chiamata di entrambe le tec
 qui sopra. Se da una parte tener conto di questo può essere visto come una violazione dell'incapsulamento, 
 lo stesso si potrebbe dire dell'esporre i dettagli di I<come> un oggetto fornisce un metodo.
 
-X<tailcalls>
-X<C<goto>; tailcall>
+X<chiamate di coda>
+X<C<goto>; chiamata di coda>
 
 Alcuni autori usano una chiamata di coda (L<tailcalls>) per I<sostituire> la chiamata corrente di
 C<AUTOLOAD()> con una chiamata al metodo destinatario:
@@ -197,12 +197,12 @@ C<caller()>, e dà quindi l'illusione che il metodo generato sia stato chiamato 
 
 Z<autoload_drawbacks>
 
-X<C<AUTOLOAD>; drawbacks>
+X<C<AUTOLOAD>; problemi>
 X<C<UNIVERSAL::can>>
 X<C<can()>>
-X<C<subs> pragma>
-X<pragmas; C<subs>>
-X<functions; predeclaration>
+X<direttiva C<subs>>
+X<direttive; C<subs>>
+X<funzioni; predichiarazione>
 
 C<AUTOLOAD()> può essere uno strumento utile, ma è difficile da usare correttamente. UN approccio
 naE<iuml>ve alla generazione di metodi a tempo di esecuzione significa tra l'altro che il metodo C<can()>

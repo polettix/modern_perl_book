@@ -3,7 +3,7 @@
 Z<scope>
 
 X<scope>
-X<encapsulation>
+X<incapsulamento>
 
 In Perl il concetto di I<scope> si riferisce al tempo di vita e alla visibilità delle entità con un nome.
 Ogni entità Perl con un nome (una variabile, una funzione) ha uno scope. Il meccanismo di scope
@@ -14,8 +14,8 @@ evitare che essi fuoriescano dall'ambito in cui il programmtore li ha confinati.
 
 Z<lexical_scope>
 
-X<lexical scope>
-X<scope; lexical>
+X<scope lessicale>
+X<scope; lessicale>
 
 Lo I<scope lessicale> è uno scope visibile mente I<leggete> un programma. Il compilatore Perl
 risolve questo tipo di scope durante la compilazione. Un blocco delimitato da parentesi
@@ -23,7 +23,7 @@ graffe crea un nuovo scope, sia che si tratti di un blocco a se stante, di un bl
 di ciclo, del blocco di una dichiarazione C<sub>, di un blocco C<eval> o di qualunque altro blocco
 purchè non sia di quotatura.
 
-X<variables; lexical>
+X<variabili; lessicali>
 
 Lo cope lessicale determina la visibilità delle variabili dichiarate con
 C<my>--le variabili dette I<lessicali>. Una variabile lessicale dichiarata in uno scope è
@@ -65,8 +65,8 @@ dello stesso livello e a quelli esterni:
 metodo, nel blocco C<do> e nel ciclo C<for>.  C<$paletta> è visibile soltanto
 nel blocco C<do> e C<$straccio> è visibile soltanto nel ciclo C<for>.
 
-X<lexical shadowing>
-X<scope; lexical shadowing>
+X<oscuramento lessicale>
+X<scope; oscuramento lessicale>
 
 Dichiarare un lessicale in uno scope con lo stesso nome di un lessicale in uno
 scope più esterno nasconde, o I<oscura>, il lessicale esterno nello scope interno.
@@ -85,7 +85,7 @@ Spesso, è proprio ciò che desiderate:
 
 =end programlisting
 
-=begin tip Name Collisions
+=begin tip Collisioni di Nomi
 
 L'oscuramento di lessicali può essere accidentale. Limitate lo scope delle variabili e la
 nidificazione degli scope per ridurre questo rischio.
@@ -114,8 +114,8 @@ blocco del ciclo, ma il suo scope è all'I<interno> del blocco stesso:
 
 =end programlisting
 
-X<lexical topic>
-X<topic; lexical>
+X<topic lessicale>
+X<topic; lessicale>
 
 Analogamente, C<given> (L<given_when>) crea un I<topic lessicale> (come C<my $_>)
 nel proprio blocco:
@@ -142,9 +142,9 @@ Le funzioni--sia con nome che anonime--forniscono uno scope lessicale al proprio
 =head2 Lo Scope Our
 
 Z<our>
-X<builtins; C<our>>
-X<packages; scope>
-X<scope; packages>
+X<predefinite; funzioni; C<our>>
+X<package; scope>
+X<scope; package>
 
 Dentro a un certo scope, potete dichiarare un alias a una variabile di package con l'istruzione C<our>.
 Come C<my>, C<our> impone uno scope lessicale all'alias. Il nome
@@ -158,8 +158,8 @@ C<$AUTOLOAD>.
 
 Z<dynamic_scope>
 
-X<dynamic scope>
-X<scope; dynamic>
+X<scope dinamico>
+X<scope; dinamico>
 
 Lo scope dinamico è simile allo scope lessicale per ciò che riguarda le sue regole di visibilità, ma la ricerca dei nomi, invece di
 procedere dagli scope più interni a quelli più esterni durante la compilazione, procede all'indietro nei contesti
@@ -197,7 +197,7 @@ scope, il suo I<valore> cambia a seconda della sua C<local>izzazione e relativo 
 Il programma inizia con la dichiarazione di una variabile C<our>, C<$scope>, e di tre
 funzioni. Quindi, fa un assegnamento a C<$scope> e chiama la funzione C<main()>.
 
-X<builtins; C<local>>
+X<predefinite; funzioni; C<local>>
 
 Dentro a C<main()>, il programma stampa il valore corrente di C<$scope>, C<scope esterno>,
 e poi C<local>izza la variabile. Questo cambia la visibilità del simbolo
@@ -207,9 +207,9 @@ di C<intermedio()> che di C<interno()>.  Quando C<main()> termina perchè il con
 flusso raggiunge la fine del suo blocco, Perl ripristina il valore originale
 della variabile C<$scope> C<local>izzata. Quindi, l'ultimo C<say> stampa di nuovo C<scope esterno>.
 
-X<lexicals; pads>
-X<lexpads>
-X<symbol tables>
+X<lessicali; pad>
+X<lexpad>
+X<tabelle dei simboli>
 
 Le variabili di package e quelle lessicali hanno regole di visibilità e meccanismi di
 memorizzazione diversi nel Perl. Ogni scope che contiene variabili lessicali
@@ -225,13 +225,13 @@ manipolazione di tale tabella dei simboli. Lo stesso vale per C<local>. Potete C
 solo le variabili globali e di package--e non le variabili lessicali.
 
 X<C<$/>>
-X<magic variables; C<$/>>
+X<variabili magic; C<$/>>
 X<C<$!>>
-X<magic variables; C<$!>>
+X<variabili magic; C<$!>>
 X<C<$@>>
-X<magic variables; C<$@>>
+X<variabili magic; C<$@>>
 X<C<$|>>
-X<magic variables; C<$|>>
+X<variabili magic; C<$|>>
 
 C<local> è particolarmente utile con le variabili predefinite. Per esempio, il
 separatore di record in input C<$/> determina quanti dati vengono letti da un filehandle da un'operazione C<readline>.
@@ -249,7 +249,7 @@ modifiche. In questo modo, potete evitare strani comportamenti in altre parti de
 Z<state_scope>
 
 X<C<state>>
-X<builtins; C<state>>
+X<predefinite; funzioni; C<state>>
 X<scope; state>
 
 Perl 5.10 ha aggiunto un nuovo scope per supportare l'istruzione nativa C<state>. Lo scope di state

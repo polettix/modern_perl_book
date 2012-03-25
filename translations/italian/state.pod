@@ -48,7 +48,7 @@ Immaginate che ogni cento clienti della vostra gelateria, uno riceva gratis un'a
 =end programlisting
 
 X<state>
-X<builtins; C<state>>
+X<predefinite; funzioni; C<state>>
 
 Questo approccio I<funziona>, ma creare un nuovo scope lessicale per un'unica funzione
 introduce più complessità di quanto sembri necessario. L'istruzione nativa C<state>

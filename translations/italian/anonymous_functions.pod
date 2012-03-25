@@ -2,16 +2,16 @@
 
 Z<anonymous_functions>
 
-X<functions; anonymous>
+X<funzioni; anonime>
 
 Una I<funzione anonima> è una funzione senza nome. Per il resto si comporta
 esattamente come una funzione con nome--potete invocarla, passarle degli argomenti, farle
 restituire dei valori e copiare riferimenti ad essa. Tuttavia, l'unico modo per potervi accedere
 è attraverso un riferimento (L<function_references>).
 
-X<functions; dispatch table>
-X<idioms; dispatch table>
-X<dispatch table>
+X<funzioni; tabella di dispatch>
+X<idiomi; tabella di dispatch>
+X<tabella di dispatch>
 
 Un idioma comune in Perl 5 noto come I<tabella di dispatch> usa gli hash per associare
 i valori di un input a dei comportamenti specifici:
@@ -45,7 +45,7 @@ restituisce il risultato dell'operazione.
 
 =head2 Dichiarazione di Funzioni Anonime
 
-X<builtins; C<sub>>
+X<predefinite; parole chiave; C<sub>>
 
 L'istruzione nativa C<sub> usata senza un nome crea e restituisce il riferimento a una funzione
 anonima. Potete usare questo riferimento ovunque è ammissibile usare un riferimento a
@@ -64,7 +64,7 @@ una funzione con nome, per esempio per dichiarare le funzioni di una tabella di 
 
 =end programlisting
 
-=begin tip Defensive Dispatch
+=begin tip Dispatch Difensivo
 
 Questa tabella di dispatch presenta un certo grado di sicurezza; soltanto le funzioni mappate
 nella tabella stessa sono disponibili per essere chiamate dagli utenti. Se la vostra funzione di dispatch
@@ -97,7 +97,7 @@ Potreste anche vedere delle funzioni anonime passate come argomenti ad altre fun
 
 =head2 Nomi di Funzioni Anonime
 
-X<anonymous functions; names>
+X<funzioni anonime; nomi>
 
 X<CPAN; C<Sub::Identify>>
 
@@ -168,7 +168,7 @@ modificato in modo tale che tutti gli altri riferimenti ad essa vedono il nuovo 
 
 =head2 Funzioni Anonime Implicite
 
-X<anonymous functions; implicit>
+X<funzioni anonime; implicite>
 
 X<CPAN; C<Test::Fatal>>
 

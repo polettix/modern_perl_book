@@ -1,8 +1,8 @@
 =head1 Chiusure
 
 Z<closures>
-X<functions; higher order>
-X<higher order functions>
+X<funzioni; di ordine superiore>
+X<funzioni di ordine superiore>
 
 Ogni volta che il controllo di flusso entra in una funzione, tale funzione riceve anche un nuovo ambiente
 che rappresenta lo scope lessicale di quella particolare chiamata (L<scope>). Questo vale anche per
@@ -13,8 +13,8 @@ le potenzialità di tali funzioni.
 
 =head2 Creazione di Chiusure
 
-X<closures>
-X<functions; closures>
+X<chiusure>
+X<funzioni; chiusure>
 
 Una I<chiusura> è una funzione che usa le variabili lessicali di uno scope esterno.
 Probabilmente avete già creato e utilizzato delle chiusure senza rendervene conto:
@@ -102,7 +102,7 @@ globale al package. La condivisione di ogni variabile lessicale condivisa tra fu
 perduta quando la funzione più esterna distrugge il suo primo ambiente lessicaleN<Se
 questo vi sembra comlicato, immaginate come dev'essere implementarlo.>.
 
-=begin tip Invasion of Privacy
+=begin tip Invasione della Privacy
 
 X<CPAN; C<PadWalker>>
 
@@ -173,7 +173,7 @@ in una funzione C<genera_chiusura_cache()>?
 
 =end programlisting
 
-=begin tip Fold, Apply, and Filter
+=begin tip Riordina, Applica e Filtra
 
 Le funzioni native C<map>, C<grep> e C<sort> sono anch'esse delle
 funzioni di ordine superiore.
@@ -237,7 +237,7 @@ in centro città, ma per un venditore ambulante che serve solo gelato alla vanig
 qualità Cavendish, ogni chiamata a C<prepara_coppa()> passa
 alcuni argometi che non cambiano mai.
 
-X<partial application>
+X<applicazione parziale>
 
 Una tecnica detta I<applicazione parziale> vi permette di specificare I<alcuni> degli
 argumenti a una funzione e di fornire i restanti in un momento successivo. Racchiudete la

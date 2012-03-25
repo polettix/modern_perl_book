@@ -64,8 +64,8 @@ Anche il framework web Catalyst usa gli attributi per determinare la visibilità
 
 =head2 Svantaggi degli Attributi
 
-X<pragmas; C<attributes>>
-X<C<attributes> pragma>
+X<direttive; C<attributes>>
+X<direttiva C<attributes>>
 X<CPAN; C<Attribute::Handlers>>
 X<CPAN; C<Attribute::Lexical>>
 
@@ -74,7 +74,7 @@ Gli attributi hanno anche degli svantaggi. La direttiva canonica per usare gli a
 distribuzione semplifica la loro implementazione. C<Attribute::Lexical> di Andrew Main è un approccio più recente.
 Ovunque sia possibile usarli, entrambi sono preferibili a C<attributes>.
 
-X<CPAN; C<Memoizzare>>
+X<CPAN; C<Memoize>>
 
 La paggiore caratteristica degli attributi è la loro propensione a produrre strani effetti sintattici
 a distanza. Dato un frammento di codice con attributi, come potete prevedere i loro

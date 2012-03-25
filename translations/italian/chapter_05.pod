@@ -2,7 +2,7 @@
 
 =head0 Funzioni
 
-X<function>
+X<funzione>
 X<subroutine>
 
 In Perl, una I<funzione> (o I<subroutine>) è una unità di codice
