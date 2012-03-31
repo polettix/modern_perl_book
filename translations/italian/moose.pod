@@ -15,7 +15,7 @@ di scrivere codice orientato agli oggetti in Perl 5 moderno.
 =head2 Classi
 
 X<classi>
-X<istruzioni predefinite; C<package>>
+X<predefinite; parole chiave; C<package>>
 
 Un oggetto Moose è un'istanza concreta di una I<classe>, che a sua volta è un modello che descrive
 i dati e il comportamento specifici dell'oggetto. Le classi usano i package

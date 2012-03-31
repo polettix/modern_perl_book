@@ -22,7 +22,7 @@ migliore per programmi moderni con più di un paio di centinaia di linee di codi
 ci sia moltissimo codice legacy che usa ancora il sistema OO di default di Perl 5.
 
 X<OO; C<bless>>
-X<builtin; C<bless>>
+X<predefinite; funzioni; C<bless>>
 
 Il terzo e ultimo pezzo del sistema OO base di 5 sono i riferimenti blessed.  L'istruzione predefinita C<bless>
 associa il nome di una classe ad un riferimento. Tale riferimento diventa così
@@ -231,7 +231,7 @@ nella classe derivata potrebbe sovrascrivere accidentalmente un metodo della sup
 stesso nome. Anche quando vi dimenticate di usare il sistema di C<override> di Moose, almeno esso
 esiste. Nel sistema OO base di Perl 5, invece, tale protezione è del tutto assente.
 
-X<builtin; C<SUPER::>>
+X<predefinite; classi; C<SUPER::>>
 
 Per sovrascrivere un metodo in una classe derivata, dichiarate un metodo con lo stesso nome del
 metodo nella superclasse. All'interno di un metodo che ne sovrascrive un altro, chiamate il metodo sovrascritto usando
