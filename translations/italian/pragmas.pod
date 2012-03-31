@@ -65,7 +65,7 @@ un numero minimo di versione accettabile e una lista di argomenti per modificarn
 =end programlisting
 
 X<direttive; disattivazione>
-X<builtin; C<no>>
+X<predefinite; funzioni; C<no>>
 
 Talvolta vi servirà I<disattivare> del tutto o in parte gli effetti di una direttiva in uno
 scope lessicale nidificato. L'istruzione predefinita C<no> annulla un'importazione (L<importing>),

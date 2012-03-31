@@ -25,7 +25,7 @@ con C<warn()> va su C<STDERR>. Questa separazione dell'output vi permette di
 redirezionare l'output utile e gli errori in due posti diversi--per esempio, un file di output
 e un log degli errori.
 
-X<builtin; C<open>>
+X<predefinite; funzioni; C<open>>
 
 Usate la funzione predefinita C<open> per ottenere un filehandle. Per aprire un file in lettura scrivete:
 
@@ -117,7 +117,7 @@ in modo appropriato.
 
 =end tip
 
-X<builtin; C<sysopen>>
+X<predefinite; funzioni; C<sysopen>>
 
 C<perldoc perlopentut> contiene molti più dettagli sugli usi più esotici di
 C<open>, inclusa la possibilità di lanciare e controllare altri processi e
@@ -161,7 +161,7 @@ dettagli.
 
 =head3 Lettura da File
 
-X<builtin; C<readline>>
+X<predefinite; funzioni; C<readline>>
 X<<< C<< <> >>; operatore di raggruppamento readline >>>
 X<<< operatori; C<< <> >> >>>
 
@@ -181,7 +181,7 @@ ciclo C<while()>:
 
 =end programlisting
 
-X<builtins; C<eof>>
+X<predefinite; funzioni; C<eof>>
 
 In contesto scalare, C<readline> itera su tutte le linee del file finchè
 non arriva alla fine del file (C<eof()>). Ogni iterazione restituisce la linea successiva.
@@ -212,7 +212,7 @@ C<while>.
 
 =end tip
 
-X<builtin; C<chomp>>
+X<predefinite; funzioni; C<chomp>>
 
 Ogni linea letta da C<readline> contiene il carattere o i caratteri di marcatura di
 fine linea. Nella maggior parte dei casi, tale marcatura è una sequenza di caratteri che varia da piattaforma a piattaforma
@@ -233,7 +233,7 @@ Il modo più indicato per leggere un file linea per linea in Perl 5 è il seguen
 
 =end programlisting
 
-X<builtin; C<binmode>>
+X<predefinite; funzioni; C<binmode>>
 
 Per default, Perl accede ai file in modo testo. Se state leggendo dei dati I<binari>,
 come un file multimediale o un file compresso--usate C<binmode> prima di effettuare qualunque operazione
@@ -244,8 +244,8 @@ I<necessitano> di C<binmode>, i programmi portabili dovrebbero usare più cautel
 
 =head3 Scrittura su File
 
-X<builtin; C<print>>
-X<builtin; C<say>>
+X<predefinite; funzioni; C<print>>
+X<predefinite; funzioni; C<say>>
 
 Potete scrivere su un filehandle aperto in scrittura con C<print> e C<say>:
 
@@ -292,7 +292,7 @@ producono lo stesso risultato:
 
 =head3 Chiusura dei File
 
-X<builtin; C<close>>
+X<predefinite; funzioni; C<close>>
 
 Quando avete terminato di manipolare un file, fate una C<close> esplicita sul suo filehandle oppure
 lasciate semplicemente che il programma esca dal suo scope. In quest'ultimo caso Perl chiuderà il file al vostro posto. Il vantaggio di chiamare
@@ -395,7 +395,7 @@ C<IO::Handle> e C<IO::Seekable> per maggiori informazioni.
 
 =head2 Directory e Path
 
-X<builtin; C<opendir>>
+X<predefinite; funzioni; C<opendir>>
 
 Manipolare le directory è simile a manipolare i file, eccetto che non è
 possibile I<scrivere> sulle directoryN<Mentre potete salvare, spostare, rinominare e
@@ -407,7 +407,7 @@ rimuovere i file.>. Per aprire un directory handle usate la funzione nativa C<op
 
 =end programlisting
 
-X<builtin; C<readdir>>
+X<predefinite; funzioni; C<readdir>>
 
 La funzione predefinita C<readdir> legge da una directory. Analogamente a C<readline>, potete
 iterare sul contenuto delle directory un elemento alla volta o potete assegnarlo a una
@@ -459,7 +459,7 @@ F<bere> e F<scimmiottare>, C<readdir> restituisce C<mangiare>, C<bere> e
 C<scimmiottare> e I<non> F<compiti/mangiare>, F<compiti/bere> e F<compiti/scimmiottare>.
 Invece, un path I<assoluto> è un path fully qualified del filesystem.
 
-X<builtin; C<closedir>>
+X<predefinite; funzioni; C<closedir>>
 
 Per chiudere un directory handle lasciate lasciate che il programma esca dal suo scope oppure invocate la funzione predefinita C<closedir>.
 
@@ -554,10 +554,10 @@ X<C<-d>; operatore di test di directory>
 X<C<-f>; operatore di test di file>
 X<C<-r>; operatore di test di leggibilità di file>
 X<C<-s>; operatore di test di file non vuoto>
-X<operators; C<-d>>
-X<operators; C<-f>>
-X<operators; C<-r>>
-X<operators; C<-s>>
+X<operatori; C<-d>>
+X<operatori; C<-f>>
+X<operatori; C<-r>>
+X<operatori; C<-s>>
 
 =over 4
 
@@ -575,7 +575,7 @@ consentono all'utente corrente di leggerlo
 A partire da Perl 5.10.1, potete accedere alla documentazione di ciascuno di questi operatori,
 per esmepio con C<perldoc -f -r>.
 
-X<builtin; C<rename>>
+X<predefinite; funzioni; C<rename>>
 
 La funzione predefinita C<rename> vi permette di ridenominare un file o di spostarlo da una directory ad un'altra.  RIceve due
 operandi, ovvero il vecchio nome e il nuovo nome del file:
@@ -590,8 +590,8 @@ operandi, ovvero il vecchio nome e il nuovo nome del file:
 =end programlisting
 
 X<C<File::Copy>>
-X<builtin; C<unlink>>
-X<builtin; C<delete>>
+X<predefinite; funzioni; C<unlink>>
+X<predefinite; funzioni; C<delete>>
 X<file; copiare>
 X<file; spostare>
 X<file; rimuovere>
@@ -610,7 +610,7 @@ per rimuovere file in modo portabile.
 
 =end tip
 
-X<builtin; C<chdir>>
+X<predefinite; funzioni; C<chdir>>
 X<C<Cwd>>
 X<C<Cwd>; C<cwd()>>
 

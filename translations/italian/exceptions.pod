@@ -31,7 +31,7 @@ storto. Usate C<die> per sollevare un'eccezione:
 
 =end programlisting
 
-X<builtins; C<die>>
+X<predefinite; funzioni; C<die>>
 X<eccezioni; sollevare>
 X<eccezioni; sollevare con stringhe>
 X<eccezioni; C<die>>
@@ -56,7 +56,7 @@ temporizzato potrebbe sollevare un'eccezione quando i log di errore sono pieni, 
 inviato un SMS agli amministratori. Tuttavia non tutte le eccezioni dovrebbero essere fatali. I programmi
 ben scritti talvolta riescono a ripristinare il funzionamento o almeno a salvare il proprio stato e terminare in modo controllato.
 
-X<builtin; C<eval>>
+X<predefinite; funzioni; C<eval>>
 X<C<eval>; blocco>
 
 Usate la forma a blocco dell'operatore C<eval> per catturare un'eccezione:

@@ -48,7 +48,7 @@ Nome::Modulo> visualizza il contenuto del file F<.pm>.
 
 Z<import>
 
-X<builtin; C<use>>
+X<predefinite; funzioni; C<use>>
 X<C<import()>>
 X<C<CGI>>
 X<direttiva C<feature>>
@@ -75,7 +75,7 @@ comportamento dello scope lessicale chimante anzichè per esportare simboli:
 
 =end programlisting
 
-X<builtin; C<no>>
+X<predefinite; funzioni; C<no>>
 X<annullare l'importazione>
 
 L'istruzione predefinita C<no> chiama il metodo C<unimport()> di un modulo, se esiste, e gli passa

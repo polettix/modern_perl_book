@@ -102,7 +102,7 @@ Non esistono tecniche di riflessione infallibili per distinguere tra una funzion
 
 =head2 Consultare le Tabelle dei Simboli
 
-X<symbol table>
+X<tabella dei simboli>
 X<typeglob>
 
 Una tabella dei simboli di Perl 5 E<egrave> uno speciale tipo di hash, in cui le chiavi sono i nomi dei simboli globali di un package e i valori sono typeglob. Un I<typeglob> E<egrave> una struttura dati interna che puE<ograve> contenere uno o piE<ugrave> dei seguenti valori: uno scalare, un array, un hash, un filehandle e una funzione.

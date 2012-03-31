@@ -88,7 +88,7 @@ riferimento al metodo con:
 
 =end programlisting
 
-X<builtin; C<require>>
+X<predefinite; funzioni; C<require>>
 X<CPAN; C<UNIVERSAL::require>>
 
 Usate C<can()> per testare se un package implementa una specifica funzione o metodo:

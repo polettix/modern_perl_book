@@ -28,7 +28,7 @@ di Perl 5 vi permette di controllare che cosa succede quando essi non vengono tr
 =head2 eval
 
 X<C<eval>; stringa>
-X<builtin; C<eval>>
+X<predefinite; funzioni; C<eval>>
 
 La tecnica più semplice di generazione di codice consiste nel definire una stringa contenete un
 pezzetto di codice Perl valido e compilarla con la forma dell'operatore C<eval> che riceve una stringa. Contrariamente
@@ -134,9 +134,9 @@ Installare delle chiusure nella tabella dei simboli è piuttosto semplice, anche
 
 =end programlisting
 
-X<C<*>; sigil>
-X<sigils; C<*>>
-X<typeglobs>
+X<C<*>; sigillo>
+X<sigilli; C<*>>
+X<typeglob>
 
 La strana sintassi con l'asteriscoN<Pensate ad esso come a un I<sigillo di typeglob>, dove un
 I<typeglob> è un'espressione gergale Perl che sta per "symbol table".> che dereferenzia un hash si riferisce alla
@@ -198,7 +198,7 @@ esplicitamente nel relativo scope.
 
 =head2 Manipolazioni Durante la Compilazione
 
-X<builtin; C<eval>>
+X<predefinite; funzioni; C<eval>>
 
 Diversamente dal codice scritto esplicitamente, il codice generato con una C<eval> di stringa
 viene compilato durante l'esecuzione.  Mentre potete ragionevolmente assumere che una funzione normale sia

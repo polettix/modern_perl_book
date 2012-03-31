@@ -11,7 +11,7 @@ evitare queste situazioni.
 
 Z<producing_warnings>
 
-X<builtin; C<warn>>
+X<predefinite; funzioni; C<warn>>
 
 Usate la funzione predefinita C<warn> per emettere un warning:
 
@@ -53,7 +53,7 @@ codice I<chiamante>, e non quelli relativi alla funzione C<solo_due_argomenti()>
 C<cluck()> di C<Carp> genera una traccia di tutte le chiamate di funzione effettuate fino a quella
 corrente.
 
-X<C<Carp>; verbose>
+X<C<Carp>; modo verbose>
 
 Il modo verbose di C<Carp> aggiunge le tracce delle chiamate a tutti i warning generati da C<carp()> e C<croak()> (L<reporting_errors>), dovunque ci si trovi all'interno del programma:
 
