@@ -17,7 +17,7 @@ Z<variable_scopes>
 
 X<variabili; scope>
 X<scope>
-X<predefinite; istruzioni; C<package>>
+X<predefinite; parole chiave; C<package>>
 
 Le variabili sono visibili alle diverse parti del vostro programma in base al loro scope
 (L<scope>). Molte delle variabili che incontrerete hanno uno scope lessicale
@@ -37,7 +37,7 @@ una dichiarazione di C<package> non crea di per sè un nuovo scope:
 
 =end programlisting
 
-X<predefinite; istruzioni; C<package>; BLOCCO>
+X<predefinite; parole chiave; C<package>; BLOCCO>
 
 A partire da Perl 5.14, potete associare un blocco a una dichiarazione C<package>. Questa
 sintassi I<fornisce> effettivamente uno scope lessicale:

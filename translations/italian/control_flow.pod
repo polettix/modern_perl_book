@@ -400,15 +400,15 @@ esegue un'istruzione o un blocco fino a quando ha consumato tale lista:
 
 =end programlisting
 
-Questo esempio usa l'operatore di range per produrre una lista di interi da uno a
+Questo esempio usa l'operatore di intervallo per produrre una lista di interi da uno a
 dieci inclusi. La direttiva C<foreach> cicla su questi numeri, settando la variabile
 topic C<$_> (L<default_scalar_variable>) a ciascuno di essi a turno. Perl esegue il
 blocco per ogni intero e stampa il suo quadrato.
 
 =begin tip C<foreach> e C<for>
 
-X<predefinite; direttive; C<for>>
-X<predefinite; direttive; C<foreach>>
+X<predefinite; parole chiave; C<for>>
+X<predefinite; parole chiave; C<foreach>>
 
 Molti programmatori Perl si riferiscono alle iterazioni come cicli C<foreach>, ma Perl tratta
 i nomi C<foreach> e C<for> in modo interscambiabile. È il codice che li accompagna a determinare
@@ -1014,7 +1014,7 @@ un ciclo a causa di un C<last> o di un C<redo>.
 
 Z<given_when>
 
-X<predefinite; direttive; C<given>>
+X<predefinite; parole chiave; C<given>>
 
 Il costrutto C<given> è una nuova funzionalità di Perl 5.10. Esso assegna il valore di
 un'espressione alla variabile topic ed è seguito da un blocco:
@@ -1052,7 +1052,7 @@ C<given> lessicalizza la variabile topic:
 
 =end programlisting
 
-X<predefinite; direttive; C<when>>
+X<predefinite; parole chiave; C<when>>
 X<topicalizzazione>
 
 C<given> è particolarmente utile quando è usato in combinazione con C<when> (L<smart_match>). 
@@ -1157,7 +1157,7 @@ consumare molta memoria. Le chiamate di coda riducono la quantità di memoria ne
 interno del controllo di flusso e possono rendere trattabili degli algoritmi molto costosi.
 Purtroppo, Perl 5 non applica questa ottimizzazione automaticamente; dovete applicarla voi stessi quando lo ritenete necessario.
 
-X<predefinite; direttive; C<goto>>
+X<predefinite; parole chiave; C<goto>>
 
 L'operatore nativo C<goto> ha una forma per cui chiama una funzione come se la
 funzione corrente non fosse mai stata chiamata, cancellando in sostanza il tracciamento della chiamata

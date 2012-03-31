@@ -240,7 +240,7 @@ X<testing; C<cmp_ok()>>
 
 Sia C<is()> che C<isnt()> effettuano dei I<confronti stringa> con gli operatori
 C<eq> e C<ne> di Perl 5. Quasi sempre questa è la cosa giusta da fare, ma per
-valori complessi come gli oggetti con overloading (L<overloading>) o le dualvar
+valori complessi come gli oggetti con overloading (L<overloading>) o le variabili doppie
 (L<dualvars>) può essere preferibile effettuare il test con un confronto esplicito. La funzione C<cmp_ok()>
 vi permette di specificare l'operatore di confronto:
 

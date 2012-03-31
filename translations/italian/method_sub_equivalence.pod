@@ -9,7 +9,7 @@ Dato che una classe è un package, Perl non distinge tra una funzione e
 un metodo memorizzato in un package. La stessa istruzione C<sub> viene usata per dichiarare entrambi.
 La documentazione può esplicitare le vostre intenzioni, ma Perl non avrà problemi a fare il dispatch ad
 una funzione invocata come metodo. Allo stesso modo, potete invocare un metodo come se fosse una
-funzione--fully-qualified, esportata o in forma di riferimento--se gli passate l'invocante
+funzione--qualificata, esportata o in forma di riferimento--se gli passate l'invocante
 manualmente.
 
 Invocare una cosa sbagliata in modo sbagliato è causa di problemi.
@@ -47,7 +47,7 @@ sembrare equivalenti:
 =end programlisting
 
 Sebbene in questo semplice caso esse producano lo stesso output, la seconda viola
-l'incapsulamento dell'oggetto aggirando il lookup del metodo.
+l'incapsulamento dell'oggetto aggirando la ricerca del metodo.
 
 X<metodi; evitare di chiamarli come funzioni>
 

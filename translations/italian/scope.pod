@@ -148,7 +148,7 @@ X<scope; package>
 
 Dentro a un certo scope, potete dichiarare un alias a una variabile di package con l'istruzione C<our>.
 Come C<my>, C<our> impone uno scope lessicale all'alias. Il nome
-fully-qualified è disponibile ovunque, ma l'alias lessicale è visibile
+qualificato è disponibile ovunque, ma l'alias lessicale è visibile
 solo all'interno dello scope.
 
 C<our> è particolarmente utile per le variabili di package globali come C<$VERSION> e

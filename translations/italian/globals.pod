@@ -147,7 +147,7 @@ X<variabili globali; C<$!>>
 X<C<$ERRNO>>
 X<variabili globali; C<$ERRNO>>
 
-=item * C<$!> (C<$ERRNO>) è una dualvar (L<dualvars>) contenente il risultato
+=item * C<$!> (C<$ERRNO>) è una variabile doppia (L<dualvars>) contenente il risultato
 della chiamata di sistema I<più recente>. In contesto numerico, essa corrisponde alla variabile C
 C<errno>, per la quale ogni valore diverso da zero indica un errore.  In contesto
 stringa, essa valuta al messaggio d'errore di sistema appropriato. Localizzate questa

@@ -334,7 +334,7 @@ dichiarare una sola funzione con un determinato nome in un namespace. In caso co
 di ridefinizione di una subroutine. Potete disabilitare questo warning con C<no warnings
 'redefine'>--se siete sicuri che questo comportamento sia ciò che intendevate ottenere.
 
-Per chiamare funzioni in altri namespace usate i loro nomi fully-qualified:
+Per chiamare funzioni in altri namespace usate i loro nomi qualificati:
 
 =begin programlisting
 
@@ -345,7 +345,7 @@ Per chiamare funzioni in altri namespace usate i loro nomi fully-qualified:
 =end programlisting
 
 Le funzioni di un namespace sono I<visibili> al di fuori di esso attraverso
-i loro nomi fully-qualified. Dentro a un namespace, per chiamare una funzione dichiarata in quel namespace
+i loro nomi qualificati. Dentro a un namespace, per chiamare una funzione dichiarata in quel namespace
 potete usare semplicemente il suo nome. Potete anche importare dei nomi da
 altri namespace.
 

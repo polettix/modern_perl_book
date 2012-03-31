@@ -266,12 +266,12 @@ concatenazioni. Per esempio:
 
 =end programlisting
 
-X<operatori; range>
-X<range>
+X<operatori; intervallo>
+X<intervallo>
 X<operatori; C<..>>
-X<C<..>; operatore di range>
+X<C<..>; operatore di intervallo>
 
-L'operatore infisso di I<range> (C<..>) produce una lista di elementi in contesto lista:
+L'operatore infisso di I<intervallo> (C<..>) produce una lista di elementi in contesto lista:
 
 =begin programlisting
 
@@ -279,14 +279,14 @@ L'operatore infisso di I<range> (C<..>) produce una lista di elementi in contest
 
 =end programlisting
 
-Può produrre dei semplici range incrementali (sia di interi che di stringhe), ma
-non è capace di intuire pattern di range più complessi.
+Può produrre dei semplici intervalli incrementali (sia di interi che di stringhe), ma
+non è capace di intuire pattern di intervalli più complessi.
 
 X<operatori; flip-flop>
 X<flip-flop>
 X<C<..>; operatore flip-flop>
 
-In contesto booleano, l'operatore di range diventa l'operatore I<flip-flop>. Questo
+In contesto booleano, l'operatore di intervallo diventa l'operatore I<flip-flop>. Questo
 operatore produce un valore falso fino a quando il suo operando sinistro non diventa vero. Tale valore
 rimane vero fino a quando l'operando destro non diventa vero, dopo di che il valore prodotto è di nuovo falso
 fino a quando l'operatore sinistro non diventa di nuovo vero. Immaginate di parsificare il testo di una lettera

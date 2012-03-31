@@ -3,14 +3,13 @@
 Z<coercion>
 
 X<DWIM>
-X<dwimmery>
 X<coercizione>
 
 Una variabile Perl può contenere diversi tipi di valori in momenti diversi--stringhe,
 interi, numeri razionali, ecc.. Anzichè associare dell'informazione di tipo alle
 variabili, Perl sfrutta il contesto fornito dagli operatori (L<value_contexts>)
 per decidere come deve interpretare i loro valori. Per scelta di progetto, Perl tenta di fare quello che
-intendeteN<Abbreviato come I<DWIM>, che sta per I<do what I mean> (fai quello che intendo), o I<dwimmery>.>, quindi dovete essere
+intendeteN<Abbreviato come I<DWIM>, che sta per I<do what I mean> (fai quello che intendo).>, quindi dovete essere
 sufficientemente specifici sulle vostre intenzioni. Se trattate una variabile che contiene
 un numero come se fosse una stringa, Perl farà del suo meglio per forzare quel numero a 
 una stringa con una I<coercizione>.
@@ -126,13 +125,13 @@ fare la diagnosi di qualche strana situazione.
 
 Z<dualvars>
 
-X<coercizione; dualvar>
+X<coercizione; variabili doppie>
 X<C<dualvar()>>
 X<C<Scalar::Util>>
-X<dualvar>
+X<variabili doppie>
 
 La natura multi-componente dei valori Perl è disponibile agli utenti in forma di
-I<dualvar>. Il modulo core C<Scalar::Util> fornisce una funzione C<dualvar()>
+I<variabili doppie>. Il modulo core C<Scalar::Util> fornisce una funzione C<dualvar()>
 che vi permette di bypassare la coercizione del Perl e manipolare separatamente le componenti stringa e numerica
 di un valore:
 

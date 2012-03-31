@@ -59,7 +59,7 @@ C<$AUTOLOAD>. Potete manipolare questi argomenti a vostro piacimento:
 =end programlisting
 
 Con la dichiarazione C<our> (L<our>), lo scope della variabile diventa il corpo della
-funzione. La variabile contiene il nome fully-qualified della funzione
+funzione. La variabile contiene il nome qualificato della funzione
 non definita (in questo caso, C<main::cuoci_crostata>). Potete rimuovere il nome del package con
 un'espressione regolare (L<regex>):
 

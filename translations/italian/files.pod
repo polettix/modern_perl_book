@@ -457,7 +457,7 @@ I nomi restituiti da C<readdir> sono I<relativi> alla directory stessa.  In
 altre parole, se la directory F<compiti/> contiene tre file con i nomi F<mangiare>,
 F<bere> e F<scimmiottare>, C<readdir> restituisce C<mangiare>, C<bere> e
 C<scimmiottare> e I<non> F<compiti/mangiare>, F<compiti/bere> e F<compiti/scimmiottare>.
-Invece, un path I<assoluto> è un path fully qualified del filesystem.
+Invece, un path I<assoluto> è un path completamente qualificato del filesystem.
 
 X<predefinite; funzioni; C<closedir>>
 

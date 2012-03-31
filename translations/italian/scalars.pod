@@ -7,7 +7,7 @@ X<C<$>; sigillo>
 X<sigilli; C<$>>
 
 Il tipo di dati fondamentale in Perl 5 è lo I<scalare>, un valore discreto singolo.
-Tale valore può essere una stringa, un intero, un numero floating point, un filehandle
+Tale valore può essere una stringa, un intero, un numero a virgola mobile, un filehandle
 o un riferimento--ma è sempre e comunque un singolo valore. Gli scalari possono essere variabili
 lessicali, di package o globali (L<globals>). Potete dichiarare soltanto le variabili lessicali o
 di package. I nomi delle variabili scalari devono conformarsi alle linee guida standard
@@ -102,7 +102,7 @@ che non ha connessioni con il riferimento e C<$riferimento_come_numero> è un nu
 non ha connessioni con il riferimento.
 
 X<C<Scalar::Util>>
-X<dualvar>
+X<variabili doppie>
 X<C<dualvar()>>
 
 Per permettere di effettuare coercizioni senza perdere dei dati, gli scalari del Perl 5 possono contenere componenti

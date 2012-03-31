@@ -543,9 +543,9 @@ funzionalità; se lavorate con Unicode in Perl, vale la pena di fare un aggiorna
 
 X<numeri>
 X<interi>
-X<valori floating-point>
+X<valori a virgola mobile>
 
-Perl supporta i numeri sia come valori interi che floating-point. Potete rappresentarli
+Perl supporta i numeri sia come valori interi che a virgola mobile. Potete rappresentarli
 anche con la notazione scientifica e in forma binaria, ottale ed
 esadecimale:
 
@@ -574,7 +574,7 @@ X<underscore>
 
 =begin tip Quando 1.99 + 1.99 fa 4
 
-Anche se in Perl 5 potete scrivere esplicitamente valori floating-point
+Anche se in Perl 5 potete scrivere esplicitamente valori a virgola mobile
 perfettamente accurati, Perl 5 li memorizza internamente in forma binaria. Questa
 rappresentazione a volte è causa di specifiche imprecisioni; consultate C<perldoc
 perlnumber> per maggiori dettagli.
@@ -611,7 +611,7 @@ X<C<Regexp::Common>>
 
 Il modulo CPAN C<Regexp::Common> fornisce molte espressioni regolari ben testate
 per identificare I<tipi> validi più specifici di valori numerici (numero naturale, intero,
-floating-point).
+a virgola mobile).
 
 =head2 Undef
 
@@ -726,11 +726,11 @@ Non sono le parentesi tonde che I<creano> una lista. È la virgola che la crea. 
 sono presenti in questi esempi, le parentesi raggruppano espressioni per modificarne la
 I<precedenza> (L<precedence>).
 
-X<operatori; range>
+X<operatori; intervallo>
 X<operatori; C<..>>
-X<C<..>; operatore range>
+X<C<..>; operatore di intervallo>
 
-Usate l'operatore di range per creare liste di letterali in forma compatta:
+Usate l'operatore di intervallo per creare liste di letterali in forma compatta:
 
 =begin programlisting
 

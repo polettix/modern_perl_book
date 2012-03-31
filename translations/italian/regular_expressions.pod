@@ -461,7 +461,7 @@ regex.
 
 =end tip
 
-X<C<->; metacarettere di classe di range di caratteri nelle regex>
+X<C<->; metacarattere di classe intervallo di caratteri nelle regex>
 
 Il carattere trattino (C<->) vi permette di specificare una serie di caratteri contigui
 in una classe, come in questa regex C<$solo_lettere_ascii>:

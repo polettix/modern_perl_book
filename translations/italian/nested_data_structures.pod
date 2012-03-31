@@ -61,7 +61,7 @@ L'unico modo di annidare una struttura dati multi-livello è attraverso i riferi
 =end programlisting
 
 Usate dei blocchi di disambiguazione per accedere ai componenti delle strutture dati annidate come se fossero
-array o hash di first-class:
+array o hash di prima classe:
 
 =begin programlisting
 

@@ -37,7 +37,7 @@ Questi invece sono identificatori non validi:
 
 =end programlisting
 
-X<lookup simbolici>
+X<ricerche simboliche>
 
 I<I nomi esistono principalmente a beneficio del programmatore>. Queste regole si applicano
 solo ai nomi che compaiono esplicitamente nel vostro codice sorgente, come C<sub
@@ -45,9 +45,9 @@ prendi_torta> oppure C<my $tostapane>. Infatti, è il parser del Perl a controll
 nomi siano rispettate.
 
 La natura dinamica del Perl vi permette anche di riferirvi a delle entità attraverso nomi generati a
-runtime o dati in input al programma. Questi I<lookup simbolici> vi danno maggiore flessibilità
+runtime o dati in input al programma. Queste I<ricerche simboliche> vi danno maggiore flessibilità
 al costo di una minore sicurezza. In particolare, invocando indirettamente delle funzioni e
-dei metodi o effettuando il lookup dei simboli di un namespace, potete bypassare il parser del Perl.
+dei metodi o effettuando la ricerca dei simboli di un namespace, potete bypassare il parser del Perl.
 
 Tutto questo può portare a del codice confuso. Come raccomanda molto efficacemente Mark Jason Dominus N<U<http://perl.plover.com/varvarname.html>>, usate piuttosto un hash (L<hashes>) oppure una struttura dati annidata (L<nested_data_structures>).
 
@@ -135,7 +135,7 @@ accessi indicizzati che usano le parentesi quadre. Gli hash supportano accessi p
 
 =head2 Namespace
 
-X<nome fully-qualified>
+X<nome qualificato>
 X<namespace>
 
 Perl fornisce un meccanismo per raggruppare funzioni e variabili correlate in un proprio
@@ -145,7 +145,7 @@ con doppi due punti (C<::>); per esempio, C<Dolci::Gelato> si riferisce a una co
 variabili e funzioni logicamente correlate, come C<cono()> e C<versa_cioccolata_calda()>.
 
 All'interno di un namespace, potete usare dei nomi abbreviati per i suoi membri. Al di fuori del
-namespace, vi riferite invece a un membro usando il suo I<nome fully-qualified>. Ovvero, all'interno di
+namespace, vi riferite invece a un membro usando il suo I<nome qualificato>. Ovvero, all'interno di
 C<Dolci::Gelato>, C<aggiungi_praline()> si riferisce alla stessa funzione di
 C<Dolci::Gelato::aggiungi_praline()> al di fuori del namespace.
 
@@ -154,7 +154,7 @@ definiti dagli utenti iniziano con lettere maiuscole. Il core del Perl riserva i
 tutti minuscoli per le pragma (L<pragmas>) come C<strict> e C<warnings>.
 Questa politica è imposta essenzialmente attraverso il rispetto delle linee guida della comunità.
 
-Tutti i namespace in Perl 5 sono visibili a livello globale. Quando Perl deve fare il lookup di un simbolo in
+Tutti i namespace in Perl 5 sono visibili a livello globale. Quando Perl deve fare la ricerca di un simbolo in
 C<Dolci::Gelato::Frigo>, inizia col cercare nella symbol table C<main::> un
 simbolo che rappresenti il namespace C<Dolci::>, quindi cerca al suo interno il namespace
 C<Gelato::>, e così via. Il C<Frigo::> è quindi visibile dall'esterno del namespace C<Gelato::>.

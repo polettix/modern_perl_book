@@ -296,7 +296,7 @@ L'operatore C<values> produce una lista di valori di un hash:
 =end programlisting
 
 X<hash; C<each>>
-X<predefinite; direttive; C<each>>
+X<predefinite; funzioni; C<each>>
 
 L'operatore C<each> produce una lista di liste di due elementi contenenti una chiave e il suo valore:
 
@@ -490,7 +490,7 @@ valore (C<undef>) e lo incrementa immediatamente a uno, dato che il valore numer
 C<undef> è 0.
 
 X<hash; caching>
-X<manovra orcish>
+X<manovra orchescese>
 
 La seguente strategia costituisce un utile meccanismo di caching per memorizzare il risultato di un'operazione
 costosa con un piccolo overhead:
@@ -515,7 +515,7 @@ X<C<//>; operatore infisso>
 X<operatori; C<//>>
 X<operatori; defined-or>
 
-Questa I<manovra orcish>N<NdT: manovra da orchi; in Inglese è un gioco di parole con Or-cache.> restituisce il valore dell'hash,
+Questa I<manovra orchescese>N<NdT: in Inglese è un gioco di parole tra orcish (manovra da orchi) e or-cache.> restituisce il valore dell'hash,
 se esso esiste. Altrimenti calcola, mette in cache e restituisce il
 valore. L'operatore di assegnamento defined-or (C<//=>) valuta il suo operando di sinistra.
 Se tale operando non è definito, l'operatore gli assegna il valore del suo operando di destra.
@@ -526,7 +526,7 @@ l'hash.
 Perl 5.10 ha introdotto gli operatori di defined-or e di assegnamento defined-or. Prima
 del 5.10, gran parte del codice usava l'operatore di assegnamento boolean-or (C<||=>) per lo stesso
 scopo. Purtroppo, alcuni valori validi valutano a falso in contesto booleano, quindi valutare la I<definitezza> dei valori
-è quasi sempre più accurato. Essendo pigra, la manovra orcish testa la definitezza del valore in cache, non
+è quasi sempre più accurato. Essendo pigra, la manovra orchescese testa la definitezza del valore in cache, non
 la sua verità.
 
 X<hash; parametri per nome>

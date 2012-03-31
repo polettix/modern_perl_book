@@ -226,7 +226,7 @@ fornite esplicitamente una lista vuota:
 =end programlisting
 
 Indipendentemente dalle liste di importazione, potete sempre chiamare le funzioni in un altro
-package con i loro nomi fully-qualified:
+package con i loro nomi qualificati:
 
 =begin programlisting
 

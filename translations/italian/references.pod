@@ -37,7 +37,7 @@ X<riferimenti>
 Perl 5 fornisce un meccanismo con cui potete riferirvi a un valore senza farne una copia.
 Ogni modifica fatta a quel I<riferimento> ne aggiorna il valore in un modo visibile a
 I<tutti> i riferimenti che lo possono raggiungere. Un riferimento è
-un tipo di dato scalare first-class di Perl 5 che si riserisce ad un altro tipo di dato first-class.
+un tipo di dato scalare di prima classe di Perl 5 che si riserisce ad un altro tipo di dato di prima classe.
 
 =head2 Riferimenti a Scalari
 
@@ -398,9 +398,9 @@ Z<function_references>
 
 X<funzioni; riferimenti>
 X<riferimenti; funzioni>
-X<funzioni; first-class>
+X<funzioni; di prima classe>
 
-Perl 5 supporta le I<funzioni first-class>, ovvero la funzione è un tipo di dati esattamente come
+Perl 5 supporta le I<funzioni di prima classe>, ovvero la funzione è un tipo di dati esattamente come
 lo sono l'array e l'hash. Questo fatto è reso particolarmente evidente dai I<riferimenti a funzione>, e
 rende possibili molte funzionalità avanzate (L<closures>). Per creare un riferimento a funzione
 usate l'operatore di riferimento sul nome della funzione:
@@ -428,7 +428,7 @@ Per creare delle funzioni anonime usate la keyword C<sub> senza nome:
 
 =end programlisting
 
-X<predefinite; direttive; C<sub>>
+X<predefinite; parole chiave; C<sub>>
 
 L'uso di C<sub> I<senza> un nome compila la funzione normalmente,
 ma non la installa nel namespace corrente. L'unico modo per
@@ -462,7 +462,7 @@ parentesi:
 =end programlisting
 
 Potete anche usare i riferimenti a funzione come metodi di oggetti (L<moose>). Questo
-può essere utile quando avete dovute fare il lookup del metodo stesso (L<reflection>):
+può essere utile quando avete dovuto fare una ricerca del metodo stesso (L<reflection>):
 
 =begin programlisting
 

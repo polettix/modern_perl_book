@@ -6,7 +6,7 @@ X<array>
 X<sigillo C<@>>
 X<sigilli; C<@>>
 
-Gli I<array> del Perl 5 sono una struttura dati I<first-class>--il linguaggio li supporta
+Gli I<array> del Perl 5 sono una struttura dati di I<prima classe>--il linguaggio li supporta
 come tipo di dati nativo--che memorizza zero o più scalari. Potete accedere
 a singoli membri dell'array con defli indici interi, e potete aggiungere o rimuovere
 elementi a piacere. Il sigillo C<@> denota un array. Per dichiarare un array, scrivete:
@@ -238,7 +238,7 @@ C<unshift>. Un uso particolarmente efficace è la rimozione di due elementi da u
 =end programlisting
 
 X<array; C<each>>
-X<predefinite; direttive; C<each>>
+X<predefinite; funzioni; C<each>>
 
 Prima del Perl 5.12, iterare su un array per indice richiedeva un ciclo in stile C.
 A partire da Perl 5.12, C<each> può iterare su un array per indice e valore:

@@ -13,7 +13,7 @@ In Perl 5 un I<package> è una collezione di codice contenuto in un singolo name
 distinzione è sottile: il package rappresenta il codice sorgente e il namespace
 rappresenta l'entità creata quando Perl parsifica tale codice.
 
-X<predefinite; direttive; C<package>>
+X<predefinite; parole chiave; C<package>>
 
 La funzione nativa C<package> dichiara un package e un namespace:
 
@@ -27,12 +27,12 @@ La funzione nativa C<package> dichiara un package e un namespace:
 
 =end programlisting
 
-X<namespace; fully qualified>
+X<namespace; qualificato>
 
 Tutte le variabili e funzioni globali che dichiarate o a cui fate riferimento dopo la dichiarazione del package
 si riferiscono a simboli del namespace C<MioCodice>. Potete riferirvi
-alla variabile C<@scatole> dal namespace C<main> solo col suo nome I<fully
-qualified> C<@MioCodice::scatole>. Un nome fully qualified include un
+alla variabile C<@scatole> dal namespace C<main> solo col suo nome 
+I<qualificato> C<@MioCodice::scatole>. Un nome qualificato include un
 nome completo di package, quindi potete chiamare la funzione C<aggiungi_scatola()> soltanto con
 C<MioCodice::aggiungi_scatola()>.
 
@@ -157,7 +157,7 @@ in qualunque punto, sia con una dichiarazione di package:
 
 =end programlisting
 
-... che specificando dei nomi di funzione fully qualified al momento della dichiarazione:
+... che specificando dei nomi di funzione qualificati al momento della dichiarazione:
 
 
 =begin programlisting
