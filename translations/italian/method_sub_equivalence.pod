@@ -2,7 +2,7 @@
 
 Z<method_sub_equivalence>
 
-X<builtin; C<sub>>
+X<predefinite; parole chiave; C<sub>>
 
 Il sistema ad oggetti di Perl 5 è deliberatamente minimale (L<blessed_references>).
 Dato che una classe è un package, Perl non distinge tra una funzione e
@@ -112,7 +112,7 @@ Quando usate questa forma di invocazione, limitate lo scope dei riferimenti.
 =head2 Prospettiva del Chiamato
 
 X<metodi; evitare di chiamare come funzioni>
-X<fuzioni; evitare di chiamare come metodi>
+X<funzioni; evitare di chiamare come metodi>
 
 Dato che Perl 5 non distingue tra funzioni e metodi nelle
 dichiarazioni e dato che è I<possibile> (per quanto sconsigliabile) invocare una

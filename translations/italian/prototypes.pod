@@ -9,7 +9,7 @@ cambia il modo in cui il parser interpreta i suoi argomenti. Anche se, a un'anal
 superficiale, i prototipi ricordano le segnature di funzione di altri linguaggi, in realtà sono
 molto diversi.
 
-X<builtin; C<push>>
+X<predefinite; funzioni; C<push>>
 
 I prototipi permettono agli utenti di definire delle funzioni che si comportano come
 quelle native. Considerate la funzione nativa C<push>, che riceve un array e una lista. Mentre
@@ -32,7 +32,7 @@ associato alla dichiarazione della funzione; in caso contrario, Perl genera un w
 Curiosamente, potete omettere il prototipo nella dichiarazione in avanti e
 includerlo nella dichiarazione vera e propria--ma non ci sono ragioni per farlo.
 
-X<builtin; C<prototype>>
+X<predefinite; funzioni; C<prototype>>
 
 La funzione nativa C<prototype> riceve il nome di una funzione e restituisce una stringa
 che rappresenta il suo prototipo. Per vedere il prototipo di una funzione nativa, usate la forma C<CORE::>:
@@ -131,7 +131,7 @@ tra quelli causati dai prototipi.
 
 =head2 Usi Appropriati dei Prototipi
 
-X<builtin; sovrascrittura>
+X<predefinite; funzioni; sovrascrittura>
 X<direttive; C<subs>>
 X<direttiva C<subs>>
 
@@ -222,7 +222,7 @@ Potete usare C<throws_ok()> senza usare i prototipi:
 
 =end programlisting
 
-X<builtin; C<sort>>
+X<predefinite; funzioni; C<sort>>
 
 Un ultimo caso di uso appropriato dei prototipi è quando definite una vostra funzione con nome da usare
 con C<sort>N<Questo esempio è stato suggerito Ben Tilly.>:

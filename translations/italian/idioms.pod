@@ -99,8 +99,8 @@ Z<schwartzian_transform>
 X<trasformata di Schwartz>
 X<C<map>; trasformata di Schwartz>
 X<C<sort>; trasformata di Schwartz>
-X<builtin; C<map>>
-X<builtin; C<sort>>
+X<predefinite; funzioni; C<map>>
+X<predefinite; funzioni; C<sort>>
 
 La I<trasformata di Schwartz> è un'elegante dimostrazione della pervasività della gestione di liste in Perl
 in quanto è un idioma preso agevolmente a prestito dalla famiglia di linguaggi Lisp.
@@ -171,7 +171,7 @@ C<sort> riceve tale lista di array anonimi e confronta i loro secondi elementi
 
 X<C<$a>>
 X<C<$b>>
-X<builtin; C<sort>>
+X<predefinite; funzioni; C<sort>>
 
 Il blocco fornito a C<sort> riceve i suoi argomenti in due variabili di package
 (L<scope>) C<$a> e C<$b>N<Vedete C<perldoc -f sort> per una esaustiva
@@ -244,7 +244,7 @@ nel C<map> più a destra.
 
 Z<easy_file_slurping>
 
-X<builtin; C<local>>
+X<predefinite; funzioni; C<local>>
 X<C<$/>>
 X<file; slurping>
 X<variabili globali; C<$/>>
@@ -336,7 +336,7 @@ Rendere eseguibile un modulo è facile, così come fare in modo che un programma
 modulo). Tutto ciò che dovete fare è scoprire I<come> Perl ha iniziato a eseguire un pezzo
 di codice.
 
-X<builtin; C<caller>>
+X<predefinite; funzioni; C<caller>>
 
 L'unico argomento, peraltro opzionale, di C<caller> è il numero di contesti di chiamata
 (L<recursion>) di cui riportare informazioni. C<caller(0)> riporta informazioni sul

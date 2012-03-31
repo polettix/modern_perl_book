@@ -16,7 +16,7 @@ La loro lista esaustiva è contenuta in C<perldoc perlvar>.
 =head2 Gestire le Variabili Globali Predefinite
 
 X<variabili globali predefinite; gestione>
-X<builtin; C<local>>
+X<predefinite; funzioni; C<local>>
 
 Le nuove versioni di Perl 5 continano a convertire dei comportamenti globali in comportamenti lessicali; grazie a ciò,
 è possibile evitare di usare molte di queste variabili globali. Quando però non potete evitarle, usate C<local> nello scope

@@ -179,7 +179,7 @@ ma fortunatamente il parser di Perl è in grado di riconoscerli.
 
 X<bareword; funzioni per sort>
 X<C<sort>>
-X<builtin; C<sort>>
+X<predefinite; funzioni; C<sort>>
 
 Infine, la funzione nativa C<sort> può ricevere come secondo argomento il I<nome> di una
 funzione da usare per l'ordinamento. Anche se raramente questo nome risulta ambiguo per il parser, esso può

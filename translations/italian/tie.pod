@@ -8,7 +8,7 @@ ci permette di personalizzare il comportamento dei tipi nativi (scalari, array,
 hash e filehandle). Qualunque operazione effettuate su una variabile legata
 si traduce in una specifica chiamata di metodo.
 
-X<builtin; C<tie>>
+X<predefinite; funzioni; C<tie>>
 X<C<Tie::File>>
 
 La funzione nativa C<tie> (lega, NdT) permetteva originariamente di usare spazio su disco come memoria di supporto
@@ -50,8 +50,8 @@ Il primo argomento è la variabile da legare, il secondo è il nome della classe
 legarla e C<@args> è una lista opzionale di argomenti richiesti
 dalla funzione di legatura. Nel caso di C<Tie::File>, il parametro richiesto è un nome valido di file.
 
-X<builtin; C<tie>>
-X<builtin; C<tied>>
+X<predefinite; funzioni; C<tie>>
+X<predefinite; funzioni; C<tied>>
 
 Le funzioni di legatora sono simili a costruttori: C<TIESCALAR>, C<TIEARRAY()>,
 C<TIEHASH()> e C<TIEHANDLE()> rispettivamente per gli scalari, gli array, gli hash e i
@@ -111,7 +111,7 @@ blessed ad array e hash.  La documentazione contenuta in C<perldoc perltie>
 spiega i numerosi metodi supportati da queste classi, ad esempio per leggere e scrivere valori
 multipli.
 
-=begin tip Vero che C<tie> è Divertente?
+=begin tip Non è Vero che C<tie> è Divertente?
 
 Grazie all'opzione C<-norequire> la direttiva C<parent> evita di tentare di caricare
 un file per C<Tie::StdScalar>, dato che tale modulo è contenuto in una parte del file

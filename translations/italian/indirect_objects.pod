@@ -75,9 +75,9 @@ aggregata I<sembra> facile, ma non lo è:
 
 Perl tenterà di chiamare C<say> sull'oggetto C<$config>.
 
-X<builtin; C<print>>
-X<builtin; C<close>>
-X<builtin; C<say>>
+X<predefinite; funzioni; C<print>>
+X<predefinite; funzioni; C<close>>
+X<predefinite; funzioni; C<say>>
 
 C<print>, C<close> e C<say>--che sono tutte funzioni native che operano sui
 filehandle--operano in modo indiretto. Questo comportamento era appropriato quando i filehandle
