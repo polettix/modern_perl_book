@@ -396,7 +396,7 @@ l'uso di Moose (L<moose>).
 visualizza le differenze nei messaggi di diagnostica. C<Test::LongString> fornisce
 assrzioni analoghe.
 
-=item * C<Test::Deep> testa l'equivalenza di strutture dati nidificate
+=item * C<Test::Deep> testa l'equivalenza di strutture dati annidate
 (L<nested_data_structures>).
 
 =item * C<Devel::Cover> analizza l'esecuzione della vostra suite di test e riporta

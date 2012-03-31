@@ -101,7 +101,7 @@ applica l'operatore più a destra (C<->) al risultato della prima operazione e
 all'operando più a destra (C<4>).
 
 I principianti Perl trovano sono spesso confusi dall'interazione tra gli operatori
-poliadici--specialmente le chiamate di funzione--e le espressioni nidificate. Se è vero che spesso le parentesi
+poliadici--specialmente le chiamate di funzione--e le espressioni annidate. Se è vero che spesso le parentesi
 aiutano, attenzione alle complicazioni del parsing di:
 
 =begin programlisting

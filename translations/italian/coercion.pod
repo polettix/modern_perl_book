@@ -87,7 +87,7 @@ X<autovivificazione>
 
 Usare un'operazione di dereferenza su un valore che non sia un riferimento trasforma quel valore I<in> un
 riferimento. Questo processo di autovivificazione (L<autovivification>) è utile quando manipolate
-strutture dati nidificate (L<nested_data_structures>):
+strutture dati annidate (L<nested_data_structures>):
 
 =begin programlisting
 

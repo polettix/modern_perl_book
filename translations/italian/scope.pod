@@ -27,7 +27,7 @@ X<variabili; lessicali>
 
 Lo cope lessicale determina la visibilità delle variabili dichiarate con
 C<my>--le variabili dette I<lessicali>. Una variabile lessicale dichiarata in uno scope è
-visibile in quello scope e negli scope nidificati, ma è invisibile agli scope
+visibile in quello scope e negli scope annidati, ma è invisibile agli scope
 dello stesso livello e a quelli esterni:
 
 =begin programlisting
@@ -87,8 +87,8 @@ Spesso, è proprio ciò che desiderate:
 
 =begin tip Collisioni di Nomi
 
-L'oscuramento di lessicali può essere accidentale. Limitate lo scope delle variabili e la
-nidificazione degli scope per ridurre questo rischio.
+L'oscuramento di lessicali può essere accidentale. Limitate lo scope delle variabili e l'annidamento
+degli scope per ridurre questo rischio.
 
 =end tip
 

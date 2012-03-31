@@ -247,7 +247,7 @@ potrebbe esistere e avere un valore anche se tale valore corrisponde a falso in 
 =end programlisting
 
 Inoltre, C<exists> evita l'autovivicazione (L<autovivification>) nelle strutture dati
-nidificate (L<nested_data_structures>).
+annidate (L<nested_data_structures>).
 
 X<predefinite; funzioni; C<defined>>
 

@@ -573,6 +573,6 @@ X<C<Storable>>
 X<C<dclone()>>
 
 Fare questo è necessario solo in qualche caso, ma la duplicazione esplicita aiuta ad evitare spiacevoli
-sorprese per il chiamante. Se usate strutture dati nidificate o altri riferimenti
+sorprese per il chiamante. Se usate strutture dati annidate o altri riferimenti
 complessi, considerate l'uso del modulo core C<Storable> e la sua funzione
 C<dclone> (I<deep cloning>).

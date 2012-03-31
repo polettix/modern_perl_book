@@ -344,7 +344,7 @@ dalla lista. Dopo l'assegnamento, C<@gatti> conterrà I<tutti>
 gli argomenti passati alla funzione. C<@cani> invece sarà vuoto.
 
 Questo appiattimento può confondere i principianti che tentano di creare
-array nidificati in Perl 5:
+array annidati in Perl 5:
 
 =begin programlisting
 

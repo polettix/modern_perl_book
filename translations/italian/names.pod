@@ -49,7 +49,7 @@ runtime o dati in input al programma. Questi I<lookup simbolici> vi danno maggio
 al costo di una minore sicurezza. In particolare, invocando indirettamente delle funzioni e
 dei metodi o effettuando il lookup dei simboli di un namespace, potete bypassare il parser del Perl.
 
-Tutto questo può portare a del codice confuso. Come raccomanda molto efficacemente Mark Jason Dominus N<U<http://perl.plover.com/varvarname.html>>, usate piuttosto un hash (L<hashes>) oppure una struttura dati nidificata (L<nested_data_structures>).
+Tutto questo può portare a del codice confuso. Come raccomanda molto efficacemente Mark Jason Dominus N<U<http://perl.plover.com/varvarname.html>>, usate piuttosto un hash (L<hashes>) oppure una struttura dati annidata (L<nested_data_structures>).
 
 =head2 Nomi di Variabili e Sigilli
 
@@ -158,7 +158,7 @@ Tutti i namespace in Perl 5 sono visibili a livello globale. Quando Perl deve fa
 C<Dolci::Gelato::Frigo>, inizia col cercare nella symbol table C<main::> un
 simbolo che rappresenti il namespace C<Dolci::>, quindi cerca al suo interno il namespace
 C<Gelato::>, e così via. Il C<Frigo::> è quindi visibile dall'esterno del namespace C<Gelato::>.
-Il fatto che i due namespace siano nidificati è solo un meccanismo di memorizzazione,
+Il fatto che i due namespace siano annidati è solo un meccanismo di memorizzazione,
 e non ha alcuna implicazione su ulteriori relazioni tra package padre e figlio o tra package fratelli.
 Sta al programmatore usare questo meccanismo per rendere evidenti le relazioni I<logiche> tra entità--attraverso una buona scelta
 e organizzazione dei nomi.

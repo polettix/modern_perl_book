@@ -1,16 +1,16 @@
-=head1 Strutture Dati Nidificate
+=head1 Strutture Dati Annidate
 
 Z<nested_data_structures>
 X<strutture dati>
-X<strutture dati nidificate>
+X<strutture dati annidate>
 
 I dati aggregati del Perl--array e hash--vi permettono di memorizzare scalari e
 indicizzarli per numero o per chiave. I riferimenti Perl 5 (L<references>) vi permettono
 di accedere ai tipi di dati aggregati attraverso speciali variabili scalari. Le strutture dati
-nidificate del Perl, come un array di array o un hash di hash, sono
+annidate del Perl, come un array di array o un hash di hash, sono
 rese possibili dall'uso dei riferimenti.
 
-Per dichiarare una struttura dati nidificata, usate la sintassi della dichiarazione di riferimenti anonimi:
+Per dichiarare una struttura dati annidata, usate la sintassi della dichiarazione di riferimenti anonimi:
 
 =begin programlisting
 
@@ -38,7 +38,7 @@ elementi alla lista.
 
 =end tip
 
-Usate la sintassi dei riferimenti Perl per accedere agli elementi delle strutture dati nidificate. Il
+Usate la sintassi dei riferimenti Perl per accedere agli elementi delle strutture dati annidate. Il
 sigillo denota la quntità di dati da estrarre e la freccia di dereferenziazione
 indica che il valore di una porzione della struttura dati è un riferimento:
 
@@ -49,7 +49,7 @@ indica che il valore di una porzione della struttura dati è un riferimento:
 
 =end programlisting
 
-L'unico modo di nidificare una struttura dati multi-livello è attraverso i riferimenti, quindi la freccia
+L'unico modo di annidare una struttura dati multi-livello è attraverso i riferimenti, quindi la freccia
 è superflua. Potete ometterla per chiarezza, eccetto quando invocate un riferimento a funzione:
 
 =begin programlisting
@@ -60,7 +60,7 @@ L'unico modo di nidificare una struttura dati multi-livello è attraverso i rife
 
 =end programlisting
 
-Usate dei blocchi di disambiguazione per accedere ai componenti delle strutture dati nidificate come se fossero
+Usate dei blocchi di disambiguazione per accedere ai componenti delle strutture dati annidate come se fossero
 array o hash di first-class:
 
 =begin programlisting
@@ -70,7 +70,7 @@ array o hash di first-class:
 
 =end programlisting
 
-... o per le slice di strutture dati nidificate:
+... o per le slice di strutture dati annidate:
 
 =begin programlisting
 
@@ -109,20 +109,20 @@ strutture dati in Perl.
 Z<autovivification>
 X<autovivificazione>
 
-Quando tentate di scrivere dentro un componente di una struttura dati nidificata, Perl creerà
+Quando tentate di scrivere dentro un componente di una struttura dati annidata, Perl creerà
 il cammino necessario nella struttura dati fino alla destinazione:
 
 =begin programlisting
 
     my @adadada;
-    $adadada[0][0][0][0] = 'profondamente nidificato';
+    $adadada[0][0][0][0] = 'profondamente annidato';
 
 =end programlisting
 
 Dopo la seconda linea di codice, questo array di array di array di array
 contiene un riferimento ad array in un riferimento ad array in un riferimento ad array in un 
 riferimento ad array. Ogni riferimento ad array contiene un elemento. Analogamente, se trattate
-un valore non definito come se fosse un riferimento ad hash in una struttura dati nidificata,
+un valore non definito come se fosse un riferimento ad hash in una struttura dati annidata,
 Perl lo inizializzerà di conseguenza:
 
 =begin programlisting
@@ -137,7 +137,7 @@ X<direttiva C<autovivification>>
 X<direttive; C<autovivification>>
 
 Questo utile processo è detto I<autovivificazione>. Anche se riduce il codice
-di inizializzazione delle strutture dati nidificate, non distingue tra un
+di inizializzazione delle strutture dati annidate, non distingue tra un
 vero intento di creare elementi mancanti e gli
 errori di battitura. La pragma C<autovivification> di CPAN (L<pragmas>) vi permette di disabilitare
 l'autovivificazione in uno scope lessicale per specifici tipi di operazioni.
@@ -157,14 +157,14 @@ e quando lo ritenete necessario.
 
 Naturalmente I<potreste> verificare le vostre aspettative prima di dereferenziare ogni livello di una
 struttura dati complessa, ma il codice risultante sarebbe lungo e tedioso.
-La cosa migliore è di evitare strutture dati nidificate troppo profondamente rivedendo il
+La cosa migliore è di evitare strutture dati annidate troppo profondamente rivedendo il
 vostro modello dei dati e migliorarne l'incapsulamento.
 
-=head2 Debugging di Strutture Dati Nidificate
+=head2 Debugging di Strutture Dati Annidate
 
 La complessità della sintassi di dereferenziazione di Perl 5 combinata con la potenziale confusione
 dovuta a molti livelli di indirezione possono rendere difficile il debugging delle
-strutture dati nidificate. Fortunatamente esistono due validi strumenti di visualizzazione.
+strutture dati annidate. Fortunatamente esistono due validi strumenti di visualizzazione.
 
 X<C<Data::Dumper>>
 
@@ -250,10 +250,10 @@ riferimenti non prevengono il garbage collector del Perl dal distruggere
 le relative strutture dati. Molte strutture dati non necessitano dei riferimenti
 deboli, ma quando sono necessari hanno un valore inestimabile.
 
-=head2 Alternative alle Strutture Dati Nidificate
+=head2 Alternative alle Strutture Dati Annidate
 
-Anche se il Perl è ben contento di processare strutture dati nidificate a qualunque profondità possiate
+Anche se il Perl è ben contento di processare strutture dati annidate a qualunque profondità possiate
 immaginare, il costo di comprendere queste strutture dati e le loro relazioni per un lettore
 umano è alto--per non dire nulla della complessità della sintassi. Oltre i due o
-tre livelli di nidificazione, considerate se modellare i diversi componenti del vostro sistema
+tre livelli di annidamento, considerate se modellare i diversi componenti del vostro sistema
 con classi e oggetti (L<moose>) non potrebbe rendere più chiaro il vostro codice.

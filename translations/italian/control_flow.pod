@@ -818,9 +818,9 @@ costrutto è meno comune delle altre forme di ciclo, ma non meno potente.
 
 =head2 Cicli dentro altri Cicli
 
-X<cicli; nidificati>
+X<cicli; annidati>
 
-Potete nidificare i cicli dentro altri cicli:
+Potete annidare i cicli dentro altri cicli:
 
 =begin programlisting
 
@@ -834,7 +834,7 @@ Potete nidificare i cicli dentro altri cicli:
 Quando lo fate, ricordatevi di dichiarare le vostre varibili di iterazione! In caso contrario, la potenziale confusione
 dovuta all'uso della variabile topic e al suo scope sarebbe ingestibile.
 
-Un errore comune quando si nidificano un ciclo C<foreach> e un C<while> è che è facile
+Un errore comune quando si annida un ciclo C<while> in un ciclo C<foreach> è che è facile
 esaurire un filehandle con un ciclo C<while>:
 
 =begin programlisting
@@ -958,8 +958,8 @@ parser di file che unisce tra loro le linee che terminano con un backslash:
 
 X<cicli; etichette>
 
-Usare le istruzioni di controllo di ciclo nei cicli nidificati può creare confusione. Se non potete
-evitare di nidificare i cicli--trasformando i cicli interni in funzioni--usate una
+Usare le istruzioni di controllo di ciclo nei cicli annidati può creare confusione. Se non potete
+evitare di annidare i cicli--trasformando i cicli interni in funzioni--usate una
 I<etichetta di ciclo> per essere più chiari:
 
 =begin programlisting

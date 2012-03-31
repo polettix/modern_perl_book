@@ -97,8 +97,8 @@ o di package:
 
 =end programlisting
 
-Ricordate che non potete I<nidificare> le funzioni con nome. Le funzioni con nome hanno uno scope
-globale al package. La condivisione di ogni variabile lessicale condivisa tra funzioni nidificate viene
+Ricordate che non potete I<annidare> le funzioni con nome. Le funzioni con nome hanno uno scope
+globale al package. La condivisione di ogni variabile lessicale condivisa tra funzioni annidate viene
 perduta quando la funzione più esterna distrugge il suo primo ambiente lessicaleN<Se
 questo vi sembra comlicato, immaginate come dev'essere implementarlo.>.
 
