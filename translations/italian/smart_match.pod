@@ -6,7 +6,7 @@ X<match intelligente>
 X<operatori; match intelligente>
 X<C<~~>; operatore di match intelligente>
 X<operatore; C<~~>>
-X<istruzioni predefinite; C<given>>
+X<predefinite; parole chiave; C<given>>
 
 L'operatore di match intelligente, C<~~>, confronta due operandi e restituisce un valore vero
 se corrispondono. L'indeterminatezza della definizione dimostra l'intelligenza

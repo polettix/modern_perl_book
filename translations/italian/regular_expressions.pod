@@ -26,9 +26,9 @@ Ogni carattere nel pattern è un elemento indivisibile, o
 I<atomo>. Può combaciare o non combaciare con un carattere in una stringa.
 
 X<operatori; C<=~>>
-X<C<=~>; bind a regex>
+X<C<=~>; binding a regex>
 X<operatori; C<!~>>
-X<C<!~>; bind a regex negato>
+X<C<!~>; binding a regex negato>
 
 L'operatore di binding a regex (C<=~>) è un operatore infisso (L<fixity>) che
 applica la regex del suo secondo operando a una stringa fornita dal suo primo
@@ -38,7 +38,7 @@ se il match non ha successo.
 
 =begin tip Ricordatevi C<index>!
 
-X<builtins; C<index>>
+X<predefinite; funzioni; C<index>>
 
 Potete anche usare la funzione predefinita C<index> per cercare una sottostringa letterale in una stringa.
 Usare un motore di espressioni regolari per questo compito è come andare al negozio giù all'angolo a
@@ -69,7 +69,7 @@ Per esempio, per curare una fastidiosa allergia estiva, potete scrivere:
 X<operatori; C<qr//>>
 X<C<qr//>; operazione di compilazione di regex>
 X<regex; C<qr//>>
-X<regex; first-class>
+X<regex; prima classe>
 
 L'operatore C<qr//> crea delle regex come oggetti di prima classe. Per usarle, interpolatele nell'operatore
 di match:
@@ -110,7 +110,7 @@ regex fornita come secondo argumento.
 
 X<regex; quantificatori>
 X<regex; quantificatore zero o uno>
-X<C<?>; quantificatore zero or one di regex>
+X<C<?>; quantificatore zero o uno di regex>
 
 La potenza delle espressioni regolari è incrementata dall'uso dei I<quantificatori di regex>,
 che vi permettono di specificare quante volte una componente della regex può comparire in una striga
@@ -394,7 +394,7 @@ i caratteri alfanumerici (L<unicode>) e il carattere di sottolineatura:
 =end programlisting
 
 X<regex; C<\d>>
-X<C<\d>; digit regex metacharacter>
+X<C<\d>; metacarattere di cifra nelle regex>
 
 Il metacarattere C<\d> riconosce le cifre (sempre all'interno di Unicode):
 
@@ -461,7 +461,7 @@ regex.
 
 =end tip
 
-X<C<->; character class range regex metacharacter>
+X<C<->; metacarettere di classe di range di caratteri nelle regex>
 
 Il carattere trattino (C<->) vi permette di specificare una serie di caratteri contigui
 in una classe, come in questa regex C<$solo_lettere_ascii>:
@@ -587,8 +587,8 @@ Perl supporta le I<catture numerate> dall'alba dei tempi:
 
 X<regex; C<$1>>
 X<regex; C<$2>>
-X<C<$1>; regex metacharacter>
-X<C<$2>; regex metacharacter>
+X<C<$1>; metacarattere di regex>
+X<C<$2>; metacarattere di regex>
 
 Questa forma di catture non fornisce un nome identificativo e non usa C<%+> per la memorizzazione.
 Invece, le sottostringhe catturate vengono memorizzate da Perl in una serie di variabili predefinite.
@@ -743,7 +743,7 @@ di a capo esplicito".
 
 X<C<\Q>; metacarettere di disattivazione dei metacaratteri nelle regex>
 X<C<\E>; metacarattere di riattivazione dei metacaratteri nelle regex>
-X<regex; metdisattivazione dei metacaratteri>
+X<regex; disattivazione dei metacaratteri>
 
 I I<caratteri di disattivazione dei metacaratteri> (C<\Q> and C<\E>) disattivano
 l'interpretazione dei metacaratteri nella parte di regex che si trova tra di essi. Possono essere particolarmente utili
@@ -793,7 +793,7 @@ e nulla di più, potete usare un'asserzione di limite di parola:
 =end programlisting
 
 X<regex; asserzione di lunghezza zero con negazione in avanti>
-X<C<(?!...)>; asserzione di lunghezza zero di negazione in avanti nelle regex>
+X<C<(?!...)>; asserzione di lunghezza zero con negazione in avanti nelle regex>
 
 ... ma se volete trovare un'auto senza avere problemi con la polizia, potreste usare
 un'I<asserzione di lunghezza zero con negazione in avanti>:
@@ -903,7 +903,7 @@ di un pattern:
 X<regex; modificatori>
 X<regex; modificatore C</i>>
 X<C</i>; modificatore di regex di insensibilità tra maiuscole e minuscole>
-X<regex; case-insensitive>
+X<regex; insensibilità tra maiuscole e minuscole>
 
 Potete utilizzare svariati modificatori per cambiare il comportamento degli operatori delle espressioni regolari.
 Tali modificatori compaiono alla fine degli operatori di match, di sostituzione e C<qr//>.
@@ -954,8 +954,8 @@ Il modificatore di multilinea, C</m>, permette alle ancore C<\A> e C<\Z> di fare
 del carattere di a capo contenuta nella stringa.
 
 X<C</s>; modificatore di regex di linea singola>
-X<regex; C</s> modifier>
-X<regex; single line>
+X<regex; modificatore C</s>>
+X<regex; linea singola>
 
 Il modificatore C</s> tratta la stringa in esame come un'unica linea, quindi il metacarattere C<.>
 riconosce anche il carattere di a capo. Damian Conway suggerisce un espediente
@@ -987,9 +987,9 @@ all'originale:
 
 =end programlisting
 
-X<C</x>; modificatore di regex di incremento leggibilità>
+X<C</x>; modificatore di regex di incremento di leggibilità>
 X<regex; modificatore C</x>>
-X<regex; incremento leggibilità>
+X<regex; incremento di leggibilità>
 
 Il modificatore C</x> vi permette di inserire spaziatura e commenti aggiuntivi nei
 pattern. Quando questo modificatore è attivo, il motore di regex ignora
