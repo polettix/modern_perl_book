@@ -86,7 +86,7 @@ protezione di C<strict> quando dovete manipolare direttamente dei simboli:
 
 =head2 Direttive Utili
 
-X<variabili predefinite; C<$^H>>
+X<predefinite; variabili globali; C<$^H>>
 X<direttive; scrittura>
 
 In Perl 5.10.0 è stata aggiunta la possibilità di scrivere le proprie pragma lessicali in puro codice Perl.

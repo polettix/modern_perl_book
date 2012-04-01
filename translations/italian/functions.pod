@@ -331,7 +331,7 @@ altro namespace anteponendo un prefisso al suo nome:
 Questo codice dichiara la funzione e, se necessario, crea il namespace.  Ricordate
 che i package di Perl 5 sono modificabili in qualunque punto del codice. Potete
 dichiarare una sola funzione con un determinato nome in un namespace. In caso contrario Perl 5 genera un warning
-di ridefinizione di una subroutine. Potete disabilitare questo warning con C<no warnings
+di ridefinizione di una funzione. Potete disabilitare questo warning con C<no warnings
 'redefine'>--se siete sicuri che questo comportamento sia ciò che intendevate ottenere.
 
 Per chiamare funzioni in altri namespace usate i loro nomi qualificati:
@@ -665,7 +665,7 @@ Un I<punto critico> della ricorsione è che dovete specificare correttamente le 
 terminazione se non volete che la vostra funzione chiami se stessa un numero infinito di volte.
 La funzione C<esiste_elem()> contiene diverse istruzioni C<return> proprio a questo scopo.
 
-Perl offre un utile warning C<Deep recursion on subroutine> (NdT: ricorsione profonda sulla subroutine) quando sospetta
+Perl offre un utile warning C<Deep recursion on subroutine> (NdT: ricorsione profonda sulla funzione) quando sospetta
 la presenza di una ricorsione infinita. Il limite di 100 chiamate ricorsive è arbitrario, ma è spesso
 utile. Potete disabilitare questo warning con C<no warnings 'recursion'> nello scope della
 chiamata ricorsiva.

@@ -3,9 +3,8 @@
 =head0 Funzioni
 
 X<funzione>
-X<subroutine>
 
-In Perl, una I<funzione> (o I<subroutine>) è una unità di codice
+In Perl, una I<funzione> è una unità di codice
 discreta ed incapsulata. Un programma è una collezione di queste piccole black box
 le cui interazioni governano il controllo di flusso del programma stesso.
 Una funzione può avere o meno un nome. Può consumare informazioni

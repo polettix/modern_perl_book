@@ -272,9 +272,9 @@ altri casi.
 =end tip
 
 X<C<$,>>
-X<variabili globali; C<$,>>
+X<predefinite; variabili globali; C<$,>>
 X<C<$\>>
-X<variabili globali; C<$\>>
+X<predefinite; variabili globali; C<$\>>
 
 Sia C<print> che C<say> ricevono una lista di operandi. Perl 5 usa la variabile globale predefinita
 C<$,> come separatore tra i valori di una lista e il valore di C<$\>
@@ -318,13 +318,13 @@ Come al solito, C<autodie> può gestire questi controlli al vostro posto:
 
 Z<file_handling_variables>
 X<C<$.>>
-X<variabili globali; C<$.>>
+X<predefinite; variabili globali; C<$.>>
 
 Ad ogni linea letta Perl 5 incrementa il valore della variabile C<$.>, che serve
 quindi da contatore di linee.
 
 X<C<$/>>
-X<variabili globali; C<$/>>
+X<predefinite; variabili globali; C<$/>>
 
 C<readline> usa il contenuto corrente di C<$/> come sequenza di fine linea.
 Per default, il valore di questa variabile è la sequenza di caratteri di fine linea più appropriata
@@ -337,7 +337,7 @@ impostate C<$/> a C<\n\n> per leggere un record alla volta. Eseguendo C<chomp> s
 file rimuoverete la sequenza di due caratteri di a capo.
 
 X<C<$|>>
-X<variabili globali; C<$|>>
+X<predefinite; variabili globali; C<$|>>
 X<buffering>
 
 Per default Perl fa il I<buffering> del proprio output, ed effettua operazioni di IO solo quando la quantità
@@ -390,7 +390,7 @@ X<C<IO::Seekable>; C<seek()>>
 
 I metodi C<input_line_number()> e C<input_record_separator()> di C<IO::File>
 vi permettono un accesso per singolo filehandle alle funzionalità per cui normalmente dovreste
-usare le variabili globali C<$.> e C<$/>. Vedete la documentazione di C<IO::File>,
+usare le variabili globali predefinite C<$.> e C<$/>. Vedete la documentazione di C<IO::File>,
 C<IO::Handle> e C<IO::Seekable> per maggiori informazioni.
 
 =head2 Directory e Path
@@ -577,7 +577,7 @@ per esmepio con C<perldoc -f -r>.
 
 X<predefinite; funzioni; C<rename>>
 
-La funzione predefinita C<rename> vi permette di ridenominare un file o di spostarlo da una directory ad un'altra.  RIceve due
+La funzione predefinita C<rename> vi permette di ridenominare un file o di spostarlo da una directory ad un'altra.  Riceve due
 operandi, ovvero il vecchio nome e il nuovo nome del file:
 
 =begin programlisting

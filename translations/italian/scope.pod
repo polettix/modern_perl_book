@@ -222,18 +222,18 @@ specialmente nelle chiamate ricorsive (L<recursion>).
 Ogni package ha un'unica I<tabella dei simboli> che contiene sia le variabili di package che
 le funzioni con nome. L'importazione (L<importing>) si basa sull'ispezione e la
 manipolazione di tale tabella dei simboli. Lo stesso vale per C<local>. Potete C<local>izzare
-solo le variabili globali e di package--e non le variabili lessicali.
+solo le variabili globali predefinite e di package--e non le variabili lessicali.
 
 X<C<$/>>
-X<variabili magic; C<$/>>
+X<predefinite; variabili globali; C<$/>>
 X<C<$!>>
-X<variabili magic; C<$!>>
+X<predefinite; variabili globali C<$!>>
 X<C<$@>>
-X<variabili magic; C<$@>>
+X<predefinite; variabili globali; C<$@>>
 X<C<$|>>
-X<variabili magic; C<$|>>
+X<predefinite; variabili globali; C<$|>>
 
-C<local> è particolarmente utile con le variabili predefinite. Per esempio, il
+C<local> è particolarmente utile con le variabili globali predefinite. Per esempio, il
 separatore di record in input C<$/> determina quanti dati vengono letti da un filehandle da un'operazione C<readline>.
 C<$!>, la variabile di errore di sistema, contiene il numero di errore
 della chiamata di sistema più recente. C<$@>, la variabile Perl di errore di C<eval>,

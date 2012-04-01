@@ -2,10 +2,10 @@
 
 Z<globals>
 
-X<variabili globali predefinite>
-X<variabili; globali predefinite>
+X<variabili sovraglobali>
+X<variabili; sovraglobali>
 
-Perl 5 fornisce svariate I<variabili globali predefinite> il cui scope è realmente globale e non
+Perl 5 fornisce svariate I<variabili sovraglobali> (che corrispondono alle I<variabili globali predefinite>) il cui scope è realmente globale e non
 limitato a un package o a un file. Sfortunatamente,
 la loro accessibilità globale significa anche che ogni modifica diretta o indiretta dei loro valori
 può avere effetti su altre parti del programma; inoltre, i loro nomi sono alquanto criptici.
@@ -13,13 +13,13 @@ Anche i programmatori Perl 5 esperti generalmente ne conoscono a memoria solo al
 le conoscono tutte. D'altra parte, solo un piccolo sottoinsieme di queste variabili può davvero esservi utile.
 La loro lista esaustiva è contenuta in C<perldoc perlvar>.
 
-=head2 Gestire le Variabili Globali Predefinite
+=head2 Gestire le Variabili Sovraglobali
 
-X<variabili globali predefinite; gestione>
+X<variabili sovraglobali; gestione>
 X<predefinite; funzioni; C<local>>
 
 Le nuove versioni di Perl 5 continano a convertire dei comportamenti globali in comportamenti lessicali; grazie a ciò,
-è possibile evitare di usare molte di queste variabili globali. Quando però non potete evitarle, usate C<local> nello scope
+è possibile evitare di usare molte di queste variabili sovraglobali. Quando però non potete evitarle, usate C<local> nello scope
 più ristretto possibile per limitare gli effetti delle vostre modifiche. In questo modo, anche se il vostro codice rimane
 esposto ai cambiamenti effettuati su tali variabili dal codice che I<chiamate>,
 evitate almeno possibili sorprese da parte del codice I<esterno> al vostro scope. Come illustrato
@@ -36,14 +36,14 @@ L'effetto della C<local>izzazione di C<$/> dura soltanto fino alla fine del bloc
 E ci sono poche possibilità che la lettura di linee da un filehandle provochi l'esecuzione di codice Perl
 N<Un filehandle tied (L<tie>) è una di queste possibilità.> che modifica il valore di C<$/> all'interno del blocco C<do>.
 
-Non tutti i casi di utilizzo delle variabili globali predefiniti sono così facili da trattare, ma spesso questo approccio
+Non tutti i casi di utilizzo delle variabili sovraglobali sono così facili da trattare, ma spesso questo approccio
 funziona.
 
 X<C<eval>>
 X<eccezioni; catturare>
 X<eccezioni; C<$@>>
 
-Talvolta potete aver bisogno di I<leggere> il valore di una variabile globale predefinita, sperando che nel frattempo
+Talvolta potete aver bisogno di I<leggere> il valore di una variabile sovraglobale, sperando che nel frattempo
 esso non sia stato modificato da altro codice. Catturare eccezioni con un blocco C<eval> può dar luogo
 a problemi di concorrenza, dato che i metodi C<DESTROY()> invocati sui
 lessicali dello scope da cui il programma è appena uscito potrebbero cancellare il valore di C<$@>:
@@ -65,7 +65,7 @@ In alternativa, vedete C<Try::Tiny> (L<exception_caveats>).
 
 X<C<English>>
 
-Il modulo C<English> distribuito con Perl fornisce dei nomi verbosi per le variabili globali predefinite al posto di quelli composti di punteggiatura. Potete importarli in un namespace con:
+Il modulo C<English> distribuito con Perl fornisce dei nomi verbosi per le variabili sovraglobali al posto di quelli composti di punteggiatura. Potete importarli in un namespace con:
 
 =begin programlisting
 
@@ -77,13 +77,13 @@ In questo modo potete usare i nomi verbosi documentati in C<perldoc perlvar>
 all'interno dello scope della direttiva.
 
 X<C<$&>>
-X<variabili globali; C<$&>>
+X<predefinite; variabili globali; C<$&>>
 X<C<$`>>
-X<variabili globali; C<$`>>
+X<predefinite; variabili globali; C<$`>>
 X<C<$'>>
-X<variabili globali; C<$'>>
+X<predefinite; variabili globali; C<$'>>
 
-Tre variabili globali predefinite relative alle regex (C<$&>, C<$`> e C<$'>) impongono una penalità
+Tre variabili sovraglobali relative alle regex (C<$&>, C<$`> e C<$'>) impongono una penalità
 all'efficienza che si applica globalmente a I<le> espressioni regolari di un programma.  Se
 dimenticate di importare C<-no_match_vars>, il vostro programma pagherà la penalità anche
 se non leggete esplicitamente da tali variabili.
@@ -91,17 +91,17 @@ se non leggete esplicitamente da tali variabili.
 I programmi in Perl moderno dovrebbero usare la variabile C<@-> come sostituta di questo terribile
 terzetto di variabili.
 
-=head2 Variabili Predefinite Utili
+=head2 Variabili Sovraglobali Utili
 
-X<variabili globali predefinite; utili>
+X<variabili sovraglobali; utili>
 
-Molti programmi in Perl 5 moderno possono cavarsela usando solo un paio delle variabili predefinite
-globali. Probabilmente, incontrerete solo alcune di queste variabili nei programmi reali.
+Molti programmi in Perl 5 moderno possono cavarsela usando solo un paio delle variabili
+sovraglobali. Probabilmente, incontrerete solo alcune di queste variabili nei programmi reali.
 
 X<C<$/>>
-X<variabili globali; C<$/>>
+X<predefinite; variabili globali; C<$/>>
 X<C<$INPUT_RECORD_SEPARATOR>>
-X<variabili globali; C<$INPUT_RECORD_SEPARATOR>>
+X<predefinite; variabili globali; C<$INPUT_RECORD_SEPARATOR>>
 X<C<readline>>
 
 =over 4
@@ -117,9 +117,9 @@ un paragrafo per volta, dove per paragrafo si intende un blocco di testo seguito
 numero arbitrario di caratteri di a capo.
 
 X<C<$.>>
-X<variabili globali; C<$.>>
+X<predefinite; variabili globali; C<$.>>
 X<C<$INPUT_LINE_NUMBER>>
-X<variabili globali; C<$INPUT_LINE_NUMBER>>
+X<predefinite; variabili globali; C<$INPUT_LINE_NUMBER>>
 
 =item * C<$.> (C<$INPUT_LINE_NUMBER>) contiene il numero di record letti dal
 filehandle usato più di recente. Potete leggere questa variabile, ma
@@ -127,9 +127,9 @@ tentare di modificarla non ha effetto. Localizzando questa variabile localizzere
 filehandle a cui si riferisce.
 
 X<C<$|>>
-X<variabili globali; C<$|>>
+X<predefinite; variabili globali; C<$|>>
 X<C<$OUTPUT_AUTOFLUSH>>
-X<variabili globali; C<$OUTPUT_AUTOFLUSH>>
+X<predefinite; variabili globali; C<$OUTPUT_AUTOFLUSH>>
 
 =item * C<$|> (C<$OUTPUT_AUTOFLUSH>) determina se Perl deve fare il flush immediato di
 tutto ciò che viene scritto sul filehandle selezionato corrente, oppure se deve attendere
@@ -138,14 +138,14 @@ un terminale che non devono bloccarsi in attesa del vostro input. Qualunque valo
 verrà convertito in un booleano.
 
 X<C<@ARGV>>
-X<variabili globali; C<@ARGV>>
+X<predefinite; variabili globali; C<@ARGV>>
 
 =item * C<@ARGV> contiene gli argomenti pasati al programma da linea di comando.
 
 X<C<$!>>
-X<variabili globali; C<$!>>
+X<predefinite; variabili globali; C<$!>>
 X<C<$ERRNO>>
-X<variabili globali; C<$ERRNO>>
+X<predefinite; variabili globali; C<$ERRNO>>
 
 =item * C<$!> (C<$ERRNO>) è una variabile doppia (L<dualvars>) contenente il risultato
 della chiamata di sistema I<più recente>. In contesto numerico, essa corrisponde alla variabile C
@@ -158,31 +158,31 @@ variabile può essere modificato sotto il vostro naso. Copiatelo I<immediatament
 chiamata di sistema per avere un risultato che sia il più accurato possibile.
 
 X<C<$">>
-X<variabili globali; C<$">>
+X<predefinite; variabili globali; C<$">>
 X<C<$LIST_SEPARATOR>>
-X<variabili globali; C<$LIST_SEPARATOR>>
+X<predefinite; variabili globali; C<$LIST_SEPARATOR>>
 
 =item * C<$"> (C<$LIST_SEPARATOR>) è una stringa usata per separare gli elementi di array e liste
 quando vengono interpolati all'interno di una stringa.
 
 X<C<%+>>
-X<variabili globali; C<%+>>
+X<predefinite; variabili globali; C<%+>>
 
 =item * C<%+> contiene le catture con nome derivanti da un match riuscito di una espressione
 regolare (L<named_captures>).
 
 X<C<$@>>
-X<variabili globali; C<$@>>
+X<predefinite; variabili globali; C<$@>>
 X<C<$EVAL_ERROR>>
-X<variabili globali; C<$EVAL_ERROR>>
+X<predefinite; variabili globali; C<$EVAL_ERROR>>
 
 =item * C<$@> (C<$EVAL_ERROR>) contiene il valore lanciato dall'eccezione
 più recente (L<catching_exceptions>).
 
 X<C<$0>>
-X<variabili globali; C<$0>>
+X<predefinite; variabili globali; C<$0>>
 X<C<$PROGRAM_NAME>>
-X<variabili globali; C<$PROGRAM_NAME>>
+X<predefinite; variabili globali; C<$PROGRAM_NAME>>
 
 =item * C<$0> (C<$PROGRAM_NAME>) contiene il nome del programma in
 esecuzione. Su alcune piattaforme Unix-like potete modificare tale valore per cambiare
@@ -190,9 +190,9 @@ il nome del programma così come appare ad altri programmi nel sistema, come
 C<ps> e C<top>.
 
 X<C<$$>>
-X<variabili globali; C<$$>>
+X<predefinite; variabili globali; C<$$>>
 X<C<$PID>>
-X<variabili globali; C<$PID>>
+X<predefinite; variabili globali; C<$PID>>
 
 =item * C<$$> (C<$PID>) contiene l'id del processo dell'istanza in esecuzione
 del programma, dal punto di vista del sistema operativo. Tale id
@@ -200,14 +200,14 @@ sarà diverso tra programmi eseguiti in seguito a una C<fork()> e I<potrebbe> va
 programma.
 
 X<C<@INC>>
-X<variabili globali; C<@INC>>
+X<predefinite; variabili globali; C<@INC>>
 
 =item * C<@INC> contiene una lista di path del filesystem nei quali Perl cerca i file
 da caricare con C<use> e C<require>. Vedete C<perldoc -f require> per una descrizione di
 altri dati che potrebbero essere contenuti in questo array.
 
 X<C<%SIG>>
-X<variabili globali; C<%SIG>>
+X<predefinite; variabili globali; C<%SIG>>
 
 =item * C<%SIG> mappa i segnali del SO e i segnali di basso livello di Perl su riferimenti alla funzioni
 usate per gestire tali segnali. Per esempio, potete intercettare l'interrupt standard Ctrl-C catturando
@@ -216,9 +216,9 @@ sui segnali e specialmente sui segnali sicuri.
 
 =back
 
-=head2 Alternative alle Variabili Predefinite
+=head2 Alternative alle Variabili Sovraglobali
 
-X<variabili globali predefinite; alternative>
+X<variabili sovraglobali; alternative>
 X<C<Try::Tiny>>
 
 Le maggiori responsabilità di azioni a distanza ricadono sull'IO e sulle condizioni

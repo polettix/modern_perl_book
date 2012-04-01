@@ -247,7 +247,7 @@ Z<easy_file_slurping>
 X<predefinite; funzioni; C<local>>
 X<C<$/>>
 X<file; slurping>
-X<variabili globali; C<$/>>
+X<predefinite; variabili globali; C<$/>>
 
 C<local> è fondamentale per gestire le variabili globali predefinite di Perl 5. Dovete
 aver compreso bene gli scope (L<scope>) per usare efficacemente C<local>--ma in tal caso potete

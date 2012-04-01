@@ -376,7 +376,7 @@ X<C<$">>
 X<C<$LIST_SEPARATOR>>
 
 Gli array vengono interpolati in stringhe come liste della conversione in stringa di ciascun elemento
-separate dal valore corrente della magica variabile globale C<$">. Il valore di default di tale
+separate dal valore corrente della variabile globale predefinita C<$">. Il valore di default di tale
 variabile è lo spazio singolo. Il suo mnemonico in F<English.pm> è
 C<$LIST_SEPARATOR>. Quindi:
 

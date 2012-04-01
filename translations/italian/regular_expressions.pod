@@ -558,7 +558,7 @@ in pezzi separati. La sintassi delle catture con nome è la seguente:
 =end programlisting
 
 X<C<%+>>
-X<variabili globali; C<%+>>
+X<predefinite; variabili globali; C<%+>>
 
 Le parentesi tonde racchiudono la cattura. Il costrutto C<< ?< nome > >>, che segue
 immediatamente la parentesi aperta, assegna un nome alla cattura. Il
@@ -566,7 +566,7 @@ resto della cattura è un'espressione regolare.
 
 Quando il match di un pattern contenente la cattura
 ha successo, Perl memorizza la parte di stringa che corrisponde
-al pattern interno alla cattura nella variabile predefinita C<%+>. In tale hash, la chiave è
+al pattern interno alla cattura nella variabile globale predefinita C<%+>. In tale hash, la chiave è
 il nome della cattura e il valore è l'appropriata porzione di stringa.
 
 =head2 Catture Numerate
@@ -591,7 +591,7 @@ X<C<$1>; metacarattere di regex>
 X<C<$2>; metacarattere di regex>
 
 Questa forma di catture non fornisce un nome identificativo e non usa C<%+> per la memorizzazione.
-Invece, le sottostringhe catturate vengono memorizzate da Perl in una serie di variabili predefinite.
+Invece, le sottostringhe catturate vengono memorizzate da Perl in una serie di variabili globali predefinite.
 La parte di match della I<prima> cattura trovata finisce in C<$1>, la seconda in
 C<$2> e così via. Il conteggio del numero di una cattura avviene quando si incontra la sua parentesi I<aperta>;
 quindi dopo la prima parentesi aperta inizia la memorizzazione in C<$1>, dopo la

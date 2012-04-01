@@ -75,7 +75,7 @@ Il blocco passato come argomento a C<eval> introduce un nuovo scope, sia lessica
 Se C<apri_file_log()> chiamasse altre funzioni e una di queste lanciasse
 un'eccezione, questo C<eval> la catturerebbe.
 
-X<variabili predefinite; C<$@>>
+X<predefinite; variabili globali; C<$@>>
 
 Un gestore di eccezioni dev'essere uno strumento generico, dato che potrebbe catturare tutte le eccezioni nel
 suo scope dinamico. Per capire quale eccezione è stata catturata (e anzitutto se è c'è stata un'eccezione)
