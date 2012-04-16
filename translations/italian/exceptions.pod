@@ -177,8 +177,8 @@ Usare C<$@> correttamente vi richiede di scansare svariati rischi piuttosto sott
 
 =item * Un gestore di segnali (specialmente il gestore del segnale C<DIE>) potrebbe modificare C<$@>
 
-=item * The destruction of an object during scope exit may call C<eval> and
-change C<$@>
+=item * La distruzione di un oggetto durante l'uscita da uno scope potrebbe chiamare C<eval> e
+cambiare C<$@>
 
 =back
 

@@ -28,10 +28,10 @@ oggetti e ruoli per isolare il codice duplicato in componenti riusabili che
 modellano in modo accurato il dominio del problema. I migliori progetti vi permettono di aggiungere
 funzionalità I<rimuovendo> del codice.
 
-=item * I<Scegliete con cura i nomi delle entità>. Your code tells a story. Every named
-symbol--variables, functions, models, classes--allows you to clarify or
-obfuscate your intent. The ease of choosing names reveals your understanding of
-the problem and your design. Choose your names carefully.
+=item * I<Scegliete con cura i nomi delle entità>. Il vostro codice racconta una storia. Ogni simbolo con un
+nome--variabili, funzioni, modelli, classi--vi dà l'opportunità di chiarire o
+di nascondere le vostre intenzioni. La facilità con cui scegliete i nomi rivela il vostro livello di comprensione del
+problema e del vostro progetto. Scegliete i nomi con cura.
 
 =item * I<Evitate di essere troppo intelligenti>. Il codice conciso è utile quando aiuta a chiarire
 le intenzioni del programmatore. Invece, il codice troppo intelligente nasconde le vostre intenzioni dietro a giochi di prestigio.

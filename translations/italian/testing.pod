@@ -213,7 +213,7 @@ Mentre C<ok()> fornisce solo il numero di linea del test fallito, C<is()>
 visualizza il valore atteso e quello ricevuto.
 
 C<is()> applica implicitamente il contesto scalare ai propri valori (L<prototypes>). Pertanto
-potete ad esempio controllare il nomero di elementi di un array
+potete ad esempio controllare il numero di elementi di un array
 senza valutarlo esplicitamente in contesto scalare:
 
 =begin programlisting
