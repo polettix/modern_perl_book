@@ -4,7 +4,7 @@ Z<implicit_ideas>
 
 Il contesto è solo una delle abbreviazioni linguistiche in Perl. I programmatori che padroneggiano queste
 abbreviazioni, dando appena un'occhiata al codice, possono capire immediatamente le sue caratteristiche più importanti.
-Un'altra importante caratteristica linguistiche è l'equivalente Perl dei pronomi.
+Un'altra importante caratteristica linguistica è l'equivalente Perl dei pronomi.
 
 =head2 La Variabile Scalare di Default
 
@@ -47,7 +47,7 @@ fine del suo operandoN<Vedete C<perldoc -f chomp> e C<$/> per maggiori dettagli 
 
 =end programlisting
 
-C<$_> ha lo stesso ruolo in Perl dei pronomi I<ciò>, I<quello> o del suffisso I<-lo> in Italiano. 
+C<$_> ha lo stesso ruolo in Perl dei pronomi I<ciò>, I<quello> o del suffisso I<-lo> in italiano. 
 Se non passate esplicitamente una variabile, C<chomp> rimuove la sequenza di "a capo" dalla fine di C<$_>.
 Perl capisce a che cosa vi riferite quando dite "C<chomp>", e farà sempre "chomp" su "quel" valore.
 Pertanto, queste due linee di codice sono equivalenti:
@@ -148,7 +148,7 @@ X<predefiniti; funzioni; C<grep>>
 
 =end programlisting
 
-Come una frase in Italiano diventa confusa quando usate troppi pronomi e antecedenti, anche in Perl dovete
+Come una frase in italiano diventa confusa quando usate troppi pronomi e antecedenti, anche in Perl dovete
 fare attenzione a mescolare usi impliciti o espliciti di C<$_>. Un incauto uso simultaneo
  di C<$_> può fare sì che un pezzo di codice sovrascriva tacitamente un valore scritto da un altro pezzo di codice.
 Se scrivete una funzione che usa C<$_>, potreste

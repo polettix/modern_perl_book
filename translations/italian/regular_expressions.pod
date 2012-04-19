@@ -382,7 +382,7 @@ ci sono sempre diversi modi di ottenere la risposta corretta:
 X<regex; C<\w>>
 X<C<\w>; matacarattere alfanumerico nelle regex>
 
-Se le potenziali soluzioni in C<@parole> non contengono solo delle semplici parole in Italiano,
+Se le potenziali soluzioni in C<@parole> non contengono solo delle semplici parole in italiano,
 potreste ottenere dei falsi positivi. Infatti, C<.> riconosce anche la punteggiatura,
 la spaziatura e i numeri. Siate specifici! Il metacarattere C<\w> rappresenta tutti
 i caratteri alfanumerici (L<unicode>) e il carattere di sottolineatura:

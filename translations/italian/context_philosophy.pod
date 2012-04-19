@@ -32,7 +32,7 @@ X<quantità; contesto>
 X<contesto di quantità>
 
 Il I<contesto di quantità> determina I<quanti> elementi vi aspettate da un'operazione.
-È qualcosa di simile alla concordanza di numero tra soggetto e verbo in Italiano.
+È qualcosa di simile alla concordanza di numero tra soggetto e verbo in italiano.
 Anche senza conoscere formalmente questo principio, non avete probabilmente problemi a trovare l'errore nella frase "Perl sono un linguaggio divertente".
 In Perl, il numero di elementi che vi aspettate determina quanti ne otterrete.
 
@@ -184,7 +184,7 @@ X<predefiniti; operatori; C<==>>
 
 L'operatore C<eq> tratta i suoi operandi come stringhe forzando il I<contesto stringa> su di essi.
 Invece, l'operatore C<==> impone il I<contesto numerico>. In contesto numerico, entrambe le stringhe vengono valutate come C<0> (L<numeric_coercion>).
-Fate attenzione ad usare l'operatore appropriato per tipo di contesto desiderato.
+Fate attenzione ad usare l'operatore appropriato al tipo di contesto desiderato.
 
 X<booleano; contesto>
 X<contesto booleano>

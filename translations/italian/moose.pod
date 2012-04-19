@@ -146,7 +146,7 @@ dell'oggetto. Per definire un attributo, dichiaratelo come parte della classe:
 
 =end programlisting
 
-Parafrasato in Italiano, questo codice dice che che "gli oggetti C<Gatto> hanno un attributo C<nome>.  Tale
+Parafrasato in italiano, questo codice dice che che "gli oggetti C<Gatto> hanno un attributo C<nome>.  Tale
 attributo è di sola lettura ed è una stringa".
 
 Moose fornisce la funzione C<has()>, che dichiara un attributo. Il primo

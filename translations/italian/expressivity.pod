@@ -25,21 +25,21 @@ I programmatori Perl hanno uno slogan per questo: I<TIMTOWTDI>, pronunciato "Tim
 Questa espressività permette ai maestri del linguaggio di creare programmi superlativi,
 ma permette anche ai neofiti e ai programmatori poco accorti di fare pasticci. L'esperienza e il gusto estetico
 vi guideranno a scrivere codice eccellente. La scelta è vostra--ma prestate attenzione alla
-leggibilità e alla manutenibilità, specialmente per chi che verrà dopo di voi.
+leggibilità e alla manutenibilità, specialmente per chi verrà dopo di voi.
 
 I principianti di Perl spesso trovano che alcuni dei suoi costrutti siano poco comprensibili. Molti di questi idiomi
-(L<idioms>) sono estrememente potenti, anche se in modi sottili e non sempre ovvi. Può essere una buona idea evitarli fino a che non
+(L<idioms>) sono estremamente potenti, anche se in modi sottili e non sempre ovvi. Può essere una buona idea evitarli fino a che non
 arrivate a padroneggiarli.
 
 Imparare Perl è come imparare una nuova lingua. Imparerete alcune parole,
 metterete insieme delle frasi, e presto potrete sostenere semplici conversazioni. La padronanza del linguaggio
-si ottiene esercitando sia nella lettura sia nella scrittura. Non dovete conoscere ogni dettaglio di Perl per usarlo in modo produttivo,
+si ottiene esercitandosi sia nella lettura sia nella scrittura. Non dovete conoscere ogni dettaglio di Perl per usarlo in modo produttivo,
 ma i principi esposti in questo capitolo sono fondamentali per la vostra crescita come programmatori.
 
 Un altro degli obiettivi nel progettare Perl è quello di evitare di sorprendere i programmatori (Perl)
 esperti.  Per esempio, sommare due variabili (C<$first_num + $second_num>)
 è ovviamente una operazione numerica (L<numeric_operators>); l'operatore di addizione
-tratta entrambe le variabili come valori numerici e produce un risultato numerico. Indipendentemente da quale siano i contenuti di
+tratta entrambe le variabili come valori numerici e produce un risultato numerico. Indipendentemente da quale sia il contenuto di
 C<$first_num> e C<$second_num>, Perl li converte in valori numerici (L<numeric_coercion>). In altre parole, se avete espresso l'intenzione di trattarli come numeri
 usando un operatore numerico Perl sarà felice di accontentarvi.
 

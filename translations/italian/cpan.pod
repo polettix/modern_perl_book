@@ -16,7 +16,7 @@ qualunque cosa: dall'accesso ai database agli strumenti di profiling, dai protoc
 quasi ogni apparecchiatura di rete che sia mai stata prodotta alle librerie per la grafica e il suono, ai wrapper
 Perl di librerie esterne disponibili per il vostro sistema.
 
-Perl Moderno senza CPAN è solo un linguaggio. Perl Moderno con CPAN è linguaggio incredibile.
+Perl Moderno senza CPAN è solo un linguaggio. Perl Moderno con CPAN è un linguaggio incredibile.
 
 X<distribuzioni>
 X<moduli>
