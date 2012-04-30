@@ -8,7 +8,7 @@ X<sigilli; C<@>>
 
 Gli I<array> del Perl 5 sono una struttura dati di I<prima classe>--il linguaggio li supporta
 come tipo di dati nativo--che memorizza zero o più scalari. Potete accedere
-a singoli membri dell'array con defli indici interi, e potete aggiungere o rimuovere
+a singoli membri dell'array con degli indici interi, e potete aggiungere o rimuovere
 elementi a piacere. Il sigillo C<@> denota un array. Per dichiarare un array, scrivete:
 
 =begin programlisting
@@ -113,7 +113,7 @@ l'array alla dimensione giusta e riempie tutte le posizioni intermedie
 con C<undef>. Dopo il primo assegnamento nell'esempio qui sopra, l'array conterrà
 C<undef> nelle posizioni 0, 1 e 2 e C<Jack> nella posizione 3.
 
-Come abbreviazione, potete inizializzare un arrey con una lista:
+Come abbreviazione, potete inizializzare un array con una lista:
 
 =begin programlisting
 
@@ -186,7 +186,7 @@ per volta. C<push> restituisce il nuovo numero di elementi dell'array. C<pop> re
 l'elemento rimosso.
 
 Dato che C<push> opera su una lista, potete facilmente appendere gli elementi di uno o più
- arrays tra di loro:
+ array tra di loro:
 
 =begin programlisting
 
@@ -338,7 +338,7 @@ normale funzione Perl 5, essi si appiattiscono in un'unica lista:
 
 =end programlisting
 
-Nella funzione, C<@_> conterrà sette elementi, not due, poichè l'assegnamento
+Nella funzione, C<@_> conterrà sette elementi, non due, poiché l'assegnamento
 di una lista ad un array è I<greedy>. Un array consuma più elementi possibile
 dalla lista. Dopo l'assegnamento, C<@gatti> conterrà I<tutti>
 gli argomenti passati alla funzione. C<@cani> invece sarà vuoto.
@@ -364,7 +364,7 @@ array annidati in Perl 5:
 
 =end programlisting
 
-... perchè le parentesi raggruppano semplicemente le espressioni. Non I<creano>
+... perché le parentesi raggruppano semplicemente le espressioni. Non I<creano>
 liste, in questo caso. Per ovviare a questo appiattimento, usate i riferimenti
 ad array (L<array_references>).
 
@@ -393,7 +393,7 @@ Localizzate C<$"> con un delimitatore per facilitare il debuggingN<Il credito pe
 
 =begin programlisting
 
-    # cosa c'e' gia' in questo array?
+    # cosa c'è già in questo array?
     local $" = ')(';
     say "(@dolciumi)";
     B<(crostata)(torta)(ciambelle)(biscotti)(pane dolce)>

@@ -20,7 +20,7 @@ necessità dell'intervento umano e con la segnalazione automatica agli autori di
 
 Anche se decidete di non rilasciare il vostro codice come distribuzione pubblica su CPAN,
 potete usare gli strumenti e le convenzioni di CPAN anche per gestire il vostro codice privato. La
-comunità Perl ha creato un'eccellente infrastruttura; perchè non dovreste avvantaggiarvene?
+comunità Perl ha creato un'eccellente infrastruttura; perché non dovreste avvantaggiarvene?
 
 =head2 Attributi di una Distribuzione
 
@@ -144,7 +144,7 @@ in caso di fallimenti.
 
 X<CPAN; C<Module::Starter>>
 
-Il processo di progettazione di una distribuzione meriterebbe un libro a sè (vedete
+Il processo di progettazione di una distribuzione meriterebbe un libro a sé (vedete
 I<Writing Perl Modules for CPAN> di Sam Tregar), ma alcuni principi possono comunque esservi utili.
 Avviate il vostro progetto con una utility come C<Module::Starter> o C<Dist::Zilla>. Il costo iniziale
 per apprenderne la configurazione e le regole può sembrare un investimento faticoso,

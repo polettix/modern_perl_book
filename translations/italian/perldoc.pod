@@ -77,7 +77,7 @@ L'opzione C<-v> cerca la documentazione su una variabile predefinita. Per esempi
 mostra la documentazione sulla variabile che contiene l'id del processo del programma in esecuzione. A seconda della shell che usate, potreste dover quotare opportunamente il nome della variabile.
 
 Con l'opzione C<-l>, C<perldoc> mostra il I<percorso> del file di documentazione
-anzichè il suo contenutoN<Tenete presente che un modulo potrebbe
+anziché il suo contenutoN<Tenete presente che un modulo potrebbe
 avere un file F<.pod> separato dal file F<.pm>.>.
 
 L'opzione C<-m> mostra l'intero I<contenuto> di un modulo, codice incluso,

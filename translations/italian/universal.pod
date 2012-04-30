@@ -61,7 +61,7 @@ Il metodo C<can()> riceve una stringa contenente il nome di un metodo. Restituis
 un riferimento alla funzione che implementa tale metodo, se esso esiste.
 Altrimenti, restituisce un valore falso. Potete chiamarlo su una classe, su un oggetto
 o sul nome di un package. In quest'ultimo caso, viene restituito un riferimento a una
-funzione anzichè a un metodoN<... anche se non potete distinguerli, dato tale
+funzione anziché a un metodoN<... anche se non potete distinguerli, dato tale
 riferimento.>.
 
 =begin tip Questa Classe Esiste?
@@ -173,7 +173,7 @@ allomorfico.
 
 Potreste essere tentati di memorizzare altri metodi in C<UNIVERSAL> per renderli disponibili a
 tutte le altre classi e oggetti Perl 5. Resistete a questa tentazione; un comportamento globale
-può avere effetti collaterali sottili proprio perchè non è vincolato.
+può avere effetti collaterali sottili proprio perché non è vincolato.
 
 X<CPAN; C<UNIVERSAL::ref>>
 X<CPAN; C<UNIVERSAL::isa>>

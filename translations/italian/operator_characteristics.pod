@@ -22,7 +22,7 @@ X<precedenza>
 
 La I<precedenza> di un operatore determina quando esso viene valutato da Perl in una
 espressione. L'ordine di valutazione va dalla precedenza più alta a quella più bassa.
-Poichè la precedenza della moltiplicazione è più alta della precedenza dell'addizione,
+Poiché la precedenza della moltiplicazione è più alta della precedenza dell'addizione,
 C<7 + 7 * 10> valuta a C<77> e non C<140>.
 
 Per forzare la valutazione di un operatore prima di un altro, raggruppate le sue

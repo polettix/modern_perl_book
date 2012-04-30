@@ -21,7 +21,7 @@ Lo I<scope lessicale> è uno scope visibile mente I<leggete> un programma. Il co
 risolve questo tipo di scope durante la compilazione. Un blocco delimitato da parentesi
 graffe crea un nuovo scope, sia che si tratti di un blocco a se stante, di un blocco di un costrutto
 di ciclo, del blocco di una dichiarazione C<sub>, di un blocco C<eval> o di qualunque altro blocco
-purchè non sia di quotatura.
+purché non sia di quotatura.
 
 X<variabili; lessicali>
 
@@ -203,7 +203,7 @@ Dentro a C<main()>, il programma stampa il valore corrente di C<$scope>, C<scope
 e poi C<local>izza la variabile. Questo cambia la visibilità del simbolo
 nello scope lessicale corrente I<così come> in ogni funzione chiamata dallo scope lessicale
 I<corrente>. Quindi, C<$scope> contiene C<scope del main()> sia nel corpo
-di C<intermedio()> che di C<interno()>.  Quando C<main()> termina perchè il controllo di
+di C<intermedio()> che di C<interno()>.  Quando C<main()> termina perché il controllo di
 flusso raggiunge la fine del suo blocco, Perl ripristina il valore originale
 della variabile C<$scope> C<local>izzata. Quindi, l'ultimo C<say> stampa di nuovo C<scope esterno>.
 

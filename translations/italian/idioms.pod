@@ -6,7 +6,7 @@ Ogni linguaggio--di programmazione o naturale--ha dei pattern comuni di espressi
 I<idiomi>. La Terra gira, ma noi parliamo della nascita e tramonto del Sole. Tutti noi ci
 vantiamo delle trovate intelligenti e ci vergognamo di quelle stupide quando buttiamo fuori il nostro codice.
 
-Gli idiomi Perl non sono nè funzionalità del linguaggio nè tecniche di progettazione. Sono piuttosto
+Gli idiomi Perl non sono né funzionalità del linguaggio né tecniche di progettazione. Sono piuttosto
 manierismi e meccanismi che, presi tutti insieme, danno al vostro codice un accento
 "alla Perl". Non è necessario che li usiate, ma sappiate che sono dei punti di forza di Perl.
 
@@ -71,7 +71,7 @@ un singolo argomento:
 
 =begin tip Hash oppure Riferimento ad Hash?
 
-I<Perl Best Practices> suggerisce di passare dei riferimenti ad hash anzichè degli hash. Questo permette
+I<Perl Best Practices> suggerisce di passare dei riferimenti ad hash anziché degli hash. Questo permette
 a Perl di effettuare la validazione del riferimento ad hash nel chiamante.
 
 =end tip
@@ -139,7 +139,7 @@ tutti cascano in questo tranello.
 =end tip
 
 Per ordinare questa lista per nome in ordine alfabetico, dovete ordinare l'hash in base ai suoi valori
-anzichè in base alle sue chiavi. Ordinare i valori è facile:
+anziché in base alle sue chiavi. Ordinare i valori è facile:
 
 =begin programlisting
 
@@ -296,7 +296,7 @@ alternativa e spesso è anche più veloce.
 Perl no ha una sintassi speciale per la creazione delle chiusure (L<closures>); può quindi succedere che
 facciate involontariamente la chiusura di una variabile lessicale. Molti programmi impostano
 svariate variabili lessicali nello scope del file prima di trasferire l'elaborazione ad altre
-funzioni. Potreste essere tentati di usare queste variabili direttamente, anzichè passare e ricevere
+funzioni. Potreste essere tentati di usare queste variabili direttamente, anziché passare e ricevere
 i loro valori dalle funzioni, specialmente quando il programma cresce di dimensioni.
 Sfortunatamente, in questo modo i programmi diventano dipendenti da sottigliezze riguardanti ciò che succede
 durante il processo di compilazione di Perl 5; una variabile che I<credevate> di

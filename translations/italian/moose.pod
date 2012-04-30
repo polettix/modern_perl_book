@@ -91,7 +91,7 @@ All'interno di un metodo, il primo argomento è l'invocante. Il nome idiomatico 
 
 =end programlisting
 
-Ora tutte le istanze di C<Gatto> possono svegliarvi al mattino perchè non hanno
+Ora tutte le istanze di C<Gatto> possono svegliarvi al mattino perché non hanno
 ancora mangiato:
 
 =begin programlisting
@@ -108,7 +108,7 @@ X<OO; metodi di istanza>
 X<metodi; classe>
 X<metodi; istanza>
 
-I metodi che accedono ai dati dell'invocante sono I<metodi d'istanza>, perchè dipendono dalla
+I metodi che accedono ai dati dell'invocante sono I<metodi d'istanza>, perché dipendono dalla
 presenza dell'invocante appropriato per funzionare correttamente. I metodi (come
 C<miagola()>) che non accedono a i dati d'istanza sono I<metodi di classe>. Potete
 invocare i metodi di classe sulle classi e i metodi di classe e di istanza sulle istanze,
@@ -405,7 +405,7 @@ X<polimorfismo>
 X<OO; polimorfismo>
 
 La proprietà del I<polimorfismo> significa che potete sostituire un oggetto di una
-classe con un oggetto di un'altra classe purchè forniscano la stessa interfaccia
+classe con un oggetto di un'altra classe purché forniscano la stessa interfaccia
 esterna.
 
 =begin tip Duck Typing
@@ -418,7 +418,7 @@ classi per permettere a un programma di sostituire le istanze di una con quelle 
 5 fornisce dei modi di imporre questi controlli, ma non li richiede. Per
 il suo sistema ad-hoc di default è sufficiente che due istanze qualunque abbiano metodi con
 lo stesso nome per poterle trattare come equivalenti. Alcune persone lo definiscono I<duck typing>, sostenendo che
-qualunque oggetto che può fare C<qua()> è sufficientemente simile a un'anatra perchè possiate trattarlo
+qualunque oggetto che può fare C<qua()> è sufficientemente simile a un'anatra perché possiate trattarlo
 effettivamente come un'anatra.
 
 =end tip
@@ -427,7 +427,7 @@ C<mostra_stat_vitali()> si preoccupa soltanto che un invocante valido supporti
 tre metodi--C<nome()>, C<eta()> e C<dieta()>--che non ricevono argomenti e
 restituiscono qualcosa che può essere concatenato in contesto stringa. Potreste
 avere centinaia di classi diverse nel vostro codice, non legate da relazioni
-ovvie, che funzionano tutte con questo metodo purchè si conformino al comportamento
+ovvie, che funzionano tutte con questo metodo purché si conformino al comportamento
 atteso.
 
 Immaginate di dover passare in rassegna tutti gli animali di uno zoo senza poter
@@ -582,7 +582,7 @@ Notate che il metodo C<eta()> di C<CalcolaEta::Da::AnnoNascita> soddisfa il vinc
 posto dal ruolo C<EssereVivente>. Notate anche che ogni controllo relativo al fatto che
 C<Gatto> abbia il ruolo di C<EssereVivente> restituisce un valore vero. Estrarre il metodo C<eta()> in un
 ruolo ha modificato soltanto i dettagli di I<come> C<Gatto> calcola un'età. Il fatto che
-sia un C<EssereVivente> rimane valido. C<Gatto> può decidere se implementare l'età da sè oppure
+sia un C<EssereVivente> rimane valido. C<Gatto> può decidere se implementare l'età da sé oppure
 ottenerla da qualcun altro. Ciò che conta è che esso fornisca un metodo C<eta()> per
 soddisfare i vincoli di C<EssereVivente>.
 
@@ -595,7 +595,7 @@ implementare uno stesso comportamento in diversi modi.
 
 Un uso pervasivo dell'allomorfismo può ridurre le dimensioni delle vostre classi e incrementare la quantità
 di codice che condividono. Vi permette anche di dare un nome a una specifica collezione 
-di comportamenti--una cosa molto utile per testare le capacità anzichè le
+di comportamenti--una cosa molto utile per testare le capacità anziché le
 implementazioni.
 
 X<OO; mixin>
@@ -732,7 +732,7 @@ X<oggetti; ereditarietà>
 X<oggetti; ereditarietà multipla>
 X<MRO>
 
-L'I<ordine di dispatch dei metodi>--o ordine di risoluzione dei metodi (I<MRO> dall'Inglese I<method resolution order>, NdT)--è banale
+L'I<ordine di dispatch dei metodi>--o ordine di risoluzione dei metodi (I<MRO> dall'inglese I<method resolution order>, NdT)--è banale
 per le classi con un'unica superclasse. Si cerca nella classe dell'oggetto, quindi nella sua superclasse e così via
 finchè non si trova il metodo oppure si arriva al termine della catena di superclassi. Le classi che ereditano da
 diverse superclassi (I<ereditarietà multipla>)--C<Hovercraft> estende sia C<Barca>
@@ -892,7 +892,7 @@ Potete anche scoprire quali sono le classi derivate da una data classe:
 Vedete C<perldoc Class::MOP::Class> per maggiori informazioni sulle operazioni delle
 metaclassi e C<perldoc Class::MOP> per informazioni sulla metaprogrammazione in Moose.
 
-Moose e il suo I<protocollo di meta-oggetti> (I<MOP> dall'Inglese I<meta/object protocol>, NdT) offre una
+Moose e il suo I<protocollo di meta-oggetti> (I<MOP> dall'inglese I<meta/object protocol>, NdT) offre una
 sintassi migliore per dichiarare e lavorare con le classi e gli oggetti in Perl 5.
 Questo codice è valido in Perl 5:
 
@@ -936,7 +936,7 @@ C<my $self = shift;> in C<eta()>.
 
 Anche se Moose non fa parte dei pacchetti preinstallati con Perl 5, la sua popolarità garantisce che esso è
 disponibile per molti sistemi operativi. Anche le distribuzioni di Perl 5 Strawberry
-Perl e ActivePerl lo includono. Anche se Moose è un modulo CPAN anzichè una libreria
+Perl e ActivePerl lo includono. Anche se Moose è un modulo CPAN anziché una libreria
 core, la sua purezza di stile e semplicità lo rendono essenziale per la programmazione moderna
 in Perl.
 

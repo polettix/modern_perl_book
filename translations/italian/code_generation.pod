@@ -2,8 +2,8 @@
 
 Z<code_generation>
 
-I programmatori principianti scrivono più codice del necessario, in parte perchè
-non hanno familiarità col linguaggio, le librerie e gli idiomi, e in parte perchè
+I programmatori principianti scrivono più codice del necessario, in parte perché
+non hanno familiarità col linguaggio, le librerie e gli idiomi, e in parte perché
 mancano di esperienza. Cominciano scrivendo lunghi pezzi di codice procedurale, poi
 scoprono le funzioni, poi i parametri, poi gli oggetti e--in qualche caso--le funzioni
 di ordine superiore e le chiusure.
@@ -158,7 +158,7 @@ tabelle dei simboli.
 X<direttiva C<strict>>
 X<direttive; C<strict>>
 
-L'assegnamento in una tabella dei simboli tramite stringa, anzichè tramite un nome letterale di variabile,
+L'assegnamento in una tabella dei simboli tramite stringa, anziché tramite un nome letterale di variabile,
 è detto riferimento simbolico. Durante questa operazione dovete disattivare il controllo dei riferimenti effettuato da C<strict>.
 Molti programmi contengono un errore sottile in pezzi di codice simili a quello sopra, quando generano la chiusura e fanno l'assegnamento
 in un'unica linea:
@@ -179,7 +179,7 @@ Questo esempio disattiva le restrizioni sia nel blocco esterno che nel corpo ste
 funzione. Dato che a violare le restrizioni dei controlli sui riferimenti è soltanto l'assegnamento, è meglio
 disattivarle soltanto durante tale operazione.
 
-Se il nome del metodo è un letterale stringa nel vostro codice sorgente, anzichè il valore
+Se il nome del metodo è un letterale stringa nel vostro codice sorgente, anziché il valore
 contenuto in una variabile, potete fare direttamente l'assegnamento al simbolo rilevante:
 
 =begin programlisting

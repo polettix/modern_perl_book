@@ -2,7 +2,7 @@
 
 =head0 Cosa Manca
 
-Perl5 non è perfetto, ma è malleabile--in parte perchè non esiste un'unica
+Perl5 non è perfetto, ma è malleabile--in parte perché non esiste un'unica
 configurazione ideale per ogni programmatore e ogni obiettivo. Alcuni comportamenti
 utili sono disponibili nelle librerie distribuite con Perl. Altri sono disponibili su CPAN.
 La vostra efficacia come programmatore Perl dipende da quanto sapete avvantaggiarvi di queste

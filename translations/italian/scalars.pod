@@ -137,4 +137,4 @@ ciò che è veramente un numero.
 X<C<undef>>
 
 C'è un altro valore che è sempre falso: C<undef>. È il valore delle variabili non inizializzate
- ma è anche un valore di per sè.
+ ma è anche un valore di per sé.

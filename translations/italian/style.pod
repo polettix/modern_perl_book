@@ -8,7 +8,7 @@ La I<manutenibilità> è il nebuloso concetto che misura la facilità di compren
 modificare un programma scritto in precedenza. Mettete via un pezzo di codice per sei mesi, e poi tornate
 a guardarlo. La manutenibilità misura le difficoltà che dovete affrontare per modificarlo.
 
-La manutenibilità non è nè un problema sintattico nè una misura di come il vostro codice
+La manutenibilità non è né un problema sintattico né una misura di come il vostro codice
 appare a un non-programmatore. Potete assumere che chi ha a che fare con il codice sia un programmatore competente
 che ha una buona comprensione della natura del problema che il codice deve risolvere. Quali ostacoli 
 si possono incontrare quando si tenta di risolvere un bug o di fare una miglioria in modo corretto?

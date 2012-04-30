@@ -60,7 +60,7 @@ C<import()> di un modulo riceve una lista di nomi e esporta funzioni e
 altri simboli nel namespace chiamante. Si noti che questa è meramente una convenzione; un modulo
 potrebbe non fornire C<import()> oppure il suo C<import()> potrebbe avere un comportamento
 diverso. Le direttive (L<pragmas>) come C<strict> usano gli argomenti per modificare il
-comportamento dello scope lessicale chimante anzichè per esportare simboli:
+comportamento dello scope lessicale chimante anziché per esportare simboli:
 
 =begin programlisting
 
@@ -204,7 +204,7 @@ tre funzioni esportate. Potete anche esportare variabili:
 
 =end programlisting
 
-I simboli esportati per default vanno elencati in C<@EXPORT> anzichè in
+I simboli esportati per default vanno elencati in C<@EXPORT> anziché in
 C<@EXPORT_OK>:
 
 =begin programlisting
@@ -247,7 +247,7 @@ funzioni.
 
 =head2 Organizzare il Codice con i Moduli
 
-Perl 5 non vi richiede di usare i moduli, nè i package, nè i namespace. Potete
+Perl 5 non vi richiede di usare i moduli, né i package, né i namespace. Potete
 scrivere tutto il vostro codice in un unico file F<.pl> o in svariati file F<.pl> di cui
 fare la C<require> dove necessario.  Avete a disposizione abbastanza flessibilità per gestire il vostro
 codice nel modo più appropriato a seconda del vostro stile di programmazione, del livello di formalità,

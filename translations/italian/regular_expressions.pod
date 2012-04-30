@@ -736,12 +736,12 @@ X<regex; metacaratteri di escape>
 Per fare il match I<letterale> di un metacarattere, fatene l'I<escape> con un
 backslash (C<\>). L'avete visto fare negli esempi sopra, dove C<\(> si riferiva a una parentesi tonda
 aperta e C<\]> si riferiva a una parentesi quadra chiusa. C<\.> si riferisce al
-carattere letterale punto anzichè al'atomo "fai il match con qualunque cosa eccetto un carattere
+carattere letterale punto anziché al'atomo "fai il match con qualunque cosa eccetto un carattere
 di a capo esplicito".
 
 È probabile che vi succeda di dover fare l'escape del metacarattere di alternativa (C<|>), del metacarattere di fine linea (C<$>) e dei quantificatori (C<+>, C<?>, C<*>).
 
-X<C<\Q>; metacarettere di disattivazione dei metacaratteri nelle regex>
+X<C<\Q>; metacarattere di disattivazione dei metacaratteri nelle regex>
 X<C<\E>; metacarattere di riattivazione dei metacaratteri nelle regex>
 X<regex; disattivazione dei metacaratteri>
 
@@ -761,7 +761,7 @@ il programma:
 Il parametro C<$testo_letterale> potrebbe contenere qualunque cosa--per esempio la stringa
 C<** ALLARME **>. Nel frammento delimitato da C<\Q> e C<\E>, Perl interpreta la
 regex come C<\*\* ALLARME \*\*> e quindi tenta di riconoscere letteralmente dei caratteri asterisco,
-anzichè applicare dei quantificatori greedy.
+anziché applicare dei quantificatori greedy.
 
 =begin tip Sicurezza Delle Regex
 
@@ -918,8 +918,8 @@ Per esempio, per attivare l'insensibilità tra maiuscole e minuscole in un match
 
 =end programlisting
 
-Il primo C<like()> fallisce, perchè le due stringhe contengono lettere diverse.
-Invece il secondo C<like()> ha successo, perchè il modificatore C</i> fa sì che la regex
+Il primo C<like()> fallisce, perché le due stringhe contengono lettere diverse.
+Invece il secondo C<like()> ha successo, perché il modificatore C</i> fa sì che la regex
 ignori la distinzione tra maiuscole e minuscole. Nella seconda regex, C<M> e C<m> sono considerate equivalenti grazie
 al modificatore.
 
@@ -969,7 +969,7 @@ X<regex; sostituzione non-distruttiva>
 Il modificatore C</r> fa sì che un'operazione di sostituzione restituisca il risultato della
 sostituzione, lasciando inalterata la stringa originale. Se la sostituzione ha successo,
 il risultato è una copia modificata dell'originale. Se la sostituzione fallisce
-(perchè il pattern non viene riconosciuto), il risultato è una copia identica
+(perché il pattern non viene riconosciuto), il risultato è una copia identica
 all'originale:
 
 =begin programlisting

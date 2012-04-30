@@ -49,7 +49,7 @@ diverse espressioni in una singola unità:
 Mentre la forma a blocco richiede che la condizione sia tra parentesi, la forma postfissa
 non lo richiede.
 
-L'espressione condizionale può consistere di diverse sotto-espressioni, purchè
+L'espressione condizionale può consistere di diverse sotto-espressioni, purché
 esse compongano un'unica espressione principale:
 
 =begin programlisting
@@ -83,7 +83,7 @@ quando l'espressione condizionale è I<falsa>:
 =end programlisting
 
 Come C<if>, anche C<unless> ha una forma a blocco, anche se molti programmatori la evitano
-poichè diventa rapidamente difficile da leggere in presenza di condizionali complessi:
+poiché diventa rapidamente difficile da leggere in presenza di condizionali complessi:
 
 =begin programlisting
 
@@ -112,7 +112,7 @@ dei parametri delle funzioni (L<postfix_parameter_validation>):
 X<direttive di controllo di flusso; C<else>>
 
 Entrambe le forme a blocco di C<if> e C<unless> accettano la direttiva C<else>,
-che specifica il codice da eseguire quanddo l'espressione condizionale non ha valore
+che specifica il codice da eseguire quando l'espressione condizionale non ha valore
 vero (per C<if>) o falso (per C<unless>):
 
 =begin programlisting
@@ -243,7 +243,7 @@ ternarie.
 =begin sidebar
 
 Un idioma interessante, anche se un po' oscuro, è l'uso del condizionale ternario per scegliere
-tra I<variabili> alternative, anzichè valori:
+tra I<variabili> alternative, anziché valori:
 
 =begin programlisting
 
@@ -356,7 +356,7 @@ ternario--valutano tutte un'espressione in contesto booleano
 e C<!=> producono tutti un risultato booleano quando vengono valutati, Perl converte i risultati
 di altre espressioni--inclusi variabili e valori--in forma booleana.
 
-Perl 5 non ha un unico valore vero, nè un unico valore falso. Tutti i numeri che
+Perl 5 non ha un unico valore vero, né un unico valore falso. Tutti i numeri che
 hanno valore 0 rappresentano il valore falso. Tra questi: C<0>, C<0.0>, C<0e0>, C<0x0>, ecc.
 La stringa vuota (C<''>) e la stringa C<'0'> hanno valore falso, ma non le stringhe
 C<'0.0'>, C<'0e0'>, ecc. L'idioma C<'0 ma vero'> valuta a 0
@@ -424,7 +424,7 @@ Analogamente a C<if> e C<unless>, questo ciclo ha forma postfissa:
 
 =end programlisting
 
-Un ciclo C<for> può specificare il nome di una variabile anzichè usare la variabile topic:
+Un ciclo C<for> può specificare il nome di una variabile anziché usare la variabile topic:
 
 =begin programlisting
 
@@ -572,7 +572,7 @@ proteggere C<$_>, ci sarà poi da divertirsi col debugging:
 
 =end programlisting
 
-Se proprio I<dovete> usare C<$_> anzichè un'altra variabile, rendete la variabile topic
+Se proprio I<dovete> usare C<$_> anziché un'altra variabile, rendete la variabile topic
 lessicale con C<my $_>:
 
 =begin programlisting
@@ -609,7 +609,7 @@ Il I<ciclo for> in stile C vi richiede di gestire le condizioni dell'iterazione:
 =end programlisting
 
 In questo costrutto dovete assegnare esplicitamente a una variabile iteratore,
-dato che esso non effettua nè aliasing nè assegnamenti alla variabile topic.
+dato che esso non effettua né aliasing né assegnamenti alla variabile topic.
 Mentre una variabile dichiarata all'interno del costrutto di ciclo ha come scope il blocco
 lessicale del ciclo, una variabile dichiarata all'esterno del costrutto di ciclo
 non viene lessicalizzata:
@@ -678,7 +678,7 @@ booleano falso. Un modo idiomatico di scrivere un ciclo infinito è:
 =end programlisting
 
 Al contrario dell'iterazione con cicli in stile C<foreach>, la condizione di ciclo del C<while>
-non ha di per sè alcun side effect. Ovvero, se C<@valori> contiene uno o più elementi,
+non ha di per sé alcun side effect. Ovvero, se C<@valori> contiene uno o più elementi,
 anche questo codice è un ciclo infinito:
 
 =begin programlisting
@@ -1178,7 +1178,7 @@ C<goto>", ma funziona:
 
 Questo esempio mostra due aspetti importanti. Prima di tutto, C<goto &nome_funzione> e
 C<goto &$riferimento_a_funzione> richiedono di usare il sigillo di funzione (C<&>) in
-modo che il parser sappia che deve effettuare una chiamata di coda anzichè saltare semplicemente a un'etichetta.
+modo che il parser sappia che deve effettuare una chiamata di coda anziché saltare semplicemente a un'etichetta.
 In secondo luogo, questa forma di chiamata di funzione passa implicitamente il contenuto di C<@_>
 alla funzione chiamata. Potete modificare C<@_> per cambiare gli argomenti passati.
 

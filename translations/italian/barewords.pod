@@ -64,7 +64,7 @@ C<metodo()> nel namespace C<Package>"?. La risposta cambia a seconda del codice
 che il parser ha già incontrato nel namespace corrente.
 
 Potete forzare il parser a trattare C<Package> come un nome di package appendendo il separatore di
-package (C<::>)N<Anche tra le persone che capiscono perchè questo funziona, pochissime
+package (C<::>)N<Anche tra le persone che capiscono perché questo funziona, pochissime
 lo usano.>:
 
 =begin programlisting
@@ -163,7 +163,7 @@ Alcuni pezzi di codice poco recente non si preoccupavano di quotare i I<valori> 
 
 =end programlisting
 
-Quando non esistono nè la funzione C<Flavio()> nè la funzione C<Anna()>, Perl interpreta
+Quando non esistono né la funzione C<Flavio()> né la funzione C<Anna()>, Perl interpreta
 queste bareword come stringhe. C<strict 'subs'>, in questo caso, genera invece un errore.
 
 =head3 Bareword come filehandle

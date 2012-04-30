@@ -12,7 +12,7 @@ Il miglior codice Perl 5 scritto nel 2011 è molto diverso dal miglior codice Pe
 X<CPAN; C<Task::Kensho>>
 
 Sebbene Perl 5 sia distribuito con una ricca libreria, essa non è onnicomprensiva.
-Molti dei migliori moduli Perl 5 sono distribuiti su CPAN (L<cpan>) anzichè insieme
+Molti dei migliori moduli Perl 5 sono distribuiti su CPAN (L<cpan>) anziché insieme
 a Perl. La meta-distribuzione C<Task::Kensho> include svariate altre
 distribuzioni che rappresentano il meglio che CPAN abbia da offrire. Dateci un'occhiata
 come prima cosa ogni volta che dovete risolvere un problema.
@@ -65,7 +65,7 @@ warnings> per maggiori dettagli.
 Combinate C<use warnings> con C<use diagnostics> per ricevere messaggi diagnostici più estesi
 per ogni warning presente nei vostri programmi. Questa diagnostica estesa
 è documentata in C<perldoc perldiag>. Questo comportamento è particolarmente utile quando imparate Perl.
-Disattivatelo prima di distribuire il vostro programma, perchè produce un output verboso
+Disattivatelo prima di distribuire il vostro programma, perché produce un output verboso
 che potrebbe riempire i vostri file di log ed esporre troppe informazioni agli utenti.
 
 =end tip

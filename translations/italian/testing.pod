@@ -138,7 +138,7 @@ e visualizza solo le informazioni più pertinenti:
 =end screen
 
 È un output molto lungo che riporta qualcosa che dovrebbe essere gíà ovvio: il secondo e il terzo
-test falliscono perchè lo zero e la stringa vuota hanno valore falso.  Si possono facilmente
+test falliscono perché lo zero e la stringa vuota hanno valore falso.  Si possono facilmente
 evitare tali fallimeti invertendo il senso delle condizioni con l'uso della
 coercizione booleana (L<boolean_coercion>):
 

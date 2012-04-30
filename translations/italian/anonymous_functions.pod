@@ -233,7 +233,7 @@ Potete riscrivere questo codice in modo più verboso:
 
 =end programlisting
 
-... perchè il prototipo modifica il modo in cui il parser di Perl 5 interpreta questo
+... perché il prototipo modifica il modo in cui il parser di Perl 5 interpreta questo
 codice. Non potendo essere sicuro al 100% di I<che cosa> conterranno C<$muore> e C<$vive>,
 il parser solleva un'eccezione.
 

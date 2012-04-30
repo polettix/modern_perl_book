@@ -5,7 +5,7 @@ X<variabile>
 
 Una I<variabile> in Perl è un'area per la memorizzazione di un valore (L<values>). Mentre
 un programma triviale può manipolare direttamente dei valori, quasi tutti i programmi usano le
-variabili per semplificare la logica del codice. Una variabile reppresenta valori; è
+variabili per semplificare la logica del codice. Una variabile rappresenta valori; è
 più semplice spiegare il teorema di Pitagora in termini di variabili C<a>, C<b> e
  C<c> che dover intuire il suo principio da una lunga lista di valori
 validi. Questo concetto potrà sembrarvi banale, ma per programmare in modo efficace dovete
@@ -22,7 +22,7 @@ X<predefinite; parole chiave; C<package>>
 Le variabili sono visibili alle diverse parti del vostro programma in base al loro scope
 (L<scope>). Molte delle variabili che incontrerete hanno uno scope lessicale
 (L<lexical_scope>). I I<file sorgente> forniscono uno scope lessicale, mentre
-una dichiarazione di C<package> non crea di per sè un nuovo scope:
+una dichiarazione di C<package> non crea di per sé un nuovo scope:
 
 =begin programlisting
 

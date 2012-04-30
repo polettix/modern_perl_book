@@ -29,7 +29,7 @@ qualcosa possa cambiarli senza il vostro consenso, dovreste scrivere
 un sacco di codice extra.
 
 Tuttavia alcune volte è utile che i valori possano essere modificati. Se volete passare a una funzione un hash
-pieno di dati perchè vengano modificati, creare e restituire un nuovo hash per
+pieno di dati perché vengano modificati, creare e restituire un nuovo hash per
 ogni modifica è scomodo (per non dire nulla dell'efficienza).
 
 X<riferimenti>
@@ -256,7 +256,7 @@ scope. Per esempio, se scrivete:
 
 =end programlisting
 
-...nè C<$rif_per_domenica> nè C<$rif_per_lunedì> conterranno un dessert. All'interno delle
+...né C<$rif_per_domenica> né C<$rif_per_lunedì> conterranno un dessert. All'interno delle
 parentesi quadre usate per creare l'array anonimo, il contesto lista appiattisce l'array
 C<@piatti> in una lista separata da C<@piatti>.
 

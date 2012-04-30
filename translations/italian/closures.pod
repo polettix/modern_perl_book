@@ -64,7 +64,7 @@ C<$cugini> ha fatto una chiusura sui valori delle due variabili così come essi 
 all'interno dell'invocazione di C<crea_iteratore()>. Tali valori, dunque, persistono
 (L<reference_counts>).
 
-Poichè ogni invocazione di C<crea_iteratore()> crea un nuovo ambiente
+Poiché ogni invocazione di C<crea_iteratore()> crea un nuovo ambiente
 lessicale, ogni sub anonima che viene creata e restituita fa una chiusura su un proprio ambiente
 lessicale unico:
 
@@ -79,7 +79,7 @@ lessicale unico:
 
 =end programlisting
 
-Dato che C<crea_iteratore()> non restituisce questi lessicali nè per valore, nè per riferimento,
+Dato che C<crea_iteratore()> non restituisce questi lessicali né per valore, né per riferimento,
 nessun'altra parte del codice Perl può accedervi, eccetto la chiusura. Essi risultano
 incapsulati allo stesso modo degli altri lessicali, e quindi solo
 il codice che condivide con essi un ambiente lessicale può accedervi. Questo idioma

@@ -227,7 +227,7 @@ C<AUTOLOAD()> rende molto difficile capire l'ereditarietà multipla.
 Come in Moose, anche nel sistema OO base di Perl potete sovrascrivere dei metodi. Al contrario di Moose,
 però, il sistema base non fornisce meccanismi per indicare la vostra I<intenzione> di sovrascrivere un metodo
 di una superclasse. Peggio ancora, ogni funzione che predichiarate, dichiarate o importate
-nella classe derivata potrebbe sovrascrivere accidentalmente un metodo della superclasse semplicemente perchè hanno lo
+nella classe derivata potrebbe sovrascrivere accidentalmente un metodo della superclasse semplicemente perché hanno lo
 stesso nome. Anche quando vi dimenticate di usare il sistema di C<override> di Moose, almeno esso
 esiste. Nel sistema OO base di Perl 5, invece, tale protezione è del tutto assente.
 

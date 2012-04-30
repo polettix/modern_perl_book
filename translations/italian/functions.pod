@@ -770,7 +770,7 @@ il numero di parametri passati a una funzione. Tali euristiche possono sbagliare
 =end programlisting
 
 La chiamata a C<esiste_elem()> si ingoia la descrizione del test, intesa invece come
-il secondo argomento a C<ok()>. Poichè il secondo parametro di C<esiste_elem()> fa slurping,
+il secondo argomento a C<ok()>. Poiché il secondo parametro di C<esiste_elem()> fa slurping,
 questo problema può rimanere nascosto fino a quando Perl produce dei warning relativi al confronto tra un
 valore non-numerico (la descrizione del test, che non può essere convertita in un numero) e
 l'elemento nell'array.

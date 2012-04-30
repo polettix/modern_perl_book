@@ -63,7 +63,7 @@ X<<< operatori; C<< => >> >>>
 
 Se assegnate un numero dispari di elementi ad un hash, riceverete un warning.
 Un idioma del Perl suggerisce di usare l'operatore I<fat comma> (C<< => >>)
-per associare chiavi e valori, poichè rende più esplicite tali associazioni:
+per associare chiavi e valori, poiché rende più esplicite tali associazioni:
 
 =begin programlisting
 
@@ -196,7 +196,7 @@ espressione arbitraria--non solo una chiamata di funzione--come chiave di un has
 Le chiavi di un hash possono solo essere stringhe. Qualunque cosa valuti ad una stringa è
 una chiave di hash ammissibile. Perl si spinge fino a fare la coercizione (L<coercion>) di
 altri tipi nel tipo stringa, in modo che se usate un oggetto come chiave di hash, ottenete
-la versione stringa dell'oggetto anzichè l'oggetto stesso:
+la versione stringa dell'oggetto anziché l'oggetto stesso:
 
 =begin programlisting
 
@@ -233,7 +233,7 @@ contiene una data chiave:
 
 =end programlisting
 
-Usare C<exists> anzichè tentare di accedere direttamente a una chiave di hash evita due problemi.
+Usare C<exists> anziché tentare di accedere direttamente a una chiave di hash evita due problemi.
 Prima di tutto, il controllo non viene effettuato sul I<valore> associato alla chiave; infatti una chiave di hash
 potrebbe esistere e avere un valore anche se tale valore corrisponde a falso in contesto booleano (per esempio C<undef>):
 
@@ -246,7 +246,7 @@ potrebbe esistere e avere un valore anche se tale valore corrisponde a falso in 
 
 =end programlisting
 
-Inoltre, C<exists> evita l'autovivicazione (L<autovivification>) nelle strutture dati
+Inoltre, C<exists> evita l'autovivificazione (L<autovivification>) nelle strutture dati
 annidate (L<nested_data_structures>).
 
 X<predefinite; funzioni; C<defined>>
@@ -395,13 +395,13 @@ Questo codice è equivalente a ciclare manualmente sui contenuti di C<%indirizzi
 ma è molto più compatto.
 
 Che cosa succede se la stessa chiave compare in entrambi gli hash? L'uso di uno slice di hash I<sovrascrive>
-sempre le coppie chiave/valore in C<%addresses>. Se desiderate comportamento diverso,
+sempre le coppie chiave/valore in C<%indirizzi>. Se desiderate un comportamento diverso,
 è più appropriato ciclare manualmente.
 
 =head2 L'Hash Vuoto
 
-Un hash vuoto non contiene nè chiavi nè valori. In contesto booleano ha valore
-falso. Un hash che contiene almeno una coppia chiave/valora ha invece valore vero in
+Un hash vuoto non contiene né chiavi né valori. In contesto booleano ha valore
+falso. Un hash che contiene almeno una coppia chiave/valore ha invece valore vero in
 contesto booleano anche se tutte le chiavi o tutti i valori o entrambi
 avessero valore falso in contesto booleano.
 
@@ -430,7 +430,7 @@ dell'implementazione interna dell'hash.
 
 In contesto lista, un hash valuta a una lista di coppie chiave/valore simile a quella
 restituita dall'operatore C<each>.  Tuttavia, non I<potete> iterare su
-tale lista allo stesso modo in cui potete iterare sulla lista prodotta da C<each>, poichè
+tale lista allo stesso modo in cui potete iterare sulla lista prodotta da C<each>, poiché
 il ciclo non terminerebbe mai:
 
 =begin programlisting
@@ -445,13 +445,13 @@ il ciclo non terminerebbe mai:
 
 È I<possibile> ciclare su questa lista di chiavi e valori con un ciclo C<for>, ma la
 variabile iteratore conterrà una chiave ad una iterazione e il suo valore in quella successiva,
-poichè Perl appiattisce l'hash in un'unica lista di chiavi e valori alternati.
+poiché Perl appiattisce l'hash in un'unica lista di chiavi e valori alternati.
 
 =head2 Idiomi degli Hash
 
 X<hash; trovare elementi distinti>
 
-Poichè ogni chiave può comparire una sola volta in un hash, assegnare la stessa chiave ad un hash più
+Poiché ogni chiave può comparire una sola volta in un hash, assegnare la stessa chiave ad un hash più
 di una volta memorizza solo il valore più recente. Potete sfruttare questo fatto per trovare gli elementi
 distinti di una lista:
 
@@ -515,7 +515,7 @@ X<C<//>; operatore infisso>
 X<operatori; C<//>>
 X<operatori; defined-or>
 
-Questa I<manovra orchescese>N<NdT: in Inglese è un gioco di parole tra orcish (manovra da orchi) e or-cache.> restituisce il valore dell'hash,
+Questa I<manovra orchescese>N<NdT: in inglese è un gioco di parole tra orcish (manovra da orchi) e or-cache.> restituisce il valore dell'hash,
 se esso esiste. Altrimenti calcola, mette in cache e restituisce il
 valore. L'operatore di assegnamento defined-or (C<//=>) valuta il suo operando di sinistra.
 Se tale operando non è definito, l'operatore gli assegna il valore del suo operando di destra.

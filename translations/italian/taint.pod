@@ -80,7 +80,7 @@ contenuto di una variabile--ma in tal caso, perché usare taint?
 X<taint; rimuovere l'origine del>
 
 La variabile globale predefinita C<%ENV> rappresenta le variabili d'ambiente del sistema.  Tali
-dati sono marchiati poichè i loro valori sono controllati da forze esterne al
+dati sono marchiati poiché i loro valori sono controllati da forze esterne al
 programma. Ogni variabile d'ambiente che modifica come Perl o la shell
 trovano file e directory sono potenziali vettori di attacchi. Un programma attento al taint
 dovrebbe cancellare svariate chiavi da C<%ENV> e impostare C<$ENV{PATH}> a un path specifico

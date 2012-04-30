@@ -58,7 +58,7 @@ A questo punto è facile aggiungere la conversione a stringa:
 
 =end programlisting
 
-Fare l'overload della conversione a numero è più complesso, perchè gli operatori binari sono genralmente
+Fare l'overload della conversione a numero è più complesso, perché gli operatori binari sono genralmente
 binari (L<arity>). Dati due operandi di cui si è fatto l'overload dei metodi per l'addizione,
 quale dei due ha la precedenza? La risposta deve essere coerente, facile da
 illustrare e comprensibile anche alle persone che non hanno letto il codice sorgente
@@ -100,7 +100,7 @@ fornendo direttamente dei riferimenti a funzione, la classe derivata I<deve> rid
 di overload della superclasse usando direttamente C<overload>.
 
 Le superclassi possono fornire alle classi discendenti maggiore flessibilità specificando il
-I<nome> di un metodo da chiamare per implementare l'overloading, anzichè
+I<nome> di un metodo da chiamare per implementare l'overloading, anziché
 condificare direttamente un riferimento a funzione:
 
 =begin programlisting
@@ -131,7 +131,7 @@ conciso e componibile. Tuttavia, per ogni API raffinata con un brillante uso del
 miglior codice evita gli eccessi di ingegno in favore della semplicità.
 
 Ridefinire l' addizione, la moltiplicazione anche la concatenazione su una classe C<Matrice>
-ha senso, perchè la notazione esistente per tali operazioni è
+ha senso, perché la notazione esistente per tali operazioni è
 molto diffusa.  Il dominio di un nuovo problema per cui non esista una notazione consolidata non è un
 buon candidato per l'overloading, come non lo è il domnio di un problema per cui dovete fare salti mortali per
 travare le corrsipondenze tra gli operatori esistenti in Perl e una diversa notazione.

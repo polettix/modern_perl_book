@@ -31,7 +31,7 @@ da metadati.
 Centinaia di collaboratori registrati e migliaia di moduli indicizzati
  in centinaia di distribuzioni vengono I<aggiunti> a CPAN ogni mese, senza considerare gli aggiornamenti. 
 Alla fine di Novembre 2011, il sito search.cpan.org riportava 9359
-collaboratori, 101656 moduli e 23808 distribuzioni (con incrementti dell'11.5%, 19.4% e 14.3% rispetto agli stessi dati nell'edizione precedente di
+collaboratori, 101656 moduli e 23808 distribuzioni (con incrementi dell'11.5%, 19.4% e 14.3% rispetto agli stessi dati nell'edizione precedente di
 questo libro).
 
 =end tip
@@ -144,9 +144,9 @@ X<CPAN; local::lib>
 X<CPAN; App::local::lib::helper>
 
 La distribuzione CPAN C<local::lib> vi permette di installare e gestire
-distribuzioni in una vostra directory personale, anzichè nell'intero sistema.
+distribuzioni in una vostra directory personale, anziché nell'intero sistema.
 È un modo molto efficace per poter lavorare con le vostre distribuzioni CPAN senza interferire con il lavoro degli altri utenti.
-L'installazione è un pó più complicata di quella delle due distribuzioni descritte sopra, ma C<App::local::lib::helper> può renderla più semplice.  Guardate
+L'installazione è un po' più complicata di quella delle due distribuzioni descritte sopra, ma C<App::local::lib::helper> può renderla più semplice.  Guardate
 U<http://search.cpan.org/perldoc?local::lib> e
 U<http://search.cpan.org/perldoc?App::local::lib::helper> per maggiori dettagli.
 
