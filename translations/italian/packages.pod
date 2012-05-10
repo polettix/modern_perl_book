@@ -67,7 +67,7 @@ C<1.1.10>, dove ogni componente è un intero.
 
 X<numeri di versione>
 
-Perl 5.12 ha introdotto una nuova sintassi intesa asemplificare i numeri di versione, come
+Perl 5.12 ha introdotto una nuova sintassi intesa a semplificare i numeri di versione, come
 documentato in C<perldoc version::Internals>. Questi numeri di versione con forma più restrittiva
 devono iniziare con il carattere C<v> e contenere almeno tre componenti intere separate
 da punti:

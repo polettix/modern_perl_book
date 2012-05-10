@@ -267,8 +267,8 @@ di file in uno scalare in un'unica espressione:
 =end programlisting
 
 C<$/> è il separatore dei record di input. Quando viene C<local>izzato, il suo valore viene impostato a
-C<undef> fino al suo assegnmento. Tale C<local>izzazione ha luogo I<prima>
-dell'assegnmento e, dato che il valore del separatore non è definito, Perl non ha problemi a leggere
+C<undef> fino al suo assegnamento. Tale C<local>izzazione ha luogo I<prima>
+dell'assegnamento e, dato che il valore del separatore non è definito, Perl non ha problemi a leggere
 l'intero contenuto del filehandle in una volta e ad assegnare il suo valore a C<$/>.
 Poiché il valore di un blocco C<do> è quello dell'ultima espressione valutata
 al suo interno, n questo caso il blocco valuta al valore dell'assegnamento, ovvero il contenuto

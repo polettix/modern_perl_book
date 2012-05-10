@@ -269,7 +269,7 @@ sistema.
 =item * Nell'ecosistema di Perl 5 ci sono molti strumenti dedicati alla creazione, manutenzione,
 organizzazione e distribuzione di moduli.
 
-=item * I moduli forniscono un meccanismo di riuso del codice.
+=item * I moduli forniscono un meccanismo di riutilizzo del codice.
 
 =back
 

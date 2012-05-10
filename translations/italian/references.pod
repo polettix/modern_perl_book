@@ -37,7 +37,7 @@ X<riferimenti>
 Perl 5 fornisce un meccanismo con cui potete riferirvi a un valore senza farne una copia.
 Ogni modifica fatta a quel I<riferimento> ne aggiorna il valore in un modo visibile a
 I<tutti> i riferimenti che lo possono raggiungere. Un riferimento è
-un tipo di dato scalare di prima classe di Perl 5 che si riserisce ad un altro tipo di dato di prima classe.
+un tipo di dato scalare di prima classe di Perl 5 che si riferisce ad un altro tipo di dato di prima classe.
 
 =head2 Riferimenti a Scalari
 
@@ -51,7 +51,7 @@ X<scalari; riferimenti>
 
 L'operatore di riferimento è il backslash (C<\>). In contesto scalare, crea un singolo
 riferimento ad un altro valore. In contesto lista, crea una lista di
-riferimenti. Per ottenere un riferimento a C<$name>:
+riferimenti. Per ottenere un riferimento a C<$nome>:
 
 =begin programlisting
 
@@ -102,13 +102,13 @@ Nell'array C<@_>, i parametri si comportano come I<alias> alle variabili del chi
 =end programlisting
 
 Normalmente, non desiderate modificare dei valori in questo modo--e i chiamanti raramente se lo aspettano.
-Assegnando i parametri a dei lessicali nelle vostre funzioni evita questo rischio.
+Assegnare i parametri a dei lessicali nelle vostre funzioni evita questo rischio.
 
 =begin tip Risparmiare Memoria con i Riferimenti
 
 Modificare direttamente un valore o restituire un riferimento a uno scalare può farvi risparmiare
 memoria. Dato che gli assegnamenti in Perl copiano i valori, potreste ritrovarvi con
-diverse copie di una stringa molo lunga. Passare dei riferimenti implica che il Perl
+diverse copie di una stringa molto lunga. Passare dei riferimenti implica che il Perl
 deve solo copiare tali riferimenti--un'operazione molto meno dispendiosa.
 
 =end tip
@@ -294,7 +294,7 @@ al riferimento:
 
 =end programlisting
 
-Per accedere a singoli valori dell'hash (ovvero settarli, cancellarli, controllarne l'esistenza ed
+Per accedere a singoli valori dell'hash (ovvero modificarli, cancellarli, controllarne l'esistenza ed
 estrarli) usate la freccia di dereferenziazione o un sigillo doppio:
 
 =begin programlisting
@@ -488,7 +488,7 @@ scrivendo:
 =begin programlisting
 
     open my $out_fh, '>', 'file_di_output.txt';
-    $out_fh->say( 'Ecco un p\'o di testo!' );
+    $out_fh->say( 'Ecco un po\' di testo!' );
 
 =end programlisting
 
@@ -542,8 +542,8 @@ fa il Perl a sapere quando è sicuro chiudere il file aperto nello scope più in
 
 =end programlisting
 
-Nel blocco interno dell'esempio, c'è un unico C<$fh>. (diverse linee del codice sorgente
-si riferiscono ad esso, usando però sempre la stessa variabile: C<$fh>.)
+Nel blocco interno dell'esempio, c'è un unico C<$fh> (diverse linee del codice sorgente
+si riferiscono ad esso, usando però sempre la stessa variabile: C<$fh>).
 Lo scope di C<$fh> è il blocco interno. Il suo valore non può superare i limiti di tale blocco. Perciò, quando
 l'esecuzione raggiunge la fine del blocco, Perl ricicla la variabile C<$fh> e
 decrementa il reference count del filehandle che essa contiene. Il reference count del filehandle

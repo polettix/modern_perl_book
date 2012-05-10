@@ -685,7 +685,7 @@ Perl valuta per primo il secondo assegnamento chiamando
 C<tutti_i_miei_cappelli()> in contesto lista. Questa chiamata restituisce una lista.
 
 L'assegnamento alla lista vuota fa perdere tutti i valori della lista, ma
-tale assegnmento ha luogo in contesto scalare, che valuta il numero di
+tale assegnamento ha luogo in contesto scalare, che valuta il numero di
 elementi nella parte destra dell'assegnamento. Di conseguenza, C<$conteggio> contiene
 il numero di elementi nella lista restituita da C<tutti_i_miei_cappelli()>.
 

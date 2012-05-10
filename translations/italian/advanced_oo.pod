@@ -12,7 +12,7 @@ tecniche fondamentali di progettazione, ma potete farvi guidare da alcuni princi
 X<OO: composizione>
 X<OO; ereditarietà>
 
-I progetti OO fatti da principianti tendono a utilizzare eccessivamente l'ereditarietà per il riuso del codice e
+I progetti OO fatti da principianti tendono a utilizzare eccessivamente l'ereditarietà per il riutilizzo del codice e
 il polimorfismo. Il risultato è spesso una gerarchia di classi troppo profonda, in cui le responsabilità sono
 sparpagliate nei posti sbagliati. La manutenzione di questo codice risulta molto difficile--come si fa a sapere
 dove aggiungere o modificare un comportamento? Che cosa succede quando una parte di codice è in conflitto

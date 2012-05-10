@@ -100,7 +100,7 @@ o di package:
 Ricordate che non potete I<annidare> le funzioni con nome. Le funzioni con nome hanno uno scope
 globale al package. La condivisione di ogni variabile lessicale condivisa tra funzioni annidate viene
 perduta quando la funzione più esterna distrugge il suo primo ambiente lessicaleN<Se
-questo vi sembra comlicato, immaginate come dev'essere implementarlo.>.
+questo vi sembra complicato, immaginate come dev'essere stato complicato implementarlo.>.
 
 =begin tip Invasione della Privacy
 
@@ -151,7 +151,7 @@ precedenti necessari della serie, li memorizza in cache e restituisce l'elemento
 richiesto--ritardando le computazioni fino a quando non sono assolutamente necessarie. C'è un pattern
 specifico di caching intrecciato con la serie numerica. Che cosa succede
 se estraete il codice specifico di caching (inizializzazione della cache, escuzione di codice 
-dedicato al popolamento dei elementi arbitrari della cache e restituzione di un valore calcolato o estratto dalla cache)
+dedicato al popolamento deglii elementi arbitrari della cache e restituzione di un valore calcolato o estratto dalla cache)
 in una funzione C<genera_chiusura_cache()>?
 
 =begin programlisting

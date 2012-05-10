@@ -745,7 +745,7 @@ X<C<\Q>; metacarattere di disattivazione dei metacaratteri nelle regex>
 X<C<\E>; metacarattere di riattivazione dei metacaratteri nelle regex>
 X<regex; disattivazione dei metacaratteri>
 
-I I<caratteri di disattivazione dei metacaratteri> (C<\Q> and C<\E>) disattivano
+I I<caratteri di disattivazione dei metacaratteri> (C<\Q> e C<\E>) disattivano
 l'interpretazione dei metacaratteri nella parte di regex che si trova tra di essi. Possono essere particolarmente utili
 quando ricevete l'espressione regolare da una sorgente di cui non avete il controllo quando scrivete
 il programma:

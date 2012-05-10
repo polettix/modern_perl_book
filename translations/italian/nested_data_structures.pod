@@ -101,7 +101,7 @@ intermedio:
 
 =end programlisting
 
-C<perldoc perldsc>, il cookbook sulle strutture dati, fornisce numerosi esempi di uso di varie
+C<perldoc perldsc>, il ricettario sulle strutture dati, fornisce numerosi esempi di uso di varie
 strutture dati in Perl.
 
 =head2 Autovivificazione
@@ -200,7 +200,6 @@ Il sistema di gestione della memoria di Perl 5 ha un problema con il reference c
 che diventa visibile al livello del codice utente. Due riferimenti che finiscono indirettamente per puntare l'uno
 all'altro formano un I<riferimento circolare> che Perl non può neutralizzare automaticamente.
 Considerate un modello biologico, dove ogni entità ha due genitori e zero o più figli:
-children:
 
 =begin programlisting
 

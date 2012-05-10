@@ -7,7 +7,7 @@ X<testing>
 Il I<testing> è un  processo che consiste nella scrittura ed esecuzione di piccoli pezzi di codice al fine di verificare
 che il vostro software funzioni come vi aspettate. Un testing efficace è essenzialmente l'automatizzazione di un processo
 che avete sicuramente già eseguito innumerevoli volte a mano: scrivere del codice, eseguirlo e controllare
-se funziona. L'I<automazione> è il punto più importante. Anzichè dover contare su delle persone
+se funziona. L'I<automazione> è il punto più importante. Anziché dover contare su delle persone
 per ripetere in modo affidabile i controlli a mano, lasciate questo compito al calcolatore.
 
 Perl 5 fornisce degli ottimi strumenti per aiutarvi a scrivere i test nel modo giusto.

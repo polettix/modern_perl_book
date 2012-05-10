@@ -75,8 +75,8 @@ X<C<feature>>
 X<C<feature>; C<state>>
 
 Dovete attivare questa funzionalità usando un modulo come
-C<Modern::Perl>, la direttica C<feature> (L<pragmas>) o richiedendo una versione
-specifica di Perl che sia la 5.10 o una successiva (per esempio, con C<use 5.010;> o C<use 5.012;>).
+C<Modern::Perl>, la direttiva C<feature> (L<pragmas>) o richiedendo una versione
+specifica di Perl che sia la 5.10 o successiva (per esempio, con C<use 5.010;> o C<use 5.012;>).
 
 C<state> funziona anche nelle funzioni anonime:
 
@@ -104,7 +104,7 @@ che valutasse a falso in coda a una dichiarazione C<my> evitava
 di I<reinizializzare> una variabile lessicale a C<undef> o al suo valore iniziale.
 
 Adesso la presenza di un'espressione condizionale postfissa come modificatore di una dichiarazione di variabile lessicale
-viene deprecato con un warning. In effetti, con questa tecnica è troppo facile introdurre inavvertitemente
+viene deprecato con un warning. In effetti, con questa tecnica è troppo facile introdurre inavvertitamente
 dei bug nel codice; usate invece C<state> dove è
 possibile o in alternativa una vera chiusura. Riscrivete in modo corretto questo idioma quando lo incontrate:
 

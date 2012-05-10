@@ -43,7 +43,7 @@ degli attributi parametrici:
 =end programlisting
 
 L'attributo C<Test> identifica i metodi che contengono asserzioni di test e
-specifica opzionalmente il numero of asserzioni che tali metodi intendono eseguire.
+specifica opzionalmente il numero di asserzioni che tali metodi intendono eseguire.
 Anche se l'introspezione (L<reflection>) di queste classi, guidata da buone euristiche,
 potrebbe identificare appropriatamente i metodi di test, l'attributo C<:Test>
 rende più chiare le vostre intenzioni.

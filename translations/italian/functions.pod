@@ -228,7 +228,7 @@ Passare un hash come argomento produce una lista di coppie chiave/valore:
 Quando il Perl appiattisce C<%nome_e_tipo_cuccioli> in una lista, l'ordine delle coppie
 chiave/valore dell'hash può variare, ma la lista conterrà sempre una chiave
 seguita immediatamente dal suo valore. L'assegnamento di hash all'interno di C<mostra_cuccioli()> funziona
-essenzialmente allo stesso modo dell'assegnmento a C<%nome_e_tipo_cuccioli>, anche se quest'ultimo è più esplicito.
+essenzialmente allo stesso modo dell'assegnamento a C<%nome_e_tipo_cuccioli>, anche se quest'ultimo è più esplicito.
 
 L'appiattimento è spesso utile, ma occorre fare attenzione a non mescolare scalari e aggregati
 appiattiti nelle liste di parametri. Se scrivete una funzione C<mostra_cuccioli_per_tipo()>, dove
@@ -311,7 +311,7 @@ modificarli direttamente. Per esempio:
 =end programlisting
 
 Quando modificate direttamente un elemento di C<@_> modificate anche il parametro originale.
-Fate attenzione a spacchettate C<@_> con cura.
+Fate attenzione a spacchettare C<@_> con cura.
 
 =head1 Funzioni e Namespace
 
@@ -619,7 +619,7 @@ sappia come chiamare se stessa dividendo ogni volta la lista in due parti:
         ) if $elem < $elem_in_mezzo;
 
         # chiama ricorsivamente su parte superiore
-        return B<elem_exists>(
+        return B<esiste_elem>(
              $elem, @array[ $punto_in_mezzo + 1 .. $#array ]
         );
     }
@@ -685,7 +685,7 @@ della funzione chiamante. Le seguenti chiamate a C<esiste_elem()>:
     ) if $elem < $elem_in_mezzo;
 
     # chiama ricorsivamente su parte superiore
-    return B<elem_exists>(
+    return B<esiste_elem>(
          $elem, @array[ $punto_in_mezzo + 1 .. $#array ]
     );
 

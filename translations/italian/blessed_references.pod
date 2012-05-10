@@ -55,7 +55,7 @@ costruttore è simile a questa:
 
 Un costruttore come questo è progettato per ricevere il nome della classe come invocante del metodo.
 Potreste anche specificare il nome della classe nel codice, ma perdereste in flessibilità.
-Un costruttore parametrico permette infatti il riuso con l'ereditarietà, la delega e
+Un costruttore parametrico permette infatti il riutilizzo del codice con l'ereditarietà, la delega e
 l'esportazione.
 
 X<OO; dati di istanza>

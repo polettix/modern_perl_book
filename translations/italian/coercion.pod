@@ -6,7 +6,7 @@ X<DWIM>
 X<coercizione>
 
 Una variabile Perl può contenere diversi tipi di valori in momenti diversi--stringhe,
-interi, numeri razionali, ecc.. Anzichè associare dell'informazione di tipo alle
+interi, numeri razionali, ecc.. Anziché associare un'informazione di tipo alle
 variabili, Perl sfrutta il contesto fornito dagli operatori (L<value_contexts>)
 per decidere come deve interpretare i loro valori. Per scelta di progetto, Perl tenta di fare quello che
 intendeteN<Abbreviato come I<DWIM>, che sta per I<do what I mean> (fai quello che intendo).>, quindi dovete essere
@@ -40,7 +40,7 @@ La coercizione a stringa ha luogo quando usate degli operatori stringa come il c
 e C<cmp>), la concatenazione, C<split>, C<substr> e le espressioni regolari, e quando
 usate un valore come chiave di hash. Il valore C<undef> diventa la
 stringa vuota e produce un warning di "use of uninitialized value" ("uso di valore non inizializzato").
-I numberi diventano stringhe contenenti i loro valori, per esempio il valore C<10>
+I numeri diventano stringhe contenenti i loro valori, per esempio il valore C<10>
 diventa la stringa C<'10'>. Potete fare lo C<split> di un numero in singole cifre con:
 
 =begin programlisting
@@ -84,7 +84,7 @@ numerico non danno luogo al warning "Argument isn't numeric".
 X<coercizione; riferimento>
 X<autovivificazione>
 
-Usare un'operazione di dereferenza su un valore che non sia un riferimento trasforma quel valore I<in> un
+Usare un'operazione di dereferenziazione su un valore che non sia un riferimento trasforma quel valore I<in> un
 riferimento. Questo processo di autovivificazione (L<autovivification>) è utile quando manipolate
 strutture dati annidate (L<nested_data_structures>):
 
@@ -113,7 +113,7 @@ Invece, I<attacca> un nuovo valore stringa, in modo che la rappresentazione
 contiene I<entrambi> i componenti. Analogamente, la coercizione di una stringa a numero popola la
 componente numerica lasciando la componente stringa inalterata.
 
-Certe operazioni del Perl preferiscono usare una componente di un valoro piuttosto
+Certe operazioni del Perl preferiscono usare una componente di un valore piuttosto
 che l'altra--per esempio, i test booleani preferiscono la stringa. Se un valore ha fatto il cache
 di una rappresentazione in una forma che non vi aspettate, affidarvi a una conversione implicita
 può dare delle sorprese. Non avrete quasi mai la necessità di esplicitare che cosa vi aspettate

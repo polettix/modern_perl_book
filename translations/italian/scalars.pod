@@ -123,7 +123,7 @@ X<numeri; falso>
 
 Gli scalari non contengono uno slot separato per i valori booleani. In contesto booleano,
 la stringa vuota (C<''>) e la stringa C<'0'> hanno valore falso. Tutte le altre stringhe hanno valore vero. In
-contesto booleano, i numeri che hanno valore zero (C<0>, C<0.0>, and C<0e0>) rappresentano il valore booleano
+contesto booleano, i numeri che hanno valore zero (C<0>, C<0.0>, e C<0e0>) rappresentano il valore booleano
 falso. Tutti gli altri numeri rappresentano il valore vero.
 
 =begin tip Che Cos'è la Verità?

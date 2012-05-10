@@ -284,7 +284,7 @@ X<CPAN; C<UNIVERSAL::require>>
 
 =end programlisting
 
-... dato che il blocco C<BEGIN>  viene eseguito I<prima> dell'assegnmento del
+... dato che il blocco C<BEGIN>  viene eseguito I<prima> dell'assegnamento del
 valore stringa a C<$package_desiderato>.  Il risulato è un'eccezione
 relativa al tentativo di invocare il metodo C<require()> su un valore non definito.
 

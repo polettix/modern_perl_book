@@ -5,13 +5,13 @@
 X<funzione>
 
 In Perl, una I<funzione> è una unità di codice
-discreta ed incapsulata. Un programma è una collezione di queste piccole black box
+discreta ed incapsulata. Un programma è una collezione di queste piccole "scatole nere"
 le cui interazioni governano il controllo di flusso del programma stesso.
 Una funzione può avere o meno un nome. Può consumare informazioni
 in input oppure no. Può produrre informazione in output oppure no. 
 
 Le funzioni sono un meccanismo primario per l'astrazione, l'incapsulamento
-ed il riuso in Perl 5.
+ed il riutilizzo del codice in Perl 5.
 
 L<functions>
 

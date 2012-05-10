@@ -99,6 +99,6 @@ Tutti e tre gli approcci portano allo stesso risultato, ma ciascuno usa Perl in 
 
 L'esperienza con la programmazione in Perl vi aiuterà a focalizzarvi sul I<che cosa> volete ottenere piuttosto che sul I<come> ottenerlo.
 In ogni caso, Perl esegue di buon grado anche i programmi più semplici. Potete
-progettare e raffinare i vostri programmi per aumentarne la chiarezza, l'espressività, il riuso e la manutenibilità, in parte o completamente.
+progettare e raffinare i vostri programmi per aumentarne la chiarezza, l'espressività, il riutilizzo e la manutenibilità, in parte o completamente.
 Sfruttate la flessibilità e il pragmatismo: è molto meglio raggiungere il vostro scopo adesso in modo efficace che scrivere
 un programma di superba purezza e bellezza concettuale l'anno prossimo.

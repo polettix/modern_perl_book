@@ -108,7 +108,7 @@ X<lvalue>
 X<rvalue>
 
 L'analogia con il contesto di numero è importante. Usare un elemento scalare di un
-aggregato come I<lvalue> (parte di un assegnmento a sinistra del carattere
+aggregato come I<lvalue> (parte di un assegnamento a sinistra del carattere
 C<=>) impone un contesto scalare (L<context_philosophy>) all'I<rvalue>
 (parte a destra del carattere C<=>).
 

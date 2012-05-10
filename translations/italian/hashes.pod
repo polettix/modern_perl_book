@@ -589,10 +589,10 @@ Z<locked_hashes>
 X<hash; bloccati>
 
 Dato che le chiavi di hash sono delle bareword, offrono poca protezione contro gli errori di scrittura rispetto alla
-protezione offerta dalla pragma C<strict> sui nomi di funczione e di variabile. Il
+protezione offerta dalla pragma C<strict> sui nomi di funzione e di variabile. Il
 poco conosciuto modulo core C<Hash::Util> fornisce dei meccanismi per migliorare la situazione.
 
-Per revenire l'inserimento accidentale di una chiave di hash indesiderata
+Per prevenire l'inserimento accidentale di una chiave di hash indesiderata
 (a causa di una svista o di input utente inaffidabile), usate la funzione C<lock_keys()>
 per congelare l'hash al suo insieme corrente di chiavi. Ogni tentativo di aggiungere una
 nuova chiave all'hash solleverà un'eccezione. Questa è ovviamente una sicurezza debole, adatta solo a

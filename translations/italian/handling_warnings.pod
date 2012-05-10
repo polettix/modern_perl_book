@@ -196,7 +196,7 @@ X<warning lessicali>
 
 La direttiva C<warnings::register> vi permette di creare i vostri warning lessicali
 in modo che gli utenti del vostro codice possano attivarli e disattivarli. Fate
-la C<use> della direttica C<warnings::register> in un modulo: 
+la C<use> della direttiva C<warnings::register> in un modulo: 
 
 =begin programlisting
 

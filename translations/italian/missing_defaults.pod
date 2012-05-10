@@ -70,7 +70,7 @@ che potrebbe riempire i vostri file di log ed esporre troppe informazioni agli u
 
 =end tip
 
-=head2 C<IO::File> and C<IO::Handle>
+=head2 C<IO::File> e C<IO::Handle>
 
 X<C<IO::File>>
 X<C<IO::Handle>>

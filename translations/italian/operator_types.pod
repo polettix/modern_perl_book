@@ -82,8 +82,8 @@ X<operatori; C<.>>
 X<C<.>; operatore stringa>
 
 Gli operatori stringa impongono il contesto stringa ai loro operandi. Questi operatori sono
-il binding positivo e negativo a un'espressione regolare (C<=~> and C<!~>,
-respectively) e la concatenazione (C<.>).
+il binding positivo e negativo a un'espressione regolare (C<=~> e C<!~>,
+rispettivamente) e la concatenazione (C<.>).
 
 X<operatori; C<eq>>
 X<operatori; C<ne>>
@@ -100,7 +100,7 @@ X<C<ge>; operatore di confronto stringa>
 X<C<le>; operatore di confronto stringa>
 X<C<cmp>; operatore di confronto stringa>
 
-Diversi operatori di confronto impongono il contesto numerico ai loro operandi.
+Diversi operatori di confronto impongono il contesto stringa ai loro operandi.
 Questi operatori sono: uguaglianza di stringhe (C<eq>), disuguaglianza di stringhe (C<ne>), maggiore di (C<gt>),
 minore di (C<lt>), maggiore o uguale (C<ge>), minore o uguale
 (C<le>) e l'operatore di confronto tra stringhe per il sort (C<cmp>).
@@ -131,12 +131,12 @@ X<defined-or; operatore logico>
 X<cortocircuiti>
 
 Gli operatori logici impngono il contesto booleano ai loro operandi. Questi operatori
-sono C<&&>, C<and>, C<||> e C<or>. Sono tutti infssi e tutti possono dar luogo a
+sono C<&&>, C<and>, C<||> e C<or>. Sono tutti infissi e tutti possono dar luogo a
 I<cortocircuiti> (L<short_circuiting>). Le varianti C<and> e C<or> hanno
 precedenza più bassa delle corrispondenti forme simboliche.
 
 L'operatore defined-or, C<//>, controlla se il proprio operando è I<definito>. Contrariamente a
-C<||> che testa la I<verità> del proprio operando, C<//> valuata a vero
+C<||> che testa la I<verità> del proprio operando, C<//> valuta a vero
 anche se il suo operando valuta al numero zero o alla stringa vuota. Questo risulta
 particolarmente utile per impostare i valori di default dei parametri:
 

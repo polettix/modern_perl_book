@@ -90,7 +90,7 @@ Potreste anche vedere delle funzioni anonime passate come argomenti ad altre fun
         say 'Sono una funzione con nome!';
     }
 
-    invoca_funzione__anonima( \&named_func );
+    invoca_funzione__anonima( \&funzione_con_nome );
     invoca_funzione__anonima( B<sub { say 'Indovina chi sono!' }> );
 
 =end programlisting

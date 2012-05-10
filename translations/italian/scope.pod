@@ -8,7 +8,7 @@ X<incapsulamento>
 In Perl il concetto di I<scope> si riferisce al tempo di vita e alla visibilità delle entità con un nome.
 Ogni entità Perl con un nome (una variabile, una funzione) ha uno scope. Il meccanismo di scope
 favorisce l'I<incapsulamento>--che consiste nel mantenere insieme i concetti collegati ed
-evitare che essi fuoriescano dall'ambito in cui il programmtore li ha confinati.
+evitare che essi fuoriescano dall'ambito in cui il programmatore li ha confinati.
 
 =head2 Scope Lessicale
 
@@ -25,7 +25,7 @@ purché non sia di quotatura.
 
 X<variabili; lessicali>
 
-Lo cope lessicale determina la visibilità delle variabili dichiarate con
+Lo scope lessicale determina la visibilità delle variabili dichiarate con
 C<my>--le variabili dette I<lessicali>. Una variabile lessicale dichiarata in uno scope è
 visibile in quello scope e negli scope annidati, ma è invisibile agli scope
 dello stesso livello e a quelli esterni:
@@ -92,7 +92,7 @@ degli scope per ridurre questo rischio.
 
 =end tip
 
-Questo programma stampa C<Edward> e quindi C<Jacob>N<Famigliari dell'autore, non
+Questo programma stampa C<Edward> e quindi C<Jacob>N<Familiari dell'autore, non
 i noti vampiri.>, sebbene ridichiarare una variabile lessicale con lo stesso nome e lo stesso
 tipo I<nello stesso scope lessicale> produca un messaggio di warning. La possibilità di oscurare un
 lessicale è una funzionalità dell'incapsulamento.
@@ -163,7 +163,7 @@ X<scope; dinamico>
 
 Lo scope dinamico è simile allo scope lessicale per ciò che riguarda le sue regole di visibilità, ma la ricerca dei nomi, invece di
 procedere dagli scope più interni a quelli più esterni durante la compilazione, procede all'indietro nei contesti
-di chiamata. Anche se un variabile di package globale è I<visibile> in tutti gli
+di chiamata. Anche se una variabile di package globale è I<visibile> in tutti gli
 scope, il suo I<valore> cambia a seconda della sua C<local>izzazione e relativo assegnamento:
 
 =begin programlisting
@@ -292,7 +292,7 @@ Potete anche usare un'espressione per impostare il valore iniziale di una variab
 =end programlisting
 
 Sebbene a prima vista si potrebbe pensare che l'output del codice sia
-C<2>, C<4>, and C<6>, tale output è invece C<2>, C<3>, and C<4>. La prima
+C<2>, C<4>, e C<6>, tale output è invece C<2>, C<3>, e C<4>. La prima
 chiamata alla funzione C<contatore> inizializza la variabile C<$cont>. Nelle chiamate successive
 la parte di inizializzazione non viene più eseguita.
 
