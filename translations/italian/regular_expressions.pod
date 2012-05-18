@@ -101,7 +101,7 @@ di match:
 X<CPAN; C<Test::More>>
 X<C<like>>
 
-La funzione C<like> di C<Test::More> testa se c'è un match tra il primo argomento e la
+La funzione C<like> di C<Test::More> verifica se c'è un match tra il primo argomento e la
 regex fornita come secondo argumento.
 
 =end tip
@@ -258,7 +258,7 @@ Potete usare il modificatore di quantificatori C<?> per rendere parsimoniosi i q
 =end programlisting
 
 Quando elabora un quantificatore non-greedy, il motore di espressioni regolari preferisce
-il più I<corto> dei match poteziali e aggiunge altri caratteri a quelli
+il più I<corto> dei match potenziali e aggiunge altri caratteri a quelli
 già identificati dal pattern C<.*?> solo se con quelli correnti
 il match fallirebbe. Dato che C<*> accetta zero o più occorrenze, potenzialmente il numero
 minimo di caratteri con cui il pattern d'esempio fa il match è zero:
@@ -364,7 +364,7 @@ X<regex; C<.>>
 X<C<.>; metacarattere di tutto tranne a capo nelle regex>
 
 Il metacarattere C<.> significa "fai il match con qualunque carattere eccetto il carattere di a capo". Ricordate
-l'avvertmento dato sopra; molti principianti lo dimenticano. Una semplice ricerca con regex--che ignora
+l'avvertimento dato sopra; molti principianti lo dimenticano. Una semplice ricerca con regex--che ignora
 le migliorie possibili con l'uso delle ancore--per il 7 Vericale potrebbe essere C</r..a/>. Naturalmente,
 ci sono sempre diversi modi di ottenere la risposta corretta:
 
@@ -409,7 +409,7 @@ Il metacarattere C<\d> riconosce le cifre (sempre all'interno di Unicode):
 X<regex; C<\s>>
 X<C<\s>; metacarattere di spaziatura nelle regex>
 
-Usate il metacarattere C<\s> per riconoscere la spaziatura, che si tratti di un semplice carattere di spazio, di un carattere di tabulaizone,
+Usate il metacarattere C<\s> per riconoscere la spaziatura, che si tratti di un semplice carattere di spazio, di un carattere di tabulazione,
 di un carriage return, di un form-feed o di un a capo:
 
 =begin programlisting
@@ -567,7 +567,7 @@ resto della cattura è un'espressione regolare.
 Quando il match di un pattern contenente la cattura
 ha successo, Perl memorizza la parte di stringa che corrisponde
 al pattern interno alla cattura nella variabile globale predefinita C<%+>. In tale hash, la chiave è
-il nome della cattura e il valore è l'appropriata porzione di stringa.
+il nome della cattura e il valore è la rispettiva porzione di stringa.
 
 =head2 Catture Numerate
 
@@ -736,7 +736,7 @@ X<regex; metacaratteri di escape>
 Per fare il match I<letterale> di un metacarattere, fatene l'I<escape> con un
 backslash (C<\>). L'avete visto fare negli esempi sopra, dove C<\(> si riferiva a una parentesi tonda
 aperta e C<\]> si riferiva a una parentesi quadra chiusa. C<\.> si riferisce al
-carattere letterale punto anziché al'atomo "fai il match con qualunque cosa eccetto un carattere
+carattere letterale punto anziché all'atomo "fai il match con qualunque cosa eccetto un carattere
 di a capo esplicito".
 
 È probabile che vi succeda di dover fare l'escape del metacarattere di alternativa (C<|>), del metacarattere di fine linea (C<$>) e dei quantificatori (C<+>, C<?>, C<*>).
@@ -747,7 +747,7 @@ X<regex; disattivazione dei metacaratteri>
 
 I I<caratteri di disattivazione dei metacaratteri> (C<\Q> e C<\E>) disattivano
 l'interpretazione dei metacaratteri nella parte di regex che si trova tra di essi. Possono essere particolarmente utili
-quando ricevete l'espressione regolare da una sorgente di cui non avete il controllo quando scrivete
+quando ricevete l'espressione regolare da una sorgente sulla quale avete il controllo quando scrivete
 il programma:
 
 =begin programlisting
@@ -1080,4 +1080,4 @@ globale visto prima potrebbe essere reso più semplice con del codice come quell
 =end programlisting
 
 Ogni occorrenza aggiuntiva del modificatore C</e> provoca un'altra valutazione
-del risultato dell'espressione, ma solo i golfer Perl si spingono oltre l'uso di C</ee>.
+del risultato dell'espressione, ma solo gli appassionati di golf in Perl si spingono oltre l'uso di C</ee>.

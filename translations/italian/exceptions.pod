@@ -38,7 +38,7 @@ X<eccezioni; C<die>>
 X<C<$@>>
 X<eccezioni; C<$@>>
 
-C<die()> imposta il valore della variabile globale C<$@> a quello del proprio operandoto ed esce immediatamente
+C<die()> imposta il valore della variabile globale C<$@> a quello del proprio operando ed esce immediatamente
 dalla funzione corrente I<senza restituire nulla>. L'eccezione sollevata continua
 il suo percorso nello stack di chiamate (L<controlled_execution>) finchè incontra del codice che la
 cattura. Se nessuna chiamata cattura l'eccezione, il programma termina con un errore.
@@ -78,7 +78,7 @@ un'eccezione, questo C<eval> la catturerebbe.
 X<predefinite; variabili globali; C<$@>>
 
 Un gestore di eccezioni dev'essere uno strumento generico, dato che potrebbe catturare tutte le eccezioni nel
-suo scope dinamico. Per capire quale eccezione è stata catturata (e anzitutto se è c'è stata un'eccezione)
+suo scope dinamico. Per capire quale eccezione è stata catturata (e anzitutto se c'è stata un'eccezione)
 controllate il valore di C<$@>. Ricordatevi di C<local>izzare C<$@>
 prima di tentare di catturare un'eccezione, dato che C<$@> è una variabile
 globale:
@@ -124,8 +124,8 @@ Applicare delle espressioni regolari a eccezioni stringa è poco robusto, dato c
 d'errore possono cambiare nel tempo. Questo vale anche per le eccezioni predefinite sollevate dallo
 stesso Perl. Per fortuna, potete anche passare a C<die> un riferimento--e perfino un riferimento
 blessed. Ciò vi permette di fornire molte più informazioni nella vostra
-eccezione: numeri di linea, file e altre informazioni di debugging. Ottenere
-queste informazioni da un'entità strutturata è molto più facile che estrarle parsificando
+eccezione: numeri di linea, file e altre informazioni di debug. Ottenere
+queste informazioni da un'entità strutturata è molto più facile che estrarle interpretando
 una stringa. Catturate queste eccezioni come fareste con qualunque altra eccezione.
 
 X<eccezioni; classi personalizzate con C<Exception::Class>>

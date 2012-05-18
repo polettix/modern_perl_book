@@ -43,7 +43,7 @@ C<die> solleva un'eccezione in cui il valore di C<$!> fornisce le
 ragioni del fallimento.
 
 Potete aprire i file in scrittura, append, lettura e scrittura e in altri modi ancora.
-Alcune elle modalità di file più importanti sono:
+Alcune delle modalità di file più importanti sono:
 
 =begin table Modalità di File
 
@@ -51,7 +51,7 @@ Z<file_modes_table>
 
 =headrow
 
-=cell B<Simboli>
+=cell B<Simbolo>
 
 =cell B<Spiegazione>
 
@@ -97,7 +97,7 @@ nuovo file.
 
 =end table
 
-Potete anche create dei filehandle che leggono e scrivono su un semplice scalare Perl, usando una qualunque modalità di file:
+Potete anche creare dei filehandle che leggono e scrivono su un semplice scalare Perl, usando una qualunque modalità di file:
 
 =begin programlisting
 
@@ -328,8 +328,8 @@ X<predefinite; variabili globali; C<$/>>
 
 C<readline> usa il contenuto corrente di C<$/> come sequenza di fine linea.
 Per default, il valore di questa variabile è la sequenza di caratteri di fine linea più appropriata
-per i file di testo sulla vostra piattafiorma.  A dire il vero, la parola
-I<linea> è fuorviante.  Potete impostare il contenuto di C<$/> con una qualunque sequenza di
+per i file di testo sulla vostra piattaforma.  A dire il vero, la parola
+I<linea> è fuorviante.  Potete impostare il contenuto di C<$/> ad una qualunque sequenza di
 caratteriN<... anche se, sfortunatamente, non con un'espressione regolare. Perl 5 non supporta
 questo caso.>. Ciò può essere utile per dati fortemente strutturati da cui volete leggere un
 I<record> alla volta. Dato un file i cui record sono separati da due linee vuote,
@@ -461,11 +461,11 @@ Invece, un path I<assoluto> è un path completamente qualificato del filesystem.
 
 X<predefinite; funzioni; C<closedir>>
 
-Per chiudere un directory handle lasciate lasciate che il programma esca dal suo scope oppure invocate la funzione predefinita C<closedir>.
+Per chiudere un directory handle lasciate che il programma esca dal suo scope oppure invocate la funzione predefinita C<closedir>.
 
 =head3 Manipolazione di Path
 
-Perl 5 offre una visione ``alla Unix'' del vostro filesystem e interpreta
+Perl 5 offre una visione "alla Unix" del vostro filesystem e interpreta
 i path in stile Unix nel modo appropriato al vostro sistema operativo e al vostro filesystem.  In
 altre parole, se siete su Microsoft Windows, potete usare sia il path F<C:/Miei
 Documenti/Robot/Bender/> che il path F<C:\Miei
@@ -514,7 +514,7 @@ Potete anche aprire filehandle di directory e file:
 
 =end programlisting
 
-Sia C<Path::Class::Dir> che C<Path::Class::File> offrono altra funzionalità
+Sia C<Path::Class::Dir> che C<Path::Class::File> offrono altre funzionalità
 interessanti--ma ricordate che se usate un oggetto C<Path::Class> di un qualche tipo
 con un operatore o una funzione Perl 5 che si aspettano una stringa
 contenente un path di file, dovete effettuare voi stessi la conversione in stringa dell'oggetto. 
@@ -533,7 +533,7 @@ X<operatori; C<-X>>
 
 Oltre a leggere e scrivere sui file, potete anche manipolarli come fareste
 direttamente da linea di comando o da un gestore di file.  Gli operatori di test di file,
-chiamati collettivamente ``operatori C<-X>'' dato che consistono in un trattino seguito da un'unica
+chiamati collettivamente "operatori C<-X>" dato che consistono in un trattino seguito da un'unica
 lettera, esaminano gli attributi di file e directory. Per esempio, per verificare se un file
 esiste:
 
@@ -573,7 +573,7 @@ consentono all'utente corrente di leggerlo
 =back
 
 A partire da Perl 5.10.1, potete accedere alla documentazione di ciascuno di questi operatori,
-per esmepio con C<perldoc -f -r>.
+per esempio con C<perldoc -f -r>.
 
 X<predefinite; funzioni; C<rename>>
 
@@ -584,7 +584,7 @@ operandi, ovvero il vecchio nome e il nuovo nome del file:
 
     rename 'stella_morta.txt', 'blocco_di_carbonio.txt';
 
-    # oppure se volete essere stilosi:
+    # oppure se volete essere raffinati:
     rename 'stella_morta.txt' => 'blocco_di_carbonio.txt';
 
 =end programlisting

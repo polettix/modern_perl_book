@@ -26,7 +26,7 @@ L'ereditarietà è solo uno strumento tra tanti. Un'C<Automobile> potrebbe esten
 come attributi di istanza (una I<relazione has-a>).
 
 Decomporre classi complesse in entità più piccole e specifiche (che siano classi o
-ruoli) miegliora l'incapsulamento e riduce la possibilità che una singola classe o
+ruoli) migliora l'incapsulamento e riduce la possibilità che una singola classe o
 ruolo cresca troppo. Delle entità più piccole, più semplici e più incapsulate
 sono più facili da capire, testare e manutenere.
 

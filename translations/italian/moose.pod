@@ -110,7 +110,7 @@ X<metodi; istanza>
 
 I metodi che accedono ai dati dell'invocante sono I<metodi d'istanza>, perché dipendono dalla
 presenza dell'invocante appropriato per funzionare correttamente. I metodi (come
-C<miagola()>) che non accedono a i dati d'istanza sono I<metodi di classe>. Potete
+C<miagola()>) che non accedono ai dati d'istanza sono I<metodi di classe>. Potete
 invocare i metodi di classe sulle classi e i metodi di classe e di istanza sulle istanze,
 ma non potete invocare metodi di istanza sulle classi.
 
@@ -166,7 +166,7 @@ vi permette di passare un parametro C<nome> al costruttore di C<Gatto>:
     for my $nome (qw( Tuxie Petunia Daisy ))
     {
         my $gatto = Gatto->new( nome => $nome );
-        say "Creato un gatto per ", $cat->nome();
+        say "Creato un gatto chiamato ", $gatto->nome();
     }
 
 =end programlisting
@@ -251,7 +251,7 @@ Moose crea un metodo I<mutatore> che può modificare il valore dell'attributo:
         B<< has 'dieta', is => 'rw'; >>
     }
 
-    my $grasso = Cat->new( nome  => 'Ciccio',
+    my $grasso = Gatto->new( nome  => 'Ciccio',
                            eta   => 8,
                            dieta => 'Frutti di Mare' );
 
@@ -265,7 +265,7 @@ Moose crea un metodo I<mutatore> che può modificare il valore dell'attributo:
 L'uso di un accessore C<ro> come mutatore solleva l'eccezione C<Cannot assign a
 value to a read-only accessor at ...> (NdT: "Non posso assegnare un valore a un accessore di sola lettura ...").
 
-L'uso di C<ro> oppure di C<rw> è determinata da scelte di progetto, di convenienza e di purezza di stile. Moose
+L'uso di C<ro> oppure di C<rw> è determinato da scelte di progetto, di convenienza e di purezza di stile. Moose
 non impone alcuna filosofia particolare a questo riguardo. Alcune persone suggeriscono di rendere C<ro>
 tutti i dati d'istanza, in modo che dobbiate passare tali dati d'istanza al costruttore
 (L<immutability>). Nell'esempio della classe C<Gatto>, C<eta()> potrebbe continuare ad essere un accessore,
@@ -385,7 +385,7 @@ Considerate una funzione che visualizza i dettagli di un oggetto:
         my $oggetto = shift;
 
         say 'Il mio nome e` ', $oggetto->nome();
-        say 'La mia eta` e` ', $oggetto->age();
+        say 'La mia eta` e` ', $oggetto->eta();
         say 'Mangio ',         $oggetto->dieta();
     }
 
@@ -431,12 +431,12 @@ ovvie, che funzionano tutte con questo metodo purché si conformino al comportam
 atteso.
 
 Immaginate di dover passare in rassegna tutti gli animali di uno zoo senza poter
-usare una funzione poliforma. I benefici della genericità dovrebbero essere evidenti. Inoltre, gli
+usare una funzione polimorfa. I benefici della genericità dovrebbero essere evidenti. Inoltre, gli
 eventuali dettagli che differenziano il calcolo dell'età di un gattopardo e di una piovra possono
 essere specificati nelle relative classi--dove tali dettagli sono importanti.
 
 Naturalmente, la mera esistenza di un metodo C<nome()> o di un metodo C<eta()> non ha
-di per se stessa implicazioni sul comportamento di un oggetto. Un oggetto C<Cane> potrebbe avere un
+di per sé stessa implicazioni sul comportamento di un oggetto. Un oggetto C<Cane> potrebbe avere un
 accessore C<taglia()> tramite il quale potete scoprire che C<$rodney> è di taglia piccola e
 C<$lucky> è di taglia media. Un oggetto C<Formaggio> potrebbe avere un metodo C<taglia()> che vi permette di
 preparare delle fette di C<$fontina> da mettere in un panino. C<taglia()> può essere un accessore
@@ -641,7 +641,7 @@ della sua superclasse.
 
 È meglio usare i ruoli o l'ereditarietà? I ruoli garantiscono composizioni sicure,
 un miglior controllo sui tipi, una maggior fattorizzazione del codice e un controllo più granulare sui
-nomi e i comportamenti, ma l'ereditarietà è più familiare agli sviluppi con esperienza in
+nomi e i comportamenti, ma l'ereditarietà è più familiare agli sviluppatori con esperienza in
 altri linguaggi. Usate l'ereditarietà quando una classe è realmente un'I<estensione> di un'altra.
 Usate invece un ruolo quando una classe necessita di comportamenti aggiuntivi ed è possibile assegnare un nome significativo
 alla collezione di tali comportamenti.
@@ -752,7 +752,7 @@ Vedete C<perldoc mro> per maggiori dettagli.
 X<Moose; sovrascrittura di metodi>
 X<Moose; C<sovrascrittura>>
 
-Come per gli attributi, le sottoclassi possono sovrascrivere dei metodi. Imamaginate una luce che non potete
+Come per gli attributi, le sottoclassi possono sovrascrivere dei metodi. Immaginate una luce che non potete
 spegnere:
 
 =begin programlisting
@@ -843,7 +843,7 @@ X<Moose; confronto con il sistema OO di default di Perl 5>
 
 Moose fornisce molte funzionalità in più del sistema OO di default di Perl 5. Vale sicuramente la pena di usarlo
 anche se, in linea di principio, I<potete> implementare voi stessi tutto ciò che Moose vi mette a disposizione (L<blessed_references>) oppure
-assemblarlo alla meno peggio a partire da diverse distribuzioni CPAN. Moode rappresenta un
+assemblarlo alla meno peggio a partire da diverse distribuzioni CPAN. Moose rappresenta un
 tutto coerente ed è corredato di documentazione di buona qualità. Molti progetti importanti lo usano
 con successo, e la sua comunità di sviluppatori è attenta e matura.
 
@@ -892,7 +892,7 @@ Potete anche scoprire quali sono le classi derivate da una data classe:
 Vedete C<perldoc Class::MOP::Class> per maggiori informazioni sulle operazioni delle
 metaclassi e C<perldoc Class::MOP> per informazioni sulla metaprogrammazione in Moose.
 
-Moose e il suo I<protocollo di meta-oggetti> (I<MOP> dall'inglese I<meta/object protocol>, NdT) offre una
+Moose e il suo I<protocollo di meta-oggetti> (I<MOP> dall'inglese I<meta-object protocol>, NdT) offre una
 sintassi migliore per dichiarare e lavorare con le classi e gli oggetti in Perl 5.
 Questo codice è valido in Perl 5:
 

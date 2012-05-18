@@ -73,7 +73,7 @@ a hash sono i più comuni, ma potete fare il bless di qualunque tipo di riferime
 =end programlisting
 
 Le classi Moose definiscono gli attributi degli oggetti in modo dichiarativo, ma il sistema OO di default di Perl 5
-non è altrettanto solerte. Una classe che rappresenta giocatori di basket mememorizzandone il numero e
+non è altrettanto solerte. Una classe che rappresenta giocatori di basket memorizzandone il numero e
 la posizione potrebbe usare un costruttore come questo:
 
 =begin programlisting
@@ -96,7 +96,7 @@ la posizione potrebbe usare un costruttore come questo:
     my $joel  = Giocatore->new( numero    => 10,
                                 posizione => 'centro' );
 
-    my $dante = Giocatore->new( numer     => 33,
+    my $dante = Giocatore->new( numero    => 33,
                                 posizione => 'attacco' );
 
 =end programlisting
@@ -259,7 +259,7 @@ X<CPAN; C<SUPER>>
 
 C<SUPER::> ha una funzionalità dannosa: fa il dispatch alla superclasse del
 package in cui il metodo che sovrascrive è stato I<compilato>. Se avete importato
-tale metodo da un altro package, Perl non avrà problemi a fare il dispatch alla suprclasse
+tale metodo da un altro package, Perl non avrà problemi a fare il dispatch alla superclasse
 I<sbagliata>. Il desiderio di mantenere la retrocompatibilità ha fatto sì che questa funzionalità
 dannosa fosse mantenuta. Il modulo CPAN C<SUPER> offre una soluzione. La funzione C<super()> di Moose è
 invece del tutto esente da questo problema.

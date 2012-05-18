@@ -76,7 +76,7 @@ Ovunque sia possibile usarli, entrambi sono preferibili a C<attributes>.
 
 X<CPAN; C<Memoize>>
 
-La paggiore caratteristica degli attributi è la loro propensione a produrre strani effetti sintattici
+La peggiore caratteristica degli attributi è la loro propensione a produrre strani effetti sintattici
 a distanza. Dato un frammento di codice con attributi, come potete prevedere i loro
 effetti? Una buona documentazione può essere d'aiuto, ma se la dichiarazione apparentemente innocente di
 una variabile lessicale memorizza da qualche parte un riferimento a tale variabile,
@@ -85,5 +85,5 @@ potrebbe racchiudere a vostra insaputa una funzione in un'altra funzione e sosti
 tabella dei simboli--pensate a un attributo C<:memoize> che invochi automaticamente
 il modulo C<Memoize> integrato nella distribuzione.
 
-Gli attributi sono a vistra disposizione per risolvere alcuni problemi ostici. Possono
+Gli attributi sono a vostra disposizione per risolvere alcuni problemi ostici. Possono
 essere molto utili, se usati in modo appropriato--ma la maggior parte dei programmi non ne ha bisogno.

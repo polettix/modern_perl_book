@@ -139,7 +139,7 @@ e visualizza solo le informazioni più pertinenti:
 
 È un output molto lungo che riporta qualcosa che dovrebbe essere gíà ovvio: il secondo e il terzo
 test falliscono perché lo zero e la stringa vuota hanno valore falso.  Si possono facilmente
-evitare tali fallimeti invertendo il senso delle condizioni con l'uso della
+evitare tali fallimenti invertendo il senso delle condizioni con l'uso della
 coercizione booleana (L<boolean_coercion>):
 
 =begin programlisting
@@ -394,7 +394,7 @@ l'uso di Moose (L<moose>).
 
 =item * C<Test::Differences> testa l'uguaglianza di stringhe e strutture dati e
 visualizza le differenze nei messaggi di diagnostica. C<Test::LongString> fornisce
-assrzioni analoghe.
+asserzioni analoghe.
 
 =item * C<Test::Deep> testa l'equivalenza di strutture dati annidate
 (L<nested_data_structures>).

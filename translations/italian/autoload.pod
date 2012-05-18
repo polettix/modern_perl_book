@@ -157,12 +157,12 @@ installando nuovi metodi nella classe che fa da proxy man mano che il programma 
 =end programlisting
 
 Il corpo della C<AUTOLOAD()> precedente è diventato una chiusura (L<closures>) legata
-con il I<nome> del metodo non definito. Installando tale chiusura
+con il I<nome> del metodo non definito. Installare tale chiusura
 nell'appropriata tabella dei simboli permette alle chiamate successive di quel metodo di trovare
 la chiusura che avete creato (ed evitare C<AUTOLOAD()>). Infine, la chiusura invoca direttamente
 il metodo e restituisce il risultato.
 
-Sebbene questo approccio sia più pulito e quasi sempre più trasparente di
+Sebbene questo approccio sia più pulito e quasi sempre più trasparente rispetto a
 gestire il comportamento direttamente in C<AUTOLOAD()>, il codice I<chiamato> da
 C<AUTOLOAD()> ha la possibilità di scoprire che la chiamata è passata attraverso C<AUTOLOAD()>.  Infatti,
 una semplice chiamata a C<caller()> rivela la doppia chiamata di entrambe le tecniche descritte
@@ -204,8 +204,8 @@ X<direttiva C<subs>>
 X<direttive; C<subs>>
 X<funzioni; predichiarazione>
 
-C<AUTOLOAD()> può essere uno strumento utile, ma è difficile da usare correttamente. UN approccio
-naE<iuml>ve alla generazione di metodi a tempo di esecuzione significa tra l'altro che il metodo C<can()>
+C<AUTOLOAD()> può essere uno strumento utile, ma è difficile da usare correttamente. Un approccio
+naE<iuml>f alla generazione di metodi a tempo di esecuzione significa tra l'altro che il metodo C<can()>
 non è in grado di restituire un'informazione corretta sulle capacità degli oggetti e
 delle classi. La soluzione più semplice consiste nel predichiarare con la direttiva C<subs>
 tutte le funzioni che pensate di gestire con C<AUTOLOAD()>  :
@@ -218,7 +218,7 @@ tutte le funzioni che pensate di gestire con C<AUTOLOAD()>  :
 
 =begin tip Ora lo Potete Vedere
 
-Le dihiarazioni in avanti sono utili solo nei due casi piuttosto rari dell'uso degli attributi e dell'autoload (L<autoload>).
+Le dichiarazioni in avanti sono utili solo nei due casi piuttosto rari dell'uso degli attributi e dell'autoload (L<autoload>).
 
 =end tip
 

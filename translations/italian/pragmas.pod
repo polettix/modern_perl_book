@@ -89,7 +89,7 @@ protezione di C<strict> quando dovete manipolare direttamente dei simboli:
 X<predefinite; variabili globali; C<$^H>>
 X<direttive; scrittura>
 
-In Perl 5.10.0 è stata aggiunta la possibilità di scrivere le proprie pragma lessicali in puro codice Perl.
+In Perl 5.10.0 è stata aggiunta la possibilità di scrivere le proprie direttive lessicali in puro codice Perl.
 C<perldoc perlpragma> vi spiega come fare e la descrizione di
 C<$^H> in C<perldoc perlvar> vi spiega il suo funzionamento.
 

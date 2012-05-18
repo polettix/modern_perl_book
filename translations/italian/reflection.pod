@@ -5,7 +5,7 @@ Z<reflection>
 X<riflessione>
 X<introspezione>
 
-La I<riflessione> (o I<introspezione>) è il processo di interrogare un programma a proposito di se stesso mentre viene eseguito. Trattando il codice come un dato, è possibile gestirlo nello stesso modo in cui si gestiscono i dati; questo principio E<egrave> alla base della generazione di codice (L<code_generation>).
+La I<riflessione> (o I<introspezione>) è il processo di interrogare un programma a proposito di sé stesso mentre viene eseguito. Trattando il codice come un dato, è possibile gestirlo nello stesso modo in cui si gestiscono i dati; questo principio E<egrave> alla base della generazione di codice (L<code_generation>).
 
 X<CPAN; C<Class::MOP>>
 
