@@ -10,7 +10,7 @@ I<distribuzione> è una collezione di metadati e di uno o più moduli
 (L<modules>) che formano un'unità redistribuibile, testabile e installabile.
 
 Tutte queste linee guida--per l'impacchettamento di una distribuzione, per la risoluzione delle sue
-dipendenze, per determinare dove installare software, per verificare che funziona, per
+dipendenze, per determinare dove installare software, per verificare che funzioni, per
 visualizzare la documentazione, per gestire un archivio--sono emerse dal
 generale consenso di migliaia di collaboratori impegnati a lavorare su decine di migliaia di
 progetti. Una distribuzione che segue gli standard CPAN può essere testata su svariate
@@ -149,7 +149,7 @@ I<Writing Perl Modules for CPAN> di Sam Tregar), ma alcuni principi possono comu
 Avviate il vostro progetto con una utility come C<Module::Starter> o C<Dist::Zilla>. Il costo iniziale
 per apprenderne la configurazione e le regole può sembrare un investimento faticoso,
 ma i benefici di avere ogni cosa impostata correttamente (e, nel caso di
-C<Dist::Zilla>, I<sempre> aggiornato) vi solleva da gran parte del lavoro
+C<Dist::Zilla>, I<sempre> aggiornata) vi solleva da gran parte del lavoro
 gestionale più noioso.
 
 A questo punto, considerate le seguenti regole:

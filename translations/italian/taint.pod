@@ -12,7 +12,7 @@ X<taint>
 
 Il I<modo taint> (o I<taint>, marchio NdT) aggiunge metadati a tutti i dati che provengono dall'esterno
 del vostro programma. Ogni dato derivato da dati marchiati è anch'esso marchiato. Potete
-usare dati matchiati nel vostro programma, ma se li usate in operazioni che hanno effetti sul mondo
+usare dati marchiati nel vostro programma, ma se li usate in operazioni che hanno effetti sul mondo
 esterno--ovvero se li usate in modo non sicuro--Perl solleva un'eccezione fatale.
 
 C<perldoc perlsec> spiega il modo taint in grande dettaglio.
@@ -97,7 +97,7 @@ Se non impostate C<$ENV{PATH}> in modo appropriato, riceverete messaggi a propos
 scarsa sicurezza. Se tale variabile d'ambiente conteneva la directory d'esecuzione
 corrente o delle directory relative, oppure se le directory
 specificate permettono a tutti la scrittura, un attacco intelligente potrebbe dirottare le chiamate
-di sistemi per perpetrare i suoi misfatti.
+di sistema per perpetrare i suoi misfatti.
 
 Per ragioni simili, C<@INC> non contiene la directory di esecuzione corrente quando
 è attivo il modo taint. Perl ignora anche le variabili d'ambiente
@@ -106,7 +106,7 @@ aggiungere le directory di librerie al programma.
 
 =head2 Trappole di Taint
 
-Il modo taint è del tipo ``tutto o nulla''.  O è attivo o non lo è.  Talvolta questo induce
+Il modo taint è del tipo "tutto o nulla".  O è attivo o non lo è.  Talvolta questo induce
 le persone a usare dei pattern permissivi per rimuovere il taint dai dati, dando un'errata illusione
 di sicurezza.  Considerate attentamente la rimozione del taint.
 
@@ -118,4 +118,4 @@ problema che gli autori CPAN dovrebbero considerare seriamente.  Se dovete attiv
 codice preesistente, potete usare il flag C<-t>, che attiva il modo taint ma
 riduce le violazione di taint da eccezioni a semplici warning.  Questo non sostituisce ovviamente il
 modo taint completo, ma vi permette di mettere in sicurezza programmi esistenti senza la rigidità
-dell'approccio ``tutto o nulla'' di C<-T>.
+dell'approccio "tutto o nulla" di C<-T>.

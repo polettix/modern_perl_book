@@ -17,7 +17,7 @@ della sua conversione a booleano.
 Potete fare l'overload del comportamento dell'oggetto per quasi tutte le operazioni e le coercizioni:
 conversione a stringa, numero e booeano, iterazione, invocazione, accesso ad array,
 accesso ad hash, operazioni aritmetiche, operatori di confronto, match intelligente,
-operazioni bit-a-bit e persino assignmenti. La conversione a stringa, numero e booeano
+operazioni bit-a-bit e persino assegnamenti. La conversione a stringa, numero e booeano
 sono i casi più importanti e di uso più comune.
 
 =head2 Overloading di Operazioni Comuni
@@ -58,7 +58,7 @@ A questo punto è facile aggiungere la conversione a stringa:
 
 =end programlisting
 
-Fare l'overload della conversione a numero è più complesso, perché gli operatori binari sono genralmente
+Fare l'overload della conversione a numero è più complesso, perché gli operatori binari sono generalmente
 binari (L<arity>). Dati due operandi di cui si è fatto l'overload dei metodi per l'addizione,
 quale dei due ha la precedenza? La risposta deve essere coerente, facile da
 illustrare e comprensibile anche alle persone che non hanno letto il codice sorgente
@@ -87,7 +87,7 @@ per comporre l'operazione richiesta.  Se non è possibile, Perl
 si comporterà come se non ci fossero degli overload attivi, il che è spesso ciò che desiderate.
 
 Senza C<fallback>, Perl userà soltanto gli overload specifici che avete
-fornito.  Se qualcuno tenta di eseguire un'operazione di cui non avete fatto l'overload
+fornito.  Se qualcuno tenta di eseguire un'operazione della quale non avete fatto l'overload
 viene sollevata un'eccezione.
 
 =head2 Overload e Ereditarietà
@@ -117,7 +117,7 @@ condificare direttamente un riferimento a funzione:
 =end programlisting
 
 In questo caso, ciascuna classe derivata può effettuare in modo diverso le operazioni coinvolte nell'overload
-sovrascrivendo i metodi con nome appropriati.
+sovrascrivendo i metodi con nomi appropriati.
 
 =head2 Usi dell'Overloading
 
@@ -133,8 +133,8 @@ miglior codice evita gli eccessi di ingegno in favore della semplicità.
 Ridefinire l' addizione, la moltiplicazione anche la concatenazione su una classe C<Matrice>
 ha senso, perché la notazione esistente per tali operazioni è
 molto diffusa.  Il dominio di un nuovo problema per cui non esista una notazione consolidata non è un
-buon candidato per l'overloading, come non lo è il domnio di un problema per cui dovete fare salti mortali per
-travare le corrsipondenze tra gli operatori esistenti in Perl e una diversa notazione.
+buon candidato per l'overloading, come non lo è il dominio di un problema per cui dovete fare salti mortali per
+travare le corrispondenze tra gli operatori esistenti in Perl e una diversa notazione.
 
 I<Perl Best Practices> di Damian Conway suggerisce un altro uso dell'overloading, per
 prevenire l'abuso accidentale di oggetti.  Per esempio, fare l'overloading

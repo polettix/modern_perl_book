@@ -22,7 +22,7 @@ oppure esaurisce la lista.
 
 Analogamente, C<use StranaBestia::Persistenza;> fa sì che Perl cerchi un file
 di nome C<Persistenza.pm> in ogni directory di nome F<StranaBestia/> presente in
-una qualunque directory elencata in C<@INC>. C<use StrangeMonkey::UI::SmartPhone;> fa sì che
+una qualunque directory elencata in C<@INC>. C<use StranaBestia::UI::SmartPhone;> fa sì che
 Perl cerchi un path relativo di file F<StranaBestia/UI/SmartPhone.pm> in
 ogni directory in C<@INC>, e così via.
 
@@ -60,7 +60,7 @@ C<import()> di un modulo riceve una lista di nomi e esporta funzioni e
 altri simboli nel namespace chiamante. Si noti che questa è meramente una convenzione; un modulo
 potrebbe non fornire C<import()> oppure il suo C<import()> potrebbe avere un comportamento
 diverso. Le direttive (L<pragmas>) come C<strict> usano gli argomenti per modificare il
-comportamento dello scope lessicale chimante anziché per esportare simboli:
+comportamento dello scope lessicale chiamante anziché per esportare simboli:
 
 =begin programlisting
 

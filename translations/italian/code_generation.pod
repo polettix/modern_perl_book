@@ -8,15 +8,15 @@ mancano di esperienza. Cominciano scrivendo lunghi pezzi di codice procedurale, 
 scoprono le funzioni, poi i parametri, poi gli oggetti e--in qualche caso--le funzioni
 di ordine superiore e le chiusure.
 
-Man mano che miliorate come programmatori, vi troverete a scrivere sempre meno codice per risolvere uno stesso
+Man mano che migliorate come programmatori, vi troverete a scrivere sempre meno codice per risolvere uno stesso
 problema. Userete delle astrazioni migliori e scriverete codice più generico. Potrete
-riusare il codice--e quando arriverete ad aggiungere funzionalità cancellando del codice potrete considervarvi
+riutilizzare il codice--e quando arriverete ad aggiungere funzionalità cancellando del codice potrete considerarvi
 davvero soddisfatti.
 
 X<metaprogrammazione>
 X<generazione di codice>
 
-La scrittura di programmi che scrivono programmi al vostro posto--datta I<metaprogrammazione> o I<generazione
+La scrittura di programmi che scrivono programmi al vostro posto--detta I<metaprogrammazione> o I<generazione
 di codice>--offre ulteriori possibilità di astrazione. Anche se in questo modo potete fare
 enormi pasticci, potete anche creare cose eccellenti. Per esempio, ciò che rende
 possibile Moose (L<moose>) sono proprio delle tecniche di metaprogrammazione.
@@ -30,7 +30,7 @@ di Perl 5 vi permette di controllare che cosa succede quando essi non vengono tr
 X<C<eval>; stringa>
 X<predefinite; funzioni; C<eval>>
 
-La tecnica più semplice di generazione di codice consiste nel definire una stringa contenete un
+La tecnica più semplice di generazione di codice consiste nel definire una stringa contenente un
 pezzetto di codice Perl valido e compilarla con la forma dell'operatore C<eval> che riceve una stringa. Contrariamente
 alla forma a blocco dell'operatore C<eval> usata per catturare eccezioni, la C<eval> di una stringa compila il
 suo contenuto nello scope corrente, che include il package corrente e
@@ -56,7 +56,7 @@ complesso:
 
     sub genera_accessori
     {
-        my ($monemet, $nomeattr) = @_;
+        my ($nomemet, $nomeattr) = @_;
 
         eval <<"FINE_ACCESSORE";
         sub leggi_$nomemet
@@ -112,7 +112,7 @@ senza richiedere ulteriori elaborazioni:
 =end programlisting
 
 Questo codice evita i noiosi problemi di quotatura e compila ogni chiusura una sola volta.
-Usa anche meno menoria dato che tutte le istanze della
+Usa anche meno memoria dato che tutte le istanze della
 chiusura condividono il codice compilato. L'unica cosa che differisce tra due istanze è il lessicale C<$nomeattr> associato. In un
 processo con un lungo tempo di vita o con molti accessori questa tecnica può rivelarsi molto
 utile.
@@ -285,7 +285,7 @@ X<CPAN; C<UNIVERSAL::require>>
 =end programlisting
 
 ... dato che il blocco C<BEGIN>  viene eseguito I<prima> dell'assegnamento del
-valore stringa a C<$package_desiderato>.  Il risulato è un'eccezione
+valore stringa a C<$package_desiderato>.  Il risultato è un'eccezione
 relativa al tentativo di invocare il metodo C<require()> su un valore non definito.
 
 =head2 Class::MOP

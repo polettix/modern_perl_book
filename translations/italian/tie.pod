@@ -5,7 +5,7 @@ Z<tie>
 Mentre l'overloading (L<overloading>) vi permette di personalizzare il comportamento di
 classi e oggetti per tipi specifici di coercizione, un meccanismo detto I<tying> (legatura, NdT)
 ci permette di personalizzare il comportamento dei tipi nativi (scalari, array,
-hash e filehandle). Qualunque operazione effettuate su una variabile legata
+hash e filehandle). Qualunque operazione effettuata su una variabile legata
 si traduce in una specifica chiamata di metodo.
 
 X<predefinite; funzioni; C<tie>>
@@ -68,7 +68,7 @@ operazioni che volete modificare.  Nel caso di uno scalare legato, è probabile 
 includano C<FETCH> e C<STORE>, forse anche C<TIESCALAR()>, ma probabilmente non
 C<DESTROY()>.
 
-Con poco codice, otete creare una classe che tiene traccia di tutte le letture
+Con poco codice, potete creare una classe che tiene traccia di tutte le letture
 e le scritture su uno scalare:
 
 =begin programlisting

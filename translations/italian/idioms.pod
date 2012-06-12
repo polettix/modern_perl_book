@@ -33,7 +33,7 @@ X<argomenti; per nome>
 X<CPAN; C<segnature>>
 X<CPAN; C<MooseX::MultiMethods>>
 
-L'elaborazione di liste è un componente fondamentale della valutazione di espressioni in Perl.
+L'elaborazione di liste è una componente fondamentale della valutazione di espressioni in Perl.
 La possibilità che hanno i programmatori Perl di concatenare espressioni che valutano a
 liste di lunghezza variabile fornisce innumerevoli opportunità di manipolare efficacemente
 i dati.
@@ -76,7 +76,7 @@ a Perl di effettuare la validazione del riferimento ad hash nel chiamante.
 
 =end tip
 
-Quetsa tecnica funziona bene con C<import()> (L<importing>) e altri metodi;
+Questa tecnica funziona bene con C<import()> (L<importing>) e altri metodi;
 elaborate tutti i parametri che desiderate prima di inghiottire tutto ciò che resta in un
 hash:
 
@@ -251,7 +251,7 @@ X<predefinite; variabili globali; C<$/>>
 
 C<local> è fondamentale per gestire le variabili globali predefinite di Perl 5. Dovete
 aver compreso bene gli scope (L<scope>) per usare efficacemente C<local>--ma in tal caso potete
-usere degli scope brevi e leggeri in modi interessanti. Per esempio, per fare lo slurp
+usare degli scope brevi e leggeri in modi interessanti. Per esempio, per fare lo slurp
 di file in uno scalare in un'unica espressione:
 
 =begin programlisting
@@ -271,7 +271,7 @@ C<undef> fino al suo assegnamento. Tale C<local>izzazione ha luogo I<prima>
 dell'assegnamento e, dato che il valore del separatore non è definito, Perl non ha problemi a leggere
 l'intero contenuto del filehandle in una volta e ad assegnare il suo valore a C<$/>.
 Poiché il valore di un blocco C<do> è quello dell'ultima espressione valutata
-al suo interno, n questo caso il blocco valuta al valore dell'assegnamento, ovvero il contenuto
+al suo interno, in questo caso il blocco valuta al valore dell'assegnamento, ovvero il contenuto
 del file. Sebbene al termine del blocco il valore di C<$/> venga immediatamente ripristinato al suo stato precedente, 
 il valore finale di C<$file> sarà il contenuto del file.
 
@@ -293,7 +293,7 @@ alternativa e spesso è anche più veloce.
 
 =head2 Gestire il Main
 
-Perl no ha una sintassi speciale per la creazione delle chiusure (L<closures>); può quindi succedere che
+Perl non ha una sintassi speciale per la creazione delle chiusure (L<closures>); può quindi succedere che
 facciate involontariamente la chiusura di una variabile lessicale. Molti programmi impostano
 svariate variabili lessicali nello scope del file prima di trasferire l'elaborazione ad altre
 funzioni. Potreste essere tentati di usare queste variabili direttamente, anziché passare e ricevere
@@ -339,7 +339,7 @@ di codice.
 X<predefinite; funzioni; C<caller>>
 
 L'unico argomento, peraltro opzionale, di C<caller> è il numero di contesti di chiamata
-(L<recursion>) di cui riportare informazioni. C<caller(0)> riporta informazioni sul
+(L<recursion>) sui quali riportare informazioni. C<caller(0)> riporta informazioni sul
 contesto di chiamata corrente. Per permettere a un modulo di essere eseguito correttamente I<sia> come programma I<sia> come
 modulo, mettete tutto il codice eseguibile all'interno di funzioni, aggiungete una funzione C<main()> e
 scrivete la seguente linea all'inizio del modulo:
@@ -446,7 +446,7 @@ con un'espressione regolare precompilata in C<$nome_battesimo_regex>:
 In contesto lista, un match riuscito di una regex restituisce una lista di tutte le catture
 (L<regex_captures> e Perl assegna la prima di esse a C<$nome_di_battesimo>.
 
-Per modificare il nome, ad esempio per rimuovere tutti i caratteri non di parola per create un nome
+Per modificare il nome, ad esempio per rimuovere tutti i caratteri non di parola per creare un nome
 utente da usare per le credenziali di un sistema, potete scrivere:
 
 =begin programlisting
@@ -465,7 +465,7 @@ scrivere anche C<my $nome_normalizzato = $nome =~ tr/A-Za-z//dcB<r>;>.
 Per prima cosa, assegnate il valore di C<$nome> a C<$nome_normalizzato>, dato che le parentesi
 modificano la precedenza in modo che l'assegnamento venga eseguito per primo.  L'espressione di
 assegnamento valuta alla I<variabile> C<$nome_normalizzato>, quindi tale
-variabile diventa il primo operando all'operatore di traslitterazione.
+variabile diventa il primo operando dell'operatore di traslitterazione.
 
 Questa tecnica è applicabile ad altri operatori di modifica sul posto:
 
@@ -487,7 +487,7 @@ X<tipi>
 
 Il sistema di tipi di Perl 5 fa quasi sempre la cosa giusta quando usate gli
 operatori corretti. Se usate l'operatore di concatenazione di stringhe, Perl tratterà
-entrambi gli operando come sringhe. Se usate l'operatore di addizione, Perl tratterà entrambi
+entrambi gli operando come stringhe. Se usate l'operatore di addizione, Perl tratterà entrambi
 gli operandi come numeri.
 
 Tuttavia, qualche volta dovete dare a Perl un suggerimento su ciò che intendete fare, usando una I<coercizione

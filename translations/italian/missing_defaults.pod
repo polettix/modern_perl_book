@@ -36,8 +36,8 @@ offre il fianco a errori sottili di azione a distanza--o, peggio ancora, alla
 possibilità di manipolazione di strutture dati interne per fini illeciti
 da parte di input utente scarsamente validato.
 
-Richiedere che le variabili siano dichiarate aiuta a rilevare erroti di battitura nei nomi delle variabili e
-incoraggia la definizione di variabili lessicali negli con appropriati. È molto più facile capire qual è
+Richiedere che le variabili siano dichiarate aiuta a rilevare errori di battitura nei nomi delle variabili e
+incoraggia la definizione di variabili lessicali negli scope appropriati. È molto più facile capire qual è
 lo scope che si intende associare a una variabile lessicale se tutte le variabili hanno dichiarazioni C<my> e C<our>
 nello scope appropriato.
 

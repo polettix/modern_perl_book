@@ -17,7 +17,7 @@ normalmente Perl 5 appiattirebbe l'array e la lista in un'unica lista da passare
 C<push>, il parser sa che non deve appiattire l'array, in modo che C<push> possa modificarlo
 sul posto.
 
-I protipi di funzione sono parte delle dichiarazioni:
+I prototipi di funzione sono parte delle dichiarazioni:
 
 =begin programlisting
 
@@ -206,7 +206,7 @@ argomento è un blocco che diventa una funzione anonima. Il secondo argomento
 
 I lettori attenti avranno forse notato che manca la virgola dopo il blocco. Si tratta
 di una idiosincrasia del parser Perl 5, che si aspetta un carattere di spaziatura dopo un blocco con
-prototipo invece dell'operatore virgola. È un altro dei problemi della sintassi dei protipi.
+prototipo invece dell'operatore virgola. È un altro dei problemi della sintassi dei prototipi.
 
 Potete usare C<throws_ok()> senza usare i prototipi:
 
@@ -225,7 +225,7 @@ Potete usare C<throws_ok()> senza usare i prototipi:
 X<predefinite; funzioni; C<sort>>
 
 Un ultimo caso di uso appropriato dei prototipi è quando definite una vostra funzione con nome da usare
-con C<sort>N<Questo esempio è stato suggerito Ben Tilly.>:
+con C<sort>N<Questo esempio è stato suggerito da Ben Tilly.>:
 
 =begin programlisting
 

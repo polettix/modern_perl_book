@@ -18,7 +18,7 @@ La loro lista esaustiva è contenuta in C<perldoc perlvar>.
 X<variabili sovraglobali; gestione>
 X<predefinite; funzioni; C<local>>
 
-Le nuove versioni di Perl 5 continano a convertire dei comportamenti globali in comportamenti lessicali; grazie a ciò,
+Le nuove versioni di Perl 5 continuano a convertire dei comportamenti globali in comportamenti lessicali; grazie a ciò,
 è possibile evitare di usare molte di queste variabili sovraglobali. Quando però non potete evitarle, usate C<local> nello scope
 più ristretto possibile per limitare gli effetti delle vostre modifiche. In questo modo, anche se il vostro codice rimane
 esposto ai cambiamenti effettuati su tali variabili dal codice che I<chiamate>,
@@ -84,11 +84,11 @@ X<C<$'>>
 X<predefinite; variabili globali; C<$'>>
 
 Tre variabili sovraglobali relative alle regex (C<$&>, C<$`> e C<$'>) impongono una penalità
-all'efficienza che si applica globalmente a I<le> espressioni regolari di un programma.  Se
+di efficienza che si applica globalmente a I<tutte> le espressioni regolari di un programma.  Se
 dimenticate di importare C<-no_match_vars>, il vostro programma pagherà la penalità anche
 se non leggete esplicitamente da tali variabili.
 
-I programmi in Perl moderno dovrebbero usare la variabile C<@-> come sostituta di questo terribile
+I programmi in Perl moderno dovrebbero usare la variabile C<@-> al posto di questo terribile
 terzetto di variabili.
 
 =head2 Variabili Sovraglobali Utili
@@ -176,7 +176,7 @@ X<predefinite; variabili globali; C<$@>>
 X<C<$EVAL_ERROR>>
 X<predefinite; variabili globali; C<$EVAL_ERROR>>
 
-=item * C<$@> (C<$EVAL_ERROR>) contiene il valore lanciato dall'eccezione
+=item * C<$@> (C<$EVAL_ERROR>) contiene il valore restituito dall'eccezione
 più recente (L<catching_exceptions>).
 
 X<C<$0>>
@@ -209,7 +209,7 @@ altri dati che potrebbero essere contenuti in questo array.
 X<C<%SIG>>
 X<predefinite; variabili globali; C<%SIG>>
 
-=item * C<%SIG> mappa i segnali del SO e i segnali di basso livello di Perl su riferimenti alla funzioni
+=item * C<%SIG> mappa i segnali del SO e i segnali di basso livello di Perl su riferimenti alle funzioni
 usate per gestire tali segnali. Per esempio, potete intercettare l'interrupt standard Ctrl-C catturando
 il segnale C<INT>. Vedete C<perldoc perlipc> per maggiori informazioni
 sui segnali e specialmente sui segnali sicuri.

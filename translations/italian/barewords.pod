@@ -60,7 +60,7 @@ per cui i nomi di package hanno iniziali maiuscole e le funzioni no, vi imbatter
 in collisioni di nomi, ma il parser di Perl 5 deve decidere come parsificare
 C<< Package->metodo() >>. Significa "chiama una funzione di nome C<Package()> e
 poi chiama C<metodo()> sul suo valore di ritorno"? oppure significa "Chiama un metodo di nome
-C<metodo()> nel namespace C<Package>"?. La risposta cambia a seconda del codice
+C<metodo()> nel namespace C<Package>"? La risposta cambia a seconda del codice
 che il parser ha già incontrato nel namespace corrente.
 
 Potete forzare il parser a trattare C<Package> come un nome di package appendendo il separatore di

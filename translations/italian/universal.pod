@@ -23,14 +23,14 @@ che deriva dalla classe C<Mammifero>):
 
 =begin programlisting
 
-    say $pepe->isa(   'Monkey'    );  # stampa 1
-    say $pepe->isa(   'Mammal'    );  # stampa 1
+    say $pepe->isa(   'Scimmia'   );  # stampa 1
+    say $pepe->isa(   'Mammifero' );  # stampa 1
     say $pepe->isa(   'HASH'      );  # stampa 1
     say Scimmia->isa( 'Mammifero' );  # stampa 1
 
     say $pepper->isa( 'Delfino'   );  # stampa 0
     say $pepper->isa( 'ARRAY'     );  # stampa 0
-    say Monkey->isa(  'HASH'      );  # stampa 0
+    say Scimmia->isa( 'HASH'      );  # stampa 0
 
 =end programlisting
 
