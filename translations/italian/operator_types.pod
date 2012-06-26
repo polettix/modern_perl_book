@@ -289,7 +289,7 @@ X<C<..>; operatore flip-flop>
 In contesto booleano, l'operatore di intervallo diventa l'operatore I<flip-flop>. Questo
 operatore produce un valore falso fino a quando il suo operando sinistro non diventa vero. Tale valore
 rimane vero fino a quando l'operando destro non diventa vero, dopo di che il valore prodotto è di nuovo falso
-fino a quando l'operatore sinistro non diventa di nuovo vero. Immaginate di parsificare il testo di una lettera
+fino a quando l'operatore sinistro non diventa di nuovo vero. Immaginate di effettuare il parsing del testo di una lettera
 formale con:
 
 =begin programlisting

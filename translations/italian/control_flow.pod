@@ -811,7 +811,7 @@ Usate un blocco C<do> per raggruppare diverse espressioni in una singola unità:
 
 =end programlisting
 
-Un blocco C<do> viene parsificato come una singola espressione che può contenere diverse
+Un blocco C<do> viene interpretato come una singola espressione che può contenere diverse
 espressioni. Al contrario della forma a blocco del ciclo C<while>, il blocco C<do> con un
 postfisso C<while> o C<until> esegue il proprio corpo almeno una volta. Questo
 costrutto è meno comune delle altre forme di ciclo, ma non meno potente.

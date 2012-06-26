@@ -57,7 +57,7 @@ X<package; bareword come nomi>
 
 Anche i nomi di package in Perl 5 sono delle bareword. Se vi attenete alla convenzione
 per cui i nomi di package hanno iniziali maiuscole e le funzioni no, vi imbatterete raramente
-in collisioni di nomi, ma il parser di Perl 5 deve decidere come parsificare
+in collisioni di nomi, ma il parser di Perl 5 deve decidere come interpretare
 C<< Package->metodo() >>. Significa "chiama una funzione di nome C<Package()> e
 poi chiama C<metodo()> sul suo valore di ritorno"? oppure significa "Chiama un metodo di nome
 C<metodo()> nel namespace C<Package>"? La risposta cambia a seconda del codice
@@ -125,7 +125,7 @@ X<prototipi; bareword>
 
 Le costanti sono un caso speciale di funzioni prototipate (L<prototypes>). Quando
 predichiarate una funzione con un prototipo, il parser sa come deve trattare tale
-funzione e vi avverte in caso ci siano ambiguità di parsificazione. Tutti i problemi dei
+funzione e vi avverte in caso ci siano ambiguità di interpretazione. Tutti i problemi dei
 prototipi si applicano anche alle costanti.
 
 =head2 Usi Inappropriati delle Bareword
@@ -143,7 +143,7 @@ X<C<B::Deparse>>
 
 Il code scritto senza usare C<strict 'subs'> può usare delle bareword come nomi di funzione. Aggiungere
 delle parentesi fa sì che il codice soddisfi le restrizioni.  Usate C<perl -MO=Deparse,-p> (vedete
-C<perldoc B::Deparse>) per scoprire come Perl le parsifica, e quindi aggiungete le parentesi
+C<perldoc B::Deparse>) per scoprire come Perl le interpreta, e quindi aggiungete le parentesi
 appropriate.
 
 =head3 Bareword come valori di hash

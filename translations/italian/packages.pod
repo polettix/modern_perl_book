@@ -11,7 +11,7 @@ ma non necessario, che vi siano tali relazioni.
 
 In Perl 5 un I<package> è una collezione di codice contenuto in un singolo namespace. La
 distinzione è sottile: il package rappresenta il codice sorgente e il namespace
-rappresenta l'entità creata quando Perl parsifica tale codice.
+rappresenta l'entità creata quando Perl effettua il parsing di tale codice.
 
 X<predefinite; parole chiave; C<package>>
 
