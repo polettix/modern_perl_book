@@ -167,7 +167,7 @@ Z<exception_caveats>
 X<eccezioni; avvertenze>
 
 Mentre sollevare eccezioni è relativamente semplice, catturarle lo è di meno.
-Usare C<$@> correttamente vi richiede di scansare svariati rischi piuttosto sottili:
+Usare C<$@> correttamente vi richiede di scansare svariati rischi piuttosto insidiosi:
 
 =over 4
 

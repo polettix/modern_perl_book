@@ -446,7 +446,7 @@ riferimento a funzione con la freccia di dereferenziazione:
 
 Un modo alternativo per invocare riferimenti a funzione è quello di usare il sigillo funzione
 (C<&>) invece della freccia di dereferenziazione. Evitate questa sintassi, dato che ha alcune
-sottili implicazioni per il parsing e per il passaggio degli argomenti.
+insidiose implicazioni per il parsing e per il passaggio degli argomenti.
 
 =end tip
 

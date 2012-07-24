@@ -173,7 +173,7 @@ allomorfico.
 
 Potreste essere tentati di memorizzare altri metodi in C<UNIVERSAL> per renderli disponibili a
 tutte le altre classi e oggetti Perl 5. Resistete a questa tentazione; un comportamento globale
-può avere effetti collaterali sottili proprio perché non è vincolato.
+può avere effetti collaterali insidiosi proprio perché non è vincolato.
 
 X<CPAN; C<UNIVERSAL::ref>>
 X<CPAN; C<UNIVERSAL::isa>>

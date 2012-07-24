@@ -764,7 +764,7 @@ il numero di parametri passati a una funzione. Tali euristiche possono sbagliare
 
 =begin programlisting
 
-    # attenzione; contiene un sottile errore
+    # attenzione; contiene un insidioso errore
     ok esiste_elem 1, @elementi, 'trovato primo elemento';
 
 =end programlisting
@@ -776,4 +776,4 @@ valore non-numerico (la descrizione del test, che non può essere convertita in 
 l'elemento nell'array.
 
 Mentre l'uso indiscriminato di parentesi può peggiorare la leggibilità, un loro uso ponderato
-può chiarire il significato del codice e rendere improbabili alcuni errori sottili.
+può chiarire il significato del codice e rendere improbabili alcuni errori insidiosi.

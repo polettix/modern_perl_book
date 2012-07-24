@@ -4,7 +4,7 @@ Z<taint>
 
 Perl fornisce strumenti per scrivere programmi sicuri. Tali strumenti non
 sostituiscono un'attenta analisi e pianificazione, ma possono I<ricompensare> la vostra cautela
-e comprensione dei problemi aiutandovi ad evitare errori sottili.
+e comprensione dei problemi aiutandovi ad evitare errori insidiosi.
 
 =head2 Uso del Modo Taint
 

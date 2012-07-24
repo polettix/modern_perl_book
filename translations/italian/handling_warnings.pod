@@ -3,7 +3,7 @@
 Z<handling_warnings>
 
 Anche se c'è più di un modo di scrivere un programma funzionante in Perl 5, alcuni di tali
-modi possono essere poco eleganti, poco chiari o anche sottilmente 
+modi possono essere poco eleganti, poco chiari o anche insidiosamente 
 sbagliati. Il sistema di warning opzionali di Perl 5 può aiutarvi a identificare e
 evitare queste situazioni.
 

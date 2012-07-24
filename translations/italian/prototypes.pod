@@ -95,7 +95,7 @@ I prototipi modificano il modo in cui Perl fa il parsing del vostro codice e pos
 di tipo. Non servono né a documentare il numero o il tipo degli argomenti delle funzioni,
 né a mappare gli argomenti su parametri per nome.
 
-Le coercizioni di tipo causate dai prototipi hanno comportamenti sottili, come quello di forzare il contesto scalare sugli
+Le coercizioni di tipo causate dai prototipi hanno comportamenti insidiosi, come quello di forzare il contesto scalare sugli
 argomenti:
 
 =begin programlisting

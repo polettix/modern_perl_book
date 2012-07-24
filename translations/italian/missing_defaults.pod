@@ -32,7 +32,7 @@ C<strict> proibisce i riferimenti simbolici, richiede che le variabili siano dic
 (L<lexical_scope>) e proibisce l'uso di bareword non dichiarate
 (L<barewords>). Anche se l'uso occasionale dei riferimenti simbolici può essere necessario per
 manipolare le tabelle dei simboli (L<import>), l'uso di una variabile come nome di variabile
-offre il fianco a errori sottili di azione a distanza--o, peggio ancora, alla
+offre il fianco a errori insidiosi di azione a distanza--o, peggio ancora, alla
 possibilità di manipolazione di strutture dati interne per fini illeciti
 da parte di input utente scarsamente validato.
 

@@ -160,7 +160,7 @@ X<direttive; C<strict>>
 
 L'assegnamento in una tabella dei simboli tramite stringa, anziché tramite un nome letterale di variabile,
 è detto riferimento simbolico. Durante questa operazione dovete disattivare il controllo dei riferimenti effettuato da C<strict>.
-Molti programmi contengono un errore sottile in pezzi di codice simili a quello sopra, quando generano la chiusura e fanno l'assegnamento
+Molti programmi contengono un errore insidioso in pezzi di codice simili a quello sopra, quando generano la chiusura e fanno l'assegnamento
 in un'unica linea:
 
 =begin programlisting
@@ -169,7 +169,7 @@ in un'unica linea:
         no strict 'refs';
 
         *{ $nomemet } = sub {
-            # errore sottile: strict refs e` disattivato anche qui
+            # errore insidioso: strict refs e` disattivato anche qui
         };
     }
 
@@ -263,8 +263,8 @@ delle funzioni viene eseguito alla I<fine> del parsing.
 
 Fate attenzione alle interazioni tra una I<dichiarazione> lessicale (l'associazione di un nome
 ad uno scope) e un I<assegnamento> lessicale. La prima avviene durante
-la compilazione, mentre il secondo avviene al momento dell'esecuzione. Il seguente codice ha un errore
-sottile:
+la compilazione, mentre il secondo avviene al momento dell'esecuzione. Il seguente codice contiene un errore
+insidioso:
 
 X<CPAN; C<UNIVERSAL::require>>
 
