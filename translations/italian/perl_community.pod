@@ -63,6 +63,15 @@ Perl Buzz (U<http://perlbuzz.com/>) raccoglie e ripubblica periodicamente alcune
 utili e interessanti. Perl Weekly
 (U<http://perlweekly.com/>) offre una panoramica settimanale delle notizie dal mondo Perl.
 
+X<perl.it>
+Perl.it (U<http://perl.it/>) si propone invece come "il punto di riferimento del
+linguaggio Perl in Italia". L'Associazione di Promozione Sociale Perl.it, che lo
+gestisce, ha finanziato la traduzione in italiano del presente libro ed organizza
+annualmente l'Italian Perl Workshop (U<http://perl.it/workshop/>), conferenza
+nazionale sul linguaggio Perl e tecnologie correlate. Se volete leggere materiale
+in italiano ed entrare in contatto con altri programmatori Perl in Italia, questo
+è decisamente il sito che fa per voi.
+
 =head1 Siti sullo Sviluppo
 
 X<RT>
@@ -117,6 +126,9 @@ Conference--è un modello di conferenze locali e a basso costo, adottato con suc
 Sul wiki della Perl Foundation potete trovare l'elenco degli altri eventi, all'URL
 U<http://www.perlfoundation.org/perl5/index.cgi?perl_events>.
 
+Esiste inoltre il già menzionato Italian Perl Workshop, sul quale trovate 
+informazioni all'URL U<http://perl.it/worhshop/>.
+
 X<Perl Mongers>
 
 Centinaia di gruppi Perl Mongers locali si incontrano frequentemente per discussioni tecniche e per socializzare. Vedete U<http://www.pm.org/>.
@@ -138,3 +150,9 @@ Il server principale per la comunità Perl è U<irc://irc.perl.org/>. Prendete n
 I<#perl-qa>, dedicato al testing e ad altre problematiche legate alla qualità del codice. Sappiate che invece
 il canale I<#perl> ha uno scopo molto generale, ed è usato dai suoi partecipanti per discutere di qualunque argomento
 gli interessi in quel momentoN<... e, come tale, non è principalmente una sorgente di aiuto.>.
+
+X<IRC; #perl-it>
+
+La comunità italiana ha anche un proprio canale IRC, dove ovviamente potete
+scrivere (e ottenere risposte!) in italiano. Il server al quale connettersi
+è U<irc://irc.freenode.net>, e il nome del canale I<#perl.it>.
