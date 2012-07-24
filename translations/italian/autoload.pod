@@ -218,7 +218,7 @@ tutte le funzioni che pensate di gestire con C<AUTOLOAD()>  :
 
 =begin tip Ora lo Potete Vedere
 
-Le dichiarazioni in avanti sono utili solo nei due casi piuttosto rari dell'uso degli attributi e dell'autoload (L<autoload>).
+Le dichiarazioni anticipate sono utili solo nei due casi piuttosto rari dell'uso degli attributi e dell'autoload (L<autoload>).
 
 =end tip
 

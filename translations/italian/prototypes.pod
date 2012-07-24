@@ -27,9 +27,9 @@ I prototipi di funzione sono parte delle dichiarazioni:
 
 =end programlisting
 
-Un prototipo associato a una dichiarazione in avanti deve corrispondere al prototipo
+Un prototipo associato a una dichiarazione anticipata deve corrispondere al prototipo
 associato alla dichiarazione della funzione; in caso contrario, Perl genera un warning.
-Curiosamente, potete omettere il prototipo nella dichiarazione in avanti e
+Curiosamente, potete omettere il prototipo nella dichiarazione anticipata e
 includerlo nella dichiarazione vera e propria--ma non ci sono ragioni per farlo.
 
 X<predefinite; funzioni; C<prototype>>

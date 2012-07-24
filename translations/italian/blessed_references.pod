@@ -283,7 +283,7 @@ Considerate di usare un modulo come C<Class::Accessor> per evitare un eccessivo
 copia e incolla.
 
 =item * Evitate C<AUTOLOAD()> ogni volta che potete. Se proprio I<dovete> usarlo, fate delle
-dichiarazioni in avanti delle vostre funzioni (L<functions>) per aiutare Perl a scoprire quale
+dichiarazioni anticipate delle vostre funzioni (L<functions>) per aiutare Perl a scoprire quale
 C<AUTOLOAD()> fornisce l'implementazione del metodo.
 
 =item * Tenete a mente che qualcuno, da qualche parte dovrà prima o poi derivare dalle vostre classi (o

@@ -15,10 +15,10 @@ Usate il costrutto nativo C<sub> per dichiarare una funzione:
 
 Da questo momento C<salutami()> può essere invocata dovunque all'interno del programma.
 
-X<funzioni; dichiarazione in avanti>
+X<funzioni; dichiarazione anticipata>
 
 Non è necessario I<definire> una funzione nello stesso punto in cui la dichiarate. Una
-I<dichiarazione in avanti> dice al Perl di ricordarsi il nome della funzione anche se essa
+I<dichiarazione anticipata> dice al Perl di ricordarsi il nome della funzione anche se essa
 verrà definita dopo:
 
 =begin programlisting
