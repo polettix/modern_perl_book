@@ -127,7 +127,7 @@ Sul wiki della Perl Foundation potete trovare l'elenco degli altri eventi, all'U
 U<http://www.perlfoundation.org/perl5/index.cgi?perl_events>.
 
 Esiste inoltre il già menzionato Italian Perl Workshop, sul quale trovate 
-informazioni all'URL U<http://perl.it/worhshop/>.
+informazioni all'URL U<http://perl.it/workshop/>.
 
 X<Perl Mongers>
 
