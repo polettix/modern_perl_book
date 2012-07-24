@@ -139,7 +139,7 @@ X<direttive; C<autovivification>>
 Questo utile processo è detto I<autovivificazione>. Anche se riduce il codice
 di inizializzazione delle strutture dati annidate, non distingue tra un
 vero intento di creare elementi mancanti e gli
-errori di battitura. La pragma C<autovivification> di CPAN (L<pragmas>) vi permette di disabilitare
+errori di battitura. La direttiva C<autovivification> di CPAN (L<pragmas>) vi permette di disabilitare
 l'autovivificazione in uno scope lessicale per specifici tipi di operazioni.
 
 Potreste vedere una contraddizione nell'idea di sfruttare
@@ -152,7 +152,7 @@ specificare la loro dimensione e le chiavi permesse?
 Le risposte dipendono dal vostro progetto. All'inizio dello sviluppo, concedetevi la libertà
 di sperimentare. Quando arrivate al test e alla distribuzione, considerate di incrementare
 le restrizioni per evitare effetti collaterali indesiderati. Grazie allo scope lessicale delle
-pragma C<strict> e C<autovivification>, potete abilitarle dove
+direttive C<strict> e C<autovivification>, potete abilitarle dove
 e quando lo ritenete necessario.
 
 Naturalmente I<potreste> verificare le vostre aspettative prima di dereferenziare ogni livello di una

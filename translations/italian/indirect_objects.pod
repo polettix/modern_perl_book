@@ -31,7 +31,7 @@ X<notazione dativa>
 Nella forma indiretta (e, più precisamente, nel caso I<dativo>) del primo
 esempio, il verbo (il metodo) precede il nome a cui si riferisce (l'oggetto).
 Questo va bene nei linguaggi naturali, ma in Perl 5 introduce delle ambiguità
-di parsing.
+di interpretazione.
 
 Dato che il nome del metodo è una bareword (L<barewords>), il parser deve indovinare
 qual è l'interpretazione corretta del codice attraverso l'uso di svariate euristiche. Anche se tali

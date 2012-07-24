@@ -367,7 +367,7 @@ X<direttiva C<utf8>>
 X<codifica>
 
 Potete includere caratteri Unicode nei vostri programmi in tre modi. Il modo più semplice
-è quello di usare la pragma C<utf8> (L<pragmas>), che indica al parser Perl di
+è quello di usare la direttiva C<utf8> (L<pragmas>), che indica al parser Perl di
 interpretare il resto del file di codice sorgente con la codifica UTF-8. Ciò vi permette
 di usare caratteri Unicode nelle stringhe e negli identificatori:
 
@@ -492,7 +492,7 @@ Ci sono diversi scenari anche per il letterale stringa:
 =end programlisting
 
 =item * È una stringa non-ASCII e contiene caratteri Unicode
-perché è attiva la pragma C<utf8> o C<encoding>.
+perché è attiva la direttiva C<utf8> o C<encoding>.
 
 =begin programlisting
 

@@ -30,7 +30,7 @@ di C<%ENV>.
 
 =head2 Origine dei Dati Marchiati
 
-I dati marchiati hanno due origini: l'input da file input e l'ambiente operativo
+I dati marchiati hanno due origini: i dati provenienti da un qualsiasi canale di input e l'ambiente operativo
 del programma. Il primo consiste in qualunque cosa leggiate da un file o riceviate dagli utenti
 nel caso di programmi web o di rete. Il secondo include gli argomenti a
 linea di comando, le variabili d'ambiente e i dati restituiti da chiamate di sistema. Anche un'operazione

@@ -79,11 +79,11 @@ riferimento al metodo con:
 
 =begin programlisting
 
-    if (my $met = ScimmiaRagno->can( 'strilla' )) {...}
+    if (my $metodo = ScimmiaRagno->can( 'strilla' )) {...}
 
-    if (my $met = $sm->can( 'strilla' )
+    if (my $metodo = $sm->can( 'strilla' )
     {
-        $sm->$met();
+        $sm->$metodo();
     }
 
 =end programlisting
@@ -114,7 +114,7 @@ X<CPAN; C<Module::Pluggable>>
 
 Mentre il modulo CPAN C<Class::Load> semplifica il caricamento di classi per
 nome--evitando il balletto dei C<require>--C<Module::Pluggable> vi solleva
-da gran parte del lavoro necessario per creare e gestire sistemi plugin. Imparate a usare entrambe le
+da gran parte del lavoro necessario per creare e gestire sistemi di plugin. Imparate a usare entrambe le
 distribuzioni.
 
 =end tip

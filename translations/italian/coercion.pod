@@ -114,8 +114,8 @@ contiene I<entrambi> i componenti. Analogamente, la coercizione di una stringa a
 componente numerica lasciando la componente stringa inalterata.
 
 Certe operazioni del Perl preferiscono usare una componente di un valore piuttosto
-che l'altra--per esempio, i test booleani preferiscono la stringa. Se un valore ha fatto il cache
-di una rappresentazione in una forma che non vi aspettate, affidarvi a una conversione implicita
+che l'altra--per esempio, i test booleani preferiscono la stringa. Se un valore si è memorizzato in cache 
+la rappresentazione in una forma che non vi aspettate, affidarvi a una conversione implicita
 può dare delle sorprese. Non avrete quasi mai la necessità di esplicitare che cosa vi aspettate
 N<Il vostro autore ricorda di averlo dovuto fare solo due volte in oltre dieci anni di programmazione in
 Perl 5>, ma sapere che questo caching ha luogo potrebbe aiutarvi una volta o l'altra a

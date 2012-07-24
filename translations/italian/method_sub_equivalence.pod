@@ -127,5 +127,5 @@ delle sottoclassi. Anche creare una API che non possa essere usata scorrettament
 così come scrivere la documentazione. Che cosa succede quando una parte del progetto
 usa l'interfaccia procedurale e un'altra parte usa l'interfaccia a oggetti?
 
-Se I<dovete> fornire sia un'interfaccia procedurale che un'interfaccia OO ad una libreria,
+Se I<dovete> fornire sia un'interfaccia procedurale che una orientata agli oggetti ad una libreria,
 create due API separate.

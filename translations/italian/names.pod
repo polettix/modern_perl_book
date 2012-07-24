@@ -8,7 +8,7 @@ X<identificatori>
 I I<nomi> (o I<identificatori>) sono dappertutto nei programmi Perl: variabili,
 funzioni, package, classi e perfino filehandle. Tutti questi nomi iniziano con
 una lettera o un underscore e possono includere opzionalmente qualunque combinazione di
-lettere, numberi e underscore.  Quando la pragma C<utf8> (L<unicode>) è attivata,
+lettere, numberi e underscore.  Quando la direttiva C<utf8> (L<unicode>) è attivata,
 potete usare negli identificatori qualunque carattere ammesso da UTF-8 in una parola. Questi sono tutti identificatori
 validi in Perl:
 
@@ -151,7 +151,7 @@ C<Dolci::Gelato::aggiungi_praline()> al di fuori del namespace.
 
 Oltre alle regole standard per i nomi, che si applicano anche ai nomi di package, per convenzione i nomi di package
 definiti dagli utenti iniziano con lettere maiuscole. Il core del Perl riserva infatti i nomi di package
-tutti minuscoli per le pragma (L<pragmas>) come C<strict> e C<warnings>.
+tutti minuscoli per le direttive (L<pragmas>) come C<strict> e C<warnings>.
 Questa politica è imposta essenzialmente attraverso il rispetto delle linee guida della comunità.
 
 Tutti i namespace in Perl 5 sono visibili a livello globale. Quando Perl deve fare la ricerca di un simbolo in

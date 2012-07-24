@@ -195,8 +195,8 @@ utilizzabili in tutto il sistema:
 
 =end programlisting
 
-Ogni pezzo di codice può ora usare questo modulo e, facoltativamente, importare alcune o tutte le
-tre funzioni esportate. Potete anche esportare variabili:
+Ogni pezzo di codice può ora usare questo modulo e, facoltativamente, importare alcune delle
+tre funzioni esportate (o tutte e tre). Potete anche esportare variabili:
 
 =begin programlisting
 

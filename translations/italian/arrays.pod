@@ -301,9 +301,11 @@ valutata in contesto scalare produce un warning:
 
 =begin screen
 
-    È meglio scrivere il valore scalare @gatti[1] come $gatti[1]...
+    Scalar value @gatti[1] better written as $gatti[1] at...
 
 =end screen
+
+(NdT: tradotto sarebbe "È meglio scrivere il valore scalare @gatti[1] come $gatti[1]...").
 
 Una slice di array impone il contesto lista anche all'espressione
 che usa come indice:
@@ -331,7 +333,7 @@ normale funzione Perl 5, essi si appiattiscono in un'unica lista:
 
     sub porta_dal_veterinario
     {
-        # BACATO: non usatelo!
+        # SBAGLIATO: non usatelo!
         my (@gatti, @cani) = @_;
         ...
     }

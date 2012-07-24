@@ -375,7 +375,7 @@ X<CPAN; C<Want>>
 X<direttive; C<overloading>>
 
 Il modulo CPAN C<Want> vi permette di individuare un contesto booleano all'interno
-delle vostre funzioni. La pragma C<overloading> del core (L<overloading>) vi permette
+delle vostre funzioni. La direttiva C<overloading> del core (L<overloading>) vi permette
 di specificare che cosa devono produrre i vostri tipi di dati quando sono valutati in diversi contesti.
 
 =end tip
@@ -678,7 +678,7 @@ booleano falso. Un modo idiomatico di scrivere un ciclo infinito è:
 =end programlisting
 
 Al contrario dell'iterazione con cicli in stile C<foreach>, la condizione di ciclo del C<while>
-non ha di per sé alcun side effect. Ovvero, se C<@valori> contiene uno o più elementi,
+non ha di per sé alcun effetto collaterale. Ovvero, se C<@valori> contiene uno o più elementi,
 anche questo codice è un ciclo infinito:
 
 =begin programlisting

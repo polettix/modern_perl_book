@@ -65,7 +65,7 @@ In alternativa, vedete C<Try::Tiny> (L<exception_caveats>).
 
 X<C<English>>
 
-Il modulo C<English> distribuito con Perl fornisce dei nomi verbosi per le variabili sovraglobali al posto di quelli composti di punteggiatura. Potete importarli in un namespace con:
+Il modulo C<English> distribuito con Perl fornisce dei nomi lunghi (più facili da ricordare) per le variabili sovraglobali al posto di quelli composti di punteggiatura. Potete importarli in un namespace con:
 
 =begin programlisting
 
@@ -73,7 +73,7 @@ Il modulo C<English> distribuito con Perl fornisce dei nomi verbosi per le varia
 
 =end programlisting
 
-In questo modo potete usare i nomi verbosi documentati in C<perldoc perlvar>
+In questo modo potete usare i nomi lunghi documentati in C<perldoc perlvar>
 all'interno dello scope della direttiva.
 
 X<C<$&>>

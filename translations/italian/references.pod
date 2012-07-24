@@ -510,8 +510,8 @@ riferimenti ai filehandle globali del package come C<STDIN>, C<STDOUT>,
 C<STDERR> e C<DATA>--ma questi nomi sono comunque globali.
 
 Dovunque è possibile, è preferibile usare i filehandle lessicali. Con tutti i benefici di uno scope esplicito,
-i filehandle lessicali vi permettono di gestire la durata della vita di un filehandle come
-una funzionalità della gestione della memoria di Perl 5.
+i filehandle lessicali vi permettono di gestire la durata della vita di un filehandle tramite
+le funzionalità di gestione dello scope di Perl 5.
 
 =head2 Reference Count
 
@@ -527,7 +527,7 @@ arriva a zero, Perl può riciclare il valore in modo sicuro.
 X<lessicali; ciclo di vita>
 
 Come fa il Perl a sapere quando può rilasciare la memoria associata a una variabile senza causare problemi? Come
-fa il Perl a sapere quando è sicuro chiudere il file aperto nello scope più interno del codice:
+fa il Perl a sapere quando è sicuro chiudere il file aperto nello scope più interno del seguente codice?
 
 =begin programlisting
 

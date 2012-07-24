@@ -300,7 +300,7 @@ funzioni. Potreste essere tentati di usare queste variabili direttamente, anzich
 i loro valori dalle funzioni, specialmente quando il programma cresce di dimensioni.
 Sfortunatamente, in questo modo i programmi diventano dipendenti da sottigliezze riguardanti ciò che succede
 durante il processo di compilazione di Perl 5; una variabile che I<credevate> di
-inizializzare subito ad uno specifico valore potrebbe essere inizializzata in un momento di molto successivo.
+inizializzare subito ad uno specifico valore potrebbe essere inizializzata in un momento parecchio successivo.
 
 Per evitare che questo accada, racchiudete il codice principale del vostro programma in una semplice funzione
 C<main()>. Incapsulate le vostre variabili negli scope appropriati. Quindi, aggiungete una singola

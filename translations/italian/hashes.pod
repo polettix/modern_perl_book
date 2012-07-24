@@ -75,7 +75,7 @@ per associare chiavi e valori, poiché rende più esplicite tali associazioni:
 =end programlisting
 
 L'operatore fat comma funziona come la virgola, ma quota anche
-la bareword (L<barewords>) che lo precede. La pragma C<strict> non genererà un warning
+la bareword (L<barewords>) che lo precede. La direttiva C<strict> non genererà un warning
 per la presenza di tale bareword--e se avete una funzione con lo stesso nome di una chiave
 dell'hash, l'operatore fat comma I<non> chiamerà la funzione:
 
@@ -531,7 +531,7 @@ la sua verità.
 
 X<hash; parametri per nome>
 
-Se la vostra funzione accetta diversi argomenti, sfruttate la golosità degli hash
+Se la vostra funzione accetta diversi argomenti, sfruttate lo slurping degli argomenti
 (L<parameter_slurping>) per raccogliere delle coppie chiave/valore in un unico hash trattandole come
 argomenti passati per nome alla funzione:
 
@@ -589,7 +589,7 @@ Z<locked_hashes>
 X<hash; bloccati>
 
 Dato che le chiavi di hash sono delle bareword, offrono poca protezione contro gli errori di scrittura rispetto alla
-protezione offerta dalla pragma C<strict> sui nomi di funzione e di variabile. Il
+protezione offerta dalla direttiva C<strict> sui nomi di funzione e di variabile. Il
 poco conosciuto modulo core C<Hash::Util> fornisce dei meccanismi per migliorare la situazione.
 
 Per prevenire l'inserimento accidentale di una chiave di hash indesiderata
