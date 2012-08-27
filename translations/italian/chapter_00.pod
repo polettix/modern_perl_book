@@ -93,5 +93,5 @@ Gli errori rimanenti sono colpa esclusiva della testardaggine dell'autore.
 
 =head1 Traduzione
 
-Questa traduzione è stata effettuata dall'Associazione di Promozione Sociale
-B<Perl.it>, nelle persone di: TODO.
+La traduzione italiana è di Gianluca Torta, sponsorizzata
+dall'Associazione di Promozione Sociale B<Perl.it>.
