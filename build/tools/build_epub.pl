@@ -254,7 +254,10 @@ sub generate_ebook
     # Set the ePub metadata.
     $epub->add_title('Modern Perl');
     $epub->add_author('chromatic');
-    $epub->add_language('en');
+    $epub->add_translator('Gianluca Torta');
+    $epub->add_publisher('Perl.it');
+    $epub->add_contributor('Perl.it', role => 'spn');
+    $epub->add_language('it');
 
     # Add the book cover.
     add_cover($epub, './images/mp_cover_full.png');
