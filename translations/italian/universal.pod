@@ -28,8 +28,8 @@ che deriva dalla classe C<Mammifero>):
     say $pepe->isa(   'HASH'      );  # stampa 1
     say Scimmia->isa( 'Mammifero' );  # stampa 1
 
-    say $pepper->isa( 'Delfino'   );  # stampa 0
-    say $pepper->isa( 'ARRAY'     );  # stampa 0
+    say $pepe->isa( 'Delfino'   );  # stampa 0
+    say $pepe->isa( 'ARRAY'     );  # stampa 0
     say Scimmia->isa( 'HASH'      );  # stampa 0
 
 =end programlisting
