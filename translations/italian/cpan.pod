@@ -3,7 +3,7 @@
 Z<cpan>
 
 Perl 5 è già di per se stesso un linguaggio pragmatico, ma la sua comunità, ancora più pragmatica,
-lo ha notevolmente esteso, rendendo poi disponibile a tutti i risultati di questo lavoro.
+lo ha notevolmente esteso, rendendo poi disponibili a tutti i risultati di questo lavoro.
 Se avete un problema, è probabile che qualcuno abbia già scritto--e condiviso--del codice Perl che lo risolve.
 
 X<CPAN>
@@ -31,7 +31,7 @@ da metadati.
 Centinaia di collaboratori registrati e migliaia di moduli indicizzati
  in centinaia di distribuzioni vengono I<aggiunti> a CPAN ogni mese, senza considerare gli aggiornamenti. 
 Alla fine di Novembre 2011, il sito search.cpan.org riportava 9359
-collaboratori, 101656 moduli e 23808 distribuzioni (con incrementi dell'11.5%, 19.4% e 14.3% rispetto agli stessi dati nell'edizione precedente di
+collaboratori, 101656 moduli e 23808 distribuzioni (con incrementi dell'11,5%, 19,4% e 14,3% rispetto agli stessi dati nell'edizione precedente di
 questo libro).
 
 =end tip
