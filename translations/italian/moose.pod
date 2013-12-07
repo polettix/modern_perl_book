@@ -97,7 +97,7 @@ ancora mangiato:
 =begin programlisting
 
     my $strana_sveglia = Gatto->new();
-    $strana_sveglia->miao() for 1 .. 3;
+    $strana_sveglia->miagola() for 1 .. 3;
 
 =end programlisting
 
